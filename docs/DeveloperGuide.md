@@ -288,15 +288,26 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
+| Priority | As a ... | I want to ... | So that I can...|
+|---|---|---|---|
+| '***' | Property Manager | Add tenants and their info | manage tenants for contacting and tracking their info |
+| '***' | Property Manager | Delete tenants and their info | remove people who are no longer tenants |
+| '***' | Property Manager | List all tenants | see what tenants I am keeping track of |
+| '***' | Property Manager | View all available commands easily | refer to proper syntax and command usage should I forget any |
+| '***' | Property Manager | Manage maintenance jobs and their status (requested/ongoing/completed) | keep track of the status of maintenance jobs |
+| '***' | Property Manager | Track rent information, due dates | keep track of whose rent is due and make collections on time |
+|---|---|---|---|
+| '**' | Property Manager | Add notes for extra tenant information | easily be up to speed about the tenant's general circumstances when they require anything |
+| '**' | Property Manager | Search a contact of tenant by name (without the need to type in full name) | I can easily search for the tenant in a long list |
+| '**' | Property Manager | Edit the details of the tenants | make changes to tenants' details easily ie. when they change phone numbers |
+| '**' | Property Manager | Assign issues to tenants that need to have them resolved | so that I know what outstanding issues there are and to whom they concern |
+| '**' | New User | Bulk-import properties/units/tenants from CSV | onboarding is fast |
+| '**' | Property Manager | Tag units with attributes (furnished, pet-friendly, aircon type) | I can filter and assign tenants appropriately based on their needs |
+| '**' | Property Manager | Record payments by each tenant | so that I don't miss payments |
+| '**' | Property Manager | Export/archive stored data | easily continue work on a different device or Start over with a clean slate |
+| '**' | Property Manager | Get confirmation before performing irreversible operations | avoid causing any irreversible damage by accidental command usage |
+| '**' | Property Manager | Add a starred contact/frequently contact list | perform my operations as quickly and efficiently as possible |
+| '**' | Property Manager | Use short form commands instead of typing them fully | perform my operations as quickly and efficiently as possible |
 *{More to be added}*
 
 ### Use cases

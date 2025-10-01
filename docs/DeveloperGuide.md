@@ -299,31 +299,152 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases
+# Use Cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all **use cases** below, the **System** is the 'TenantManager' and the **Actor** is the 'user', unless specified otherwise)
 
-**Use case: Delete a person**
+---
+
+## Use case: Add tenants
 
 **MSS**
+1. User requests to add a tenant with all required information.
+2. **System** checks for correct parameter format and completeness.
+3. **System** verifies that a tenant with the same name does not already exist.
+4. **System** creates a new tenant record and assigns a unique **Tenant ID**.
+5. **System** shows the "Tenant added" success message and refreshes the tenants list.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
+* 2a. The command format is wrong (e.g., missing parameter, wrong date format).
+    * 2a1. **System** shows an error message (e.g., `"Name cannot be empty"` or `"Wrong format, the correct format is <correct_format>"`).
+    Use case ends.
+* 3a. A tenant with the same name already exists.
+    * 3a1. **System** shows the error message: `"Tenant with the same name already exists"`.
+    Use case ends.
 
-* 2a. The list is empty.
+---
 
-  Use case ends.
+## Use case: Delete tenants
 
-* 3a. The given index is invalid.
+**MSS**
+1. User requests to delete a tenant by specifying a **Tenant ID**.
+2. **System** verifies that the provided **Tenant ID** is an integer and corresponds to an existing tenant.
+3. **System** deletes the tenant record associated with the **Tenant ID**.
+4. **System** shows the success message: `"Deleted tenant <Tenant ID> successfully."`
+5. **System** refreshes the list of tenants.
 
-    * 3a1. AddressBook shows an error message.
+Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
+* 2a. The provided **Tenant ID** is not a positive integer or does not correspond to an existing tenant.
+    * 2a1. **System** shows the error message: `"Invalid tenant ID detected. Unable to delete tenant."`
+    Use case ends.
+
+---
+
+## Use case: Add maintenance job
+
+**MSS**
+1. User requests to add a maintenance job, providing the unit **ADDRESS** and job **DESCRIPTION**.
+2. **System** checks that both **ADDRESS** and **DESCRIPTION** are not empty.
+3. **System** verifies if a maintenance job with the exact same **ADDRESS** and **DESCRIPTION** already exists (duplicate check).
+4. **System** assigns a unique **Job Number** to the new job and sets its status to "Not Completed".
+5. **System** shows the success message and updates the GUI with the new maintenance job.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **ADDRESS** is empty.
+    * 2a1. **System** shows the error message: `"Address cannot be empty."`
+    Use case ends.
+* 2b. The **DESCRIPTION** is empty.
+    * 2b1. **System** shows the error message: `"Description cannot be empty."`
+    Use case ends.
+* 3a. A duplicate maintenance job (same **ADDRESS** and same **DESCRIPTION**) is found.
+    * 3a1. **System** shows an error message indicating a duplicate.
+    Use case ends.
+
+---
+
+## Use case: Delete maintenance job for a unit
+
+**MSS**
+1. User requests to delete a maintenance job by specifying a **JOB NUMBER**.
+2. **System** verifies that the **JOB NUMBER** is an integer and corresponds to an existing job in the list.
+3. **System** deletes the maintenance job.
+4. **System** shows the success message: `"[JOB DESCRIPTION] was successfully deleted!"`
+5. **System** updates the list of maintenance jobs by removing the entry and shifting subsequent tasks up.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **JOB NUMBER** is empty.
+    * 2a1. **System** shows the error message: `"Job number cannot be empty."`
+    Use case ends.
+* 2b. The **JOB NUMBER** is invalid (e.g., not an integer, or does not exist).
+    * 2b1. **System** shows the error message: `"Job failed to be deleted. Please enter an existing job number!"` or `"Job failed to be deleted. Please enter a valid job number!"`
+    Use case ends.
+
+---
+
+## Use case: Mark maintenance job
+
+**MSS**
+1. User requests to mark a maintenance job as done by providing the command `mark` followed by the **job number**.
+2. **System** verifies that the **job number** is an integer and corresponds to an existing, unmarked job.
+3. **System** sets the status of the maintenance job to "Completed" (or similar).
+4. **System** shows the success message: `"[Job number] was successfully marked as done!"`
+5. **System** updates the UI to display the new status of the job.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **job number** is empty.
+    * 2a1. **System** shows the error message: `"Job number cannot be empty."`
+    Use case ends.
+* 2b. The **job number** is invalid (e.g., not an integer, or does not exist).
+    * 2b1. **System** shows an error message: `"Job failed to be marked. Please enter a valid job number!"` or `"Job failed to be marked. Please enter an existing job number!"`
+    Use case ends.
+* 2c. The job is already marked as done.
+    * 2c1. **System** shows a message indicating the job is already completed.
+    Use case ends.
+
+---
+
+## Use case: List all tenants
+
+**MSS**
+1. User requests to view all tenant information using the `list` command.
+2. **System** retrieves all existing tenant records.
+3. **System** displays the full list of tenants, including all details for each tenant.
+
+Use case ends.
+
+**Extensions**
+* 1a. The command contains errors (e.g., wrong spelling).
+    * 1a1. **System** shows the error message: `"Unknown command"`.
+    Use case ends.
+* 2a. No tenants exist in the **System**.
+    * 2a1. **System** displays a message indicating that the list is empty.
+    Use case ends.
+
+---
+
+## Use case: Help command
+
+**MSS**
+1. User requests a list of all available commands using the `help` command.
+2. **System** retrieves the list and formats it.
+3. **System** displays the list of "All available commands" including their formats.
+
+Use case ends.
+
+**Extensions**
+* 1a. The command contains errors (e.g., wrong spelling).
+    * 1a1. **System** shows the error message: `"Unknown command"`.
+    Use case ends.
 
 *{More to be added}*
 

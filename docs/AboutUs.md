@@ -11,51 +11,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Yorick Chew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yorick-chew.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/yorick-chew)]
+[[portfolio](team/yorickchew.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Documentation
 
-### Jane Doe
+### Michelle
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/michellee15.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/michellee15)]
+[[portfolio](team/michelle.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Gabriel Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bearkerb.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/bearkerb)] [[portfolio](team/gabriel-tan.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Goo Zheng Xien Sean
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/goozxsean.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/goozxs)]
+[[portfolio](team/goozxs.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Benjamin Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glacialthorn.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/glacialthorn)]
+[[portfolio](team/glacialthorn.md)]
 
 * Role: Developer
 * Responsibilities: UI

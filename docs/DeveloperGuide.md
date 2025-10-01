@@ -462,20 +462,21 @@ Use case ends.
 
 *{More to be added}*
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
-## Performance
+### Performance
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage . > **Note:** within 1 second for typical operations like listing, searching, adding, etc.
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+> **Note:** within 1 second for typical operations like listing, searching, adding, etc.
 3.  Users with above-average typing speed should be able to perform most tasks **faster via commands** than using a mouse.
 
-## Usability 
+### Usability 
 1. The system should provide **clear, informative error messagaes to guide user** for invalid inputs.
 2. Commands and outputs should follow a consistent format to minimize confusion.
 
-## Reliability
+### Reliability
 1. Data should not be lost in case of sudden termination.
-2. The system should handle invalid inputs without crashing or corrupting data.
+2. The system should handle invalid inputs without crashing or corrupting.
 
 ### Glossary
 

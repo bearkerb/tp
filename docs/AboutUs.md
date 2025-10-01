@@ -55,7 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/glacialthorn.png" width="200px">
 
 [[github](http://github.com/glacialthorn)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/glacialthorn.md)]
 
 * Role: Developer
 * Responsibilities: UI

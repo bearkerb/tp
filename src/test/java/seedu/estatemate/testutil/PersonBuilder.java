@@ -12,7 +12,7 @@ import seedu.estatemate.model.tag.Tag;
 import seedu.estatemate.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building of Person objects.
  */
 public class PersonBuilder {
 

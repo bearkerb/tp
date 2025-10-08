@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import seedu.estatemate.commons.core.LogsCenter;
 
+
 /**
  * The main entry point to the application.
  *

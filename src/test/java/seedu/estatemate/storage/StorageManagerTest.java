@@ -48,7 +48,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void EstateMateReadSave() throws Exception {
+    public void estateMateReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonEstateMateStorage} class.

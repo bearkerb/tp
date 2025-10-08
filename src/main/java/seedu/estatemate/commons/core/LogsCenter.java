@@ -79,7 +79,7 @@ public class LogsCenter {
      * Sets it as the {@code baseLogger}, to be used as the parent logger of all other loggers.
      */
     private static void setBaseLogger() {
-        baseLogger = Logger.getLogger("ab3");
+        baseLogger = Logger.getLogger("em");
         baseLogger.setUseParentHandlers(false);
         removeHandlers(baseLogger);
 

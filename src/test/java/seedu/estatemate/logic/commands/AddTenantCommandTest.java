@@ -50,7 +50,8 @@ public class AddTenantCommandTest {
         AddTenantCommand addTenantCommand = new AddTenantCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddTenantCommand.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(CommandException.class,
+                AddTenantCommand.MESSAGE_DUPLICATE_PERSON,
                 () -> addTenantCommand.execute(modelStub));
     }
 

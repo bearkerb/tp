@@ -15,7 +15,7 @@ import seedu.estatemate.model.person.Person;
 import seedu.estatemate.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddTenantCommand}.
  */
 public class AddTenantCommandIntegrationTest {
 

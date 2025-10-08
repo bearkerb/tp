@@ -36,7 +36,7 @@ public class EstateMateParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddTenantCommand command = (AddTenantCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        AddTenantCommand command = (AddTenantCommand) parser.parseCommand(PersonUtil.getAddTenantCommand(person));
         assertEquals(new AddTenantCommand(person), command);
     }
 

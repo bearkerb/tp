@@ -165,11 +165,11 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveEstateMate method by executing an add command
-        String addCommand = AddTenantCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+        String addTenantCommand = AddTenantCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addTenantCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }

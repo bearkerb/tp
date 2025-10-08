@@ -46,7 +46,7 @@ import seedu.estatemate.model.tag.Tag;
 import seedu.estatemate.testutil.PersonBuilder;
 
 public class AddTenantCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private AddTenantCommandParser parser = new AddTenantCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -61,8 +61,8 @@ public class AddTenantCommandParserTest {
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddTenantCommand(expectedPersonMultipleTags));
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND, new AddTenantCommand(expectedPersonMultipleTags));
     }
 
     @Test

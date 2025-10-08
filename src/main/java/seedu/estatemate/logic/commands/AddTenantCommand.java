@@ -41,7 +41,7 @@ public class AddTenantCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddTenantCommand to add the specified {@code Person}
      */
     public AddTenantCommand(Person person) {
         requireNonNull(person);

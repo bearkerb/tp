@@ -54,7 +54,7 @@ public class EstateMateParser {
         switch (commandWord) {
 
         case AddTenantCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddTenantCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

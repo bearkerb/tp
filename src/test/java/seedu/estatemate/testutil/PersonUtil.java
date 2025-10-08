@@ -19,9 +19,9 @@ import seedu.estatemate.model.tag.Tag;
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add tenant command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
+    public static String getAddTenantCommand(Person person) {
         return AddTenantCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 

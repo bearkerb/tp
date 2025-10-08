@@ -16,7 +16,7 @@ import seedu.estatemate.model.person.Person;
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AddTenantCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -43,7 +43,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddTenantCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -67,12 +67,12 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddTenantCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddTenantCommand otherAddTenantCommand = (AddTenantCommand) other;
+        return toAdd.equals(otherAddTenantCommand.toAdd);
     }
 
     @Override

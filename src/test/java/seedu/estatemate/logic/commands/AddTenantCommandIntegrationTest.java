@@ -17,7 +17,7 @@ import seedu.estatemate.testutil.PersonBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddTenantCommandIntegrationTest {
 
     private Model model;
 
@@ -33,16 +33,16 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getEstateMate(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertCommandSuccess(new AddTenantCommand(validPerson), model,
+                String.format(AddTenantCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getEstateMate().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model,
-                AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddTenantCommand(personInList), model,
+                AddTenantCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

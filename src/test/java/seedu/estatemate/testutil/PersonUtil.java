@@ -2,10 +2,12 @@ package seedu.estatemate.testutil;
 
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.Set;
 
 import seedu.estatemate.logic.commands.AddTenantCommand;
@@ -37,6 +39,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        person.getJobs().forEach(job -> sb.append(PREFIX_JOB + job.toString() + " "));
         return sb.toString();
     }
 
@@ -55,6 +58,14 @@ public class PersonUtil {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getJobs().isPresent()) {
+            List<Integer> jobs = descriptor.getJobs().get();
+            if (jobs.isEmpty()) {
+                sb.append(PREFIX_JOB);
+            } else {
+                jobs.forEach(j -> sb.append(PREFIX_JOB).append(j.toString()).append(" "));
             }
         }
         return sb.toString();

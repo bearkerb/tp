@@ -3,11 +3,13 @@ package seedu.estatemate.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.estatemate.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -43,7 +45,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_JOB + "JOB]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -67,22 +70,6 @@ public class EditCommand extends Command {
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit} edited with
-     * {@code editPersonDescriptor}.
-     */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -102,6 +89,23 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
+
+        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        List<Integer> updatedJobs = editPersonDescriptor.getJobs().orElse(personToEdit.getJobs());
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedJobs);
     }
 
     @Override
@@ -138,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private List<Integer> jobs;
 
         public EditPersonDescriptor() {
         }
@@ -151,60 +156,72 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setJobs(toCopy.jobs);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, jobs);
         }
 
         public void setName(Name name) {
             this.name = name;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
         }
 
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
             this.email = email;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
             this.address = address;
         }
 
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException} if modification is
-         * attempted. Returns {@code Optional#empty()} if {@code tags} is null.
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}. A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setJobs(List<Integer> jobs) {
+            this.jobs = (jobs != null) ? new ArrayList<>(jobs) : null;
+        }
+
+        public Optional<List<Integer>> getJobs() {
+            return (jobs != null) ? Optional.of(Collections.unmodifiableList(jobs)) : Optional.empty();
         }
 
         @Override
@@ -223,7 +240,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(jobs, otherEditPersonDescriptor.jobs);
         }
 
         @Override
@@ -234,6 +252,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("jobs", jobs)
                     .toString();
         }
     }

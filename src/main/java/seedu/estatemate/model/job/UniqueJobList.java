@@ -48,9 +48,9 @@ public class UniqueJobList implements Iterable<Job> {
         }
     }
 
-    public void setJobs(UniqueJobList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+    public void setJobs(List<Job> jobs) {
+        requireNonNull(jobs);
+        internalList.setAll(jobs);
     }
 
     /**

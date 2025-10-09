@@ -8,10 +8,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.estatemate.commons.core.LogsCenter;
+import seedu.estatemate.logic.commands.AddJobCommand;
 import seedu.estatemate.logic.commands.AddTenantCommand;
 import seedu.estatemate.logic.commands.ClearCommand;
 import seedu.estatemate.logic.commands.Command;
 import seedu.estatemate.logic.commands.DeleteCommand;
+import seedu.estatemate.logic.commands.DeleteJobCommand;
 import seedu.estatemate.logic.commands.EditCommand;
 import seedu.estatemate.logic.commands.ExitCommand;
 import seedu.estatemate.logic.commands.FindCommand;
@@ -76,6 +78,13 @@ public class EstateMateParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddJobCommand.COMMAND_WORD:
+            return new AddJobCommandParser().parse(arguments);
+
+        case DeleteJobCommand.COMMAND_WORD:
+            return new DeleteJobCommandParser().parse(arguments);
+
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

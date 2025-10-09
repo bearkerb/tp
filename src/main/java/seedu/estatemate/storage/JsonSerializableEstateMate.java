@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.estatemate.commons.exceptions.IllegalValueException;
 import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.ReadOnlyEstateMate;
+import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 
 /**
@@ -20,15 +21,23 @@ import seedu.estatemate.model.person.Person;
 class JsonSerializableEstateMate {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_JOB = "Jobs list contains duplicate job id(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedJob> jobs = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableEstateMate} with the given persons.
+     * Constructs a {@code JsonSerializableEstateMate} with the given persons and jobs.
      */
     @JsonCreator
-    public JsonSerializableEstateMate(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableEstateMate(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                      @JsonProperty("jobs") List<JsonAdaptedJob> jobs) {
+        if (persons != null) {
+            this.persons.addAll(persons);
+        }
+        if (jobs != null) {
+            this.jobs.addAll(jobs);
+        }
     }
 
     /**
@@ -38,6 +47,7 @@ class JsonSerializableEstateMate {
      */
     public JsonSerializableEstateMate(ReadOnlyEstateMate source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        jobs.addAll(source.getJobList().stream().map(JsonAdaptedJob::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +63,13 @@ class JsonSerializableEstateMate {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             estateMate.addPerson(person);
+        }
+        for (JsonAdaptedJob jsonAdaptedJob : jobs) {
+            Job model = jsonAdaptedJob.toModelType();
+            if (estateMate.hasJobId(model.getId())) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_JOB);
+            }
+            estateMate.addJob(model);
         }
         return estateMate;
     }

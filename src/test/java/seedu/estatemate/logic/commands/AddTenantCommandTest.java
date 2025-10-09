@@ -22,6 +22,7 @@ import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.ReadOnlyEstateMate;
 import seedu.estatemate.model.ReadOnlyUserPrefs;
+import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.testutil.PersonBuilder;
 
@@ -90,12 +91,12 @@ public class AddTenantCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,12 +126,12 @@ public class AddTenantCommandTest {
         }
 
         @Override
-        public void setEstateMate(ReadOnlyEstateMate newData) {
+        public ReadOnlyEstateMate getEstateMate() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyEstateMate getEstateMate() {
+        public void setEstateMate(ReadOnlyEstateMate newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -156,6 +157,32 @@ public class AddTenantCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Job> getFilteredJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int nextJobId() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteJobById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addJob(Job job) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredJobList(Predicate<Job> predicate) {
+            requireNonNull(predicate);
             throw new AssertionError("This method should not be called.");
         }
     }

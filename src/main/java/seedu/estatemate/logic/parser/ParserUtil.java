@@ -14,6 +14,7 @@ import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
+import seedu.estatemate.model.job.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +121,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Description parseDescription(String desc) throws ParseException {
+        requireNonNull(desc);
+        final String trimmed = desc.trim();
+        if (!Description.isValidDescription(trimmed)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmed);
     }
 }

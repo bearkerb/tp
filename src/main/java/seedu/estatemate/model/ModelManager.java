@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.estatemate.commons.core.GuiSettings;
 import seedu.estatemate.commons.core.LogsCenter;
 import seedu.estatemate.model.person.Person;
+import seedu.estatemate.model.job.Job;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final EstateMate estateMate;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Job> filteredJobs;
 
     /**
      * Initializes a ModelManager with the given EstateMate and userPrefs.
@@ -33,7 +35,8 @@ public class ModelManager implements Model {
 
         this.estateMate = new EstateMate(EstateMate);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.estateMate.getPersonList());
+        this.filteredPersons = new FilteredList<>(this.estateMate.getPersonList());
+        this.filteredJobs = new FilteredList<>(this.estateMate.getJobList());
     }
 
     public ModelManager() {
@@ -109,6 +112,38 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         estateMate.setPerson(target, editedPerson);
+    }
+
+    // === JOBS ===
+    @Override
+    public ObservableList<Job> getFilteredJobList() {
+        return filteredJobs;
+    }
+
+    @Override
+    public void updateFilteredJobList(Predicate<Job> predicate) {
+        requireNonNull(predicate);
+        filteredJobs.setPredicate(predicate);
+    }
+
+    @Override
+    public void addJob(Job job) {
+        requireNonNull(job);
+        estateMate.addJob(job);
+        // Show all by default after a mutation (matches AB3 pattern)
+        updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
+    }
+
+    @Override
+    public void deleteJobById(int id) {
+        estateMate.removeJobById(id);
+        // keep current filter; optional: re-show all
+        // updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
+    }
+
+    @Override
+    public int nextJobId() {
+        return estateMate.nextJobId();
     }
 
     //=========== Filtered Person List Accessors =============================================================

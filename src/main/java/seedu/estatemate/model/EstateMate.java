@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.estatemate.commons.util.ToStringBuilder;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.UniquePersonList;
+import seedu.estatemate.model.job.Job;
+import seedu.estatemate.model.job.UniqueJobList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,6 +18,7 @@ import seedu.estatemate.model.person.UniquePersonList;
 public class EstateMate implements ReadOnlyEstateMate {
 
     private final UniquePersonList persons;
+    private final UniqueJobList jobs;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class EstateMate implements ReadOnlyEstateMate {
      */
     {
         persons = new UniquePersonList();
+        jobs = new UniqueJobList();
     }
 
     public EstateMate() {}
@@ -94,6 +98,40 @@ public class EstateMate implements ReadOnlyEstateMate {
         persons.remove(key);
     }
 
+    public void addJob(Job job) {
+        requireNonNull(job);
+        jobs.add(job); // relies on UniqueJobList's identity-by-id
+    }
+    public boolean hasJobId(int id) {
+        // Use the backing ObservableList to stream
+        return jobs.asUnmodifiableObservableList()
+                .stream()
+                .anyMatch(j -> j.getId() == id);
+    }
+
+    public void removeJobById(int id) {
+        Job toRemove = jobs.asUnmodifiableObservableList()
+                .stream()
+                .filter(j -> j.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (toRemove != null) {
+            jobs.remove(toRemove);
+        }
+    }
+
+    public ObservableList<Job> getJobList() {
+        return jobs.asUnmodifiableObservableList();
+    }
+
+    public int nextJobId() {
+        // max(existing id) + 1, or 1 if empty
+        return jobs.asUnmodifiableObservableList()
+                .stream()
+                .mapToInt(Job::getId)
+                .max()
+                .orElse(0) + 1;
+    }
     //// util methods
 
     @Override

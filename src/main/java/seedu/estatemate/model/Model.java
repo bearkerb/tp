@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.core.GuiSettings;
 import seedu.estatemate.model.person.Person;
+import seedu.estatemate.model.job.Job;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Always-true predicate for listing all jobs. */
+    Predicate<Job> PREDICATE_SHOW_ALL_JOBS = unused -> true;
+
+    ObservableList<Job> getFilteredJobList();
+    void updateFilteredJobList(Predicate<Job> predicate);
+    void addJob(Job job);
+    void deleteJobById(int id);
+    int nextJobId();
+
 }

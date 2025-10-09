@@ -24,14 +24,14 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
-        checkArgument(isValidName(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
     }
 
     /**
      * Returns true if a given string is a valid description.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

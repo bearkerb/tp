@@ -18,12 +18,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.estatemate.model.person.Person;
-import seedu.estatemate.model.person.UniquePersonList;
-import seedu.estatemate.model.person.exceptions.DuplicatePersonException;
-import seedu.estatemate.testutil.PersonBuilder;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.job.UniqueJobList;
+import seedu.estatemate.model.person.Person;
+import seedu.estatemate.model.person.exceptions.DuplicatePersonException;
+import seedu.estatemate.testutil.PersonBuilder;
 
 public class EstateMateTest {
 

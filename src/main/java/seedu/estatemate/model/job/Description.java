@@ -5,6 +5,9 @@ import static seedu.estatemate.commons.util.AppUtil.checkArgument;
 
 import seedu.estatemate.model.person.Name;
 
+/**
+ * Represents a Job's description in the address book.
+ */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Description should not be blank";

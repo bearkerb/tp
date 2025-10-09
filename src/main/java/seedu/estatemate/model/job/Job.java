@@ -2,14 +2,11 @@ package seedu.estatemate.model.job;
 
 import static seedu.estatemate.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Objects;
-import java.util.Set;
-
 import seedu.estatemate.commons.util.ToStringBuilder;
 
 /**
- * Represents a Job in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Job in the address book. Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Job {
     private final Description description;

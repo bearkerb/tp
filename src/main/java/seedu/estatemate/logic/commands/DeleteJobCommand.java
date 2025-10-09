@@ -2,15 +2,10 @@ package seedu.estatemate.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import seedu.estatemate.commons.core.index.Index;
 import seedu.estatemate.commons.util.ToStringBuilder;
 import seedu.estatemate.logic.Messages;
 import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.Model;
-import seedu.estatemate.model.person.Person;
-import seedu.estatemate.model.job.Job;
 
 /**
  * Deletes a Job identified using it's displayed id number from the address book.

@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.estatemate.commons.exceptions.IllegalValueException;
 import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.ReadOnlyEstateMate;
-import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.job.Job;
+import seedu.estatemate.model.person.Person;
 
 /**
  * An Immutable EstateMate that is serializable to JSON format.
@@ -32,8 +32,12 @@ class JsonSerializableEstateMate {
     @JsonCreator
     public JsonSerializableEstateMate(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                       @JsonProperty("jobs") List<JsonAdaptedJob> jobs) {
-        if (persons != null) this.persons.addAll(persons);
-        if (jobs != null) this.jobs.addAll(jobs);
+        if (persons != null) {
+            this.persons.addAll(persons);
+        }
+        if (jobs != null) {
+            this.jobs.addAll(jobs);
+        }
     }
 
     /**
@@ -62,7 +66,9 @@ class JsonSerializableEstateMate {
         }
         for (JsonAdaptedJob jsonAdaptedJob : jobs) {
             Job model = jsonAdaptedJob.toModelType();
-            if (estateMate.hasJobId(model.getId())) throw new IllegalValueException(MESSAGE_DUPLICATE_JOB);
+            if (estateMate.hasJobId(model.getId())) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_JOB);
+            }
             estateMate.addJob(model);
         }
         return estateMate;

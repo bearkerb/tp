@@ -9,16 +9,16 @@ import java.util.regex.Pattern;
 
 import seedu.estatemate.commons.core.LogsCenter;
 import seedu.estatemate.logic.commands.AddCommand;
+import seedu.estatemate.logic.commands.AddJobCommand;
 import seedu.estatemate.logic.commands.ClearCommand;
 import seedu.estatemate.logic.commands.Command;
 import seedu.estatemate.logic.commands.DeleteCommand;
+import seedu.estatemate.logic.commands.DeleteJobCommand;
 import seedu.estatemate.logic.commands.EditCommand;
 import seedu.estatemate.logic.commands.ExitCommand;
 import seedu.estatemate.logic.commands.FindCommand;
 import seedu.estatemate.logic.commands.HelpCommand;
 import seedu.estatemate.logic.commands.ListCommand;
-import seedu.estatemate.logic.commands.AddJobCommand;
-import seedu.estatemate.logic.commands.DeleteJobCommand;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
 
 /**

@@ -1,14 +1,19 @@
 package seedu.estatemate.logic.parser;
 
 import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.estatemate.logic.commands.DeleteJobCommand;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
-import seedu.estatemate.model.job.Description;
 
-
+/**
+ * Parses input arguments and creates a new DeleteJobCommand object
+ */
 public class DeleteJobCommandParser implements Parser<DeleteJobCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeleteJobCommand
+     * and returns a DeleteJobCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public DeleteJobCommand parse(String args) throws ParseException {
         String trimmed = args.trim();
         if (trimmed.isEmpty() || !trimmed.matches("\\d+")) {

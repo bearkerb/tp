@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.estatemate.commons.core.GuiSettings;
 import seedu.estatemate.commons.core.LogsCenter;
-import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.job.Job;
+import seedu.estatemate.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,12 +28,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given EstateMate and userPrefs.
      */
-    public ModelManager(ReadOnlyEstateMate EstateMate, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(EstateMate, userPrefs);
+    public ModelManager(ReadOnlyEstateMate estateMate, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(estateMate, userPrefs);
 
-        logger.fine("Initializing with address book: " + EstateMate + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + estateMate + " and user prefs " + userPrefs);
 
-        this.estateMate = new EstateMate(EstateMate);
+        this.estateMate = new EstateMate(estateMate);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.estateMate.getPersonList());
         this.filteredJobs = new FilteredList<>(this.estateMate.getJobList());
@@ -46,14 +46,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -81,13 +81,13 @@ public class ModelManager implements Model {
     //=========== EstateMate ================================================================================
 
     @Override
-    public void setEstateMate(ReadOnlyEstateMate estateMate) {
-        this.estateMate.resetData(estateMate);
+    public ReadOnlyEstateMate getEstateMate() {
+        return estateMate;
     }
 
     @Override
-    public ReadOnlyEstateMate getEstateMate() {
-        return estateMate;
+    public void setEstateMate(ReadOnlyEstateMate estateMate) {
+        this.estateMate.resetData(estateMate);
     }
 
     @Override

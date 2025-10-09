@@ -5,9 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.estatemate.logic.parser.Prefix;
-import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.job.Job;
-import seedu.estatemate.model.job.Description;
+import seedu.estatemate.model.person.Person;
 
 /**
  * Container for user visible messages.
@@ -19,7 +18,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
-                "Multiple values specified for the following single-valued field(s): ";
+            "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_JOB_ID = "The job index provided is invalid";
 
 

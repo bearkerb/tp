@@ -4,11 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.estatemate.commons.util.ToStringBuilder;
-import seedu.estatemate.logic.Messages;
 import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.Model;
-import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.job.Description;
+import seedu.estatemate.model.job.Job;
 
 /**
  * Adds a job to the address book.

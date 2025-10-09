@@ -22,9 +22,9 @@ import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.ReadOnlyEstateMate;
 import seedu.estatemate.model.ReadOnlyUserPrefs;
+import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.testutil.PersonBuilder;
-import seedu.estatemate.model.job.Job;
 
 public class AddCommandTest {
 
@@ -90,12 +90,12 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,12 +125,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setEstateMate(ReadOnlyEstateMate newData) {
+        public ReadOnlyEstateMate getEstateMate() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyEstateMate getEstateMate() {
+        public void setEstateMate(ReadOnlyEstateMate newData) {
             throw new AssertionError("This method should not be called.");
         }
 

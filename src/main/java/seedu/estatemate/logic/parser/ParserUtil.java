@@ -137,17 +137,26 @@ public class ParserUtil {
         return new Description(trimmed);
     }
 
+    /**
+     * Parses a {@code String job index} into an {@code Integer}
+     * Leading and trailing whitespaces will be trimmed
+     * @return Integer represented by job String
+     * @throws ParseException if the returned integer is negative
+     */
     public static Integer parseJob(String job) throws ParseException {
         requireNonNull(job);
         String trimmedJob = job.trim();
 
-        // temporary check for non zero unsigned integer, to change in future
+        // temporary check for non-zero unsigned integer, to change in future
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedJob)) {
             throw new ParseException(MESSAGE_INVALID_JOB);
         }
         return Integer.valueOf(job);
     }
 
+    /**
+     * Parses {@code Collection<String> jobs} into a {@code List<Integer>}.
+     */
     public static List<Integer> parseJobs(Collection<String> jobs) throws ParseException {
         requireNonNull(jobs);
         final List<Integer> jobList = new ArrayList<>();

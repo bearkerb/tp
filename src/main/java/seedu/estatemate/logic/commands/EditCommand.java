@@ -5,8 +5,8 @@ import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.estatemate.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -216,7 +216,9 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setJobs(List<Integer> jobs) { this.jobs = (jobs != null) ? new ArrayList<>(jobs) : null; }
+        public void setJobs(List<Integer> jobs) {
+            this.jobs = (jobs != null) ? new ArrayList<>(jobs) : null;
+        }
 
         public Optional<List<Integer>> getJobs() {
             return (jobs != null) ? Optional.of(Collections.unmodifiableList(jobs)) : Optional.empty();

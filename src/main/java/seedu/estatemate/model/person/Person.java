@@ -65,7 +65,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public List<Integer> getJobs() { return jobs; }
+    public List<Integer> getJobs() {
+        return jobs;
+    }
 
     /**
      * Returns true if both persons have the same name.

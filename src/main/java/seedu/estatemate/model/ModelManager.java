@@ -137,8 +137,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteJobById(int id) {
         estateMate.removeJobById(id);
-        // keep current filter; optional: re-show all
-        // updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
     }
 
     @Override

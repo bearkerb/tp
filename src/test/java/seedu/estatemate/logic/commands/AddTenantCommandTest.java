@@ -22,14 +22,15 @@ import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.ReadOnlyEstateMate;
 import seedu.estatemate.model.ReadOnlyUserPrefs;
+import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddTenantCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTenantCommand(null));
     }
 
     @Test
@@ -37,9 +38,9 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddTenantCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddTenantCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -47,24 +48,25 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
+        AddTenantCommand addTenantCommand = new AddTenantCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddTenantCommand.MESSAGE_DUPLICATE_PERSON, () -> addTenantCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddTenantCommand addAliceCommand = new AddTenantCommand(alice);
+        AddTenantCommand addBobCommand = new AddTenantCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddTenantCommand addAliceCommandCopy = new AddTenantCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -79,9 +81,9 @@ public class AddCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        AddTenantCommand addTenantCommand = new AddTenantCommand(ALICE);
+        String expected = AddTenantCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        assertEquals(expected, addTenantCommand.toString());
     }
 
     /**
@@ -89,12 +91,12 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,12 +126,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setEstateMate(ReadOnlyEstateMate newData) {
+        public ReadOnlyEstateMate getEstateMate() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyEstateMate getEstateMate() {
+        public void setEstateMate(ReadOnlyEstateMate newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -155,6 +157,32 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Job> getFilteredJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int nextJobId() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteJobById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addJob(Job job) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredJobList(Predicate<Job> predicate) {
+            requireNonNull(predicate);
             throw new AssertionError("This method should not be called.");
         }
     }

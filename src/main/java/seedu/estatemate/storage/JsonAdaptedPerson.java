@@ -37,7 +37,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty List<Integer> jobs) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("jobs") List<Integer> jobs) {
         this.name = name;
         this.phone = phone;
         this.email = email;

@@ -2,8 +2,10 @@ package seedu.estatemate.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.estatemate.commons.core.index.Index;
@@ -21,6 +23,7 @@ import seedu.estatemate.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_JOB = "Job is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -120,5 +123,25 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Integer parseJob(String job) throws ParseException {
+        requireNonNull(job);
+        String trimmedJob = job.trim();
+
+        // temporary check for non zero unsigned integer, to change in future
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedJob)) {
+            throw new ParseException(MESSAGE_INVALID_JOB);
+        }
+        return Integer.valueOf(job);
+    }
+
+    public static List<Integer> parseJobs(Collection<String> jobs) throws ParseException {
+        requireNonNull(jobs);
+        final List<Integer> jobList = new ArrayList<>();
+        for (String jobIndex : jobs) {
+            jobList.add(parseJob(jobIndex));
+        }
+        return jobList;
     }
 }

@@ -26,12 +26,12 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<String> jobs = new ArrayList<>();
+    private final List<Integer> jobs = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<String> jobs) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Integer> jobs) {
         requireAllNonNull(name, phone, email, address, tags, jobs);
         this.name = name;
         this.phone = phone;
@@ -65,7 +65,7 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public List<String> getJobs() { return jobs; }
+    public List<Integer> getJobs() { return jobs; }
 
     /**
      * Returns true if both persons have the same name.

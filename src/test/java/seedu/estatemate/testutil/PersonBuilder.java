@@ -1,6 +1,8 @@
 package seedu.estatemate.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.estatemate.model.person.Address;
@@ -26,6 +28,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private List<Integer> jobs;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +39,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        jobs = new ArrayList<>();
     }
 
     /**
@@ -47,6 +51,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        jobs = new ArrayList<>(personToCopy.getJobs());
     }
 
     /**
@@ -62,6 +67,11 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    public PersonBuilder withJobs(String ... jobs) {
+        this.jobs = SampleDataUtil.getJobList(jobs);
         return this;
     }
 
@@ -90,7 +100,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, jobs);
     }
 
 }

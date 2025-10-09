@@ -24,6 +24,7 @@ import seedu.estatemate.model.ReadOnlyEstateMate;
 import seedu.estatemate.model.ReadOnlyUserPrefs;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.testutil.PersonBuilder;
+import seedu.estatemate.model.job.Job;
 
 public class AddCommandTest {
 
@@ -155,6 +156,32 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Job> getFilteredJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int nextJobId() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteJobById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addJob(Job job) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredJobList(Predicate<Job> predicate) {
+            requireNonNull(predicate);
             throw new AssertionError("This method should not be called.");
         }
     }

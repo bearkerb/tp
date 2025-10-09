@@ -24,14 +24,14 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given EstateMate and userPrefs.
+     * Initializes a ModelManager with the given estateMate and userPrefs.
      */
-    public ModelManager(ReadOnlyEstateMate EstateMate, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(EstateMate, userPrefs);
+    public ModelManager(ReadOnlyEstateMate estateMate, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(estateMate, userPrefs);
 
-        logger.fine("Initializing with address book: " + EstateMate + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + estateMate + " and user prefs " + userPrefs);
 
-        this.estateMate = new EstateMate(EstateMate);
+        this.estateMate = new EstateMate(estateMate);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.estateMate.getPersonList());
     }

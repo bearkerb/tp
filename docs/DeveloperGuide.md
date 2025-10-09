@@ -150,7 +150,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+Classes used by multiple components are in the `seedu.estatemate.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -275,65 +275,208 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of contacts
+* needs to track details regarding managing properties along with contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+Provides easy management of tenant information for multi-property portfolios. 
+Captures tenant rent submissions, lease dates, complaints and maintenance scheduling.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
+| Priority | As a ... | I want to ... | So that I can...|
+|---|---|---|---|
+| '***' | Property Manager | Add tenants and their info | manage tenants for contacting and tracking their info |
+| '***' | Property Manager | Delete tenants and their info | remove people who are no longer tenants |
+| '***' | Property Manager | List all tenants | see what tenants I am keeping track of |
+| '***' | Property Manager | View all available commands easily | refer to proper syntax and command usage should I forget any |
+| '***' | Property Manager | Manage maintenance jobs and their status (requested/ongoing/completed) | keep track of the status of maintenance jobs |
+| '***' | Property Manager | Track rent information, due dates | keep track of whose rent is due and make collections on time |
+|---|---|---|---|
+| '**' | Property Manager | Add notes for extra tenant information | easily be up to speed about the tenant's general circumstances when they require anything |
+| '**' | Property Manager | Search a contact of tenant by name (without the need to type in full name) | I can easily search for the tenant in a long list |
+| '**' | Property Manager | Edit the details of the tenants | make changes to tenants' details easily ie. when they change phone numbers |
+| '**' | Property Manager | Assign issues to tenants that need to have them resolved | so that I know what outstanding issues there are and to whom they concern |
+| '**' | New User | Bulk-import properties/units/tenants from CSV | onboarding is fast |
+| '**' | Property Manager | Tag units with attributes (furnished, pet-friendly, aircon type) | I can filter and assign tenants appropriately based on their needs |
+| '**' | Property Manager | Record payments by each tenant | so that I don't miss payments |
+| '**' | Property Manager | Export/archive stored data | easily continue work on a different device or Start over with a clean slate |
+| '**' | Property Manager | Get confirmation before performing irreversible operations | avoid causing any irreversible damage by accidental command usage |
+| '**' | Property Manager | Add a starred contact/frequently contact list | perform my operations as quickly and efficiently as possible |
+| '**' | Property Manager | Use short form commands instead of typing them fully | perform my operations as quickly and efficiently as possible |
 *{More to be added}*
 
 ### Use cases
+# Use Cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all **use cases** below, the **System** is the 'TenantManager' and the **Actor** is the 'user', unless specified otherwise)
 
-**Use case: Delete a person**
+---
+
+## Use case: Add tenants
 
 **MSS**
+1. User requests to add a tenant with all required information.
+2. **System** checks for correct parameter format and completeness.
+3. **System** verifies that a tenant with the same name does not already exist.
+4. **System** creates a new tenant record and assigns a unique **Tenant ID**.
+5. **System** shows the "Tenant added" success message and refreshes the tenants list.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
+* 2a. The command format is wrong (e.g., missing parameter, wrong date format).
+    * 2a1. **System** shows an error message (e.g., `"Name cannot be empty"` or `"Wrong format, the correct format is <correct_format>"`).
+    Use case ends.
+* 3a. A tenant with the same name already exists.
+    * 3a1. **System** shows the error message: `"Tenant with the same name already exists"`.
+    Use case ends.
 
-* 2a. The list is empty.
+---
 
-  Use case ends.
+## Use case: Delete tenants
 
-* 3a. The given index is invalid.
+**MSS**
+1. User requests to delete a tenant by specifying a **Tenant ID**.
+2. **System** verifies that the provided **Tenant ID** is an integer and corresponds to an existing tenant.
+3. **System** deletes the tenant record associated with the **Tenant ID**.
+4. **System** shows the success message: `"Deleted tenant <Tenant ID> successfully."`
+5. **System** refreshes the list of tenants.
 
-    * 3a1. AddressBook shows an error message.
+Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
+* 2a. The provided **Tenant ID** is not a positive integer or does not correspond to an existing tenant.
+    * 2a1. **System** shows the error message: `"Invalid tenant ID detected. Unable to delete tenant."`
+    Use case ends.
+
+---
+
+## Use case: Add maintenance job
+
+**MSS**
+1. User requests to add a maintenance job, providing the unit **ADDRESS** and job **DESCRIPTION**.
+2. **System** checks that both **ADDRESS** and **DESCRIPTION** are not empty.
+3. **System** verifies if a maintenance job with the exact same **ADDRESS** and **DESCRIPTION** already exists (duplicate check).
+4. **System** assigns a unique **Job Number** to the new job and sets its status to "Not Completed".
+5. **System** shows the success message and updates the GUI with the new maintenance job.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **ADDRESS** is empty.
+    * 2a1. **System** shows the error message: `"Address cannot be empty."`
+    Use case ends.
+* 2b. The **DESCRIPTION** is empty.
+    * 2b1. **System** shows the error message: `"Description cannot be empty."`
+    Use case ends.
+* 3a. A duplicate maintenance job (same **ADDRESS** and same **DESCRIPTION**) is found.
+    * 3a1. **System** shows an error message indicating a duplicate.
+    Use case ends.
+
+---
+
+## Use case: Delete maintenance job for a unit
+
+**MSS**
+1. User requests to delete a maintenance job by specifying a **JOB NUMBER**.
+2. **System** verifies that the **JOB NUMBER** is an integer and corresponds to an existing job in the list.
+3. **System** deletes the maintenance job.
+4. **System** shows the success message: `"[JOB DESCRIPTION] was successfully deleted!"`
+5. **System** updates the list of maintenance jobs by removing the entry and shifting subsequent tasks up.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **JOB NUMBER** is empty.
+    * 2a1. **System** shows the error message: `"Job number cannot be empty."`
+    Use case ends.
+* 2b. The **JOB NUMBER** is invalid (e.g., not an integer, or does not exist).
+    * 2b1. **System** shows the error message: `"Job failed to be deleted. Please enter an existing job number!"` or `"Job failed to be deleted. Please enter a valid job number!"`
+    Use case ends.
+
+---
+
+## Use case: Mark maintenance job
+
+**MSS**
+1. User requests to mark a maintenance job as done by providing the command `mark` followed by the **job number**.
+2. **System** verifies that the **job number** is an integer and corresponds to an existing, unmarked job.
+3. **System** sets the status of the maintenance job to "Completed" (or similar).
+4. **System** shows the success message: `"[Job number] was successfully marked as done!"`
+5. **System** updates the UI to display the new status of the job.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **job number** is empty.
+    * 2a1. **System** shows the error message: `"Job number cannot be empty."`
+    Use case ends.
+* 2b. The **job number** is invalid (e.g., not an integer, or does not exist).
+    * 2b1. **System** shows an error message: `"Job failed to be marked. Please enter a valid job number!"` or `"Job failed to be marked. Please enter an existing job number!"`
+    Use case ends.
+* 2c. The job is already marked as done.
+    * 2c1. **System** shows a message indicating the job is already completed.
+    Use case ends.
+
+---
+
+## Use case: List all tenants
+
+**MSS**
+1. User requests to view all tenant information using the `list` command.
+2. **System** retrieves all existing tenant records.
+3. **System** displays the full list of tenants, including all details for each tenant.
+
+Use case ends.
+
+**Extensions**
+* 1a. The command contains errors (e.g., wrong spelling).
+    * 1a1. **System** shows the error message: `"Unknown command"`.
+    Use case ends.
+* 2a. No tenants exist in the **System**.
+    * 2a1. **System** displays a message indicating that the list is empty.
+    Use case ends.
+
+---
+
+## Use case: Help command
+
+**MSS**
+1. User requests a list of all available commands using the `help` command.
+2. **System** retrieves the list and formats it.
+3. **System** displays the list of "All available commands" including their formats.
+
+Use case ends.
+
+**Extensions**
+* 1a. The command contains errors (e.g., wrong spelling).
+    * 1a1. **System** shows the error message: `"Unknown command"`.
+    Use case ends.
 
 *{More to be added}*
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
+### Performance
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+> **Note:** within 1 second for typical operations like listing, searching, adding, etc.
+3.  Users with above-average typing speed should be able to perform most tasks **faster via commands** than using a mouse.
 
-*{More to be added}*
+### Usability 
+1. The system should provide **clear, informative error messagaes to guide user** for invalid inputs.
+2. Commands and outputs should follow a consistent format to minimize confusion.
+
+### Reliability
+1. Data should not be lost in case of sudden termination.
+2. The system should handle invalid inputs without crashing or corrupting.
 
 ### Glossary
 

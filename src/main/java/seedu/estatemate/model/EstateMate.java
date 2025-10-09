@@ -53,12 +53,20 @@ public class EstateMate implements ReadOnlyEstateMate {
     }
 
     /**
+     * Replaces the contents of the job list with {@code jobs}.
+     */
+    public void setJobs(List<Job> jobs) {
+        this.jobs.setJobs(jobs);
+    }
+
+    /**
      * Resets the existing data of this {@code EstateMate} with {@code newData}.
      */
     public void resetData(ReadOnlyEstateMate newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setJobs(newData.getJobList());
     }
 
     //// person-level operations

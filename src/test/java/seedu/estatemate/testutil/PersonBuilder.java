@@ -70,6 +70,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code jobs} into a {@code List<Integer>} and set it to the {@code Person} that we are building.
+     */
     public PersonBuilder withJobs(String ... jobs) {
         this.jobs = SampleDataUtil.getJobList(jobs);
         return this;

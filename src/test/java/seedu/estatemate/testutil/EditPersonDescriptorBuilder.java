@@ -82,6 +82,10 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code jobs} into a {@code List<Integer>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
     public EditPersonDescriptorBuilder withJobs(String... jobs) {
         List<Integer> jobList = Stream.of(jobs).map(Integer::valueOf).collect(Collectors.toList());
         descriptor.setJobs(jobList);

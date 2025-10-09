@@ -30,7 +30,7 @@ public class Config {
         return userPrefsFilePath;
     }
 
-    public void setUserPrefsFilePath(Path userPrefsFilePath) {
+    public void setUserPrefFilePath(Path userPrefsFilePath) {
         this.userPrefsFilePath = userPrefsFilePath;
     }
 
@@ -41,11 +41,10 @@ public class Config {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Config)) {
+        if (!(other instanceof Config otherConfig)) {
             return false;
         }
 
-        Config otherConfig = (Config) other;
         return Objects.equals(logLevel, otherConfig.logLevel)
                 && Objects.equals(userPrefsFilePath, otherConfig.userPrefsFilePath);
     }
@@ -59,7 +58,7 @@ public class Config {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("logLevel", logLevel)
-                .add("userPrefsFilePath", userPrefsFilePath)
+                .add("userPrefFilePath", userPrefsFilePath)
                 .toString();
     }
 

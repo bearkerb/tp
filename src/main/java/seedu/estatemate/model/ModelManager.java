@@ -41,7 +41,6 @@ public class ModelManager implements Model {
     }
 
     //=========== UserPrefs ==================================================================================
-
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
@@ -135,11 +134,10 @@ public class ModelManager implements Model {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModelManager)) {
+        if (!(other instanceof ModelManager otherModelManager)) {
             return false;
         }
 
-        ModelManager otherModelManager = (ModelManager) other;
         return estateMate.equals(otherModelManager.estateMate)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);

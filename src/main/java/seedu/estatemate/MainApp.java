@@ -79,7 +79,7 @@ public class MainApp extends Application {
         ReadOnlyEstateMate initialData;
         try {
             estateMateOptional = storage.readEstateMate();
-            if (!estateMateOptional.isPresent()) {
+            if (estateMateOptional.isEmpty()) {
                 logger.info("Creating a new data file " + storage.getEstateMateFilePath()
                         + " populated with a sample EstateMate.");
             }
@@ -117,7 +117,7 @@ public class MainApp extends Application {
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            if (!configOptional.isPresent()) {
+            if (configOptional.isEmpty()) {
                 logger.info("Creating new config file " + configFilePathUsed);
             }
             initializedConfig = configOptional.orElse(new Config());
@@ -148,7 +148,7 @@ public class MainApp extends Application {
         UserPrefs initializedPrefs;
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
-            if (!prefsOptional.isPresent()) {
+            if (prefsOptional.isEmpty()) {
                 logger.info("Creating new preference file " + prefsFilePath);
             }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());

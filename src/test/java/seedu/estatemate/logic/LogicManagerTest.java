@@ -164,7 +164,7 @@ public class LogicManagerTest {
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveEstateMate method by executing an add command
+        // Triggers the saveEstateMate method by executing an add tenant command
         String addTenantCommand = AddTenantCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();

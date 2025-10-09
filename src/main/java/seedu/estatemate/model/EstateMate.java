@@ -6,16 +6,18 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.util.ToStringBuilder;
+import seedu.estatemate.model.job.Job;
+import seedu.estatemate.model.job.UniqueJobList;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the address-book level Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class EstateMate implements ReadOnlyEstateMate {
 
     private final UniquePersonList persons;
+    private final UniqueJobList jobs;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,9 +28,11 @@ public class EstateMate implements ReadOnlyEstateMate {
      */
     {
         persons = new UniquePersonList();
+        jobs = new UniqueJobList();
     }
 
-    public EstateMate() {}
+    public EstateMate() {
+    }
 
     /**
      * Creates an EstateMate using the Persons in the {@code toBeCopied}
@@ -41,8 +45,8 @@ public class EstateMate implements ReadOnlyEstateMate {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the person list with {@code persons}. {@code persons} must not contain duplicate
+     * persons.
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
@@ -68,17 +72,16 @@ public class EstateMate implements ReadOnlyEstateMate {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the address book. The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given person {@code target} in the list with {@code editedPerson}. {@code target} must exist in the
+     * address book. The person identity of {@code editedPerson} must not be the same as another existing person in the
+     * address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -87,14 +90,70 @@ public class EstateMate implements ReadOnlyEstateMate {
     }
 
     /**
-     * Removes {@code key} from this {@code EstateMate}.
-     * {@code key} must exist in the EstateMate object.
+     * Removes {@code key} from this {@code EstateMate}. {@code key} must exist in the EstateMate object.
      */
     public void removePerson(Person key) {
         persons.remove(key);
     }
 
-    //// util methods
+    /**
+     * Adds job to the address book.
+     * @param job
+     */
+    public void addJob(Job job) {
+        requireNonNull(job);
+        jobs.add(job); // relies on UniqueJobList's identity-by-id
+    }
+
+    /**
+     * Checks if a job with the given id is present in the address book.
+     * @param id
+     * @return
+     */
+    public boolean hasJobId(int id) {
+        // Use the backing ObservableList to stream
+        return jobs.asUnmodifiableObservableList()
+                .stream()
+                .anyMatch(j -> j.getId() == id);
+    }
+
+    /**
+     * Removes job of the given id from the address book.
+     * @param id
+     */
+    public void removeJobById(int id) {
+        Job toRemove = jobs.asUnmodifiableObservableList()
+                .stream()
+                .filter(j -> j.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (toRemove != null) {
+            jobs.remove(toRemove);
+        }
+    }
+
+    /**
+     * Returns job list as an ObservableList.
+     * @return
+     */
+    public ObservableList<Job> getJobList() {
+        return jobs.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns a unique unused job id.
+     * @return
+     */
+    public int nextJobId() {
+        // max(existing id) + 1, or 1 if empty
+        return jobs.asUnmodifiableObservableList()
+                .stream()
+                .mapToInt(Job::getId)
+                .max()
+                .orElse(0) + 1;
+    }
+
+    /// / util methods
 
     @Override
     public String toString() {

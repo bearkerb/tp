@@ -8,8 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.estatemate.commons.core.LogsCenter;
-import seedu.estatemate.logic.commands.AddCommand;
 import seedu.estatemate.logic.commands.AddJobCommand;
+import seedu.estatemate.logic.commands.AddTenantCommand;
 import seedu.estatemate.logic.commands.ClearCommand;
 import seedu.estatemate.logic.commands.Command;
 import seedu.estatemate.logic.commands.DeleteCommand;
@@ -55,8 +55,8 @@ public class EstateMateParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddTenantCommand.COMMAND_WORD:
+            return new AddTenantCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

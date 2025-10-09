@@ -12,4 +12,3 @@
 
 * It is named `EstateMate` because it was initially created to help property managers manage their estates.
 * For the detailed documentation of this project, see the **[EstateMate Product Website](https://ay2526s1-cs2103t-f08a-2.github.io/tp/)**.
-* 

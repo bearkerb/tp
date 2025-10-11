@@ -37,6 +37,8 @@ public class TenantCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label lease;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -57,6 +59,7 @@ public class TenantCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
+        lease.setText(person.getLease().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

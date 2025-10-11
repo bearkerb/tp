@@ -25,18 +25,21 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Lease lease;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Integer> jobs = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Integer> jobs) {
-        requireAllNonNull(name, phone, email, address, tags, jobs);
+    public Person(Name name, Phone phone, Email email, Address address, Lease lease, Set<Tag> tags,
+                  List<Integer> jobs) {
+        requireAllNonNull(name, phone, email, address, lease, tags, jobs);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.lease = lease;
         this.tags.addAll(tags);
         this.jobs.addAll(jobs);
     }
@@ -55,6 +58,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Lease getLease() {
+        return lease;
     }
 
     /**
@@ -102,6 +109,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && lease.equals(otherPerson.lease)
                 && tags.equals(otherPerson.tags)
                 && jobs.equals(otherPerson.jobs);
     }
@@ -109,7 +117,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, jobs);
+        return Objects.hash(name, phone, email, address, lease, tags, jobs);
     }
 
     @Override
@@ -119,6 +127,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("lease", lease)
                 .add("tags", tags)
                 .add("jobs", jobs)
                 .toString();

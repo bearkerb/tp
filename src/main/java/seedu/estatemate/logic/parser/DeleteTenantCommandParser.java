@@ -18,7 +18,6 @@ public class DeleteTenantCommandParser implements Parser<DeleteTenantCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
 
-
     public DeleteTenantCommand parse(String args) throws ParseException {
         String trimmed = args.trim();
         if (trimmed.isEmpty() || !trimmed.matches("\\d+")) {

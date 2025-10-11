@@ -19,9 +19,7 @@ public class DeleteTenantCommand extends Command {
     public static final String COMMAND_WORD = "deletet";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the tenant identified by the index number used in the displayed tenant list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the tenant using the index number displayed in the tenant list.\n";
 
     public static final String MESSAGE_DELETE_TENANT_SUCCESS = "Deleted tenant successfully: %1$s";
 

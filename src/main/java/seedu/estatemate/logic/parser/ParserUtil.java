@@ -14,6 +14,7 @@ import seedu.estatemate.logic.parser.exceptions.ParseException;
 import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
+import seedu.estatemate.model.person.Lease;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
@@ -80,6 +81,20 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String lease} into a {@code Lease}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lease} is invalid.
+     */
+    public static Lease parseLease(String lease) throws ParseException {
+        requireNonNull(lease);
+        String trimmedLease = lease.trim();
+        if (!Lease.isValidLease(trimmedLease)) {
+            throw new ParseException(Lease.MESSAGE_CONSTRAINTS);
+        }
+        return new Lease(trimmedLease);
     }
 
     /**

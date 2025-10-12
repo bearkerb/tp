@@ -23,7 +23,7 @@ import seedu.estatemate.model.person.Person;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteTenantCommandTest {
 
     private Model model = new ModelManager(getTypicalEstateMate(), new UserPrefs());
 
@@ -46,7 +46,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteTenantCommand deleteCommand = new DeleteTenantCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_INDEX_TO_DELETE);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteTenantCommand deleteCommand = new DeleteTenantCommand(INDEX_FIRST_PERSON);
+        DeleteTenantCommand deleteTenantCommand = new DeleteTenantCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteTenantCommand.MESSAGE_DELETE_TENANT_SUCCESS,
                 Messages.format(personToDelete));
@@ -63,7 +63,7 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTenantCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -74,39 +74,39 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getEstateMate().getPersonList().size());
 
-        DeleteTenantCommand deleteCommand = new DeleteTenantCommand(outOfBoundIndex);
+        DeleteTenantCommand deleteTenantCommand = new DeleteTenantCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_INDEX_TO_DELETE);
+        assertCommandFailure(deleteTenantCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteTenantCommand deleteFirstCommand = new DeleteTenantCommand(INDEX_FIRST_PERSON);
-        DeleteTenantCommand deleteSecondCommand = new DeleteTenantCommand(INDEX_SECOND_PERSON);
+        DeleteTenantCommand deleteFirstTenantCommand = new DeleteTenantCommand(INDEX_FIRST_PERSON);
+        DeleteTenantCommand deleteSecondTenantCommand = new DeleteTenantCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(deleteFirstTenantCommand.equals(deleteFirstTenantCommand));
 
         // same values -> returns true
-        DeleteTenantCommand deleteFirstCommandCopy = new DeleteTenantCommand(INDEX_FIRST_PERSON);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        DeleteTenantCommand deleteFirstTenantCommandCopy = new DeleteTenantCommand(INDEX_FIRST_PERSON);
+        assertTrue(deleteFirstTenantCommand.equals(deleteFirstTenantCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(deleteFirstTenantCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(deleteFirstTenantCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(deleteFirstTenantCommand.equals(deleteSecondTenantCommand));
     }
 
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeleteTenantCommand deleteCommand = new DeleteTenantCommand(targetIndex);
+        DeleteTenantCommand deleteTenantCommand = new DeleteTenantCommand(targetIndex);
         String expected = DeleteTenantCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
-        assertEquals(expected, deleteCommand.toString());
+        assertEquals(expected, deleteTenantCommand.toString());
     }
 
     /**

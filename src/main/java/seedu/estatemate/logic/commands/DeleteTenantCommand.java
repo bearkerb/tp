@@ -19,7 +19,9 @@ public class DeleteTenantCommand extends Command {
     public static final String COMMAND_WORD = "dtenant";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the tenant using the index number displayed in the tenant list.\n";
+            + ": Deletes the tenant using the index number displayed in the tenant list.\n"
+            + "Parameters: id (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TENANT_SUCCESS = "Deleted tenant successfully: %1$s";
 
@@ -35,7 +37,7 @@ public class DeleteTenantCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INDEX_TO_DELETE);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
@@ -44,17 +46,17 @@ public class DeleteTenantCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object tenantToDelete) {
-        if (tenantToDelete == this) {
+    public boolean equals(Object personToDelete) {
+        if (personToDelete == this) {
             return true;
         }
 
         // instanceof handles nulls
-        if (!(tenantToDelete instanceof DeleteTenantCommand)) {
+        if (!(personToDelete instanceof DeleteTenantCommand)) {
             return false;
         }
 
-        DeleteTenantCommand otherDeleteTenantCommand = (DeleteTenantCommand) tenantToDelete;
+        DeleteTenantCommand otherDeleteTenantCommand = (DeleteTenantCommand) personToDelete;
         return targetIndex.equals(otherDeleteTenantCommand.targetIndex);
     }
 

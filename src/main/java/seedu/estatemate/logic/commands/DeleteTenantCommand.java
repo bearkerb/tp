@@ -16,7 +16,7 @@ import seedu.estatemate.model.person.Person;
  */
 public class DeleteTenantCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletet";
+    public static final String COMMAND_WORD = "dtenant";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tenant using the index number displayed in the tenant list.\n";
@@ -35,7 +35,7 @@ public class DeleteTenantCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INDEX_TO_DELETE);
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());

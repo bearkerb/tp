@@ -3,7 +3,6 @@ package seedu.estatemate.logic.parser;
 import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.estatemate.commons.core.index.Index;
-import seedu.estatemate.logic.commands.DeleteJobCommand;
 import seedu.estatemate.logic.commands.DeleteTenantCommand;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
 

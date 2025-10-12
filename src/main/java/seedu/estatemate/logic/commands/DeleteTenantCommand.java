@@ -46,17 +46,17 @@ public class DeleteTenantCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object personToDelete) {
-        if (personToDelete == this) {
+    public boolean equals(Object other) {
+        if (other == this) {
             return true;
         }
 
         // instanceof handles nulls
-        if (!(personToDelete instanceof DeleteTenantCommand)) {
+        if (!(other instanceof DeleteTenantCommand)) {
             return false;
         }
 
-        DeleteTenantCommand otherDeleteTenantCommand = (DeleteTenantCommand) personToDelete;
+        DeleteTenantCommand otherDeleteTenantCommand = (DeleteTenantCommand) other;
         return targetIndex.equals(otherDeleteTenantCommand.targetIndex);
     }
 

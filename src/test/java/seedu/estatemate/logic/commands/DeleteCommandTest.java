@@ -30,7 +30,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteTenantCommand deleteCommand = new DeleteTenantCommand(INDEX_FIRST_PERSON);
+        DeleteTenantCommand deleteTenantCommand = new DeleteTenantCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteTenantCommand.MESSAGE_DELETE_TENANT_SUCCESS,
                 Messages.format(personToDelete));
@@ -38,7 +38,7 @@ public class DeleteCommandTest {
         ModelManager expectedModel = new ModelManager(model.getEstateMate(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTenantCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

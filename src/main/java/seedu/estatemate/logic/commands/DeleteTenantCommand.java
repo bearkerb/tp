@@ -54,8 +54,8 @@ public class DeleteTenantCommand extends Command {
             return false;
         }
 
-        DeleteTenantCommand otherDeleteCommand = (DeleteTenantCommand) tenantToDelete;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        DeleteTenantCommand otherDeleteTenantCommand = (DeleteTenantCommand) tenantToDelete;
+        return targetIndex.equals(otherDeleteTenantCommand.targetIndex);
     }
 
     @Override

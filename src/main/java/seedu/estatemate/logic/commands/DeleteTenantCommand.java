@@ -19,8 +19,8 @@ public class DeleteTenantCommand extends Command {
     public static final String COMMAND_WORD = "dtenant";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the tenant identified by the index number used in the displayed tenant list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the tenant using the index number displayed in the tenant list.\n"
+            + "Parameters: id (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TENANT_SUCCESS = "Deleted tenant successfully: %1$s";
@@ -46,18 +46,18 @@ public class DeleteTenantCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object tenantToDelete) {
-        if (tenantToDelete == this) {
+    public boolean equals(Object other) {
+        if (other == this) {
             return true;
         }
 
         // instanceof handles nulls
-        if (!(tenantToDelete instanceof DeleteTenantCommand)) {
+        if (!(other instanceof DeleteTenantCommand)) {
             return false;
         }
 
-        DeleteTenantCommand otherDeleteCommand = (DeleteTenantCommand) tenantToDelete;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        DeleteTenantCommand otherDeleteTenantCommand = (DeleteTenantCommand) other;
+        return targetIndex.equals(otherDeleteTenantCommand.targetIndex);
     }
 
     @Override

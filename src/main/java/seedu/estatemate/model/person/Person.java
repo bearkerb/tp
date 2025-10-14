@@ -26,20 +26,22 @@ public class Person {
     // Data fields
     private final Address address;
     private final Lease lease;
+    private final PayDate payDate;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Integer> jobs = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Lease lease, Set<Tag> tags,
+    public Person(Name name, Phone phone, Email email, Address address, Lease lease, PayDate payDate, Set<Tag> tags,
                   List<Integer> jobs) {
-        requireAllNonNull(name, phone, email, address, lease, tags, jobs);
+        requireAllNonNull(name, phone, email, address, lease, payDate, tags, jobs);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.lease = lease;
+        this.payDate = payDate;
         this.tags.addAll(tags);
         this.jobs.addAll(jobs);
     }
@@ -62,6 +64,10 @@ public class Person {
 
     public Lease getLease() {
         return lease;
+    }
+
+    public PayDate getPayDate() {
+        return payDate;
     }
 
     /**
@@ -110,6 +116,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && lease.equals(otherPerson.lease)
+                && payDate.equals(otherPerson.payDate)
                 && tags.equals(otherPerson.tags)
                 && jobs.equals(otherPerson.jobs);
     }
@@ -117,7 +124,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, lease, tags, jobs);
+        return Objects.hash(name, phone, email, address, lease, payDate, tags, jobs);
     }
 
     @Override
@@ -128,6 +135,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("lease", lease)
+                .add("payDate", payDate)
                 .add("tags", tags)
                 .add("jobs", jobs)
                 .toString();

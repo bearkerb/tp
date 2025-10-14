@@ -48,6 +48,8 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Lease: ")
                 .append(person.getLease())
+                .append("; Pay Date: ")
+                .append(person.getPayDate())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         builder.append("; Jobs: ");

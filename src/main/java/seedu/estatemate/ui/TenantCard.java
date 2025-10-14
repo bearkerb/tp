@@ -48,6 +48,8 @@ public class TenantCard extends UiPart<Region> {
     private Label maintenanceId;
     @FXML
     private Label maintenanceDescription;
+    @FXML
+    private Label payDate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -60,6 +62,7 @@ public class TenantCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         lease.setText(person.getLease().value);
+        payDate.setText(String.valueOf(person.getPayDate().value));
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

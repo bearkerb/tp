@@ -7,6 +7,7 @@ import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_LEASE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_PAY_DATE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.estatemate.testutil.Assert.assertThrows;
@@ -90,6 +91,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withLease(VALID_LEASE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different pay date -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPayDate(VALID_PAY_DATE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -99,7 +104,9 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
-                + ", lease=" + ALICE.getLease() + ", tags=" + ALICE.getTags()
+                + ", lease=" + ALICE.getLease()
+                + ", payDate=" + ALICE.getPayDate()
+                + ", tags=" + ALICE.getTags()
                 + ", jobs=" + ALICE.getJobs() + "}";
         assertEquals(expected, ALICE.toString());
     }

@@ -16,6 +16,7 @@ import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Lease;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
 
@@ -109,6 +110,20 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String payDate} into a {@code PayDate}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code payDate} is invalid.
+     */
+    public static PayDate parsePayDate(String payDate) throws ParseException {
+        requireNonNull(payDate);
+        String trimmedPayDate = payDate.trim();
+        if (!PayDate.isValidPayDate(trimmedPayDate)) {
+            throw new ParseException(PayDate.MESSAGE_CONSTRAINTS);
+        }
+        return new PayDate(trimmedPayDate);
     }
 
     /**

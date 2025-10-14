@@ -20,6 +20,9 @@ import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
 
+/**
+ * Links a Job (identified by jub number) to a Tenant (identified by index)
+ */
 public class LinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a job to a tenant. "
@@ -33,6 +36,12 @@ public class LinkCommand extends Command {
 
     private final Index index;
     private final Integer job;
+
+    /**
+     * Creates a LinkCommand to link the specified {@code Job} to {@code Person} via index
+     * @param index
+     * @param job
+     */
     public LinkCommand(Index index, Integer job) {
         requireAllNonNull(index, job);
         this.index = index;

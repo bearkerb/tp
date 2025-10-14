@@ -84,7 +84,7 @@ public class UiPartTest {
 
     /**
      * UiPart used for testing.
-     * It should only be used with invalid FXML files or the valid file located at {@link}.
+     * It should only be used with invalid FXML files or the valid file.
      */
     private static class TestUiPart<T> extends UiPart<T> {
 

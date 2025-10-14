@@ -9,6 +9,7 @@ import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Lease;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
@@ -24,12 +25,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_LEASE = "2025-01-01 2027-01-01";
+    public static final String DEFAULT_PAY_DATE = "2025-02-01";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Lease lease;
+    private PayDate payDate;
     private Set<Tag> tags;
     private List<Integer> jobs;
 
@@ -42,6 +45,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         lease = new Lease(DEFAULT_LEASE);
+        payDate = new PayDate(DEFAULT_PAY_DATE);
         tags = new HashSet<>();
         jobs = new ArrayList<>();
     }
@@ -55,6 +59,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         lease = personToCopy.getLease();
+        payDate = personToCopy.getPayDate();
         tags = new HashSet<>(personToCopy.getTags());
         jobs = new ArrayList<>(personToCopy.getJobs());
     }
@@ -100,6 +105,15 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code PayDate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPayDate(String payDate) {
+        this.payDate = new PayDate(payDate);
+        return this;
+    }
+
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -116,7 +130,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, lease, tags, jobs);
+        return new Person(name, phone, email, address, lease, payDate, tags, jobs);
     }
 
 }

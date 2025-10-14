@@ -7,6 +7,7 @@ import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PAYDATE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -36,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_LEASE, PREFIX_TAG, PREFIX_JOB);
+                        PREFIX_LEASE, PREFIX_PAYDATE, PREFIX_TAG, PREFIX_JOB);
 
         Index index;
 
@@ -47,7 +48,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_LEASE);
+                PREFIX_LEASE, PREFIX_PAYDATE);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -66,6 +67,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_LEASE).isPresent()) {
             editPersonDescriptor.setLease(ParserUtil.parseLease(argMultimap.getValue(PREFIX_LEASE).get()));
         }
+        if (argMultimap.getValue(PREFIX_PAYDATE).isPresent()) {
+            editPersonDescriptor.setPayDate(ParserUtil.parsePayDate(argMultimap.getValue(PREFIX_PAYDATE).get()));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseJobsForEdit(argMultimap.getAllValues(PREFIX_JOB)).ifPresent(editPersonDescriptor::setJobs);
 
@@ -83,7 +87,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
-
         if (tags.isEmpty()) {
             return Optional.empty();
         }
@@ -93,7 +96,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
     private Optional<List<Integer>> parseJobsForEdit(Collection<String> jobs) throws ParseException {
         assert jobs != null;
-
         if (jobs.isEmpty()) {
             return Optional.empty();
         }

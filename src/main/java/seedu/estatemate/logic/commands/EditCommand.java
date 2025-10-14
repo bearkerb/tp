@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_TAG;
@@ -25,6 +26,7 @@ import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
+import seedu.estatemate.model.person.Lease;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.Phone;
@@ -45,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_LEASE + "LEASE] "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_JOB + "JOB]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -102,10 +105,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Lease updatedLease = editPersonDescriptor.getLease().orElse(personToEdit.getLease());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Integer> updatedJobs = editPersonDescriptor.getJobs().orElse(personToEdit.getJobs());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedJobs);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLease, updatedTags,
+                updatedJobs);
     }
 
     @Override
@@ -141,6 +146,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Lease lease;
         private Set<Tag> tags;
         private List<Integer> jobs;
 
@@ -155,6 +161,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setLease(toCopy.lease);
             setTags(toCopy.tags);
             setJobs(toCopy.jobs);
         }
@@ -163,7 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, jobs);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, lease, tags, jobs);
         }
 
         public void setName(Name name) {
@@ -196,6 +203,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setLease(Lease lease) {
+            this.lease = lease;
+        }
+
+        public Optional<Lease> getLease() {
+            return Optional.ofNullable(lease);
         }
 
 
@@ -240,6 +255,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(lease, otherEditPersonDescriptor.lease)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(jobs, otherEditPersonDescriptor.jobs);
         }
@@ -251,6 +267,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("lease", lease)
                     .add("tags", tags)
                     .add("jobs", jobs)
                     .toString();

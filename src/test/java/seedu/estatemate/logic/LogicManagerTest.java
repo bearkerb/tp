@@ -5,6 +5,7 @@ import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_I
 import static seedu.estatemate.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.estatemate.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.estatemate.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.estatemate.logic.commands.CommandTestUtil.LEASE_DESC_AMY;
 import static seedu.estatemate.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.estatemate.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.estatemate.testutil.Assert.assertThrows;
@@ -60,7 +61,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "dtenant 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
@@ -166,7 +167,7 @@ public class LogicManagerTest {
 
         // Triggers the saveEstateMate method by executing an add tenant command
         String addTenantCommand = AddTenantCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + LEASE_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

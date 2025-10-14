@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Job> filteredJobs;
 
     /**
-     * Initializes a ModelManager with the given EstateMate and userPrefs.
+     * Initializes a ModelManager with the given estateMate and userPrefs.
      */
     public ModelManager(ReadOnlyEstateMate estateMate, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(estateMate, userPrefs);

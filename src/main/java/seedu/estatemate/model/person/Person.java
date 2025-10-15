@@ -10,7 +10,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.estatemate.commons.util.ToStringBuilder;
-import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.tag.Tag;
 
 /**

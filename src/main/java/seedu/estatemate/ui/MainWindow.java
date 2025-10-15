@@ -17,7 +17,6 @@ import seedu.estatemate.logic.commands.CommandResult;
 import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
 import seedu.estatemate.model.Model;
-import seedu.estatemate.model.ModelManager;
 
 /**
  * The Main Window. Provides the basic application layout containing

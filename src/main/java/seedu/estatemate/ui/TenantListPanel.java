@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.estatemate.commons.core.LogsCenter;
 import seedu.estatemate.model.Model;
-import seedu.estatemate.model.ModelManager;
 import seedu.estatemate.model.person.Person;
 
 /**

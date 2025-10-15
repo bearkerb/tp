@@ -37,7 +37,7 @@ public class AddTenantCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_LEASE + "2025-12-01 2027-02-01 "
-            + PREFIX_PAYDATE + "2026-01-01"
+            + PREFIX_PAYDATE + "2026-01-01 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

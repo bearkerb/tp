@@ -9,7 +9,6 @@ import seedu.estatemate.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new MarkJobCommand object
  */
 public class UnmarkJobCommandParser implements Parser<UnmarkJobCommand> {
-    
     /**
      * Parses the given {@code String} of arguments in the context of the UnmarkJobCommand
      * and returns a UnmarkJobCommand object for execution.

@@ -17,12 +17,15 @@ class JsonAdaptedJob {
     private final String description;
     private final Integer id;
     private Boolean isDone;
+    private Boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedJob} with the given job details.
      */
     @JsonCreator
     public JsonAdaptedJob(@JsonProperty("description") String description,
+                          @JsonProperty("id") Integer id,
+                          @JsonProperty("done") Boolean isDone) {
                           @JsonProperty("id") Integer id,
                           @JsonProperty("done") Boolean isDone) {
         this.description = description;
@@ -36,6 +39,7 @@ class JsonAdaptedJob {
     public JsonAdaptedJob(Job source) {
         this.description = source.getDescription().description;
         this.id = source.getId();
+        this.isDone = source.getDone();
         this.isDone = source.getDone();
     }
 

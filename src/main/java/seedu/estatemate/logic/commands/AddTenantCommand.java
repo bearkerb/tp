@@ -29,7 +29,7 @@ public class AddTenantCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_LEASE + "LEASE "
-            + PREFIX_PAYDATE + "PAY DATE "
+            + PREFIX_PAYDATE + "PAYDATE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "

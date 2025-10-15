@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.estatemate.model.Model;
 import seedu.estatemate.model.person.Person;
 
 /**
@@ -25,6 +26,8 @@ public class TenantCard extends UiPart<Region> {
      */
 
     public final Person person;
+
+    public final Model model;
 
     @FXML
     private HBox cardPane;
@@ -52,25 +55,33 @@ public class TenantCard extends UiPart<Region> {
     private Label payDate;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person}, index and {@code ModelManager} to display.
      */
-    public TenantCard(Person person, int displayedIndex) {
+    public TenantCard(Person person, int displayedIndex, Model model) {
         super(FXML);
         this.person = person;
+        this.model = model;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        lease.setText(person.getLease().value);
-        payDate.setText(String.valueOf(person.getPayDate().value));
-        email.setText(person.getEmail().value);
+        phone.setText("phone number: " + person.getPhone().value);
+        address.setText("address: " + person.getAddress().value);
+        lease.setText("lease start-end: " + person.getLease().value);
+        payDate.setText("pay date: " + person.getPayDate().value);
+        email.setText("email: " + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        //temporary placeholders
         maintenanceTitle.setText("Maintenance Information:");
-        maintenanceId.setText("Job Number: -");
-        maintenanceDescription.setText("No maintenance jobs yet");
+        if (!person.getJobs().isEmpty()) {
+            Integer jobId = person.getJobs().get(person.getJobs().size() - 1);
+            String description = model.getJobDescriptionById(jobId);
+            maintenanceId.setText("Job Number: " + jobId);
+            maintenanceDescription.setText("Job Description: "
+                    + (description != null ? description : "-"));
+        } else {
+            maintenanceId.setText("Job Number: -");
+            maintenanceDescription.setText("No maintenance jobs yet");
+        }
     }
 }

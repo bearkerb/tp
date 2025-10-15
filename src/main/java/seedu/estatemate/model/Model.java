@@ -105,5 +105,7 @@ public interface Model {
 
     int nextJobId();
 
+    String getJobDescriptionById(int jobId);
+
 
 }

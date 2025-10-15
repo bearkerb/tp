@@ -143,6 +143,16 @@ public class ModelManager implements Model {
         return estateMate.nextJobId();
     }
 
+    @Override
+    public String getJobDescriptionById(int jobId) {
+        for (Job job : filteredJobs) {
+            if (job.getId() == jobId) {
+                return job.getDescription().toString();
+            }
+        }
+        return null;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

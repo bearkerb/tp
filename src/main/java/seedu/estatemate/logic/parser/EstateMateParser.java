@@ -12,12 +12,13 @@ import seedu.estatemate.logic.commands.AddJobCommand;
 import seedu.estatemate.logic.commands.AddTenantCommand;
 import seedu.estatemate.logic.commands.ClearCommand;
 import seedu.estatemate.logic.commands.Command;
-import seedu.estatemate.logic.commands.DeleteCommand;
 import seedu.estatemate.logic.commands.DeleteJobCommand;
+import seedu.estatemate.logic.commands.DeleteTenantCommand;
 import seedu.estatemate.logic.commands.EditCommand;
 import seedu.estatemate.logic.commands.ExitCommand;
 import seedu.estatemate.logic.commands.FindCommand;
 import seedu.estatemate.logic.commands.HelpCommand;
+import seedu.estatemate.logic.commands.LinkCommand;
 import seedu.estatemate.logic.commands.ListCommand;
 import seedu.estatemate.logic.commands.MarkJobCommand;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
@@ -62,8 +63,8 @@ public class EstateMateParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteTenantCommand.COMMAND_WORD:
+            return new DeleteTenantCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -86,6 +87,9 @@ public class EstateMateParser {
         case DeleteJobCommand.COMMAND_WORD:
             return new DeleteJobCommandParser().parse(arguments);
 
+        case LinkCommand.COMMAND_WORD:
+            return new LinkCommandParser().parse(arguments);
+
         case MarkJobCommand.COMMAND_WORD:
             return new MarkJobCommandParser().parse(arguments);
 
@@ -95,5 +99,4 @@ public class EstateMateParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

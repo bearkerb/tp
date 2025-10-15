@@ -17,6 +17,7 @@ import seedu.estatemate.logic.parser.exceptions.ParseException;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
 
@@ -25,12 +26,14 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_PAY_DATE = "2025-13-40";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_PAY_DATE = "2025-12-12";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -146,6 +149,29 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parsePayDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePayDate((String) null));
+    }
+
+    @Test
+    public void parsePayDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePayDate(INVALID_PAY_DATE));
+    }
+
+    @Test
+    public void parsePayDate_validValueWithoutWhitespace_returnsPayDate() throws Exception {
+        PayDate expectedPayDate = new PayDate(VALID_PAY_DATE);
+        assertEquals(expectedPayDate, ParserUtil.parsePayDate(VALID_PAY_DATE));
+    }
+
+    @Test
+    public void parsePayDate_validValueWithWhitespace_returnsTrimmedPayDate() throws Exception {
+        String payDateWithWhitespace = WHITESPACE + VALID_PAY_DATE + WHITESPACE;
+        PayDate expectedPayDate = new PayDate(VALID_PAY_DATE);
+        assertEquals(expectedPayDate, ParserUtil.parsePayDate(payDateWithWhitespace));
     }
 
     @Test

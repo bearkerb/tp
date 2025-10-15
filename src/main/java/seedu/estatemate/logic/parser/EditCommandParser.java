@@ -5,7 +5,9 @@ import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PAYDATE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -34,8 +36,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_JOB);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_LEASE, PREFIX_PAYDATE, PREFIX_TAG, PREFIX_JOB);
 
         Index index;
 
@@ -45,7 +47,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_LEASE, PREFIX_PAYDATE);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -60,6 +63,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_LEASE).isPresent()) {
+            editPersonDescriptor.setLease(ParserUtil.parseLease(argMultimap.getValue(PREFIX_LEASE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PAYDATE).isPresent()) {
+            editPersonDescriptor.setPayDate(ParserUtil.parsePayDate(argMultimap.getValue(PREFIX_PAYDATE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseJobsForEdit(argMultimap.getAllValues(PREFIX_JOB)).ifPresent(editPersonDescriptor::setJobs);
@@ -78,7 +87,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
-
         if (tags.isEmpty()) {
             return Optional.empty();
         }
@@ -88,7 +96,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
     private Optional<List<Integer>> parseJobsForEdit(Collection<String> jobs) throws ParseException {
         assert jobs != null;
-
         if (jobs.isEmpty()) {
             return Optional.empty();
         }

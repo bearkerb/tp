@@ -107,4 +107,5 @@ public interface Model {
 
     int nextJobId();
 
+
 }

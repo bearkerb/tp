@@ -103,6 +103,10 @@ public interface Model {
 
     void deleteJobById(int id);
 
+    void markJobById(int id);
+
+    void unmarkJobById(int id);
+
     int nextJobId();
 
     String getJobDescriptionById(int jobId);

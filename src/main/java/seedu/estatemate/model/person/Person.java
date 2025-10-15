@@ -84,6 +84,15 @@ public class Person {
     }
 
     /**
+     * Checks if a person has a certain job by id.
+     * @param jobId to search for
+     * @return true if jobs contains jobId, false otherwise
+     */
+    public boolean hasJobId(Integer jobId) {
+        return this.jobs.contains(jobId);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */

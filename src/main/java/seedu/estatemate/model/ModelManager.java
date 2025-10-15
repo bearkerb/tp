@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -136,11 +138,43 @@ public class ModelManager implements Model {
     @Override
     public void deleteJobById(int id) {
         estateMate.removeJobById(id);
+
+        // Also remove reference to job from all tenants
+        for (Person p : estateMate.getPersonList()) {
+            List<Integer> newJobs = new ArrayList<>(p.getJobs());
+            boolean changed = newJobs.removeIf(j -> j == id);
+            if (changed) {
+                Person updated = new Person(
+                        p.getName(),
+                        p.getPhone(),
+                        p.getEmail(),
+                        p.getAddress(),
+                        p.getLease(),
+                        p.getPayDate(),
+                        p.getTags(),
+                        newJobs
+                );
+                setPerson(p, updated);
+            }
+        }
+
+        updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
     }
 
     @Override
     public int nextJobId() {
         return estateMate.nextJobId();
+    }
+
+    @Override
+    public void markJobById(int id) {
+        estateMate.markJobById(id);
+    }
+
+    @Override
+    public void unmarkJobById(int id) {
+        estateMate.unmarkJobById(id);
     }
 
     @Override

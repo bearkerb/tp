@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.estatemate.model.job.Job;
+import seedu.estatemate.model.job.UniqueJobList;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.exceptions.DuplicatePersonException;
 import seedu.estatemate.testutil.PersonBuilder;
@@ -94,6 +96,11 @@ public class EstateMateTest {
      */
     private static class EstateMateStub implements ReadOnlyEstateMate {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final UniqueJobList jobs;
+
+        {
+            jobs = new UniqueJobList();
+        }
 
         EstateMateStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -102,6 +109,11 @@ public class EstateMateTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Job> getJobList() {
+            return jobs.asUnmodifiableObservableList();
         }
     }
 

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.estatemate.logic.commands.AddCommand;
+import seedu.estatemate.logic.commands.AddTenantCommand;
 import seedu.estatemate.logic.commands.ClearCommand;
 import seedu.estatemate.logic.commands.DeleteCommand;
 import seedu.estatemate.logic.commands.EditCommand;
@@ -36,8 +36,8 @@ public class EstateMateParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        AddTenantCommand command = (AddTenantCommand) parser.parseCommand(PersonUtil.getAddTenantCommand(person));
+        assertEquals(new AddTenantCommand(person), command);
     }
 
     @Test

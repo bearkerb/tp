@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.estatemate.commons.core.GuiSettings;
 import seedu.estatemate.commons.core.LogsCenter;
+import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 
 /**
@@ -22,18 +23,20 @@ public class ModelManager implements Model {
     private final EstateMate estateMate;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Job> filteredJobs;
 
     /**
-     * Initializes a ModelManager with the given EstateMate and userPrefs.
+     * Initializes a ModelManager with the given estateMate and userPrefs.
      */
-    public ModelManager(ReadOnlyEstateMate EstateMate, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(EstateMate, userPrefs);
+    public ModelManager(ReadOnlyEstateMate estateMate, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(estateMate, userPrefs);
 
-        logger.fine("Initializing with address book: " + EstateMate + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + estateMate + " and user prefs " + userPrefs);
 
-        this.estateMate = new EstateMate(EstateMate);
+        this.estateMate = new EstateMate(estateMate);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.estateMate.getPersonList());
+        this.filteredPersons = new FilteredList<>(this.estateMate.getPersonList());
+        this.filteredJobs = new FilteredList<>(this.estateMate.getJobList());
     }
 
     public ModelManager() {
@@ -41,16 +44,15 @@ public class ModelManager implements Model {
     }
 
     //=========== UserPrefs ==================================================================================
+    @Override
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
+    }
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
-    }
-
-    @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
     }
 
     @Override
@@ -78,13 +80,13 @@ public class ModelManager implements Model {
     //=========== EstateMate ================================================================================
 
     @Override
-    public void setEstateMate(ReadOnlyEstateMate estateMate) {
-        this.estateMate.resetData(estateMate);
+    public ReadOnlyEstateMate getEstateMate() {
+        return estateMate;
     }
 
     @Override
-    public ReadOnlyEstateMate getEstateMate() {
-        return estateMate;
+    public void setEstateMate(ReadOnlyEstateMate estateMate) {
+        this.estateMate.resetData(estateMate);
     }
 
     @Override
@@ -111,6 +113,36 @@ public class ModelManager implements Model {
         estateMate.setPerson(target, editedPerson);
     }
 
+    // === JOBS ===
+    @Override
+    public ObservableList<Job> getFilteredJobList() {
+        return filteredJobs;
+    }
+
+    @Override
+    public void updateFilteredJobList(Predicate<Job> predicate) {
+        requireNonNull(predicate);
+        filteredJobs.setPredicate(predicate);
+    }
+
+    @Override
+    public void addJob(Job job) {
+        requireNonNull(job);
+        estateMate.addJob(job);
+        // Show all by default after a mutation (matches AB3 pattern)
+        updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
+    }
+
+    @Override
+    public void deleteJobById(int id) {
+        estateMate.removeJobById(id);
+    }
+
+    @Override
+    public int nextJobId() {
+        return estateMate.nextJobId();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -135,11 +167,10 @@ public class ModelManager implements Model {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModelManager)) {
+        if (!(other instanceof ModelManager otherModelManager)) {
             return false;
         }
 
-        ModelManager otherModelManager = (ModelManager) other;
         return estateMate.equals(otherModelManager.estateMate)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);

@@ -112,8 +112,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTenantCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddTenantCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddTenantCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -241,13 +241,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -281,8 +281,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
-Provides easy management of tenant information for multi-property portfolios. 
+**Value proposition**:
+Provides easy management of tenant information for multi-property portfolios.
 Captures tenant rent submissions, lease dates, complaints and maintenance scheduling.
 
 
@@ -333,10 +333,10 @@ Use case ends.
 **Extensions**
 * 2a. The command format is wrong (e.g., missing parameter, wrong date format).
     * 2a1. **System** shows an error message (e.g., `"Name cannot be empty"` or `"Wrong format, the correct format is <correct_format>"`).
-    Use case ends.
+      Use case ends.
 * 3a. A tenant with the same name already exists.
     * 3a1. **System** shows the error message: `"Tenant with the same name already exists"`.
-    Use case ends.
+      Use case ends.
 
 ---
 
@@ -354,7 +354,7 @@ Use case ends.
 **Extensions**
 * 2a. The provided **Tenant ID** is not a positive integer or does not correspond to an existing tenant.
     * 2a1. **System** shows the error message: `"Invalid tenant ID detected. Unable to delete tenant."`
-    Use case ends.
+      Use case ends.
 
 ---
 
@@ -372,13 +372,13 @@ Use case ends.
 **Extensions**
 * 2a. The **ADDRESS** is empty.
     * 2a1. **System** shows the error message: `"Address cannot be empty."`
-    Use case ends.
+      Use case ends.
 * 2b. The **DESCRIPTION** is empty.
     * 2b1. **System** shows the error message: `"Description cannot be empty."`
-    Use case ends.
+      Use case ends.
 * 3a. A duplicate maintenance job (same **ADDRESS** and same **DESCRIPTION**) is found.
     * 3a1. **System** shows an error message indicating a duplicate.
-    Use case ends.
+      Use case ends.
 
 ---
 
@@ -396,10 +396,10 @@ Use case ends.
 **Extensions**
 * 2a. The **JOB NUMBER** is empty.
     * 2a1. **System** shows the error message: `"Job number cannot be empty."`
-    Use case ends.
+      Use case ends.
 * 2b. The **JOB NUMBER** is invalid (e.g., not an integer, or does not exist).
     * 2b1. **System** shows the error message: `"Job failed to be deleted. Please enter an existing job number!"` or `"Job failed to be deleted. Please enter a valid job number!"`
-    Use case ends.
+      Use case ends.
 
 ---
 
@@ -417,13 +417,13 @@ Use case ends.
 **Extensions**
 * 2a. The **job number** is empty.
     * 2a1. **System** shows the error message: `"Job number cannot be empty."`
-    Use case ends.
+      Use case ends.
 * 2b. The **job number** is invalid (e.g., not an integer, or does not exist).
     * 2b1. **System** shows an error message: `"Job failed to be marked. Please enter a valid job number!"` or `"Job failed to be marked. Please enter an existing job number!"`
-    Use case ends.
+      Use case ends.
 * 2c. The job is already marked as done.
     * 2c1. **System** shows a message indicating the job is already completed.
-    Use case ends.
+      Use case ends.
 
 ---
 
@@ -439,10 +439,10 @@ Use case ends.
 **Extensions**
 * 1a. The command contains errors (e.g., wrong spelling).
     * 1a1. **System** shows the error message: `"Unknown command"`.
-    Use case ends.
+      Use case ends.
 * 2a. No tenants exist in the **System**.
     * 2a1. **System** displays a message indicating that the list is empty.
-    Use case ends.
+      Use case ends.
 
 ---
 
@@ -458,7 +458,7 @@ Use case ends.
 **Extensions**
 * 1a. The command contains errors (e.g., wrong spelling).
     * 1a1. **System** shows the error message: `"Unknown command"`.
-    Use case ends.
+      Use case ends.
 
 *{More to be added}*
 
@@ -470,7 +470,7 @@ Use case ends.
 > **Note:** within 1 second for typical operations like listing, searching, adding, etc.
 3.  Users with above-average typing speed should be able to perform most tasks **faster via commands** than using a mouse.
 
-### Usability 
+### Usability
 1. The system should provide **clear, informative error messagaes to guide user** for invalid inputs.
 2. Commands and outputs should follow a consistent format to minimize confusion.
 
@@ -500,15 +500,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -517,16 +517,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -534,6 +534,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

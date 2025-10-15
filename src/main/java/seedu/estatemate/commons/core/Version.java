@@ -64,7 +64,7 @@ public class Version implements Comparable<Version> {
         return new Version(Integer.parseInt(versionMatcher.group(1)),
                 Integer.parseInt(versionMatcher.group(2)),
                 Integer.parseInt(versionMatcher.group(3)),
-                versionMatcher.group(4) == null ? false : true);
+                versionMatcher.group(4) != null);
     }
 
     @JsonValue
@@ -99,11 +99,10 @@ public class Version implements Comparable<Version> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Version)) {
+        if (!(other instanceof Version otherVersion)) {
             return false;
         }
 
-        Version otherVersion = (Version) other;
         return major == otherVersion.major
                 && minor == otherVersion.minor
                 && patch == otherVersion.patch

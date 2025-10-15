@@ -176,6 +176,16 @@ public class AddTenantCommandTest {
         }
 
         @Override
+        public void markJobById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unmarkJobById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addJob(Job job) {
             throw new AssertionError("This method should not be called.");
         }
@@ -185,6 +195,7 @@ public class AddTenantCommandTest {
             requireNonNull(predicate);
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

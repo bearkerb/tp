@@ -166,7 +166,7 @@ public class EstateMate implements ReadOnlyEstateMate {
                 .findFirst()
                 .orElse(null);
         if (toMark != null) {
-            jobs.mark(toMark);
+            jobs.unmark(toMark);
         }
     }
 

@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.estatemate.commons.exceptions.IllegalValueException;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
+import seedu.estatemate.model.person.Lease;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
@@ -28,21 +30,31 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String lease;
+    private final String payDate;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<Integer> jobs = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("lease") String lease, @JsonProperty("pay date") String payDate,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("jobs") List<Integer> jobs) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.lease = lease;
+        this.payDate = payDate;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (jobs != null) {
+            this.jobs.addAll(jobs);
         }
     }
 
@@ -54,9 +66,12 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        lease = source.getLease().value;
+        payDate = String.valueOf(source.getPayDate().value);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        jobs.addAll(source.getJobs());
     }
 
     /**
@@ -102,8 +117,29 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (lease == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Lease.class.getSimpleName()));
+        }
+        if (!Lease.isValidLease(lease)) {
+            throw new IllegalValueException(Lease.MESSAGE_CONSTRAINTS);
+        }
+        final Lease modelLease = new Lease(lease);
+
+        if (payDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PayDate.class.getSimpleName()));
+        }
+
+        if (!PayDate.isValidPayDate(payDate)) {
+            throw new IllegalValueException(PayDate.MESSAGE_CONSTRAINTS);
+        }
+
+        final PayDate modelPayDate = new PayDate(payDate);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final List<Integer> modelJobs = new ArrayList<>(jobs);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelLease,
+                modelPayDate, modelTags, modelJobs);
     }
 
 }

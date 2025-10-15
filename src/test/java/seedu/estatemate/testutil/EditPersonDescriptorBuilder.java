@@ -1,5 +1,6 @@
 package seedu.estatemate.testutil;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -7,7 +8,9 @@ import java.util.stream.Stream;
 import seedu.estatemate.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
+import seedu.estatemate.model.person.Lease;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
@@ -36,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setLease(person.getLease());
         descriptor.setTags(person.getTags());
     }
 
@@ -72,6 +76,22 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Lease} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLease(String lease) {
+        descriptor.setLease(new Lease(lease));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PayDate} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPayDate(String payDate) {
+        descriptor.setPayDate(new PayDate(payDate));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
@@ -81,7 +101,18 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code jobs} into a {@code List<Integer>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withJobs(String... jobs) {
+        List<Integer> jobList = Stream.of(jobs).map(Integer::valueOf).collect(Collectors.toList());
+        descriptor.setJobs(jobList);
+        return this;
+    }
+
     public EditPersonDescriptor build() {
         return descriptor;
     }
+
 }

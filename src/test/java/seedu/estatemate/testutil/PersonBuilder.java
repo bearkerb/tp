@@ -1,11 +1,15 @@
 package seedu.estatemate.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
+import seedu.estatemate.model.person.Lease;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
@@ -20,12 +24,17 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LEASE = "2025-01-01 2027-01-01";
+    public static final String DEFAULT_PAY_DATE = "2025-02-01";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Lease lease;
+    private PayDate payDate;
     private Set<Tag> tags;
+    private List<Integer> jobs;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +44,10 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        lease = new Lease(DEFAULT_LEASE);
+        payDate = new PayDate(DEFAULT_PAY_DATE);
         tags = new HashSet<>();
+        jobs = new ArrayList<>();
     }
 
     /**
@@ -46,7 +58,10 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        lease = personToCopy.getLease();
+        payDate = personToCopy.getPayDate();
         tags = new HashSet<>(personToCopy.getTags());
+        jobs = new ArrayList<>(personToCopy.getJobs());
     }
 
     /**
@@ -66,12 +81,37 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code jobs} into a {@code List<Integer>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withJobs(String ... jobs) {
+        this.jobs = SampleDataUtil.getJobList(jobs);
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
+
+    /**
+     * Sets the {@code Lease} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLease(String lease) {
+        this.lease = new Lease(lease);
+        return this;
+    }
+
+    /**
+     * Sets the {@code PayDate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPayDate(String payDate) {
+        this.payDate = new PayDate(payDate);
+        return this;
+    }
+
 
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
@@ -90,7 +130,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, lease, payDate, tags, jobs);
     }
 
 }

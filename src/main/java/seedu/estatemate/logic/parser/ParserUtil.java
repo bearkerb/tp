@@ -2,8 +2,10 @@ package seedu.estatemate.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.estatemate.commons.core.index.Index;
@@ -12,7 +14,9 @@ import seedu.estatemate.logic.parser.exceptions.ParseException;
 import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
+import seedu.estatemate.model.person.Lease;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
 
@@ -22,6 +26,7 @@ import seedu.estatemate.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_JOB = "Job is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -80,6 +85,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String lease} into a {@code Lease}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lease} is invalid.
+     */
+    public static Lease parseLease(String lease) throws ParseException {
+        requireNonNull(lease);
+        String trimmedLease = lease.trim();
+        if (!Lease.isValidLease(trimmedLease)) {
+            throw new ParseException(Lease.MESSAGE_CONSTRAINTS);
+        }
+        return new Lease(trimmedLease);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}. Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
@@ -91,6 +110,20 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String payDate} into a {@code PayDate}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code payDate} is invalid.
+     */
+    public static PayDate parsePayDate(String payDate) throws ParseException {
+        requireNonNull(payDate);
+        String trimmedPayDate = payDate.trim();
+        if (!PayDate.isValidPayDate(trimmedPayDate)) {
+            throw new ParseException(PayDate.MESSAGE_CONSTRAINTS);
+        }
+        return new PayDate(trimmedPayDate);
     }
 
     /**
@@ -132,5 +165,34 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmed);
+    }
+
+    /**
+     * Parses a {@code String job index} into an {@code Integer}
+     * Leading and trailing whitespaces will be trimmed
+     * @return Integer represented by job String
+     * @throws ParseException if the returned integer is negative
+     */
+    public static Integer parseJob(String job) throws ParseException {
+        requireNonNull(job);
+        String trimmedJob = job.trim();
+
+        // temporary check for non-zero unsigned integer, to change in future
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedJob)) {
+            throw new ParseException(MESSAGE_INVALID_JOB);
+        }
+        return Integer.valueOf(job);
+    }
+
+    /**
+     * Parses {@code Collection<String> jobs} into a {@code List<Integer>}.
+     */
+    public static List<Integer> parseJobs(Collection<String> jobs) throws ParseException {
+        requireNonNull(jobs);
+        final List<Integer> jobList = new ArrayList<>();
+        for (String jobIndex : jobs) {
+            jobList.add(parseJob(jobIndex));
+        }
+        return jobList;
     }
 }

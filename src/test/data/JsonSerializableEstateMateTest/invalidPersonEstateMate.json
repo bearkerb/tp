@@ -3,6 +3,8 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "address": "4th street",
+    "lease": "2025-01-01 2030-01-02",
+    "pay date": "2025-02-01"
   } ]
 }

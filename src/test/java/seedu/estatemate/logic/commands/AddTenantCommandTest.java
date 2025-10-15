@@ -200,6 +200,7 @@ public class AddTenantCommandTest {
         public String getJobDescriptionById(int id) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "lease" : "2025-01-01 2030-01-02",
+    "lease amount" : "1100.00",
     "pay date" : "2025-02-01",
     "tags" : [ "friends" ]
   }, {
@@ -14,6 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "lease" : "2027-12-12 2030-12-12",
+    "lease amount" : "1234.56",
     "pay date" : "2028-01-12",
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -22,6 +24,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "lease" : "2026-01-05 2026-12-05",
+    "lease amount" : "5678.90",
     "pay date" : "2026-02-05",
     "tags" : [ ]
   }, {
@@ -30,6 +33,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "lease" : "2025-06-12 2030-12-25",
+    "lease amount" : "1800.01",
     "pay date" : "2025-07-12",
     "tags" : [ "friends" ]
   }, {
@@ -38,6 +42,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "lease" : "2024-03-21 2028-09-21",
+    "lease amount" : "2101.10",
     "pay date" : "2024-04-21",
     "tags" : [ ]
   }, {
@@ -46,6 +51,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "lease" : "2027-04-15 2030-08-02",
+    "lease amount" : "95.00",
     "pay date" : "2027-05-15",
     "tags" : [ ]
   }, {
@@ -54,6 +60,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "lease" : "2026-11-12 2030-05-16",
+    "lease amount" : "10000.00",
     "pay date" : "2026-12-12",
     "tags" : [ ]
   } ]

@@ -39,6 +39,8 @@ public class TenantCard extends UiPart<Region> {
     @FXML
     private Label lease;
     @FXML
+    private Label leaseAmount;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -62,6 +64,7 @@ public class TenantCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         lease.setText(person.getLease().value);
+        leaseAmount.setText(person.getLeaseAmount().value);
         payDate.setText(String.valueOf(person.getPayDate().value));
         email.setText(person.getEmail().value);
         person.getTags().stream()

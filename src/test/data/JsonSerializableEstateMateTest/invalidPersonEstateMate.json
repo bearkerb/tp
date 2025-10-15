@@ -5,6 +5,7 @@
     "email": "invalid@email!3e",
     "address": "4th street",
     "lease": "2025-01-01 2030-01-02",
+    "lease amount": "1100.00",
     "pay date": "2025-02-01"
   } ]
 }

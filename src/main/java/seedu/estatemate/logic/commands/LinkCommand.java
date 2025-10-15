@@ -15,6 +15,7 @@ import seedu.estatemate.model.Model;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Lease;
+import seedu.estatemate.model.person.LeaseAmount;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
@@ -83,13 +84,14 @@ public class LinkCommand extends Command {
         Email originalEmail = personToEdit.getEmail();
         Address originalAddress = personToEdit.getAddress();
         Lease originalLease = personToEdit.getLease();
+        LeaseAmount originalLeaseAmount = personToEdit.getLeaseAmount();
         PayDate originalPayDate = personToEdit.getPayDate();
         Set<Tag> originalTags = personToEdit.getTags();
         List<Integer> jobs = personToEdit.getJobs();
         jobs.add(job);
 
-        return new Person(originalName, originalPhone, originalEmail, originalAddress, originalLease, originalPayDate,
-                originalTags, jobs);
+        return new Person(originalName, originalPhone, originalEmail, originalAddress, originalLease,
+                originalLeaseAmount, originalPayDate, originalTags, jobs);
     }
 
     @Override

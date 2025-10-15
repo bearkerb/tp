@@ -150,6 +150,7 @@ public class ModelManager implements Model {
                         p.getEmail(),
                         p.getAddress(),
                         p.getLease(),
+                        p.getLeaseAmount(),
                         p.getPayDate(),
                         p.getTags(),
                         newJobs

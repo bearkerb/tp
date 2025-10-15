@@ -13,6 +13,7 @@ import seedu.estatemate.commons.exceptions.IllegalValueException;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Lease;
+import seedu.estatemate.model.person.LeaseAmount;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String lease;
+    private final String leaseAmount;
     private final String payDate;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<Integer> jobs = new ArrayList<>();
@@ -41,7 +43,9 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("lease") String lease, @JsonProperty("pay date") String payDate,
+                             @JsonProperty("lease") String lease,
+                             @JsonProperty("lease amount") String leaseAmount,
+                             @JsonProperty("pay date") String payDate,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("jobs") List<Integer> jobs) {
         this.name = name;
@@ -49,6 +53,7 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.lease = lease;
+        this.leaseAmount = leaseAmount;
         this.payDate = payDate;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -67,6 +72,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         lease = source.getLease().value;
+        leaseAmount = source.getLeaseAmount().value;
         payDate = String.valueOf(source.getPayDate().value);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -125,6 +131,15 @@ class JsonAdaptedPerson {
         }
         final Lease modelLease = new Lease(lease);
 
+        if (leaseAmount == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LeaseAmount.class.getSimpleName()));
+        }
+        if (!LeaseAmount.isValidLeaseAmount(leaseAmount)) {
+            throw new IllegalValueException(LeaseAmount.MESSAGE_CONSTRAINTS);
+        }
+        final LeaseAmount modelLeaseAmount = new LeaseAmount(leaseAmount);
+
         if (payDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PayDate.class.getSimpleName()));
         }
@@ -138,7 +153,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final List<Integer> modelJobs = new ArrayList<>(jobs);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelLease,
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelLease, modelLeaseAmount,
                 modelPayDate, modelTags, modelJobs);
     }
 

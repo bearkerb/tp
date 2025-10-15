@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE_AMOUNT;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PAYDATE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -38,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_LEASE_AMY = "2025-06-07 2026-07-08";
     public static final String VALID_LEASE_BOB = "2025-04-03 2026-05-04";
+    public static final String VALID_LEASE_AMOUNT_AMY = "2345.67";
+    public static final String VALID_LEASE_AMOUNT_BOB = "876.54";
     public static final String VALID_PAY_DATE_AMY = "2025-07-07";
     public static final String VALID_PAY_DATE_BOB = "2025-05-03";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -53,6 +56,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String LEASE_DESC_AMY = " " + PREFIX_LEASE + VALID_LEASE_AMY;
     public static final String LEASE_DESC_BOB = " " + PREFIX_LEASE + VALID_LEASE_BOB;
+    public static final String LEASE_AMOUNT_DESC_AMY = " " + PREFIX_LEASE_AMOUNT + VALID_LEASE_AMOUNT_AMY;
+    public static final String LEASE_AMOUNT_DESC_BOB = " " + PREFIX_LEASE_AMOUNT + VALID_LEASE_AMOUNT_BOB;
     public static final String PAY_DATE_DESC_AMY = " " + PREFIX_PAYDATE + VALID_PAY_DATE_AMY;
     public static final String PAY_DATE_DESC_BOB = " " + PREFIX_PAYDATE + VALID_PAY_DATE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -63,6 +68,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_LEASE_DESC = " " + PREFIX_LEASE; // empty string not allowed for leases
+    public static final String INVALID_LEASE_AMOUNT_DESC = " " + PREFIX_LEASE_AMOUNT; // empty string not allowed
+                                                                                      // for lease amounts
     public static final String INVALID_PAY_DATE_DESC = " " + PREFIX_PAYDATE; // empty string not allowed for pay date
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -75,11 +82,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withLease(VALID_LEASE_AMY).withPayDate(VALID_PAY_DATE_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withLease(VALID_LEASE_AMY).withLeaseAmount(VALID_LEASE_AMOUNT_AMY)
+                .withPayDate(VALID_PAY_DATE_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withLease(VALID_LEASE_BOB).withPayDate(VALID_PAY_DATE_AMY)
+                .withLease(VALID_LEASE_BOB).withLeaseAmount(VALID_LEASE_AMOUNT_BOB).withPayDate(VALID_PAY_DATE_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

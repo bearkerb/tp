@@ -10,19 +10,19 @@ import seedu.estatemate.model.Model;
 /**
  * Marks a job as complete
  */
-public class MarkJobCommand extends Command {
-    public static final String COMMAND_WORD = "mark";
+public class UnmarkJobCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the job (identified by the id number used in the displayed job) as complete.\n"
+            + ": Marks the job (identified by the id number used in the displayed job) as incomplete.\n"
             + "Parameters: id (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Job marked: %1$s";
+    public static final String MESSAGE_SUCCESS = "Job unmarked: %1$s";
 
     private final Integer targetId;
 
-    public MarkJobCommand(int targetId) {
+    public UnmarkJobCommand(int targetId) {
         this.targetId = targetId;
     }
 
@@ -34,8 +34,8 @@ public class MarkJobCommand extends Command {
             // fall back to whole list if filtered list doesn't contain it
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
-        model.markJobById(targetId);
-        return new CommandResult(String.format("Marked job as complete: #%d", targetId));
+        model.unmarkJobById(targetId);
+        return new CommandResult(String.format("Marked job as incomplete: #%d", targetId));
     }
 
     @Override
@@ -45,12 +45,12 @@ public class MarkJobCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkJobCommand)) {
+        if (!(other instanceof UnmarkJobCommand)) {
             return false;
         }
 
-        MarkJobCommand otherMarkJobCommand = (MarkJobCommand) other;
-        return targetId.equals(otherMarkJobCommand.targetId);
+        UnmarkJobCommand otherUnmarkJobCommand = (UnmarkJobCommand) other;
+        return targetId.equals(otherUnmarkJobCommand.targetId);
     }
 
     @Override

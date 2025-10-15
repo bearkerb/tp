@@ -148,6 +148,11 @@ public class ModelManager implements Model {
         estateMate.markJobById(id);
     }
 
+    @Override
+    public void unmarkJobById(int id) {
+        estateMate.unmarkJobById(id);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

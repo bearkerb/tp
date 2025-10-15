@@ -21,6 +21,7 @@ import seedu.estatemate.logic.commands.HelpCommand;
 import seedu.estatemate.logic.commands.LinkCommand;
 import seedu.estatemate.logic.commands.ListCommand;
 import seedu.estatemate.logic.commands.MarkJobCommand;
+import seedu.estatemate.logic.commands.UnmarkJobCommand;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
 
 /**
@@ -93,6 +94,8 @@ public class EstateMateParser {
         case MarkJobCommand.COMMAND_WORD:
             return new MarkJobCommandParser().parse(arguments);
 
+        case UnmarkJobCommand.COMMAND_WORD:
+            return new UnmarkJobCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

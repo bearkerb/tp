@@ -105,6 +105,8 @@ public interface Model {
 
     void markJobById(int id);
 
+    void unmarkJobById(int id);
+
     int nextJobId();
 
 

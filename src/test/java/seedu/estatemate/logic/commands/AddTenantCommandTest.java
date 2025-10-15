@@ -195,12 +195,12 @@ public class AddTenantCommandTest {
             requireNonNull(predicate);
             throw new AssertionError("This method should not be called.");
         }
-
+        
         @Override
         public String getJobDescriptionById(int id) {
             throw new AssertionError("This method should not be called.");
         }
-
+        
     }
 
     /**

@@ -17,6 +17,7 @@ import seedu.estatemate.logic.parser.exceptions.ParseException;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Lease;
+import seedu.estatemate.model.person.LeaseAmount;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Phone;
@@ -28,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_LEASE = " ";
+    private static final String INVALID_LEASE_AMOUNT = " ";
     private static final String INVALID_PAY_DATE = "2025-13-40";
     private static final String INVALID_TAG = "#friend";
 
@@ -36,6 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_LEASE = "2025-01-01 2030-01-02";
+    private static final String VALID_LEASE_AMOUNT = "1000.00";
     private static final String VALID_PAY_DATE = "2025-12-12";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -175,6 +178,29 @@ public class ParserUtilTest {
         String leaseWithWhitespace = WHITESPACE + VALID_LEASE + WHITESPACE;
         Lease expectedLease = new Lease(VALID_LEASE);
         assertEquals(expectedLease, ParserUtil.parseLease(leaseWithWhitespace));
+    }
+
+    @Test
+    public void parseLeaseAmount_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLeaseAmount((String) null));
+    }
+
+    @Test
+    public void parseLeaseAmount_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLeaseAmount(INVALID_LEASE_AMOUNT));
+    }
+
+    @Test
+    public void parseLeaseAmount_validValueWithoutWhitespace_returnsLeaseAmount() throws Exception {
+        LeaseAmount expectedLeaseAmount = new LeaseAmount(VALID_LEASE_AMOUNT);
+        assertEquals(expectedLeaseAmount, ParserUtil.parseLeaseAmount(VALID_LEASE_AMOUNT));
+    }
+
+    @Test
+    public void parseLeaseAmount_validValueWithWhitespace_returnsTrimmedLeaseAmount() throws Exception {
+        String leaseAmountWithWhitespace = WHITESPACE + VALID_LEASE_AMOUNT + WHITESPACE;
+        LeaseAmount expectedLeaseAmount = new LeaseAmount(VALID_LEASE_AMOUNT);
+        assertEquals(expectedLeaseAmount, ParserUtil.parseLeaseAmount(leaseAmountWithWhitespace));
     }
 
     @Test

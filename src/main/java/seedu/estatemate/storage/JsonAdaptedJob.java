@@ -16,15 +16,18 @@ class JsonAdaptedJob {
 
     private final String description;
     private final Integer id;
+    private Boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedJob} with the given job details.
      */
     @JsonCreator
     public JsonAdaptedJob(@JsonProperty("description") String description,
-                          @JsonProperty("id") Integer id) {
+                          @JsonProperty("id") Integer id,
+                          @JsonProperty("done") Boolean isDone) {
         this.description = description;
         this.id = id;
+        this.isDone = isDone;
     }
 
     /**
@@ -33,6 +36,7 @@ class JsonAdaptedJob {
     public JsonAdaptedJob(Job source) {
         this.description = source.getDescription().description;
         this.id = source.getId();
+        this.isDone = source.getDone();
     }
 
     /**
@@ -51,7 +55,9 @@ class JsonAdaptedJob {
         if (id == null || id <= 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "id"));
         }
-        return new Job(new Description(description), id);
+        Job output = new Job(new Description(description), id);
+        output.setDone(isDone);
+        return output;
     }
 }
 

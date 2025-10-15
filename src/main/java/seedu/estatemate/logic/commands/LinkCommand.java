@@ -36,7 +36,7 @@ public class LinkCommand extends Command {
     public static final String MESSAGE_ALREADY_LINKED_JOB = "This job is already linked to this tenant!";
 
     private final Index index;
-    private final Integer job;
+    private final Integer jobId;
 
     /**
      * Creates a LinkCommand to link the specified {@code Job} to {@code Person} via index
@@ -46,7 +46,7 @@ public class LinkCommand extends Command {
     public LinkCommand(Index index, Integer job) {
         requireAllNonNull(index, job);
         this.index = index;
-        this.job = job;
+        this.jobId = job;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -57,8 +57,19 @@ public class LinkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        if (!model.getFilteredJobList().stream().anyMatch(j -> j.getId() == jobId)) {
+            // fall back to whole list if filtered list doesn't contain it
+            throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
+        }
+
         Person personToLink = lastShownList.get(index.getZeroBased());
-        Person linkedPerson = createPersonWithJob(personToLink, job);
+
+        // Check for target already having added the target job
+        if (personToLink.hasJobId(jobId)) {
+            throw new CommandException(MESSAGE_ALREADY_LINKED_JOB);
+        }
+
+        Person linkedPerson = createPersonWithJob(personToLink, jobId);
         model.setPerson(personToLink, linkedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_LINK_JOB_SUCCESS, Messages.format(linkedPerson)));
@@ -94,6 +105,6 @@ public class LinkCommand extends Command {
 
         LinkCommand e = (LinkCommand) other;
         return index.equals(e.index)
-                && job.equals(e.job);
+                && jobId.equals(e.jobId);
     }
 }

@@ -1,6 +1,7 @@
 package seedu.estatemate.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.estatemate.commons.util.ToStringBuilder;
 import seedu.estatemate.logic.Messages;
 import seedu.estatemate.logic.commands.exceptions.CommandException;

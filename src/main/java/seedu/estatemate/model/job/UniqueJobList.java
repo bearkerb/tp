@@ -48,6 +48,11 @@ public class UniqueJobList implements Iterable<Job> {
         }
     }
 
+    /**
+     * Marks the job provided
+     * The job must be a valid job (non-null)
+     * @param toMark
+     */
     public void mark(Job toMark) {
         requireNonNull(toMark);
         int index = internalList.indexOf(toMark);
@@ -55,7 +60,6 @@ public class UniqueJobList implements Iterable<Job> {
             throw new JobNotFoundException();
         }
         toMark.setDone(true);
-//        internalList.set(index, toMark);
     }
 
     public void setJobs(List<Job> jobs) {

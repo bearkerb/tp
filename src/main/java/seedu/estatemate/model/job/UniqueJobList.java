@@ -51,8 +51,12 @@ public class UniqueJobList implements Iterable<Job> {
     public void mark(Job toMark) {
         requireNonNull(toMark);
         int jobToMarkId = toMark.getId();
-        Job jobToMark = requireNonNull((internalList.get(jobToMarkId)));
-        jobToMark.setDone(true);
+        Job jobToMark = internalList.get(jobToMarkId);
+        if(jobToMark != null) {
+            jobToMark.setDone(true);
+        } else {
+            throw new JobNotFoundException();
+        }
     }
 
     public void setJobs(List<Job> jobs) {

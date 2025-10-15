@@ -19,6 +19,7 @@ import seedu.estatemate.logic.commands.ExitCommand;
 import seedu.estatemate.logic.commands.FindCommand;
 import seedu.estatemate.logic.commands.HelpCommand;
 import seedu.estatemate.logic.commands.ListCommand;
+import seedu.estatemate.logic.commands.MarkJobCommand;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
 
 /**
@@ -84,6 +85,9 @@ public class EstateMateParser {
 
         case DeleteJobCommand.COMMAND_WORD:
             return new DeleteJobCommandParser().parse(arguments);
+
+        case MarkJobCommand.COMMAND_WORD:
+            return new MarkJobCommandParser().parse(arguments);
 
 
         default:

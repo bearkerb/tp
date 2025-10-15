@@ -1,15 +1,10 @@
 package seedu.estatemate.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-
-import seedu.estatemate.commons.core.index.Index;
 import seedu.estatemate.commons.util.ToStringBuilder;
 import seedu.estatemate.logic.Messages;
 import seedu.estatemate.logic.commands.exceptions.CommandException;
-import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.Model;
-import seedu.estatemate.model.job.Description;
 
 /**
  * Marks a job as complete

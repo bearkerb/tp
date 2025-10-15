@@ -103,6 +103,8 @@ public interface Model {
 
     void deleteJobById(int id);
 
+    void markJobById(int id);
+
     int nextJobId();
 
 }

@@ -143,6 +143,11 @@ public class ModelManager implements Model {
         return estateMate.nextJobId();
     }
 
+    @Override
+    public void markJobById(int id) {
+        estateMate.markJobById(id);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

@@ -6,6 +6,7 @@ import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE_AMOUNT;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PAYDATE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -37,7 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_LEASE, PREFIX_PAYDATE, PREFIX_TAG, PREFIX_JOB);
+                        PREFIX_LEASE, PREFIX_LEASE_AMOUNT, PREFIX_PAYDATE, PREFIX_TAG, PREFIX_JOB);
 
         Index index;
 
@@ -48,7 +49,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_LEASE, PREFIX_PAYDATE);
+                PREFIX_LEASE, PREFIX_LEASE_AMOUNT, PREFIX_PAYDATE);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -66,6 +67,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_LEASE).isPresent()) {
             editPersonDescriptor.setLease(ParserUtil.parseLease(argMultimap.getValue(PREFIX_LEASE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_LEASE_AMOUNT).isPresent()) {
+            editPersonDescriptor.setLeaseAmount(
+                    ParserUtil.parseLeaseAmount(argMultimap.getValue(PREFIX_LEASE_AMOUNT).get()));
         }
         if (argMultimap.getValue(PREFIX_PAYDATE).isPresent()) {
             editPersonDescriptor.setPayDate(ParserUtil.parsePayDate(argMultimap.getValue(PREFIX_PAYDATE).get()));

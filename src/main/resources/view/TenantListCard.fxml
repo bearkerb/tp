@@ -32,6 +32,7 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="lease" styleClass="cell_small_label" text="\$lease" />
+      <Label fx:id="leaseAmount" styleClass="cell_small_label" text="\$lease amount" />
       <Label fx:id="payDate" styleClass="cell_small_label" text="\$pay date" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
 

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_LEASE_AMOUNT_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_LEASE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_PAY_DATE_BOB;
@@ -36,7 +37,8 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withLease(VALID_LEASE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withLease(VALID_LEASE_BOB).withLeaseAmount(VALID_LEASE_AMOUNT_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -91,6 +93,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withLease(VALID_LEASE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different lease amount -> returns false
+        editedAlice = new PersonBuilder(ALICE).withLeaseAmount(VALID_LEASE_AMOUNT_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different pay date -> returns false
         editedAlice = new PersonBuilder(ALICE).withPayDate(VALID_PAY_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -104,7 +110,7 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
-                + ", lease=" + ALICE.getLease()
+                + ", lease=" + ALICE.getLease() + ", leaseAmount=" + ALICE.getLeaseAmount()
                 + ", payDate=" + ALICE.getPayDate()
                 + ", tags=" + ALICE.getTags()
                 + ", jobs=" + ALICE.getJobs() + "}";

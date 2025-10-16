@@ -29,7 +29,7 @@ public class LinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a job to a tenant. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_JOB + "JOB NUMBER"
+            + PREFIX_JOB + "JOB NUMBER\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_JOB + "1 ";
 

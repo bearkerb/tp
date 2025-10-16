@@ -26,8 +26,8 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Lease("2025-08-12 2027-09-12"),
-                    new LeaseAmount("650.00"), new PayDate("2025-09-12"), getTagSet("friends")
-                    , new ArrayList<>()),
+                    new LeaseAmount("650.00"), new PayDate("2025-09-12"), getTagSet("friends"),
+                    new ArrayList<>()),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Lease("2025-12-15 2030-02-01"),
                     new LeaseAmount("1200.00"), new PayDate("2026-01-15"), getTagSet("colleagues", "friends"),

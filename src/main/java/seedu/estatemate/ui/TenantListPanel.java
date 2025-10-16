@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.estatemate.commons.core.LogsCenter;
+import seedu.estatemate.model.Model;
 import seedu.estatemate.model.person.Person;
 
 /**
@@ -16,6 +17,7 @@ import seedu.estatemate.model.person.Person;
 public class TenantListPanel extends UiPart<Region> {
     private static final String FXML = "TenantListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TenantListPanel.class);
+    private final Model model;
 
     @FXML
     private ListView<Person> personListView;
@@ -23,8 +25,9 @@ public class TenantListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public TenantListPanel(ObservableList<Person> personList) {
+    public TenantListPanel(ObservableList<Person> personList, Model model) {
         super(FXML);
+        this.model = model;
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
@@ -41,7 +44,7 @@ public class TenantListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TenantCard(person, getIndex() + 1).getRoot());
+                setGraphic(new TenantCard(person, getIndex() + 1, model).getRoot());
             }
         }
     }

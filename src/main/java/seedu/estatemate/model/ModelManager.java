@@ -160,6 +160,28 @@ public class ModelManager implements Model {
 
         updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
+
+        // Also remove reference to job from all tenants
+        for (Person p : estateMate.getPersonList()) {
+            List<Integer> newJobs = new ArrayList<>(p.getJobs());
+            boolean changed = newJobs.removeIf(j -> j == id);
+            if (changed) {
+                Person updated = new Person(
+                        p.getName(),
+                        p.getPhone(),
+                        p.getEmail(),
+                        p.getAddress(),
+                        p.getLease(),
+                        p.getPayDate(),
+                        p.getTags(),
+                        newJobs
+                );
+                setPerson(p, updated);
+            }
+        }
+
+        updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
     }
 
     @Override
@@ -175,6 +197,16 @@ public class ModelManager implements Model {
     @Override
     public void unmarkJobById(int id) {
         estateMate.unmarkJobById(id);
+    }
+
+    @Override
+    public String getJobDescriptionById(int jobId) {
+        for (Job job : filteredJobs) {
+            if (job.getId() == jobId) {
+                return job.getDescription().toString();
+            }
+        }
+        return null;
     }
 
     //=========== Filtered Person List Accessors =============================================================

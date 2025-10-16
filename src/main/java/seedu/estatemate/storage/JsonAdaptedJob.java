@@ -56,7 +56,7 @@ class JsonAdaptedJob {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "id"));
         }
         Job output = new Job(new Description(description), id);
-        output.setDone(isDone);
+        output.setDone(isDone == null ? false : isDone);
         return output;
     }
 }

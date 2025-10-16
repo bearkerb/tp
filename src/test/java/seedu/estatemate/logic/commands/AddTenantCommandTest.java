@@ -196,6 +196,10 @@ public class AddTenantCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public String getJobDescriptionById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

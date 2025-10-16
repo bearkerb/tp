@@ -68,8 +68,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_LEASE_DESC = " " + PREFIX_LEASE; // empty string not allowed for leases
-    public static final String INVALID_LEASE_AMOUNT_DESC = " " + PREFIX_LEASE_AMOUNT; // empty string not allowed
-                                                                                      // for lease amounts
+    // empty string not allowed for lease amounts
+    public static final String INVALID_LEASE_AMOUNT_DESC = " " + PREFIX_LEASE_AMOUNT;
     public static final String INVALID_PAY_DATE_DESC = " " + PREFIX_PAYDATE; // empty string not allowed for pay date
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 

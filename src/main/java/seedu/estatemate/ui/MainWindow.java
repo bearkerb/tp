@@ -16,6 +16,7 @@ import seedu.estatemate.logic.Logic;
 import seedu.estatemate.logic.commands.CommandResult;
 import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
+import seedu.estatemate.model.Model;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private TenantListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private Model model;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -59,6 +61,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.model = logic.getModel();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -110,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new TenantListPanel(logic.getFilteredPersonList());
+        personListPanel = new TenantListPanel(logic.getFilteredPersonList(), model);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

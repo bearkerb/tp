@@ -10,6 +10,7 @@ import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_LEASE_AMOUNT_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_LEASE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_PAY_DATE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -60,6 +61,10 @@ public class EditPersonDescriptorTest {
 
         // different lease amounts -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withLeaseAmount(VALID_LEASE_AMOUNT_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different pay date -> return false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPayDate(VALID_PAY_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

@@ -63,11 +63,11 @@ public class TenantCard extends UiPart<Region> {
         this.model = model;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText("phone number: " + person.getPhone().value);
-        address.setText("address: " + person.getAddress().value);
-        lease.setText("lease start-end: " + person.getLease().value);
-        payDate.setText("pay date: " + person.getPayDate().value);
-        email.setText("email: " + person.getEmail().value);
+        phone.setText("Phone number: " + person.getPhone().value);
+        address.setText("Address: " + person.getAddress().value);
+        lease.setText("Lease Start-End: " + person.getLease().value);
+        payDate.setText("Pay date: " + person.getPayDate().value);
+        email.setText("Email: " + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

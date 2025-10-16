@@ -1,6 +1,7 @@
 package seedu.estatemate.ui;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -65,26 +66,46 @@ public class TenantCard extends UiPart<Region> {
         this.model = model;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText("Phone number: " + person.getPhone().value);
+        phone.setText("Phone Number: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
-        lease.setText("Lease start-end: " + person.getLease().value);
-        leaseAmount.setText("Lease amount: " + person.getLeaseAmount().value);
-        payDate.setText("Pay date: " + person.getPayDate().value);
+        lease.setText("Lease Start-End: " + person.getLease().value);
+        leaseAmount.setText("Lease Amount: " + person.getLeaseAmount().value);
+        payDate.setText("Pay Date: " + person.getPayDate().value);
         email.setText("Email: " + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         maintenanceTitle.setText("Maintenance Information:");
-        if (!person.getJobs().isEmpty()) {
-            Integer jobId = person.getJobs().get(person.getJobs().size() - 1);
-            String description = model.getJobDescriptionById(jobId);
-            maintenanceId.setText("Job Number: " + jobId);
-            maintenanceDescription.setText("Job Description: "
-                    + (description != null ? description : "-"));
-        } else {
+        displayMaintenanceInformation();
+
+    }
+
+    private void displayMaintenanceInformation() {
+        List<Integer> jobIds = model.getJobIdsForPerson(person);
+        if (jobIds.isEmpty()) {
             maintenanceId.setText("Job Number: -");
-            maintenanceDescription.setText("No maintenance jobs yet");
+            maintenanceDescription.setText("Job Description: No maintenance jobs yet");
+            return;
+        } else {
+            StringBuilder jobNumbers = new StringBuilder();
+            for (int i = 0; i < jobIds.size(); i++) {
+                jobNumbers.append(jobIds.get(i));
+                if (i != jobIds.size() - 1) {
+                    jobNumbers.append(", ");
+                }
+            }
+            maintenanceId.setText("Job Number(s): " + jobNumbers);
+
+            StringBuilder jobDescriptions = new StringBuilder("Job Description(s):\n");
+            for (Integer id : jobIds) {
+                String eachDescription = model.getJobDescriptionById(id);
+                boolean isCompleted = model.isJobCompleted(id);
+                String status = isCompleted ? "completed ✅" : "not completed ❌";
+                jobDescriptions.append("#").append(id).append(" ").append(eachDescription)
+                        .append(" (status: ").append(status).append(")\n");
+            }
+            maintenanceDescription.setText(jobDescriptions.toString().trim());
         }
     }
 }

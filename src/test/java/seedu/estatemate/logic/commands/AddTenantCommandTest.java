@@ -10,6 +10,7 @@ import static seedu.estatemate.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -198,6 +199,16 @@ public class AddTenantCommandTest {
 
         @Override
         public String getJobDescriptionById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Integer> getJobIdsForPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Boolean isJobCompleted(int jobId) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -211,6 +211,21 @@ public class ModelManager implements Model {
         return null;
     }
 
+    @Override
+    public Boolean isJobCompleted(int jobId) {
+        for (Job job : estateMate.getJobList()) {
+            if (job.getId() == jobId) {
+                return job.getDone();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public List<Integer> getJobIdsForPerson(Person person) {
+        return new ArrayList<>(person.getJobs());
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

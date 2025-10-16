@@ -1,6 +1,7 @@
 package seedu.estatemate.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -111,5 +112,8 @@ public interface Model {
 
     String getJobDescriptionById(int jobId);
 
+    Boolean isJobCompleted(int jobId);
+
+    List<Integer> getJobIdsForPerson(Person person);
 
 }

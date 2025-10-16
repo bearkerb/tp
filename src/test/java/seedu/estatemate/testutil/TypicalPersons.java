@@ -39,7 +39,7 @@ public class TypicalPersons {
             .withLeaseAmount("1450.00").withPayDate("2028-01-12").withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withLease("2026-01-05 2026-12-05").withLeaseAmount("500.00").withPayDate("2026-02-05").build();
+            .withLease("2026-01-05 2026-12-05").withLeaseAmount("500.21").withPayDate("2026-02-05").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withLease("2025-06-12 2030-12-25").withLeaseAmount("925.00").withPayDate("2025-07-12")

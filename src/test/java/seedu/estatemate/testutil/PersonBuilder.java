@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Lease;
+import seedu.estatemate.model.person.LeaseAmount;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
@@ -25,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_LEASE = "2025-01-01 2027-01-01";
+    public static final String DEFAULT_LEASE_AMOUNT = "950.00";
     public static final String DEFAULT_PAY_DATE = "2025-02-01";
 
     private Name name;
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Lease lease;
+    private LeaseAmount leaseAmount;
     private PayDate payDate;
     private Set<Tag> tags;
     private List<Integer> jobs;
@@ -45,6 +48,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         lease = new Lease(DEFAULT_LEASE);
+        leaseAmount = new LeaseAmount(DEFAULT_LEASE_AMOUNT);
         payDate = new PayDate(DEFAULT_PAY_DATE);
         tags = new HashSet<>();
         jobs = new ArrayList<>();
@@ -59,6 +63,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         lease = personToCopy.getLease();
+        leaseAmount = personToCopy.getLeaseAmount();
         payDate = personToCopy.getPayDate();
         tags = new HashSet<>(personToCopy.getTags());
         jobs = new ArrayList<>(personToCopy.getJobs());
@@ -105,6 +110,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code LeaseAmount} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLeaseAmount(String leaseAmount) {
+        this.leaseAmount = new LeaseAmount(leaseAmount);
+        return this;
+    }
+
+    /**
      * Sets the {@code PayDate} of the {@code Person} that we are building.
      */
     public PersonBuilder withPayDate(String payDate) {
@@ -130,7 +143,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, lease, payDate, tags, jobs);
+        return new Person(name, phone, email, address, lease, leaseAmount, payDate, tags, jobs);
     }
 
 }

@@ -23,24 +23,24 @@ public class Lease {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    public final String value;
+
     private final LocalDate startDate;
     private final LocalDate endDate;
-    public final String value;
 
     /**
      * Constructs a {@code Lease}.
      *
-     * @param lease A valid lease.
+     * @param lease A valid lease of format "yyyy-MM-dd yyyy-MM-dd".
      */
     public Lease(String lease) {
         requireNonNull(lease);
         checkArgument(isValidLease(lease), MESSAGE_CONSTRAINTS);
+        value = lease;
 
         String[] dates = getDates(lease);
         startDate = LocalDate.parse(dates[0], DATE_FORMATTER);
         endDate = LocalDate.parse(dates[1], DATE_FORMATTER);
-
-        value = lease;
     }
 
     /**
@@ -51,15 +51,19 @@ public class Lease {
         boolean isValidDates = true;
 
         String[] dates = getDates(test);
-        String startDate = dates[0];
-        String endDate = dates[1];
 
+        // Check that start and end dates are valid
         try {
-            LocalDate.parse(startDate, DATE_FORMATTER);
-            LocalDate.parse(endDate, DATE_FORMATTER);
+            LocalDate startDate = LocalDate.parse(dates[0], DATE_FORMATTER);
+            LocalDate endDate = LocalDate.parse(dates[1], DATE_FORMATTER);
+            // Check that end date is on the day of start date or after
+            if (endDate.isBefore(startDate)) {
+                isValidDates = false;
+            }
         } catch (DateTimeParseException e) {
             isValidDates = false;
         }
+
         return isValidFormat && isValidDates;
     }
 

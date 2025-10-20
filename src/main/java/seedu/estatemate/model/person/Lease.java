@@ -3,6 +3,9 @@ package seedu.estatemate.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a Person's lease in EstateMate.
  * Guarantees: immutable; is valid as declared in {@link #isValidLease(String)}
@@ -17,6 +20,10 @@ public class Lease {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    private final LocalDate startDate;
+    private final LocalDate endDate;
     public final String value;
 
     /**

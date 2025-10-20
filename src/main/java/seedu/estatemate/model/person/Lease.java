@@ -50,9 +50,11 @@ public class Lease {
      * Returns true if a given string is in a valid lease format.
      */
     public static boolean isValidLease(String test) {
-        boolean isValidFormat = test.matches(VALIDATION_REGEX);
-        boolean isValidDates = true;
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        };
 
+        boolean isValidDates = true;
         String[] dates = getDates(test);
 
         // Check that start and end dates are valid
@@ -67,7 +69,7 @@ public class Lease {
             isValidDates = false;
         }
 
-        return isValidFormat && isValidDates;
+        return isValidDates;
     }
 
     /**

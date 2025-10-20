@@ -3,6 +3,8 @@ package seedu.estatemate.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.commons.util.AppUtil.checkArgument;
 
+import java.math.BigDecimal;
+
 /**
  * Represents a Person's lease amount in EstateMate.
  * Guarantees: immutable; is valid as declared in {@link #isValidLeaseAmount(String)}
@@ -12,12 +14,14 @@ public class LeaseAmount {
     public static final String MESSAGE_CONSTRAINTS = "Lease amounts can take any values, and it should not be blank";
 
     /*
-     * The first character of the lease amount must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The input has 1 or more integer digits, a decimal point and 2 decimal digits.
+     * Leading zeroes such as 0001.30 are accepted as it matches BigDecimal behaviour.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "\\d+\\.\\d{2}";
 
     public final String value;
+
+    private final BigDecimal leaseAmount;
 
     /**
      * Constructs a {@code LeaseAmount}.
@@ -28,10 +32,11 @@ public class LeaseAmount {
         requireNonNull(leaseAmount);
         checkArgument(isValidLeaseAmount(leaseAmount), MESSAGE_CONSTRAINTS);
         value = leaseAmount;
+        this.leaseAmount = new BigDecimal(leaseAmount);
     }
 
     /**
-     * Returns true if a given string is a valid lease amount.
+     * Returns true if a given string is a valid lease amount format.
      */
     public static boolean isValidLeaseAmount(String test) {
         return test.matches(VALIDATION_REGEX);

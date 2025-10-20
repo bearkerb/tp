@@ -33,6 +33,13 @@ public class TenantListPanel extends UiPart<Region> {
     }
 
     /**
+     * Automatically refresh the displayed item after modification.
+     */
+    public void refresh() {
+        personListView.refresh();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {

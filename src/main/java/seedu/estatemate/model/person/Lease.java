@@ -92,7 +92,9 @@ public class Lease {
         }
 
         Lease otherLease = (Lease) other;
-        return value.equals(otherLease.value);
+        boolean isStartDateEquals = startDate.equals(otherLease.startDate);
+        boolean isEndDateEquals = endDate.equals(otherLease.endDate);
+        return isStartDateEquals && isEndDateEquals;
     }
 
     @Override

@@ -75,6 +75,14 @@ public class Lease {
         return lease.split(" ");
     }
 
+    /**
+     * Converts the lease into a more human-readable string representation, intended for display purposes.
+     * @return A display friendly string representing the lease period.
+     */
+    public String toDisplayValue() {
+        return startDate.format(DATE_FORMATTER) + " to " + endDate.format(DATE_FORMATTER);
+    }
+
     @Override
     public String toString() {
         return value;

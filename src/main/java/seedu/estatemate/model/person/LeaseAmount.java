@@ -72,7 +72,7 @@ public class LeaseAmount {
         }
 
         LeaseAmount otherLeaseAmount = (LeaseAmount) other;
-        return value.equals(otherLeaseAmount.value);
+        return leaseAmount.equals(otherLeaseAmount.leaseAmount);
     }
 
     @Override

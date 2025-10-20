@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.commons.util.AppUtil.checkArgument;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Represents a Person's lease amount in EstateMate.
@@ -36,10 +38,21 @@ public class LeaseAmount {
     }
 
     /**
-     * Returns true if a given string is a valid lease amount format.
+     * Returns true if a given string is in a valid lease amount format.
      */
     public static boolean isValidLeaseAmount(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Converts the lease amount into a more human-readable string representation, intended for display purposes.
+     * @return A display friendly string representing the lease amount.
+     */
+    public String toDisplayValue() {
+        // Solution below adapted from:
+        // https://stackoverflow.com/questions/3395825/how-to-print-formatted-bigdecimal-values
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+        return currencyFormatter.format(leaseAmount);
     }
 
     @Override

@@ -69,7 +69,7 @@ public class TenantCard extends UiPart<Region> {
         phone.setText("Phone Number: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         lease.setText("Lease Period: " + person.getLease().toDisplayValue());
-        leaseAmount.setText("Lease Amount: " + person.getLeaseAmount().value);
+        leaseAmount.setText("Lease Amount: " + person.getLeaseAmount().toDisplayValue());
         payDate.setText("Pay Date: " + person.getPayDate().value);
         email.setText("Email: " + person.getEmail().value);
         person.getTags().stream()

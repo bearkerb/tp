@@ -143,11 +143,9 @@ class JsonAdaptedPerson {
         if (payDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PayDate.class.getSimpleName()));
         }
-
         if (!PayDate.isValidPayDate(payDate)) {
             throw new IllegalValueException(PayDate.MESSAGE_CONSTRAINTS);
         }
-
         final PayDate modelPayDate = new PayDate(payDate);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

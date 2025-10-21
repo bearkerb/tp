@@ -3,114 +3,44 @@ layout: page
 title: User Guide
 ---
 
-<div style="margin: 30px;">
+EstateMate (EM) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-# Welcome to EstateMate User Guide!
-
-<p>
-EstateMate (EM) is a <strong>desktop app for managing contacts, optimized for use via a Command Line Interface</strong> 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-</p>
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Table of Contents
-
-[1. Introduction](#1-introduction)
-- [1.1 What Is EstateMate](#1-1-what-is-estatemate)  
-- [1.2 User Proficiency and Expectations](#1-2-user-proficiency-and-expectations)  
-- [1.3 Why This User Guide Matters](#1-3-why-this-user-guide-matters)
-
-[2. Quick Start](#2-quick-start)
-- [2.1 Navigating the Document](#2-1-navigating-the-document)  
-- [2.2 Sections](#2-2-sections)
-
-[3. Features](#3-features)
-- [3.1 Command Summary](#3-1-command-summary)
-- [3.2 Features Related To Tenants](#3-2-features-related-to-tenants)
-    - [3.2.1 Adding a Tenant](#3-2-1-adding-a-tenant)
-    - [3.2.2 Deleting a Tenant](#3-2-2-deleting-a-tenant)
-    - [3.2.3 Editing a Tenant](#3-2-3-editing-a-tenant)
-    - [3.2.4 Finding a Tenant](#3-2-4-finding-a-tenant)
-    - [3.2.5 Listing All Tenants](#3-3-5-listing-all-tenants)
-- [3.3 Features Related To Maintenance Jobs](#3-3-features-related-to-maintenance-jobs)
-    - [3.3.1 Adding a Job](#3-3-1-adding-a-job)
-    - [3.3.2 Deleting a Job](#3-3-2-deleting-a-job)
-    - [3.3.3 Finding a Job](#3-3-3-finding-a-job)
-    - [3.3.4 Linking Job To Tenant](#3-3-4-linking-job-to-tenant)
-    - [3.3.5 Listing All Jobs](#3-3-5-listing-all-job)
-    - [3.3.6 Marking Job As Completed](#3-3-6-marking-job-as-completed)
-    - [3.3.7 Marking Job As Not Completed](#3-3-7-marking-job-as-not-completed)
-- [3.4 General Features](#3-4-general-features)
-    - [3.4.1 Clearing All Tenants](#3-4-1-clearing-all-features)
-    - [3.4.2 Exiting Application](#3-4-2-exiting-application)
-    - [3.4.3 Getting Help](#3-4-3-getting-help)
-
-[4. FAQ](#4-faq)
-
-[5. Glossary](#5-glossary)
-
---------------------------------------------------------------------------------------------------------------------
-
-## 1. Introduction
-
-### 1.1 What Is EstateMate
-<p>
-EstateMate is a comprehensive digital address book and management tool designed specifically 
-for property managers and its executive firms. 
-</p>
-
-### 1.2 User Proficiency and Expectations
-- ***Professional Focus:*** EstateMate is designed for property managers who need an efficient way to track tenant contacts 
-and manage maintenance tasks.
-- ***Efficiency:*** Built specifically for the property management workflow, EstateMate prioritizes fast, 
-streamlined operations so managers can update tenant information and track maintenance jobs.
-- ***User-Friendly:*** Whether you are familiar with command-line tools or prefer a simple graphical interface, 
-EstateMate is designed to be intuitive and straightforward, ensuring smooth property management.
-
-### 1.3 Why This User Guide Matters
-<p>
-This guide is designed to help property managers make the most out of EstateMate's features.
-Managing tenant contacts and tracking maintenance tasks efficiently is essential for smooth property operations.
-Inside, you will find step-by-step instructions, examples, and helpful tips to streamline your workflow so that you can 
-keep your properties running smoothly.
-</p>
-
---------------------------------------------------------------------------------------------------------------------
-
-## 2. Quick start
+## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
 
-   * `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`: 
-   Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `dtenant 3` : Deletes the 3rd tenant contact shown in the current list.
+   * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -268,4 +198,3 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-</div>

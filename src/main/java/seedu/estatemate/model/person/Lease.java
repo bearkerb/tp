@@ -16,7 +16,8 @@ public class Lease {
     public static final String MESSAGE_CONSTRAINTS = "Leases should be of the format \"yyyy-MM-dd yyyy-MM-dd\" "
             + "and adhere to the following constraints:\n"
             + "1. The first date is the start date and the second date is the end date.\n"
-            + "2. The end date must be on the same day or after the start date.";
+            + "2. The end date must be on the same day or after the start date."
+            + "3. The dates must be valid calendar dates.";
 
     /*
      * A valid input consists of 2 dates of format dddd-dd-dd, separated by a space.
@@ -49,26 +50,27 @@ public class Lease {
      * Returns true if a given string is in a valid lease format.
      */
     public static boolean isValidLease(String test) {
-        if (!test.matches(VALIDATION_REGEX)) {
-            return false;
-        };
+        return test.matches(VALIDATION_REGEX) && isValidLeaseDates(test);
+    }
 
-        boolean isValidDates = true;
+    /**
+     * Returns true if the input lease dates are dates that exist and the end date is on or after the start date.
+     * Assumes that the input has already passed the VALIDATION_REGEX format: "dddd-dd-dd dddd-dd-dd".
+     */
+    private static boolean isValidLeaseDates(String test) {
         String[] dates = getDates(test);
-
-        // Check that start and end dates are valid
         try {
+            // Check that start and end dates are valid dates
             LocalDate startDate = LocalDate.parse(dates[0], DATE_FORMATTER);
             LocalDate endDate = LocalDate.parse(dates[1], DATE_FORMATTER);
             // Check that end date is on the day of start date or after
             if (endDate.isBefore(startDate)) {
-                isValidDates = false;
+                return false;
             }
         } catch (DateTimeParseException e) {
-            isValidDates = false;
+            return false;
         }
-
-        return isValidDates;
+        return true;
     }
 
     /**

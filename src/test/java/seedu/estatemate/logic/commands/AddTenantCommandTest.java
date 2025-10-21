@@ -214,6 +214,16 @@ public class AddTenantCommandTest {
         }
 
         @Override
+        public ObservableList<Job> getJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editJobById(int id, Description newDescription) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Boolean isJobCompleted(int jobId) {
             throw new AssertionError("This method should not be called.");
         }

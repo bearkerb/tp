@@ -118,4 +118,9 @@ public interface Model {
     List<Integer> getJobIdsForPerson(Person person);
 
     boolean hasJobWithDescription(Description description);
+
+    ObservableList<Job> getJobList();
+
+    void editJobById(int id, Description newDescription);
+
 }

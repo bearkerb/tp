@@ -168,6 +168,11 @@ public class AddTenantCommandTest {
         }
 
         @Override
+        public ObservableList<Job> getUnfilteredJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int nextJobId() {
             throw new AssertionError("This method should not be called.");
         }
@@ -210,11 +215,6 @@ public class AddTenantCommandTest {
 
         @Override
         public boolean hasJobWithDescription(Description description) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Job> getJobList() {
             throw new AssertionError("This method should not be called.");
         }
 

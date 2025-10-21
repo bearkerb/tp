@@ -101,6 +101,8 @@ public interface Model {
 
     void updateFilteredJobList(Predicate<Job> predicate);
 
+    ObservableList<Job> getUnfilteredJobList();
+
     void addJob(Job job);
 
     void deleteJobById(int id);
@@ -118,8 +120,6 @@ public interface Model {
     List<Integer> getJobIdsForPerson(Person person);
 
     boolean hasJobWithDescription(Description description);
-
-    ObservableList<Job> getJobList();
 
     void editJobById(int id, Description newDescription);
 

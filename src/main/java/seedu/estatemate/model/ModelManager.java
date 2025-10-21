@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.estatemate.commons.core.GuiSettings;
 import seedu.estatemate.commons.core.LogsCenter;
+import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 
@@ -224,6 +225,12 @@ public class ModelManager implements Model {
     @Override
     public List<Integer> getJobIdsForPerson(Person person) {
         return new ArrayList<>(person.getJobs());
+    }
+
+    @Override
+    public boolean hasJobWithDescription(Description description) {
+        requireNonNull(description);
+        return estateMate.hasJobWithDescription(description);
     }
 
     //=========== Filtered Person List Accessors =============================================================

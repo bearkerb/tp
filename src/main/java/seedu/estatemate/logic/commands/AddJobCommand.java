@@ -21,7 +21,7 @@ public class AddJobCommand extends Command {
             + PREFIX_DESCRIPTION + "NAME ";
 
     public static final String MESSAGE_SUCCESS = "New Job added: %1$s";
-    public static final String MESSAGE_DUPLICATE_JOB = "This Job already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_JOB = "This job already exists (duplicate description)";
 
     private final Description description;
 
@@ -35,6 +35,9 @@ public class AddJobCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.hasJobWithDescription(description)) {
+            throw new CommandException(MESSAGE_DUPLICATE_JOB);
+        }
         int id = model.nextJobId();
         Job toAdd = new Job(description, id);
         model.addJob(toAdd);

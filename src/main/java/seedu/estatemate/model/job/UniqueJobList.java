@@ -8,12 +8,12 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.estatemate.model.job.exceptions.DuplicateJobException;
 import seedu.estatemate.model.job.exceptions.JobNotFoundException;
 
 /**
- * A list of Jobs
- * Supports a minimal set of list operations.
- *
+ * A list of Jobs Supports a minimal set of list operations. Enforces uniqueness by job description and does not allow
+ * nulls.
  */
 public class UniqueJobList implements Iterable<Job> {
 
@@ -26,7 +26,15 @@ public class UniqueJobList implements Iterable<Job> {
      */
     public boolean contains(Job toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameJob);
+    }
+
+    /**
+     * Returns true if the list contains a job with the given description.
+     */
+    public boolean containsDescription(Description description) {
+        requireNonNull(description);
+        return internalList.stream().anyMatch(j -> j.getDescription().equals(description));
     }
 
     /**
@@ -34,12 +42,14 @@ public class UniqueJobList implements Iterable<Job> {
      */
     public void add(Job toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateJobException();
+        }
         internalList.add(toAdd);
     }
 
     /**
-     * Removes the job from the list.
-     * The job must exist in the list.
+     * Removes the job from the list. The job must exist in the list.
      */
     public void remove(Job toRemove) {
         requireNonNull(toRemove);
@@ -49,8 +59,8 @@ public class UniqueJobList implements Iterable<Job> {
     }
 
     /**
-     * Marks the job provided as complete
-     * The job must be a valid job (non-null)
+     * Marks the job provided as complete The job must be a valid job (non-null)
+     *
      * @param toMark
      */
     public void mark(Job toMark) {
@@ -63,8 +73,8 @@ public class UniqueJobList implements Iterable<Job> {
     }
 
     /**
-     * Marks the job provided as incomplete
-     * The job must be a valid job (non-null)
+     * Marks the job provided as incomplete The job must be a valid job (non-null)
+     *
      * @param toMark
      */
     public void unmark(Job toMark) {
@@ -78,12 +88,14 @@ public class UniqueJobList implements Iterable<Job> {
 
     public void setJobs(List<Job> jobs) {
         requireNonNull(jobs);
+        if (!jobsAreUnique(jobs)) {
+            throw new DuplicateJobException();
+        }
         internalList.setAll(jobs);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code persons}. {@code persons} must not contain duplicate persons.
      */
     public void setJob(List<Job> jobs) {
         requireAllNonNull(jobs);
@@ -125,5 +137,16 @@ public class UniqueJobList implements Iterable<Job> {
     @Override
     public String toString() {
         return internalList.toString();
+    }
+
+    private boolean jobsAreUnique(List<Job> jobs) {
+        for (int i = 0; i < jobs.size() - 1; i++) {
+            for (int j = i + 1; j < jobs.size(); j++) {
+                if (jobs.get(i).isSameJob(jobs.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

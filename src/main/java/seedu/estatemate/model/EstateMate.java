@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.util.ToStringBuilder;
+import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.job.UniqueJobList;
 import seedu.estatemate.model.person.Person;
@@ -102,6 +103,14 @@ public class EstateMate implements ReadOnlyEstateMate {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Returns true if the address book contains a job with the given description.
+     */
+    public boolean hasJobWithDescription(Description description) {
+        requireNonNull(description);
+        return jobs.containsDescription(description);
     }
 
     /**

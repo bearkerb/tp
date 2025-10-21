@@ -59,7 +59,7 @@ public class UniqueJobList implements Iterable<Job> {
     }
 
     /**
-     * Marks the job provided as complete The job must be a valid job (non-null)
+     * Marks the job provided as complete. The job must be a valid job (non-null).
      *
      * @param toMark
      */
@@ -73,7 +73,7 @@ public class UniqueJobList implements Iterable<Job> {
     }
 
     /**
-     * Marks the job provided as incomplete The job must be a valid job (non-null)
+     * Marks the job provided as incomplete. The job must be a valid job (non-null).
      *
      * @param toMark
      */

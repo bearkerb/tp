@@ -192,9 +192,9 @@ Action                      | Format, Examples
 **Find Tenant**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Find Job**                | `fjob KEYWORD [MORE_KEYWORDS]`<br> e.g., `fjob electrical plumbing renovation`
 **Help**                    | `help`
-**List Job to Tenant**      | `link TENANT_INDEX j/JOB_NUMBER`<br> e.g., `link 1 j/2`
-**List Tenant**             | `list`
-**List Job**                | `ljob`
+**Link Job to Tenant**      | `link TENANT_INDEX j/JOB_NUMBER`<br> e.g., `link 1 j/2`
+**List Tenants**             | `list`
+**List Jobs**                | `ljob`
 **Mark Job**                | `mark JOB_NUMBER`<br> e.g., `mark 1`
 **Unmark Job**              | `unmark JOB_NUMBER`<br> e.g., `unmark 1`
 
@@ -467,7 +467,7 @@ Format: `help`
 Terms               | Meanings
 ---------------------|------------------
 Command Prefix       | A short identifier followed by a `/` used in commands to specify parameters
-Optional Parameter   | A parameter enclosed in square brackets `[ ]`in a command that can be included or omitted.
+Optional Parameter   | A parameter enclosed in square brackets `[ ]` in a command that can be included or omitted.
 Upper-Case Parameter | A placeholder in commands (e.g., `NAME`, `PHONE`) that must be replaced with actual values.
 
 </box>

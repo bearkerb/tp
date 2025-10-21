@@ -13,7 +13,8 @@ import java.util.Locale;
  */
 public class LeaseAmount {
 
-    public static final String MESSAGE_CONSTRAINTS = "Lease amounts can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Lease amounts must be non-negative, have 1 or more "
+            + "integer digits, a decimal point and 2 decimal digits (eg. 1234.56).";
 
     /*
      * The input is non-negative and has 1 or more integer digits, a decimal point and 2 decimal digits.

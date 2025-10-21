@@ -19,8 +19,7 @@ public class Lease {
             + "2. The end date must be on the same day or after the start date.";
 
     /*
-     * The first character of the lease must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * A valid input consists of 2 dates of format dddd-dd-dd, separated by a space.
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}-\\d{2}-\\d{2}";
 

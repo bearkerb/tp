@@ -23,6 +23,7 @@ import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.ReadOnlyEstateMate;
 import seedu.estatemate.model.ReadOnlyUserPrefs;
+import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.testutil.PersonBuilder;
@@ -204,6 +205,21 @@ public class AddTenantCommandTest {
 
         @Override
         public List<Integer> getJobIdsForPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasJobWithDescription(Description description) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Job> getJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editJobById(int id, Description newDescription) {
             throw new AssertionError("This method should not be called.");
         }
 

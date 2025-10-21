@@ -20,7 +20,7 @@ public class AddJobCommand extends Command {
             + "Parameters: "
             + PREFIX_DESCRIPTION + "NAME ";
 
-    public static final String MESSAGE_SUCCESS = "New Job added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New job added: #%d %s";
     public static final String MESSAGE_DUPLICATE_JOB = "This job already exists (duplicate description)";
 
     private final Description description;
@@ -41,7 +41,7 @@ public class AddJobCommand extends Command {
         int id = model.nextJobId();
         Job toAdd = new Job(description, id);
         model.addJob(toAdd);
-        return new CommandResult(String.format("New job added: #%d %s", id, description));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, id, description));
     }
 
     @Override

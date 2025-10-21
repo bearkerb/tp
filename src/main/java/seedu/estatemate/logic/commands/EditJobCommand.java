@@ -1,6 +1,7 @@
 package seedu.estatemate.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_JOB_ID;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.estatemate.commons.util.ToStringBuilder;
@@ -23,7 +24,6 @@ public class EditJobCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Edited job #%1$d";
     public static final String MESSAGE_DUPLICATE_JOB = "This description already exists for another job.";
-    public static final String MESSAGE_INVALID_ID = Messages.MESSAGE_INVALID_JOB_ID;
 
     private final int targetId;
     private final Description newDescription;
@@ -42,10 +42,9 @@ public class EditJobCommand extends Command {
         requireNonNull(model);
 
         // Ensure id exists
-        boolean idExists = model.getFilteredJobList().stream().anyMatch(j -> j.getId() == targetId)
-                || model.getJobList().stream().anyMatch(j -> j.getId() == targetId);
-        if (!idExists) {
-            throw new CommandException(MESSAGE_INVALID_ID);
+        requireNonNull(model);
+        if (!model.getJobList().stream().anyMatch(j -> j.getId() == targetId)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
 
         // Ensure uniqueness by description

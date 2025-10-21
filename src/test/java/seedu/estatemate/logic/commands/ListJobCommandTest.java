@@ -5,11 +5,13 @@ import static seedu.estatemate.testutil.TypicalPersons.getTypicalEstateMate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.ModelManager;
 import seedu.estatemate.model.UserPrefs;
 
 public class ListJobCommandTest {
+
     private Model model;
     private Model expectedModel;
 
@@ -26,7 +28,7 @@ public class ListJobCommandTest {
 
     @Test
     public void execute_jobListIsFiltered_showsEverything() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        // showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

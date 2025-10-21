@@ -7,6 +7,10 @@ import seedu.estatemate.logic.Messages;
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.job.JobContainsKeywordsPredicate;
 
+/**
+ * Finds and lists all jobs whose description contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class FindJobCommand extends Command {
     public static final String COMMAND_WORD = "fjob";
 
@@ -25,7 +29,9 @@ public class FindJobCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredJobList(predicate);
-        String tempJobsStringTest = model.getFilteredJobList().toString(); // remove this and edit message after gui is done
+
+        // remove this and edit message after gui is done
+        String tempJobsStringTest = model.getFilteredJobList().toString();
         return new CommandResult(
                 String.format(Messages.MESSAGE_JOBS_LISTED_OVERVIEW + tempJobsStringTest,
                         model.getFilteredJobList().size()));

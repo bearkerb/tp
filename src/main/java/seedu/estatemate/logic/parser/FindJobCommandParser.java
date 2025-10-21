@@ -1,6 +1,7 @@
 package seedu.estatemate.logic.parser;
 
 import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.Arrays;
 
 import seedu.estatemate.logic.commands.FindJobCommand;

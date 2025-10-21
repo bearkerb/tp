@@ -33,7 +33,8 @@ public class JobContainsKeywordsPredicate implements Predicate<Job> {
             return false;
         }
 
-        seedu.estatemate.model.job.JobContainsKeywordsPredicate otherJobContainsKeywordsPredicate = (seedu.estatemate.model.job.JobContainsKeywordsPredicate) other;
+        seedu.estatemate.model.job.JobContainsKeywordsPredicate otherJobContainsKeywordsPredicate =
+                (seedu.estatemate.model.job.JobContainsKeywordsPredicate) other;
         return keywords.equals(otherJobContainsKeywordsPredicate.keywords);
     }
 

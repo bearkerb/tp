@@ -239,11 +239,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Job> getJobList() {
-        return estateMate.getJobList();
-    }
-
-    @Override
     public void editJobById(int id, Description newDescription) {
         Job existing = estateMate.getJobList().stream()
                 .filter(j -> j.getId() == id)

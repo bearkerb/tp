@@ -121,8 +121,6 @@ public interface Model {
 
     boolean hasJobWithDescription(Description description);
 
-    ObservableList<Job> getJobList();
-
     void editJobById(int id, Description newDescription);
 
 }

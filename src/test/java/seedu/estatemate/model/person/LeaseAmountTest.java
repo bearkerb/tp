@@ -33,7 +33,6 @@ public class LeaseAmountTest {
         assertFalse(LeaseAmount.isValidLeaseAmount("hello.there")); // non-amount input with decimal point
         assertFalse(LeaseAmount.isValidLeaseAmount("hello.03")); // non-amount input with decimal digits
         assertFalse(LeaseAmount.isValidLeaseAmount("10.there")); // non-amount input with integer digits
-        assertFalse(LeaseAmount.isValidLeaseAmount("10.there")); // non-amount input with integer digits
         assertFalse(LeaseAmount.isValidLeaseAmount("1023a.02")); // non-digit character in integer digits
         assertFalse(LeaseAmount.isValidLeaseAmount("1023.2a")); // non-digit character in decimal digits
 

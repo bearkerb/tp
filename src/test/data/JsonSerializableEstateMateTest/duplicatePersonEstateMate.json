@@ -4,7 +4,8 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "lease" : "2025-01-01 2030-01-02",
+    "lease": "2025-01-01 2030-01-02",
+    "lease amount": "650.00",
     "pay date": "2025-02-01",
     "tags": [ "friends" ]
   }, {
@@ -12,7 +13,8 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "lease" : "2025-01-01 2030-01-02",
+    "lease": "2025-01-01 2030-01-02",
+    "lease amount": "650.00",
     "pay date": "2025-02-01"
   } ]
 }

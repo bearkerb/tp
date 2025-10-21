@@ -5,6 +5,7 @@ import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE_AMOUNT;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PAYDATE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -28,6 +29,7 @@ import seedu.estatemate.model.Model;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Lease;
+import seedu.estatemate.model.person.LeaseAmount;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
@@ -50,7 +52,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_LEASE + "LEASE] "
-            + "[" + PREFIX_PAYDATE + "PAY DATE] "
+            + "[" + PREFIX_LEASE_AMOUNT + "AMOUNT] "
+            + "[" + PREFIX_PAYDATE + "PAYDATE] "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_JOB + "JOB]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -109,12 +112,14 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Lease updatedLease = editPersonDescriptor.getLease().orElse(personToEdit.getLease());
+        LeaseAmount updatedLeaseAmount = editPersonDescriptor.getLeaseAmount()
+                .orElse(personToEdit.getLeaseAmount());
         PayDate updatedPayDate = editPersonDescriptor.getPayDate().orElse(personToEdit.getPayDate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Integer> updatedJobs = editPersonDescriptor.getJobs().orElse(personToEdit.getJobs());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLease, updatedPayDate,
-                updatedTags, updatedJobs);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLease,
+                updatedLeaseAmount, updatedPayDate, updatedTags, updatedJobs);
     }
 
     @Override
@@ -151,6 +156,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Lease lease;
+        private LeaseAmount leaseAmount;
         private PayDate payDate;
         private Set<Tag> tags;
         private List<Integer> jobs;
@@ -167,6 +173,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setLease(toCopy.lease);
+            setLeaseAmount(toCopy.leaseAmount);
             setPayDate(toCopy.payDate);
             setTags(toCopy.tags);
             setJobs(toCopy.jobs);
@@ -176,7 +183,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, lease, payDate, tags, jobs);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, lease, leaseAmount, payDate,
+                    tags, jobs);
         }
 
         public void setName(Name name) {
@@ -217,6 +225,14 @@ public class EditCommand extends Command {
 
         public Optional<Lease> getLease() {
             return Optional.ofNullable(lease);
+        }
+
+        public void setLeaseAmount(LeaseAmount leaseAmount) {
+            this.leaseAmount = leaseAmount;
+        }
+
+        public Optional<LeaseAmount> getLeaseAmount() {
+            return Optional.ofNullable(leaseAmount);
         }
 
         public void setPayDate(PayDate payDate) {
@@ -269,6 +285,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(lease, otherEditPersonDescriptor.lease)
+                    && Objects.equals(leaseAmount, otherEditPersonDescriptor.leaseAmount)
                     && Objects.equals(payDate, otherEditPersonDescriptor.payDate)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(jobs, otherEditPersonDescriptor.jobs);
@@ -282,6 +299,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("lease", lease)
+                    .add("lease amount", leaseAmount)
                     .add("pay date", payDate)
                     .add("tags", tags)
                     .add("jobs", jobs)

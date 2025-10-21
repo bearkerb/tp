@@ -31,7 +31,7 @@ public class Lease {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid lease.
      */
     public static boolean isValidLease(String test) {
         return test.matches(VALIDATION_REGEX);

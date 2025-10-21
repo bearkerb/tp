@@ -9,6 +9,7 @@ import seedu.estatemate.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
 import seedu.estatemate.model.person.Lease;
+import seedu.estatemate.model.person.LeaseAmount;
 import seedu.estatemate.model.person.Name;
 import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
@@ -40,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setLease(person.getLease());
+        descriptor.setLeaseAmount(person.getLeaseAmount());
         descriptor.setTags(person.getTags());
     }
 
@@ -80,6 +82,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withLease(String lease) {
         descriptor.setLease(new Lease(lease));
+        return this;
+    }
+
+    /**
+     * Sets the {@code LeaseAmount} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLeaseAmount(String leaseAmount) {
+        descriptor.setLeaseAmount(new LeaseAmount(leaseAmount));
         return this;
     }
 

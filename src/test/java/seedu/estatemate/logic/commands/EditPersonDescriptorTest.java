@@ -7,7 +7,10 @@ import static seedu.estatemate.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.estatemate.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_LEASE_AMOUNT_BOB;
+import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_LEASE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_PAY_DATE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.estatemate.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -52,6 +55,18 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different lease -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withLease(VALID_LEASE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different lease amounts -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withLeaseAmount(VALID_LEASE_AMOUNT_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different pay date -> return false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPayDate(VALID_PAY_DATE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
@@ -65,7 +80,8 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
                 + editPersonDescriptor.getAddress().orElse(null) + ", lease="
-                + editPersonDescriptor.getLease().orElse(null) + ", pay date="
+                + editPersonDescriptor.getLease().orElse(null) + ", lease amount="
+                + editPersonDescriptor.getLeaseAmount().orElse(null) + ", pay date="
                 + editPersonDescriptor.getPayDate().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + ", jobs="
                 + editPersonDescriptor.getJobs().orElse(null) + "}";

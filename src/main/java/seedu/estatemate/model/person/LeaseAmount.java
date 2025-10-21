@@ -16,7 +16,7 @@ public class LeaseAmount {
     public static final String MESSAGE_CONSTRAINTS = "Lease amounts can take any values, and it should not be blank";
 
     /*
-     * The input has 1 or more integer digits, a decimal point and 2 decimal digits.
+     * The input is non-negative and has 1 or more integer digits, a decimal point and 2 decimal digits.
      * Leading zeroes such as 0001.30 are accepted as it matches BigDecimal behaviour.
      */
     public static final String VALIDATION_REGEX = "\\d+\\.\\d{2}";

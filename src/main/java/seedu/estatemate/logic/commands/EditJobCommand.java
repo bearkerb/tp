@@ -5,7 +5,6 @@ import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_JOB_ID;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.estatemate.commons.util.ToStringBuilder;
-import seedu.estatemate.logic.Messages;
 import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.job.Description;
@@ -44,7 +43,7 @@ public class EditJobCommand extends Command {
         // Ensure id exists
         requireNonNull(model);
         if (!model.getJobList().stream().anyMatch(j -> j.getId() == targetId)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
+            throw new CommandException(MESSAGE_INVALID_JOB_ID);
         }
 
         // Ensure uniqueness by description

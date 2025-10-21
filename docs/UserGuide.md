@@ -8,9 +8,9 @@ title: User Guide
 # Welcome to EstateMate User Guide!
 
 <p>
-EstateMate (EM) is a <strong>desktop app for managing contacts, optimized for use via a Command Line Interface</strong> 
+EstateMate (EM) is a <strong>desktop application for managing contacts, optimized for use via a Command Line Interface</strong> 
 (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+If you can type fast, EstateMate can get your contact management tasks done faster than traditional GUI apps.
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ If you can type fast, AB3 can get your contact management tasks done faster than
 [3. Features](#3-features)
 - [3.1 Command Summary](#3-1-command-summary)
 - [3.2 Features Related To Tenants](#3-2-features-related-to-tenants)
-    - [3.2.1 Adding a Tenant](#3-2-1-adding-a-tenant-add)
+    - [3.2.1 Adding a Tenant](#3-2-1-adding-a-tenant-tenant)
     - [3.2.2 Deleting a Tenant](#3-2-2-deleting-a-tenant-dtenant)
     - [3.2.3 Editing a Tenant](#3-2-3-editing-a-tenant-edit)
     - [3.2.4 Finding a Tenant](#3-2-4-finding-a-tenant-find)
@@ -49,7 +49,7 @@ If you can type fast, AB3 can get your contact management tasks done faster than
     - [3.4.2 Exiting Application](#3-4-2-exiting-application-exit)
     - [3.4.3 Getting Help](#3-4-3-getting-help-help)
 
-[4. FAQ & Known Issues](#4-faq-&-known-issues)
+[4. FAQ and Known Issues](#4-faq-and-known-issues)
 - [4.1 Known Issues](#4-1-known-issues)
 
 [5. Glossary](#5-glossary)
@@ -60,7 +60,7 @@ If you can type fast, AB3 can get your contact management tasks done faster than
 
 ### 1.1 What Is EstateMate
 <p>
-EstateMate is a comprehensive digital address book and management tool designed specifically 
+EstateMate is a comprehensive application and management tool designed specifically 
 for property managers and its executive firms. 
 </p>
 
@@ -86,38 +86,38 @@ keep your properties running smoothly.
 
 ### 2.1 Installation
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. Ensure you have Java `17` or above installed in your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/tag/v1.3).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <img src="images/Updated_GUI_v1.png" alt="Updated GUI v1" width="600">
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
 
     * `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`:
-      Adds a contact named `John Tan` to the Address Book.
+      Adds a contact named `John Tan` to the application.
 
     * `dtenant 3` : Deletes the 3rd tenant contact shown in the current list.
 
     * `clear` : Deletes all contacts.
 
-    * `exit` : Exits the app.
+    * `exit` : Exits the application.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#3-features) below for details of each command.
 
 <div style="page-break-after: always;"></div>
 
 ### 2.2 User Interface Overview
 
-- insert UI (to be updated once gui is done)
+- insert UI (coming soon...)
 
 ### 2.3 Understanding Command Prefix
 
@@ -202,9 +202,9 @@ Action                      | Format, Examples
 
 ### 3.2 Features Related To Tenants
 
-#### 3.2.1 Adding a Tenant: `add`
+#### 3.2.1 Adding a Tenant: `tenant`
+Adds a tenant to the application.
 
-Adds a tenant to the address book.
 Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE [t/TAG]…​`
 
 <box type="Note" seamless>
@@ -217,8 +217,8 @@ Examples:
 * `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
 #### 3.2.2 Deleting a Tenant: `dtenant`
+Deletes the specified tenant from the application.
 
-Deletes the specified tenant from the address book.
 Format: `dtenant TENANT_INDEX`
 
 <box type="Note" seamless>
@@ -227,12 +227,12 @@ Format: `dtenant TENANT_INDEX`
 </box>
 
 Examples:
-* `list` followed by `dtenant 2` deletes the second tenant listed in the address book.
+* `list` followed by `dtenant 2` deletes the second tenant listed in the application.
 * `find John` followed by `dtenant 1` deletes the 1st person in the results of the `find` command.
 
 #### 3.2.3 Editing a Tenant : `edit`
 
-Edits an existing tenant in the address book.
+Edits an existing tenant in the application.
 
 Format: `edit TENANT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]...[j/JOB]...[t/TAG]…​`
 
@@ -249,8 +249,8 @@ Format: `edit TENANT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE
 </box>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 #### 3.2.4 Finding a Tenant: `find`
 
@@ -271,24 +271,25 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 </box>
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` returns `john` and `John Doe`.
+* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
 
 #### 3.2.5 Listing All Tenants: `list`
-Displays a list of all tenants currently stored in the address book, ordered from the earliest added to the most recent.
+Displays a list of all tenants currently stored in the application, ordered from the earliest added to the most recent.
 
 Format: `list`
 <box type="Note" seamless>
 
 💡**Note:**
 > - Any additional text after `list` command will be ignored.
-> - `list` without any tenants will show you empty list, hence recommend you to add some tenants to the address book.
-    </box>
+> - `list` without any tenants will show you empty list, hence recommend you to add some tenants to the application.
+
+</box>
 
 ### 3.3 Features Related to Maintenance Jobs
 
 #### 3.3.1 Adding a Job: `job`
-Adds a maintenance job and tag it to a specific unit.
+Adds a maintenance job to the job list in the application.
 
 Format: `job d/DESCRIPTION`
 <box type="Note" seamless>
@@ -296,14 +297,15 @@ Format: `job d/DESCRIPTION`
 💡**Note:**
 > - Replace <code>DESCRIPTION</code> with a clear description of the maintenance issue.
 > - Each job added will be tracked in the system and can be linked to the respective tenant/unit.
-    </box>
+
+</box>
 
 Examples:
 * `job d/Water leakage in ceiling`
 * `job d/Pipe leakage`
 
 #### 3.3.2 Deleting a Job: `djob`
-Deletes a maintenance job from the address book.
+Deletes a maintenance job from the application.
 
 Format: `djob JOB_NUMBER`
 <box type="Note" seamless>
@@ -315,13 +317,12 @@ Format: `djob JOB_NUMBER`
 </box>
 
 Examples:
-* `list` followed by `djob 2` deletes the second job listed in the address book.
-* `find Water Leakage` followed by `djob 1` deletes the 1st job in the results of the `find` command.
+* `djob 2` deletes the job with job number 2 if it exists.
 
 <div style="page-break-after: always;"></div>
 
 #### 3.3.3 Editing a Job: `ejob`
-Edits a maintenance job from the address book.
+Edits a maintenance job from the application.
 
 Format: `ejob JOB_NUMBER d/DESCRIPTION`
 <box type="Note" seamless>
@@ -333,7 +334,7 @@ Format: `ejob JOB_NUMBER d/DESCRIPTION`
 </box>
 
 Examples:
-* `ejob 3 d/fix faucet` changes the description of the job with id 3 to "fix faucet"
+* `ejob 3 d/fix faucet` changes the description of the job with job number 3 to "fix faucet".
 
 #### 3.3.4 Finding a Job: `fjob`
 Find maintenance jobs whose descriptions contain any of the given keyword.
@@ -362,6 +363,7 @@ Examples:
 Link a maintenance job to a specific tenant
 
 Format: `link TENANT_INDEX j/JOB_NUMBER`
+
 <box type="Note" seamless>
 
 💡**Note:**
@@ -377,15 +379,17 @@ Examples:
 - `link 2 j/5` links the 5th maintenance job in the job list to the 2nd tenant in the tenant list.
 
 #### 3.3.6 Listing All Jobs: `ljob`
-Displays a list of all jobs currently stored in the address book, ordered from the earliest added to the most recent.
+Displays a list of all jobs currently stored in the application, ordered from the earliest added to the most recent.
 
 Format: `ljob`
+
 <box type="Note" seamless>
 
 💡**Note:**
 > - Any additional text after `ljob` command will be ignored.
-> - `list` without any jobs will show you empty list, hence recommend you to add some maintenance jobs to the address book.
-    </box>
+> - `list` without any jobs will show you empty list, hence recommend you to add some maintenance jobs to the application.
+    
+</box>
 
 #### 3.3.7 Marking Job as Completed: `mark`
 Updates the status of a maintenance job so that completed tasks can be tracked easily.
@@ -424,7 +428,7 @@ Examples:
 ### 3.4 General Features
 
 #### 3.4.1 Clearing All Tenants: `clear`
-Remove all tenants from the address book.
+Remove all tenants from the application.
 
 Format: `clear`
 
@@ -441,7 +445,7 @@ Format: `exit`
 
 <box type="Note" seamless>
 
-💡**Note:** All datas entered will be automatically saved to storage.
+💡**Note:** All data entered will be automatically saved to storage.
 </box>
 
 #### 3.4.3 Getting Help: `help`
@@ -450,10 +454,10 @@ Opens the help window which provides link accessing the user guide and get assis
 Format: `help`
 
 
-## 4. FAQ & Known Issues
+## 4. FAQ and Known Issues
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EstateMate home folder.
 
 ### 4.1 Known issues
 

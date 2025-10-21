@@ -23,12 +23,14 @@ public class ListJobCommandTest {
 
     @Test
     public void execute_jobListIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS
+                + expectedModel.getFilteredJobList().toString(), expectedModel);
     }
 
     @Test
     public void execute_jobListIsFiltered_showsEverything() {
         // showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS
+                + expectedModel.getFilteredJobList().toString(), expectedModel);
     }
 }

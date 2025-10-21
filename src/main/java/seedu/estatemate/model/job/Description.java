@@ -51,7 +51,7 @@ public class Description {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof Description)) {
             return false;
         }
 

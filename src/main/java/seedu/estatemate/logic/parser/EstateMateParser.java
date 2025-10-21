@@ -15,12 +15,14 @@ import seedu.estatemate.logic.commands.Command;
 import seedu.estatemate.logic.commands.DeleteJobCommand;
 import seedu.estatemate.logic.commands.DeleteTenantCommand;
 import seedu.estatemate.logic.commands.EditCommand;
+import seedu.estatemate.logic.commands.EditJobCommand;
 import seedu.estatemate.logic.commands.ExitCommand;
 import seedu.estatemate.logic.commands.FindCommand;
 import seedu.estatemate.logic.commands.FindJobCommand;
 import seedu.estatemate.logic.commands.HelpCommand;
 import seedu.estatemate.logic.commands.LinkCommand;
 import seedu.estatemate.logic.commands.ListCommand;
+import seedu.estatemate.logic.commands.ListJobCommand;
 import seedu.estatemate.logic.commands.MarkJobCommand;
 import seedu.estatemate.logic.commands.UnmarkJobCommand;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
@@ -97,6 +99,12 @@ public class EstateMateParser {
 
         case UnmarkJobCommand.COMMAND_WORD:
             return new UnmarkJobCommandParser().parse(arguments);
+
+        case EditJobCommand.COMMAND_WORD:
+            return new EditJobCommandParser().parse(arguments);
+
+        case ListJobCommand.COMMAND_WORD:
+            return new ListJobCommand();
 
         case FindJobCommand.COMMAND_WORD:
             return new FindJobCommandParser().parse(arguments);

@@ -19,7 +19,7 @@ public class DeleteJobCommand extends Command {
             + "Parameters: id (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_JOB_SUCCESS = "Deleted Job: %1$s";
+    public static final String MESSAGE_DELETE_JOB_SUCCESS = "Deleted job: #%d";
 
     private final Integer targetId;
 
@@ -30,13 +30,11 @@ public class DeleteJobCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)
-                && !model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
-            // fall back to whole list if filtered list doesn't contain it
+        if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
         model.deleteJobById(targetId);
-        return new CommandResult(String.format("Deleted job: #%d", targetId));
+        return new CommandResult(String.format(MESSAGE_DELETE_JOB_SUCCESS, targetId));
     }
 
     @Override
@@ -45,7 +43,6 @@ public class DeleteJobCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof DeleteJobCommand)) {
             return false;
         }

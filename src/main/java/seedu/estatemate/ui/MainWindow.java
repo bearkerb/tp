@@ -118,6 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new TenantListPanel(logic.getFilteredPersonList(), model);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        jobListPanel = new JobListPanel(model.getFilteredJobList(), model);
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -186,6 +188,18 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            //Panel switches between: JobPanel & PersonListPanel
+            String trimmedCommand = commandText.trim();
+            switch (trimmedCommand) {
+                case "ljob":
+                    personListPanelPlaceholder.getChildren().clear();
+                    personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                    break;
+                default:
+                    personListPanelPlaceholder.getChildren().clear();
+                    personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+            jobListPanel.refresh();
             personListPanel.refresh();
 
             if (commandResult.isShowHelp()) {

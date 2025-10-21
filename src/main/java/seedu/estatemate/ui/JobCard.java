@@ -34,15 +34,17 @@ public class JobCard extends UiPart<Region> {
         super(FXML);
         this.job = job;
         this.model = model;
+
         id.setText(displayedIndex + ". ");
         description.setText(job.getDescription().toString());
+        id.setText(job.getId() + ". ");
 
         if (job.getDone()) {
-            status.setText("Completed");
-            cardPane.setStyle("-fx-background-color: #388E3C; -fx-border-color: #388E3C;");
+            status.setText("Status: Completed ✅");
+            status.getStyleClass().add("job-status-completed");
         } else {
-            status.setText("Pending");
-            cardPane.setStyle("-fx-background-color: #D32F2F; -fx-border-color: #D32F2F;");
+            status.setText("Status: Pending ❌");
+            status.getStyleClass().add("job-status-pending");
         }
     }
 

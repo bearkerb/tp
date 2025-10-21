@@ -28,7 +28,6 @@
       </HBox>
 
       <Label fx:id="status" styleClass="cell_small_label" text="Status: \$status" />
-      <Label fx:id="idText" styleClass="cell_small_label" text="Job ID: \$jobId" />
 
     </VBox>
   </GridPane>

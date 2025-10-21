@@ -33,6 +33,13 @@ public class JobListPanel extends UiPart<Region> {
     }
 
     /**
+     * Automatically refresh the displayed item after modification.
+     */
+    public void refresh() {
+        jobListView.refresh();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Job} using a {@code JobCard}.
      */
     class JobListViewCell extends ListCell<Job> {

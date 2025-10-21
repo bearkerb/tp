@@ -16,7 +16,7 @@ public class ListJobCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredJobList(PREDICATE_SHOW_ALL_JOBS);
-        int numJobs = model.getFilteredJobList().size();
-        return new CommandResult(MESSAGE_SUCCESS + ": " + numJobs);
+        String resultMessage = MESSAGE_SUCCESS + model.getFilteredJobList().toString();
+        return new CommandResult(resultMessage);
     }
 }

@@ -58,7 +58,7 @@ public class LinkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (!model.getFilteredJobList().stream().anyMatch(j -> j.getId() == jobId)) {
+        if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == jobId)) {
             // fall back to whole list if filtered list doesn't contain it
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }

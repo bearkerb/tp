@@ -100,6 +100,8 @@ public interface Model {
 
     void updateFilteredJobList(Predicate<Job> predicate);
 
+    ObservableList<Job> getUnfilteredJobList();
+
     void addJob(Job job);
 
     void deleteJobById(int id);

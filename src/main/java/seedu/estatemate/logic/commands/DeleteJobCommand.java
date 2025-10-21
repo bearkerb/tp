@@ -30,8 +30,8 @@ public class DeleteJobCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.getFilteredJobList().stream().anyMatch(j -> j.getId() == targetId)
-                && !model.getFilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
+        if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)
+                && !model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
             // fall back to whole list if filtered list doesn't contain it
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }

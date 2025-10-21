@@ -191,13 +191,13 @@ public class MainWindow extends UiPart<Stage> {
             //Panel switches between: JobPanel & PersonListPanel
             String trimmedCommand = commandText.trim();
             switch (trimmedCommand) {
-                case "ljob":
-                    personListPanelPlaceholder.getChildren().clear();
-                    personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
-                    break;
-                default:
-                    personListPanelPlaceholder.getChildren().clear();
-                    personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            case "ljob":
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                break;
+            default:
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             }
             jobListPanel.refresh();
             personListPanel.refresh();

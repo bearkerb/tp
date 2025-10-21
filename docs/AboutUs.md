@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/goozxsean.png" width="200px">
 
-[[github](http://github.com/goozxs)]
+[[github](https://github.com/gooZXSean)]
 [[portfolio](team/goozxs.md)]
 
 * Role: Developer

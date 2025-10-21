@@ -189,9 +189,13 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             //Panel switches between: JobPanel & PersonListPanel
-            String trimmedCommand = commandText.trim();
-            switch (trimmedCommand) {
+            String trimmedCommand = commandText.trim().split("\\s+")[0];
+            switch (trimmedCommand) { //Feel like I could maybe use an if statement for this idk
             case "ljob":
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                break;
+            case "fjob":
                 personListPanelPlaceholder.getChildren().clear();
                 personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
                 break;

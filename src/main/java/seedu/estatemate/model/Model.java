@@ -1,10 +1,12 @@
 package seedu.estatemate.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.core.GuiSettings;
+import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 
@@ -103,6 +105,22 @@ public interface Model {
 
     void deleteJobById(int id);
 
+    void markJobById(int id);
+
+    void unmarkJobById(int id);
+
     int nextJobId();
+
+    String getJobDescriptionById(int jobId);
+
+    Boolean isJobCompleted(int jobId);
+
+    List<Integer> getJobIdsForPerson(Person person);
+
+    boolean hasJobWithDescription(Description description);
+
+    ObservableList<Job> getJobList();
+
+    void editJobById(int id, Description newDescription);
 
 }

@@ -8,33 +8,32 @@ import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.Model;
 
 /**
- * Deletes a Job identified using it's displayed id number from the address book.
+ * Marks a job as complete
  */
-public class DeleteJobCommand extends Command {
-
-    public static final String COMMAND_WORD = "djob";
+public class UnmarkJobCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the job identified by the id number used in the displayed job.\n"
+            + ": Marks the job (identified by the id number used in the displayed job) as incomplete.\n"
             + "Parameters: id (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_JOB_SUCCESS = "Deleted job: #%d";
+    public static final String MESSAGE_SUCCESS = "Marked job as incomplete: #%d";
 
     private final Integer targetId;
 
-    public DeleteJobCommand(int targetId) {
+    public UnmarkJobCommand(int targetId) {
         this.targetId = targetId;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.getJobList().stream().anyMatch(j -> j.getId() == targetId)) {
+        if (!model.getFilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
-        model.deleteJobById(targetId);
-        return new CommandResult(String.format(MESSAGE_DELETE_JOB_SUCCESS, targetId));
+        model.unmarkJobById(targetId);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, targetId));
     }
 
     @Override
@@ -43,12 +42,13 @@ public class DeleteJobCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof DeleteJobCommand)) {
+        // instanceof handles nulls
+        if (!(other instanceof UnmarkJobCommand)) {
             return false;
         }
 
-        DeleteJobCommand otherDeleteJobCommand = (DeleteJobCommand) other;
-        return targetId.equals(otherDeleteJobCommand.targetId);
+        UnmarkJobCommand otherUnmarkJobCommand = (UnmarkJobCommand) other;
+        return targetId.equals(otherUnmarkJobCommand.targetId);
     }
 
     @Override
@@ -58,4 +58,3 @@ public class DeleteJobCommand extends Command {
                 .toString();
     }
 }
-

@@ -14,7 +14,10 @@ import seedu.estatemate.logic.parser.exceptions.ParseException;
 import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
+import seedu.estatemate.model.person.Lease;
+import seedu.estatemate.model.person.LeaseAmount;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
 
@@ -83,6 +86,35 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String lease} into a {@code Lease}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lease} is invalid.
+     */
+    public static Lease parseLease(String lease) throws ParseException {
+        requireNonNull(lease);
+        String trimmedLease = lease.trim();
+        if (!Lease.isValidLease(trimmedLease)) {
+            throw new ParseException(Lease.MESSAGE_CONSTRAINTS);
+        }
+        return new Lease(trimmedLease);
+    }
+
+    /**
+     * Parses a {@code String leaseAmount} into an {@code LeaseAmount}. Leading and trailing whitespaces
+     * will be trimmed.
+     *
+     * @throws ParseException if the given {@code leaseAmount} is invalid.
+     */
+    public static LeaseAmount parseLeaseAmount(String leaseAmount) throws ParseException {
+        requireNonNull(leaseAmount);
+        String trimmedLeaseAmount = leaseAmount.trim();
+        if (!LeaseAmount.isValidLeaseAmount(trimmedLeaseAmount)) {
+            throw new ParseException(LeaseAmount.MESSAGE_CONSTRAINTS);
+        }
+        return new LeaseAmount(trimmedLeaseAmount);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}. Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
@@ -94,6 +126,20 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String payDate} into a {@code PayDate}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code payDate} is invalid.
+     */
+    public static PayDate parsePayDate(String payDate) throws ParseException {
+        requireNonNull(payDate);
+        String trimmedPayDate = payDate.trim();
+        if (!PayDate.isValidPayDate(trimmedPayDate)) {
+            throw new ParseException(PayDate.MESSAGE_CONSTRAINTS);
+        }
+        return new PayDate(trimmedPayDate);
     }
 
     /**

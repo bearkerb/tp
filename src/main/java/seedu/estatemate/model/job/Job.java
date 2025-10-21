@@ -11,6 +11,7 @@ import seedu.estatemate.commons.util.ToStringBuilder;
 public class Job {
     private final Description description;
     private final int id;
+    private boolean isDone;
 
     /**
      * Every field must be present and not null.
@@ -19,6 +20,7 @@ public class Job {
         requireAllNonNull(description);
         this.description = description;
         this.id = id;
+        this.isDone = false;
     }
 
     public Description getDescription() {
@@ -27,6 +29,20 @@ public class Job {
 
     public int getId() {
         return id;
+    }
+
+    public boolean getDone() {
+        return isDone;
+    }
+
+    /**
+     * Returns true if both jobs have the description.
+     */
+    public boolean isSameJob(Job other) {
+        if (other == this) {
+            return true;
+        }
+        return other != null && description.equals(other.description);
     }
 
     /**
@@ -55,5 +71,9 @@ public class Job {
                 .add("id", id)
                 .add("description", description)
                 .toString();
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }

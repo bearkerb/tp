@@ -3,8 +3,6 @@ package seedu.estatemate.model.job;
 import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.commons.util.AppUtil.checkArgument;
 
-import seedu.estatemate.model.person.Name;
-
 /**
  * Represents a Job's description in the address book.
  */
@@ -51,7 +49,7 @@ public class Description {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof Description)) {
             return false;
         }
 

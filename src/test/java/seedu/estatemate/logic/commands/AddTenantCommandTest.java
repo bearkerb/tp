@@ -10,6 +10,7 @@ import static seedu.estatemate.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.ReadOnlyEstateMate;
 import seedu.estatemate.model.ReadOnlyUserPrefs;
+import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.testutil.PersonBuilder;
@@ -176,6 +178,16 @@ public class AddTenantCommandTest {
         }
 
         @Override
+        public void markJobById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unmarkJobById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addJob(Job job) {
             throw new AssertionError("This method should not be called.");
         }
@@ -183,6 +195,36 @@ public class AddTenantCommandTest {
         @Override
         public void updateFilteredJobList(Predicate<Job> predicate) {
             requireNonNull(predicate);
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getJobDescriptionById(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Integer> getJobIdsForPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasJobWithDescription(Description description) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Job> getJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editJobById(int id, Description newDescription) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Boolean isJobCompleted(int jobId) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -7,6 +7,7 @@ import seedu.estatemate.commons.core.GuiSettings;
 import seedu.estatemate.logic.commands.CommandResult;
 import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.logic.parser.exceptions.ParseException;
+import seedu.estatemate.model.Model;
 import seedu.estatemate.model.ReadOnlyEstateMate;
 import seedu.estatemate.model.person.Person;
 
@@ -47,4 +48,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    Model getModel();
 }

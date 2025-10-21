@@ -3,7 +3,10 @@ package seedu.estatemate.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_LEASE_AMOUNT;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PAYDATE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -18,25 +21,31 @@ import seedu.estatemate.model.person.Person;
  */
 public class AddTenantCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "tenant";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tenant to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_LEASE + "LEASE "
+            + PREFIX_LEASE_AMOUNT + "AMOUNT "
+            + PREFIX_PAYDATE + "PAYDATE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_LEASE + "2025-12-01 2027-02-01 "
+            + PREFIX_LEASE_AMOUNT + "1100.00 "
+            + PREFIX_PAYDATE + "2026-01-01 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New tenant added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This tenant already exists in the address book";
 
     private final Person toAdd;
 

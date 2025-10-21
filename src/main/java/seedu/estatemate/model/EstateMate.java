@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.util.ToStringBuilder;
+import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.job.UniqueJobList;
 import seedu.estatemate.model.person.Person;
@@ -105,6 +106,14 @@ public class EstateMate implements ReadOnlyEstateMate {
     }
 
     /**
+     * Returns true if the address book contains a job with the given description.
+     */
+    public boolean hasJobWithDescription(Description description) {
+        requireNonNull(description);
+        return jobs.containsDescription(description);
+    }
+
+    /**
      * Adds job to the address book.
      * @param job
      */
@@ -137,6 +146,36 @@ public class EstateMate implements ReadOnlyEstateMate {
                 .orElse(null);
         if (toRemove != null) {
             jobs.remove(toRemove);
+        }
+    }
+
+    /**
+     * Marks job of the given id from the address book
+     * @param id
+     */
+    public void markJobById(int id) {
+        Job toMark = jobs.asUnmodifiableObservableList()
+                .stream()
+                .filter(j -> j.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (toMark != null) {
+            jobs.mark(toMark);
+        }
+    }
+
+    /**
+     * Unmarks job of the given id from the address book
+     * @param id
+     */
+    public void unmarkJobById(int id) {
+        Job toMark = jobs.asUnmodifiableObservableList()
+                .stream()
+                .filter(j -> j.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (toMark != null) {
+            jobs.unmark(toMark);
         }
     }
 

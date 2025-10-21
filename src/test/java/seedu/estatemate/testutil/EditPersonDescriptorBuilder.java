@@ -8,7 +8,10 @@ import java.util.stream.Stream;
 import seedu.estatemate.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.estatemate.model.person.Address;
 import seedu.estatemate.model.person.Email;
+import seedu.estatemate.model.person.Lease;
+import seedu.estatemate.model.person.LeaseAmount;
 import seedu.estatemate.model.person.Name;
+import seedu.estatemate.model.person.PayDate;
 import seedu.estatemate.model.person.Person;
 import seedu.estatemate.model.person.Phone;
 import seedu.estatemate.model.tag.Tag;
@@ -37,6 +40,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setLease(person.getLease());
+        descriptor.setLeaseAmount(person.getLeaseAmount());
         descriptor.setTags(person.getTags());
     }
 
@@ -73,6 +78,30 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Lease} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLease(String lease) {
+        descriptor.setLease(new Lease(lease));
+        return this;
+    }
+
+    /**
+     * Sets the {@code LeaseAmount} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLeaseAmount(String leaseAmount) {
+        descriptor.setLeaseAmount(new LeaseAmount(leaseAmount));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PayDate} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPayDate(String payDate) {
+        descriptor.setPayDate(new PayDate(payDate));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
@@ -95,4 +124,5 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptor build() {
         return descriptor;
     }
+
 }

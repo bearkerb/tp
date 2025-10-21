@@ -233,6 +233,29 @@ public class ModelManager implements Model {
         return estateMate.hasJobWithDescription(description);
     }
 
+    @Override
+    public ObservableList<Job> getJobList() {
+        return estateMate.getJobList();
+    }
+
+    @Override
+    public void editJobById(int id, Description newDescription) {
+        Job existing = estateMate.getJobList().stream()
+                .filter(j -> j.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (existing == null) {
+            return;
+        }
+        boolean done = Boolean.TRUE.equals(isJobCompleted(id));
+        estateMate.removeJobById(id);
+        Job updated = new Job(newDescription, id);
+        updated.setDone(done);
+        estateMate.addJob(updated);
+        updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
+    }
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

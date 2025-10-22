@@ -123,6 +123,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Job> getUnfilteredJobList() {
+        return estateMate.getJobList();
+    }
+
+    @Override
     public void updateFilteredJobList(Predicate<Job> predicate) {
         requireNonNull(predicate);
         filteredJobs.setPredicate(predicate);
@@ -204,7 +209,7 @@ public class ModelManager implements Model {
 
     @Override
     public String getJobDescriptionById(int jobId) {
-        for (Job job : filteredJobs) {
+        for (Job job : getUnfilteredJobList()) {
             if (job.getId() == jobId) {
                 return job.getDescription().toString();
             }
@@ -231,11 +236,6 @@ public class ModelManager implements Model {
     public boolean hasJobWithDescription(Description description) {
         requireNonNull(description);
         return estateMate.hasJobWithDescription(description);
-    }
-
-    @Override
-    public ObservableList<Job> getJobList() {
-        return estateMate.getJobList();
     }
 
     @Override

@@ -42,7 +42,7 @@ public class EditJobCommand extends Command {
 
         // Ensure id exists
         requireNonNull(model);
-        if (!model.getJobList().stream().anyMatch(j -> j.getId() == targetId)) {
+        if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
             throw new CommandException(MESSAGE_INVALID_JOB_ID);
         }
 

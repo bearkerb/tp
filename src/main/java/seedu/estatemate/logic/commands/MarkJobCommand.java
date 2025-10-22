@@ -29,7 +29,7 @@ public class MarkJobCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.getJobList().stream().anyMatch(j -> j.getId() == targetId)) {
+        if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
         model.markJobById(targetId);

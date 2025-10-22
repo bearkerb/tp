@@ -44,10 +44,10 @@ public class JobListPanel extends UiPart<Region> {
      */
     class JobListViewCell extends ListCell<Job> {
         @Override
-        protected void updateItem(Job job, boolean empty) {
-            super.updateItem(job, empty);
+        protected void updateItem(Job job, boolean isEmpty) {
+            super.updateItem(job, isEmpty);
 
-            if (empty || job == null) {
+            if (isEmpty || job == null) {
                 setGraphic(null);
                 setText(null);
             } else {

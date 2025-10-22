@@ -8,9 +8,9 @@ title: User Guide
 # Welcome to EstateMate User Guide!
 
 <p>
-EstateMate (EM) is a <strong>desktop application for managing contacts, optimized for use via a Command Line Interface</strong> 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, EstateMate can get your contact management tasks done faster than traditional GUI apps.
+EstateMate (EM) is a <strong>desktop application</strong> for managing contacts, 
+designed to be <strong>fast and efficient</strong> using keyboard shortcuts, while still offering the convenience of a click-based interface.
+If you can type fast, EstateMate can get your contact management tasks done faster than traditional mouse-only apps.
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -223,7 +223,14 @@ Format: `dtenant TENANT_INDEX`
 
 <box type="Note" seamless>
 
-💡**Note:** Index refers to the number shown when tenant list is displayed, and it must be a ***positive integer***. <br>
+💡**Note:** Index refers to the number shown when tenant list is displayed, and it must be a ***positive whole number***. <br>
+</box>
+
+<box type="warning" seamless>
+
+**⚠️ Warning:** 
+- This action is irreversible, data will be ***permanently deleted***.
+- Once a tenant is deleted, any links to jobs associated with that tenant will also be removed.
 </box>
 
 Examples:
@@ -239,7 +246,7 @@ Format: `edit TENANT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE
 <box type="Note" seamless>
 
 💡**Note:**
-> * Edits the person at the specified `TENANT_INDEX`. The tenant index refers to the index number shown in the displayed tenant list. The index **must be a positive integer** 1, 2, 3, …​
+> * Edits the person at the specified `TENANT_INDEX`. The tenant index refers to the index number shown in the displayed tenant list. The index **must be a positive whole number** 1, 2, 3, …​
 > * At least one of the optional fields must be provided.
 > * Existing values will be updated to the input values.
 > * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -311,8 +318,15 @@ Format: `djob JOB_NUMBER`
 <box type="Note" seamless>
 
 💡**Note:**
-> - Job number refers to the number shown when job list is displayed, and it must be a ***positive integer***.
-> - Once a job is deleted, any links to tenants associated with that job will also be removed, and it will no longer appear in the tenant’s job list.
+> - Job number refers to the number shown when job list is displayed, and it must be a ***positive whole number***.
+
+</box>
+
+<box type="warning" seamless>
+
+**⚠️ Warning:** 
+- This action is irreversible, job will be ***permanently deleted***. 
+- Once a job is deleted, any links to tenants associated with that job will also be removed, and it will no longer appear in the tenant’s job list.
 
 </box>
 
@@ -328,7 +342,7 @@ Format: `ejob JOB_NUMBER d/DESCRIPTION`
 <box type="Note" seamless>
 
 💡**Note:**
-> - Job number refers to the number shown when job list is displayed, and it must be a ***positive integer***.
+> - Job number refers to the number shown when job list is displayed, and it must be a ***positive whole number***.
 > - Replace <code>DESCRIPTION</code> with a clear description of the maintenance issue.
 
 </box>

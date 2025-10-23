@@ -36,6 +36,16 @@ public class Job {
     }
 
     /**
+     * Returns true if both jobs have the description.
+     */
+    public boolean isSameJob(Job other) {
+        if (other == this) {
+            return true;
+        }
+        return other != null && description.equals(other.description);
+    }
+
+    /**
      * Returns true if both jobs have the same id.
      */
     @Override

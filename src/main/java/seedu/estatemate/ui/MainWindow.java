@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TenantListPanel personListPanel;
+    private JobListPanel jobListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private Model model;
@@ -117,6 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new TenantListPanel(logic.getFilteredPersonList(), model);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        jobListPanel = new JobListPanel(model.getFilteredJobList(), model);
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -185,6 +188,22 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            //Panel switches between: JobPanel & PersonListPanel
+            String trimmedCommand = commandText.trim().split("\\s+")[0];
+            switch (trimmedCommand) { //Feel like I could maybe use an if statement for this idk
+            case "ljob":
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                break;
+            case "fjob":
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                break;
+            default:
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+            jobListPanel.refresh();
             personListPanel.refresh();
 
             if (commandResult.isShowHelp()) {

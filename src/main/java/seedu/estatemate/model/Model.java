@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.core.GuiSettings;
+import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 
@@ -100,6 +101,8 @@ public interface Model {
 
     void updateFilteredJobList(Predicate<Job> predicate);
 
+    ObservableList<Job> getUnfilteredJobList();
+
     void addJob(Job job);
 
     void deleteJobById(int id);
@@ -115,5 +118,9 @@ public interface Model {
     Boolean isJobCompleted(int jobId);
 
     List<Integer> getJobIdsForPerson(Person person);
+
+    boolean hasJobWithDescription(Description description);
+
+    void editJobById(int id, Description newDescription);
 
 }

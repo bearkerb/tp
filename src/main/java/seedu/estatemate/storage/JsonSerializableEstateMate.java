@@ -65,11 +65,11 @@ class JsonSerializableEstateMate {
             estateMate.addPerson(person);
         }
         for (JsonAdaptedJob jsonAdaptedJob : jobs) {
-            Job model = jsonAdaptedJob.toModelType();
-            if (estateMate.hasJobId(model.getId())) {
+            Job modelJob = jsonAdaptedJob.toModelType();
+            if (estateMate.hasJobId(modelJob.getId()) || estateMate.hasJobWithDescription(modelJob.getDescription())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_JOB);
             }
-            estateMate.addJob(model);
+            estateMate.addJob(modelJob);
         }
         return estateMate;
     }

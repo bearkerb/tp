@@ -18,7 +18,7 @@ public class MarkJobCommand extends Command {
             + "Parameters: id (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Job marked: %1$s";
+    public static final String MESSAGE_SUCCESS = "Marked job as complete: #%d";
 
     private final Integer targetId;
 
@@ -29,13 +29,11 @@ public class MarkJobCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.getFilteredJobList().stream().anyMatch(j -> j.getId() == targetId)
-                && !model.getFilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
-            // fall back to whole list if filtered list doesn't contain it
+        if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
         model.markJobById(targetId);
-        return new CommandResult(String.format("Marked job as complete: #%d", targetId));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, targetId));
     }
 
     @Override

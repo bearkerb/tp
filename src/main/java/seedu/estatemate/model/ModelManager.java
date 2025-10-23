@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.estatemate.commons.core.GuiSettings;
 import seedu.estatemate.commons.core.LogsCenter;
+import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
 
@@ -122,6 +123,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Job> getUnfilteredJobList() {
+        return estateMate.getJobList();
+    }
+
+    @Override
     public void updateFilteredJobList(Predicate<Job> predicate) {
         requireNonNull(predicate);
         filteredJobs.setPredicate(predicate);
@@ -203,7 +209,7 @@ public class ModelManager implements Model {
 
     @Override
     public String getJobDescriptionById(int jobId) {
-        for (Job job : filteredJobs) {
+        for (Job job : getUnfilteredJobList()) {
             if (job.getId() == jobId) {
                 return job.getDescription().toString();
             }
@@ -225,6 +231,30 @@ public class ModelManager implements Model {
     public List<Integer> getJobIdsForPerson(Person person) {
         return new ArrayList<>(person.getJobs());
     }
+
+    @Override
+    public boolean hasJobWithDescription(Description description) {
+        requireNonNull(description);
+        return estateMate.hasJobWithDescription(description);
+    }
+
+    @Override
+    public void editJobById(int id, Description newDescription) {
+        Job existing = estateMate.getJobList().stream()
+                .filter(j -> j.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (existing == null) {
+            return;
+        }
+        boolean done = Boolean.TRUE.equals(isJobCompleted(id));
+        estateMate.removeJobById(id);
+        Job updated = new Job(newDescription, id);
+        updated.setDone(done);
+        estateMate.addJob(updated);
+        updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 

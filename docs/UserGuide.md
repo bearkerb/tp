@@ -4,8 +4,6 @@ title: User Guide
 pageNav: 3
 ---
 
-<box style="margin: 30px;">
-
 # Welcome to EstateMate User Guide!
 
 <p>

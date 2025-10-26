@@ -19,7 +19,7 @@ public class PayDate {
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
-    public static final String MESSAGE_CONSTRAINTS = "Pay date must be in the format: yyyy-MM-dd, "
+    public static final String MESSAGE_CONSTRAINTS = "Pay date must be in valid calendar date format: yyyy-MM-dd, "
             + "and it should not be blank";
 
     private static final DateTimeFormatter DATE_FORMATTER =
@@ -37,7 +37,7 @@ public class PayDate {
     public PayDate(String payDate) {
         requireNonNull(payDate);
         checkArgument(isValidPayDate(payDate), MESSAGE_CONSTRAINTS);
-        value = payDate.trim();
+        value = payDate;
         date = LocalDate.parse(value, DATE_FORMATTER);
     }
 
@@ -45,11 +45,16 @@ public class PayDate {
      * Returns true if a given string is a valid date in the correct format.
      */
     public static boolean isValidPayDate(String test) {
-        requireNonNull(test);
-        if (!test.matches(VALIDATION_REGEX)) {
+        if (test == null) {
             return false;
         }
+        return test.matches(VALIDATION_REGEX) && isValidDates(test);
+    }
 
+    /**
+     * Returns true if pay date is a date that exist, assuming that it has already pass the VALIDATION_REGEX format.
+     */
+    private static boolean isValidDates(String test) {
         try {
             LocalDate.parse(test, DATE_FORMATTER);
             return true;
@@ -73,7 +78,7 @@ public class PayDate {
             return false;
         }
 
-        return value.equals(otherPayDate.value);
+        return date.equals(otherPayDate.date);
     }
 
     @Override

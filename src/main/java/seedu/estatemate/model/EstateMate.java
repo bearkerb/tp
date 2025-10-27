@@ -6,7 +6,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.util.ToStringBuilder;
-import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.job.UniqueJobList;

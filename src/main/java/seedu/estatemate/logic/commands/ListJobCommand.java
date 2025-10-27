@@ -16,7 +16,7 @@ public class ListJobCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredJobList(PREDICATE_SHOW_ALL_JOBS);
-        String jobsToPrintTemp = model.getFilteredJobList().toString(); // just for testing, remove when GUI is up
-        return new CommandResult(MESSAGE_SUCCESS + jobsToPrintTemp);
+        String resultMessage = MESSAGE_SUCCESS + ": " + model.getFilteredJobList().size();
+        return new CommandResult(resultMessage);
     }
 }

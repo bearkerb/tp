@@ -30,10 +30,8 @@ public class FindJobCommand extends Command {
         requireNonNull(model);
         model.updateFilteredJobList(predicate);
 
-        // remove this and edit message after gui is done
-        String tempJobsStringTest = model.getFilteredJobList().toString();
         return new CommandResult(
-                String.format(Messages.MESSAGE_JOBS_LISTED_OVERVIEW + tempJobsStringTest,
+                String.format(Messages.MESSAGE_JOBS_LISTED_OVERVIEW,
                         model.getFilteredJobList().size()));
     }
 

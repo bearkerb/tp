@@ -199,12 +199,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markJobById(int id) throws CommandException {
+    public void markJobById(int id) {
         estateMate.markJobById(id);
     }
 
     @Override
-    public void unmarkJobById(int id) throws CommandException {
+    public void unmarkJobById(int id) {
         estateMate.unmarkJobById(id);
     }
 

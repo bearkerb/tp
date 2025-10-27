@@ -154,7 +154,7 @@ public class EstateMate implements ReadOnlyEstateMate {
      * Marks job of the given id from the address book
      * @param id
      */
-    public void markJobById(int id) throws CommandException {
+    public void markJobById(int id) {
         Job toMark = jobs.asUnmodifiableObservableList()
                 .stream()
                 .filter(j -> j.getId() == id)
@@ -162,9 +162,6 @@ public class EstateMate implements ReadOnlyEstateMate {
                 .orElse(null);
 
         if (toMark != null) {
-            if (toMark.getDone()) {
-                throw new CommandException("Job is already marked!");
-            }
             jobs.mark(toMark);
         }
     }
@@ -173,16 +170,13 @@ public class EstateMate implements ReadOnlyEstateMate {
      * Unmarks job of the given id from the address book
      * @param id
      */
-    public void unmarkJobById(int id) throws CommandException {
+    public void unmarkJobById(int id) {
         Job toMark = jobs.asUnmodifiableObservableList()
                 .stream()
                 .filter(j -> j.getId() == id)
                 .findFirst()
                 .orElse(null);
         if (toMark != null) {
-            if (!toMark.getDone()) {
-                throw new CommandException("Job is already unmarked!");
-            }
             jobs.unmark(toMark);
         }
     }

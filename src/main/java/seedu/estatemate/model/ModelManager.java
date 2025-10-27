@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.estatemate.commons.core.GuiSettings;
 import seedu.estatemate.commons.core.LogsCenter;
+import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;
@@ -198,12 +199,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markJobById(int id) {
+    public void markJobById(int id) throws CommandException {
         estateMate.markJobById(id);
     }
 
     @Override
-    public void unmarkJobById(int id) {
+    public void unmarkJobById(int id) throws CommandException {
         estateMate.unmarkJobById(id);
     }
 

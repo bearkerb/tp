@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.util.ToStringBuilder;
+import seedu.estatemate.logic.commands.Command;
+import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.job.UniqueJobList;
@@ -153,13 +155,17 @@ public class EstateMate implements ReadOnlyEstateMate {
      * Marks job of the given id from the address book
      * @param id
      */
-    public void markJobById(int id) {
+    public void markJobById(int id) throws CommandException {
         Job toMark = jobs.asUnmodifiableObservableList()
                 .stream()
                 .filter(j -> j.getId() == id)
                 .findFirst()
                 .orElse(null);
+
         if (toMark != null) {
+            if (toMark.getDone()) {
+                throw new CommandException("Job is already marked!");
+            }
             jobs.mark(toMark);
         }
     }
@@ -168,13 +174,16 @@ public class EstateMate implements ReadOnlyEstateMate {
      * Unmarks job of the given id from the address book
      * @param id
      */
-    public void unmarkJobById(int id) {
+    public void unmarkJobById(int id) throws CommandException{
         Job toMark = jobs.asUnmodifiableObservableList()
                 .stream()
                 .filter(j -> j.getId() == id)
                 .findFirst()
                 .orElse(null);
         if (toMark != null) {
+            if(!toMark.getDone()) {
+                throw new CommandException("Job is already unmarked!");
+            }
             jobs.unmark(toMark);
         }
     }

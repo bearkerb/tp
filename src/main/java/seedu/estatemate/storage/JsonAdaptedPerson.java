@@ -73,7 +73,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         lease = source.getLease().value;
         leaseAmount = source.getLeaseAmount().value;
-        payDate = String.valueOf(source.getPayDate().value);
+        payDate = source.getPayDate().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

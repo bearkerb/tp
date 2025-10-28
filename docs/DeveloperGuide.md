@@ -173,14 +173,25 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 - **Ownership & Access**
     - `EstateMate` owns a `UniqueJobList` and provides:
-      `addJob(Job)`, `removeJobById(int)`, `markJobById(int)`, `unmarkJobById(int)`,
-      `getJobList()`, and `nextJobId()` (computed as `max(id)+1`, defaulting to `1`).
+        - `addJob(Job)`
+        - `removeJobById(int)`
+        - `markJobById(int)`
+        - `unmarkJobById(int)`
+        - `getJobList()`
+        - `nextJobId()` *(computed as `max(id)+1`, defaulting to `1`)*
     - `ModelManager` forwards these model operations and exposes:
-      `addJob(Job)`, `deleteJobById(int)`, `editJobById(int, Description)`,
-      `markJobById(int)`, `unmarkJobById(int)`, `getFilteredJobList()`,
-      `updateFilteredJobList(Predicate<Job>)`, `nextJobId()`,
-      `getJobDescriptionById(int)`, `isJobCompleted(int)`,
-      `hasJobWithDescription(Description)`.
+        - `addJob(Job)`
+        - `deleteJobById(int)`
+        - `editJobById(int, Description)`
+        - `markJobById(int)`
+        - `unmarkJobById(int)`
+        - `getFilteredJobList()`
+        - `updateFilteredJobList(Predicate<Job>)`
+        - `nextJobId()`
+        - `getJobDescriptionById(int)`
+        - `isJobCompleted(int)`
+        - `hasJobWithDescription(Description)`
+
 
 - **Tenant References**
     - `Person` keeps `List<Integer> jobs` (job **ids**).  
@@ -224,7 +235,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 - **Lists & Cards**
     - `JobListPanel` renders the `ObservableList<Job>`.
     - Each `JobCard` shows index, `id`, `description`, and a completion badge derived from `isDone`.
-    - The list updates automatically when the filtered list changes.
+    - The list updates automatically when `ModelManager`'s `filteredJobs` changes.
 
 <puml src="diagrams/JobUiClassDiagram.puml" width="680" />
 

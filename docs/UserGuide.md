@@ -7,7 +7,6 @@ pageNav: 3
 # Welcome to EstateMate User Guide!
 
 --------------------------------------------------------------------------------------------------------------------
-<br>
 
 ## Table of Contents
 
@@ -50,10 +49,7 @@ pageNav: 3
 
 [6. Glossary](#6-glossary)
 
-<br>
-
 --------------------------------------------------------------------------------------------------------------------
-<br>
 
 ## 1. Introduction
 <br>
@@ -83,10 +79,8 @@ Managing tenant contacts and tracking maintenance tasks efficiently is essential
 Inside, you will find step-by-step instructions, examples, and helpful tips to streamline your workflow so that you can 
 keep your properties running smoothly.
 </p>
-<br>
 
 --------------------------------------------------------------------------------------------------------------------
-<br>
 
 ## 2. Quick start
 <br>
@@ -116,7 +110,7 @@ keep your properties running smoothly.
 
     * `clear` : Deletes all contacts.
 
-    * `exit` : Exits the application.
+    * `exit` : Exits the application.<br>
 
 6. Refer to the [Features](#3-features) below for details of each command.
 
@@ -150,10 +144,7 @@ Each prefix must be followed by a `/` and its corresponding value.
 Combine multiple prefixes in one command:<br>
 `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 
-<br>
-
 --------------------------------------------------------------------------------------------------------------------
-<br>
 
 ## 3. Features
 
@@ -174,7 +165,7 @@ Each feature is grouped by functionality:
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -188,7 +179,7 @@ Each feature is grouped by functionality:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-<br><br>
+<br>
 
 ### 3.1 Tenant Management 
 <br>
@@ -213,7 +204,7 @@ Deletes the specified tenant from the application.
 Format: `dtenant TENANT_NUMBER`
 
 📌**Note:** 
-- `TENANT_NUMBER` is the number displayed in tenant list, and must be ***positive number***
+- `TENANT_NUMBER` is the number displayed in tenant list, and must be ***positive number***.
 - Only tenants that exist in the current displayed list can be deleted.
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">
@@ -225,7 +216,7 @@ Format: `dtenant TENANT_NUMBER`
 <br>
 
 Examples:
-- `list` followed by `dtenant 2` deletes the second tenant listed in the application.
+- `list` followed by `dtenant 2` deletes the 2nd tenant listed in the application.
 - `find John` followed by `dtenant 1` deletes the 1st person in the results of the `find` command.
 
 💡**Tip:**
@@ -233,14 +224,14 @@ Examples:
 - If you are deleting multiple tenants, consider double-checking indices after each deletion, as the list order updates dynamically.
 <br>
 
-#### 3.1.3 Editing a Tenant : `edit`
+#### 3.1.3 Editing a Tenant: `edit`
 
 Edits an existing tenant in the application.
 
 Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]...[j/JOB]...[t/TAG]…​`
 
 📌**Note:**
-- `TENANT_NUMBER` is the number displayed in tenant list, and must be ***positive number***
+- `TENANT_NUMBER` is the number displayed in tenant list, and must be ***positive number***.
 - Provide ***at least one*** field to edit.
 - Tags are replaced, not added cumulatively; t/ clears all tags.
 - You can remove all the person’s tags by typing `t/` without
@@ -285,7 +276,8 @@ Format: `list`
 
 📌**Note:**
 - Any additional text after `list` command will be ignored.
-- `list` without any tenants will show you empty list, hence recommend you to add some tenants to the application.<br><br>
+- `list` without any tenants will show you empty list, hence recommend you to add some tenants to the application.
+<br><br>
 
 ### 3.2 Maintenance Job Management 
 <br>
@@ -314,7 +306,7 @@ Deletes a maintenance job from the application.
 Format: `djob JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***
+- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***.
 - Only jobs that exist in the current displayed list can be deleted.
 - Deleting a job removes it from any tenants’ assigned job lists.
 
@@ -339,7 +331,7 @@ Edits a maintenance job from the application.
 Format: `ejob JOB_NUMBER d/DESCRIPTION`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***
+- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***.
 - Only jobs that exist in the current displayed list can be edited.
 - Provide a ***clear and concise*** description of the maintenance issue.
 
@@ -372,7 +364,7 @@ Examples:
 - Combine multiple keywords for broader search if you’re unsure of the exact description, e.g., aircon repair ceiling.
 
 #### 3.2.5 Linking Job to Tenant: `link`
-Link a maintenance job to a specific tenant
+Link a maintenance job to a specific tenant.
 
 Format: `link TENANT_INDEX j/JOB_NUMBER`
 
@@ -418,7 +410,7 @@ Format: `unmark JOB_NUMBER`
 
 📌**Note:**
 - `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***
-- - Once unmarked, the job will no longer appear as completed under any linked tenant.
+- Once unmarked, the job will no longer appear as completed under any linked tenant.
 
 Examples:
 - `unmark 3` updates the status of job number 3 of the job list back to not completed.
@@ -460,37 +452,31 @@ Opens the help window which provides link accessing the user guide and get assis
 
 Format: `help`
 
-<br>
-
 --------------------------------------------------------------------------------------------------------------------
-<br>
 
 ## 4 Command Summary
 <br>
 
-Action                      | Format, Examples
-----------------------------|------------------
-**Add Tenant**              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE`<br> e.g., `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
-**Add Job**                 | `job d/DESCRIPTION`<br> e.g., `job d/Water leakage in ceiling`
-**Clear**                   | `clear`
-**Delete Tenant**           | `dtenant TENANT_INDEX`<br> e.g., `dtenant 3`
-**Delete Job**              | `djob JOB_NUMBER`<br> e.g., `djob 3`
-**Edit Tenant**             | `edit TENANT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Edit Job**                | `ejob JOB_NUMBER d/DESCRIPTION`<br> e.g.,`ejob 3 d/fix faucet`
-**Exit**                    | `exit`
-**Find Tenant**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Find Job**                | `fjob KEYWORD [MORE_KEYWORDS]`<br> e.g., `fjob electrical plumbing renovation`
-**Help**                    | `help`
-**Link Job to Tenant**      | `link TENANT_INDEX j/JOB_NUMBER`<br> e.g., `link 1 j/2`
-**List Tenants**             | `list`
-**List Jobs**                | `ljob`
-**Mark Job**                | `mark JOB_NUMBER`<br> e.g., `mark 1`
-**Unmark Job**              | `unmark JOB_NUMBER`<br> e.g., `unmark 1`
-
-<br>
+Action                      | Format                                                                             |  Examples
+----------------------------|------------------------------------------------------------------------------------|--------------------------------------------------
+**Add Tenant**              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
+**Add Job**                 | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
+**Clear**                   | `clear`                                                                            
+**Delete Tenant**           | `dtenant TENANT_INDEX`                                                             | `dtenant 3`                                                                             
+**Delete Job**              | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
+**Edit Tenant**             | `edit TENANT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                | `edit 2 n/James Lee e/jameslee@example.com` 
+**Edit Job**                | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
+**Exit**                    | `exit`                                                                             |
+**Find Tenant**             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         
+**Find Job**                | `fjob KEYWORD [MORE_KEYWORDS]`                                                     | `fjob electrical plumbing renovation`     
+**Help**                    | `help`                                                                             |
+**Link Job to Tenant**      | `link TENANT_INDEX j/JOB_NUMBER`                                                   | `link 1 j/2`                            
+**List Tenants**            | `list`                                                                             | 
+**List Jobs**               | `ljob`                                                                             | 
+**Mark Job**                | `mark JOB_NUMBER`                                                                  |`mark 1`                                                
+**Unmark Job**              | `unmark JOB_NUMBER`                                                                | `unmark 1`
 
 --------------------------------------------------------------------------------------------------------------------
-<br>
 
 ## 5. FAQ and Known Issues
 <br>
@@ -507,10 +493,7 @@ Action                      | Format, Examples
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
-<br>
-
 --------------------------------------------------------------------------------------------------------------------
-<br>
 
 ## 6. Glossary
 <br>

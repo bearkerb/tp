@@ -158,6 +158,18 @@ Classes used by multiple components are in the `seedu.estatemate.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Job feature
+
+#### Implementation
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Proposed features**
+
+This section describes some noteworthy proposed features that may be implemented in the future.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -248,12 +260,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `dtenant`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------

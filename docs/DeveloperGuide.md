@@ -268,9 +268,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+# **Appendix: Requirements**
 
-### Product scope
+## Product scope
 
 **Target user profile**:
 
@@ -289,36 +289,45 @@ With EstateMate, users can:
 - Track maintenance jobs and their completion status
 - Improve operational efficiency through a command-driven interface
 
-### User stories
+<br>
+
+## User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a ... | I want to ...                                                              | So that I can...                                                           |
-|---|---|----------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| '***' | Property Manager | Add tenants and their info                                                 | manage tenants for contacting and tracking their info                      |
-| '***' | Property Manager | Delete tenants and their info                                              | remove people who are no longer tenants                                    |
-| '***' | Property Manager | List all tenants                                                           | see what tenants I am keeping track of                                     |
-| '***' | Property Manager | View all available commands easily                                         | refer to proper syntax and command usage should I forget any               |
-| '***' | Property Manager | Manage maintenance jobs and their status (completed/not completed)         | keep track of the status of maintenance jobs                               |
-| '***' | Property Manager | Track rent information, due dates                                          | keep track of whose rent is due and make collections on time               |
-|---|---| ---                                                                        | ---                                                                        |
-| '**' | Property Manager | Search a contact of tenant by name (without the need to type in full name) | I can easily search for the tenant in a long list                          |
-| '**' | Property Manager | Edit the details of the tenants                                            | make changes to tenants' details easily ie. when they change phone numbers |
-| '**' | Property Manager | Assign maintenance jobs to tenants that need to have them resolved         | so that I know what outstanding jobs there are and to whom they concern    |
-| '**' | Property Manager | Record payments by each tenant                                             | so that I don't miss payments                                              |
+| Priority | As a ... | I want to ...                         | So that I can...                                                           |
+|---|---|---------------------------------------|----------------------------------------------------------------------------|
+| '***' | Property Manager | Add new tenants and their information | manage tenants for contacting and tracking their information               |
+| '***' | Property Manager | Delete tenants and their information  | remove people who are no longer tenants                                    |
+| '***' | Property Manager | List all tenants                      | see what tenants I am keeping track of                                     |
+| '***' | Property Manager | Add new maintenance jobs              | keep track of tasks that need to be carried out                            |
+| '***' | Property Manager | Delete maintenance jobs               | remove tasks that are no longer needed                                     |
+| '***' | Property Manager | List all jobs                         | see what jobs I am keeping track of
+| '***' | Property Manager | Mark jobs as completed                | monitor the progress and ensure maintenance tasks are resolved             |
+| '***' | Property Manager | Unmark jobs as not completed          | keep track of tasks that still need to be followed up on
+| '***' | Property Manager | View available commands               | refer to usage instructions when needed to avoid mistakes                  |
+| '***' | Property Manager | Exit the application                  | safely close the system and ensure all changes are saved                   |
+|---|---| ---                                   | ---                                                                        |
+| '**' | Property Manager | Search a tenant                       | quickly locate a tenant without scrolling through the entire tenant list   |
+| '**' | Property Manager | Search a maintenance job              | quickly locate a maintenance job without scrolling through the entire job list 
+| '**' | Property Manager | Edit tenant details                   | update their information when changes occur                                |
+| '**' | Property Manager | Edit maintenance jobs                 | update maintenance job description when changes occur                      
+| '**' | Property Manager | Link jobs to specific tenants         | know which tenant is associated with each maintenance request              |
+| '**' | Property Manager | Clear all tenants from the system     | reset the tenant database or start fresh
 
-### Use cases
 <br>
 
-# Use Cases
+## Use Cases
+<br>
 
 (For all **use cases** below, the **System** is the 'TenantManager' and the **Actor** is the 'user', unless specified otherwise)
 
 ---
 
-## Use case: Add a tenant
+### Use case: UC01 - Add a tenant
 
 **MSS**
+
 1. User requests to add a tenant with all required information.
 2. **System** checks for correct parameter format and completeness.
 3. **System** verifies that a tenant with the same name does not already exist.
@@ -329,18 +338,19 @@ Use case ends.
 
 **Extensions**
 * 2a. The command format is wrong (e.g., missing parameter, wrong date format).
-    * 2a1. **System** shows an error message and does not add the tenant (e.g. `"Invalid Command Format"`)
-    Use case ends.
+    * 2a1. **System** shows an error message: `"Invalid Command Format"` with command usage description and example. <br>
+      Use case ends.
 * 3a. A tenant with the same name already exists.
-    * 3a1. **System** shows the error message: `"This tenant already exists in the address book"`.
-    Use case ends.
+    * 3a1. **System** shows the error message: `"This tenant already exists in the address book"`. <br>
+      Use case ends.
 
 ---
 
-## Use case: Delete a tenant
+### Use case: UC02 - Delete a tenant
 
 **MSS**
-1. User requests to delete a tenant by specifying a **TENANT_NUMBER** using the command `dtenant TENANT_NUMBER`.
+
+1. User requests to delete a tenant by specifying a **TENANT_NUMBER** using the command `delete TENANT_NUMBER`.
 2. **System** verifies that the provided **TENANT_NUMBER** is a positive integer and corresponds to an existing tenant.
 3. **System** removes the tenant record associated with the **TENANT_NUMBER** and all linked jobs.
 4. **System** shows the success message: `"Deleted tenant successfully: <deleted tenant information>"`
@@ -350,16 +360,205 @@ Use case ends.
 
 **Extensions**
 * 2a. The provided **TENANT_NUMBER** is empty or is not a positive number.
-    * 2a1. **System** shows the error message: `"Invalid tenant index detected."`.
-    Use case ends.
+    * 2a1. **System** shows the error message: `"Invalid tenant index detected."`. <br>
+      Use case ends.
 * 2b. The provided **TENANT_NUMBER** does not correspond to any existing tenant.
-    * 2b1. **System** shows the error message: `"Invalid command format!"`<br> 
-        `"<description of usage>"` <br> `"<required parameter>"` <br> `"<example>"`.
-    Use case ends.
+    * 2b1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+      Use case ends.
 
 ---
 
-## Use case: Edit a tenant
+### Use case: UC03 - List all tenants
+
+**MSS**
+
+1. User requests to view all tenant information by using the `list` command.
+2. **System** retrieves all existing tenant records from the database.
+3. **System** displays the full list of tenants, including all details for each tenant.
+
+Use case ends.
+
+**Extensions**
+* 1a. The command contains errors (e.g., wrong spelling).
+    * 1a1. **System** shows the error message: `"Unknown command"`. <br>
+      Use case ends.
+* 2a. No tenants exist in the **System**.
+    * 2a1. **System** displays a message indicating that the list is empty. <br>
+      Use case ends.
+
+---
+
+### Use case: UC04 - Add a maintenance job
+
+**MSS**
+
+1. User requests to add a maintenance job, providing the description of job using the command `job d/DESCRIPTION`.
+2. **System** verifies that **DESCRIPTION** is provided and not empty.
+3. **System** checks if a maintenance job with the exact same **DESCRIPTION** already exists to prevent duplication.
+4. **System** creates a new maintenance job and sets its status to `"Pending"` in the job list.
+5. **System** shows the success message: `"New job added: #[JOB_NUMBER] [DESCRIPTION]"`.
+6. System automatically updates the job list display to include the newly added job.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **DESCRIPTION** is missing or empty.
+    * 2a1. **System** shows the error message: `"Description should not be blank."`.<br>
+      Use case ends.
+* 3a. A duplicate maintenance job (same **DESCRIPTION**) is found.
+    * 3a1. **System** shows the error message: `"This job already exists."`. <br>
+      Use case ends.
+
+---
+
+### Use case: UC05 - Delete a maintenance job 
+
+**MSS**
+
+1. User requests to delete a maintenance job using the command `djob JOB_NUMBER`.
+2. **System** verifies that the **JOB_NUMBER** is a positive integer and corresponds to an existing job in the job list.
+3. **System** deletes the maintenance job associated with the specified **JOB_NUMBER**
+4. **System** shows the success message: `"Deleted job: #[JOB_NUMBER]"`
+5. **System** automatically updates the job list to reflect the removal.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **JOB_NUMBER** is empty or is not a positive integer.
+    * 2a1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+      Use case ends.
+* 2b. The **JOB_NUMBER** does not correspond to any existing job.
+    * 2b1. **System** shows the error message: `"Job index provided is invalid"`. <br>
+      Use case ends.
+
+---
+
+### Use case: UC06 - List all maintenance jobs
+
+**MSS**
+
+1. User requests to view all maintenance jobs by using the `ljob` command.
+2. **System** retrieves all existing job records from the database.
+3. **System** displays the full list of maintenance jobs, including the completion status of each job.
+
+Use case ends.
+
+**Extensions**
+* 1a. The command contains errors (e.g., wrong spelling). 
+    * 1a1. **System** shows the error message: `"Unknown command"`. <br>
+      Use case ends. 
+* 2a. No jobs exist in the **System**.
+    * 2a1. **System** displays a message: `"Listed all jobs: 0"`. <br>
+      Use case ends. 
+
+---
+
+### Use case: UC07 - Mark maintenance job
+
+**MSS**
+
+1. User requests to mark a maintenance job as completed by using the command `mark JOB_NUMBER`.
+2. **System** verifies that the **JOB_NUMBER** is a positive integer and corresponds to an existing, unmarked job.
+3. **System** sets the status of the maintenance job to "Completed".
+4. **System** shows the success message: `"Marked job as complete: [JOB_NUMBER]"`
+5. **System** automatically updates the maintenance job list display to reflect the new status.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **JOB_NUMBER** is empty or is not a positive integer.
+    * 2a1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+      Use case ends.
+* 2b. The **JOB_NUMBER** does not correspond to any existing job in the job list
+    * 2b1. **System** shows an error message: `"The job index provided is invalid"`. <br>
+      Use case ends.
+* 2c. The job is already marked as completed.
+    * 2c1. **System** shows the message: `"Job is already marked as done!"`. <br>
+      Use case ends.
+
+---
+
+### Use case: UC08 - Unmark maintenance job
+
+**MSS**
+1. User requests to revert a maintenance job as not completed by using the command `unmark JOB_NUMBER`.
+2. **System** verifies that the **JOB_NUMBER** is a positive integer and corresponds to an existing, unmarked job.
+3. **System** sets the status of the maintenance job to "Pending" in the job list and "Not completed" in any linked tenant's job list.
+4. **System** shows the success message: `"Marked job as incomplete: [JOB_NUMBER]"`
+5. **System** automatically updates the maintenance job list display to reflect the new status.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **JOB_NUMBER** is empty or is not a positive integer.
+    * 2a1. **System** shows the error message: <br> `"Invalid command format!"` with command usage description and example. <br>
+      Use case ends.
+* 2b. The **JOB_NUMBER** does not correspond to any existing job in the job list.
+    * 2b1. **System** shows an error message: `"The job index provided is invalid"`. <br>
+      Use case ends.
+* 2c. The job is already marked as not completed.
+    * 2c1. **System** shows the message: `"Job is already unmarked!"`. <br>
+      Use case ends.
+
+---
+
+### Use case: UC09 - Help command
+
+**MSS**
+1. User requests a list of all available commands using the `help` command.
+2. **System** retrieves the list and formats it.
+3. **System** displays the list of "All available commands" including their formats.
+
+Use case ends.
+
+**Extensions**
+* 1a. The command contains errors (e.g., wrong spelling).
+    * 1a1. **System** shows the error message: `"Unknown command"`. <br>
+      Use case ends.
+
+---
+
+### Use case: UC10 - Find a tenant
+
+**MSS**
+1. User requests to find a tenant using the `find KEYWORD [MORE_KEYWORDS]` command.
+2. **System** verifies that at least one **KEYWORD** has been provided.
+3. **System** searches the tenant database for names containing any of the **KEYWORD**.
+4. **System** retrieves all matching tenant records.
+5. **System** automatically displays the list of matching tenants along with their details.
+
+Use case ends.
+
+**Extensions**
+* 2a. The **KEYWORD** is empty.
+    * 2a1. **System** shows the error message: <br> `"Invalid command format!"` with command usage description and example. <br>
+      Use case ends.
+* 3a. No tenants match the search **KEYWORD**.
+    * 3a1. **System** shows the error message: `"0 persons listed!"`. <br>
+      Use case ends.
+    
+---
+
+### Use case: UC11 - Find a maintenance job
+
+**MSS**
+1. User requests to find a maintenance job using the command `fjob KEYWORD [MORE KEYWORD]`.
+2. **System** verifies that at least one **KEYWORD** has been provided.
+3. **System** searches the maintenance job database for job descriptions containing any of the **KEYWORD**.
+4. **System** retrieves all matching job records.
+5. **System** automatically displays the list of matching jobs.
+
+**Extensions**
+* 2a. The **KEYWORD** is empty.
+    * 2a1. **System** shows the error message: <br> `"Invalid command format!"` with command usage description and example. <br>
+      Use case ends.
+* 3a. No job descriptions match the search **KEYWORD**.
+    * 3a1. **System** shows the error message: `"0 jobs listed!"`. <br>
+      Use case ends.
+
+---
+
+### Use case: UC12 - Edit a tenant
 
 **MSS**
 1. User request to edit a tenant by entering `edit TENANT_NUMBER` with one or more updated fields.
@@ -372,149 +571,42 @@ Use case ends.
 
 **Extensions**
 * 2a. The **TENANT_NUMBER** is empty or is not a positive integer
-    * 2a1. **System** shows the error message: `"Invalid command format!"` <br> 
-      `"<description of usage>"` <br> `"<required parameters>"` <br> `"<example>"`.
-    Use case ends.
+    * 2a1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+      Use case ends.
 * 2b. The provided **TENANT_NUMBER** does not correspond to any existing tenant in the list.
-    * 2b1. **System** shows the error message: `"Invalid tenant index detected"`.
-    Use case ends.
-* 2c. The command does not include any fields to edit 
-    * 2c1. **System** shows the error message: `"At least one field to edit must be provided"`.
-    Use case ends.
-
----
-
-## Use case: Add maintenance job
-
-**MSS**
-1. User requests to add a maintenance job, providing the description of job using the command `job d/DESCRIPTION`.
-2. **System** verifies that **DESCRIPTION** is provided and not empty.
-3. **System** checks if a maintenance job with the exact same **DESCRIPTION** already exists to prevent duplication.
-4. **System** creates a new maintenance job and sets its status to `"Pending"` in the job list.
-5. **System** shows the success message: `"New job added: #[JOB_NUMBER] [DESCRIPTION]"`.
-6. System automatically updates the job list display to include the newly added job.
-
-Use case ends.
-
-**Extensions**
-* 2a. The **DESCRIPTION** is missing or empty.
-    * 2a1. **System** shows the error message: `"Description should not be blank."`.
-    Use case ends.
-* 3a. A duplicate maintenance job (same **DESCRIPTION**) is found.
-    * 3a1. **System** shows the error message: `"This job already exists."`.
-    Use case ends.
-
----
-
-## Use case: Delete maintenance job for a unit
-
-**MSS**
-1. User requests to delete a maintenance job using the command `djob JOB_NUMBER`.
-2. **System** verifies that the **JOB_NUMBER** is a positive integer and corresponds to an existing job in the job list.
-3. **System** deletes the maintenance job associated with the specified **JOB_NUMBER**
-4. **System** shows the success message: `"Deleted job: #[JOB_NUMBER]"`
-5. **System** automatically updates the job list to reflect the removal.
-
-Use case ends.
-
-**Extensions**
-* 2a. The **JOB_NUMBER** is empty or is not a positive integer.
-    * 2a1. **System** shows the error message: `"Invalid command format!"` <br>
-      `"<description of usage>"` <br> `"<required parameter>"` <br> `"<example>"`.
-    Use case ends.
-* 2b. The **JOB_NUMBER** does not correspond to any existing job.
-    * 2b1. **System** shows the error message: `"Job index provided is invalid"`.
-    Use case ends.
-
----
-
-## Use case: Mark maintenance job
-
-**MSS**
-1. User requests to mark a maintenance job as completed by using the command `mark JOB_NUMBER`.
-2. **System** verifies that the **JOB_NUMBER** is a positive integer and corresponds to an existing, unmarked job.
-3. **System** sets the status of the maintenance job to "Completed".
-4. **System** shows the success message: `"Marked job as complete: [JOB_NUMBER]"`
-5. **System** automatically updates the maintenance job list display to reflect the new status.
-
-Use case ends.
-
-**Extensions**
-* 2a. The **job number** is empty or is not a positive integer.
-    * 2a1. **System** shows the error message: `"Invalid command format!"` <br>
-      `"<description of usage>"` <br> `"<required parameter>"` <br> `"<example>"`.
+    * 2b1. **System** shows the error message: `"Invalid tenant index detected"`. <br>
       Use case ends.
-* 2b. The **job number** does not correspond to any existing job in the job list
-    * 2b1. **System** shows an error message: `"The job index provided is invalid"`.
+* 2c. The command does not include any fields to edit
+    * 2c1. **System** shows the error message: `"At least one field to edit must be provided"`. <br>
       Use case ends.
-* 2c. The job is already marked as completed.
-    * 2c1. **System** shows the message: `"Job is already marked as done!"`.
 
 ---
 
-## Use case: Unmark maintenance job
+### Use case: UC13 - Edit a maintenance job
 
 **MSS**
-1. User requests to revert a maintenance job as not completed by using the command `unmark JOB_NUMBER`.
-2. **System** verifies that the **JOB_NUMBER** is a positive integer and corresponds to an existing, unmarked job.
-3. **System** sets the status of the maintenance job to "Pending" in the job list and "Not completed" in any linked tenant's job list.
-4. **System** shows the success message: `"Marked job as incomplete: [JOB_NUMBER]"`
-5. **System** automatically updates the maintenance job list display to reflect the new status.
+1. User request to edit a maintenance job by entering `edit JOB_NUMBER d/DESCRIPTION` with one or more updated fields.
+2. **System** verifies that the provided **JOB_NUMBER** is valid and corresponds to an existing job.
+3. **System** updates only the maintenance job description.
+4. **System** shows the success message: `"Edited job #[JOB_NUMBER]"`.
+5. **System** updates the job list display to reflect the changes.
 
 Use case ends.
 
 **Extensions**
-* 2a. The **job number** is empty or is not a positive integer.
-    * 2a1. **System** shows the error message: `"Invalid command format!"` <br>
-      `"<description of usage>"` <br> `"<required parameter>"` <br> `"<example>"`.
+* 2a. The **JOB_NUMBER** is empty or is not a positive integer
+    * 2a1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
       Use case ends.
-* 2b. The **job number** does not correspond to any existing job in the job list.
-    * 2b1. **System** shows an error message: `"The job index provided is invalid"`.
+* 2b. The provided **JOB_NUMBER** does not correspond to any existing job in the list.
+    * 2b1. **System** shows the error message: `"The job index provided is invalid"`. <br>
       Use case ends.
-* 2c. The job is already marked as not completed.
-    * 2c1. **System** shows the message: `"Job is already unmarked!"`.
+* 2c. The command does not include any **DESCRIPTION** to edit
+    * 2c1. **System** shows the error message: `"Description should not be blank"`. <br>
+      Use case ends.
 
 ---
 
-## Use case: List all tenants
-
-**MSS**
-1. User requests to view all tenant information by using the `list` command.
-2. **System** retrieves all existing tenant records from the database.
-3. **System** displays the full list of tenants, including all details for each tenant.
-
-Use case ends.
-
-**Extensions**
-* 1a. The command contains errors (e.g., wrong spelling).
-    * 1a1. **System** shows the error message: `"Unknown command"`.
-    Use case ends.
-* 2a. No tenants exist in the **System**.
-    * 2a1. **System** displays a message indicating that the list is empty.
-    Use case ends.
-
----
-
-## Use case: List all maintenance jobs
-
-**MSS**
-1. User requests to view all maintenance jobs by using the `ljob` command.
-2. **System** retrieves all existing job records from the database.
-3. **System** displays the full list of maintenance jobs, including the completion status of each job.
-
-Use case ends.
-
-**Extensions**
-* 1a. The command contains errors (e.g., wrong spelling).
-    * 1a1. **System** shows the error message: `"Unknown command"`.
-    Use case ends.
-* 2a. No jobs exist in the **System**.
-    * 2a1. **System** displays a message: `"Listed all jobs: 0"`
-    Use case ends.
-
----
-
-## Use case: Link maintenance job to tenant
+### Use case: UC14 - Link maintenance job to tenant
 
 **MSS**
 1. User requests to link an existing maintenance job to a tenant by using the command `link TENANT_NUMBER j/JOB_NUMBER`.
@@ -529,34 +621,39 @@ Use case ends.
 * 2a. **TENANT_NUMBER** or **JOB_NUMBER** is empty or not a positive integer 
     * 2a1. **System** shows the error message: `"Invalid command format!"` <br>
       `"<description of usage>"` <br> `"<required parameters>"` <br> `"<example>"`.
-    Use case ends.
+      Use case ends.
 * 2b. **TENANT_NUMBER** does not correspond to any existing tenant.
     * 2b1. **System** shows the error message: `"Invalid tenant index detected"`.
-    Use case ends.
+      Use case ends.
 * 2c. **JOB_NUMBER** does not correspond to any existing job.
     * 2c1. **System** shows the error message: `"The job index provided is invalid"`.
-    Use case ends.
+      Use case ends.
 * 2d. The job is already linked to tenant.
     * 2d1. **System** shows the error message: `"This job is already linked to this tenant!"`.
-    Use case ends.
+      Use case ends.
 
 ---
 
-## Use case: Help command
+### Use case: UC15 - Clear
 
 **MSS**
-1. User requests a list of all available commands using the `help` command.
-2. **System** retrieves the list and formats it.
-3. **System** displays the list of "All available commands" including their formats.
+1. User removes all tenant contacts in the database.
+2. EstateMate clears the database and updates local JSON file.
 
 Use case ends.
 
-**Extensions**
-* 1a. The command contains errors (e.g., wrong spelling).
-    * 1a1. **System** shows the error message: `"Unknown command"`.
-      Use case ends.
+---
 
-*{More to be added}*
+### Use case: UC16 - Exit
+
+**MSS**
+
+1. User wants to exit the application.
+2. EstateMate is terminated.
+   
+Use case ends.
+
+---
 
 ## Non-Functional Requirements
 

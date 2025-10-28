@@ -369,7 +369,7 @@ Link a maintenance job to a specific tenant.
 Format: `link TENANT_INDEX j/JOB_NUMBER`
 
 📌**Note:**
--`JOB_NUMBER` is the number in the job list.
+- `JOB_NUMBER` is the number in the job list.
 - You can only link jobs and tenants that already exist in the system.
 - Once linked, the job will appear under the tenant’s assigned jobs in the display.
 - Deleting a linked job will also remove it from the tenant’s assigned job list.
@@ -454,7 +454,7 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4 Command Summary
+## 4. Command Summary
 <br>
 
 Action                      | Format                                                                             |  Examples

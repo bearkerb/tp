@@ -160,11 +160,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Job feature
 
-#### Implementation
+#### Implementation Overview
 
 This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
-### Model
+#### Model
 
 - **Core Types**
     - `Job` fields: `id:int`, `description:Description`, `isDone:boolean`.
@@ -188,7 +188,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 <puml src="diagrams/JobModelClassDiagram.puml" width="720" />
 
-### Logic
+#### Logic
 
 - **Commands**
     - `AddJobCommand` (`job d/<desc>`) parses `Description`, allocates id via `Model#nextJobId()`, adds job.
@@ -207,7 +207,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 <puml src="diagrams/JobAddSequence.puml" width="720" />
 
-### Storage
+#### Storage
 
 - **JSON Mapping**
     - `JsonAdaptedJob` <-> `Job` with fields  
@@ -219,7 +219,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 <puml src="diagrams/JobStorageDiagram.puml" width="640" />
 
-### UI
+#### UI
 
 - **Lists & Cards**
     - `JobListPanel` renders the `ObservableList<Job>`.

@@ -179,7 +179,7 @@ Each feature is grouped by functionality:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-<br>
+<br><br>
 
 ### 3.1 Tenant Management 
 <br>
@@ -396,7 +396,7 @@ Updates the status of a maintenance job so that completed tasks can be tracked e
 Format: `mark JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***
+- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***.
 - Once marked, the job status will be updated in the display under any linked tenant.
 - If a job is marked by mistake, you can use the `unmark` command to revert it as not completed.
 
@@ -409,7 +409,7 @@ Revert a maintenance job's status to not completed in case it was marked as comp
 Format: `unmark JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***
+- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***.
 - Once unmarked, the job will no longer appear as completed under any linked tenant.
 
 Examples:

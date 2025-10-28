@@ -195,7 +195,7 @@ Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
-💡**Tip:** Tag tenants with `t/VIP` or `t/family` to `find` them easily.
+💡**Tip:** Tag tenants so that you can use `find` to quickly filter and locate them without checking the full list.
 <br>
 
 #### 3.1.2 Deleting a Tenant: `dtenant`
@@ -204,20 +204,20 @@ Deletes the specified tenant from the application.
 Format: `dtenant TENANT_NUMBER`
 
 📌**Note:** 
-- `TENANT_NUMBER` is the number displayed in tenant list, and must be ***positive number***.
+- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be ***positive number***.
 - Only tenants that exist in the current displayed list can be deleted.
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">
 
 <strong>❗ Warning:</strong><br>
-- This action is irreversible, data will be <b>permanently deleted</b>.<br>
+- This action is irreversible, data will be ***permanently deleted***.<br>
 - Once a tenant is deleted, any links to jobs associated with that tenant will also be removed.
 </div>
 <br>
 
 Examples:
 - `list` followed by `dtenant 2` deletes the 2nd tenant listed in the application.
-- `find John` followed by `dtenant 1` deletes the 1st person in the results of the `find` command.
+- `find John` followed by `dtenant 1` deletes the 1st tenant in the results of the `find` command.
 
 💡**Tip:**
 - Use `list` or `find` first to confirm the correct tenant before deleting to avoid accidental removal.
@@ -231,15 +231,15 @@ Edits an existing tenant in the application.
 Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]...[j/JOB]...[t/TAG]…​`
 
 📌**Note:**
-- `TENANT_NUMBER` is the number displayed in tenant list, and must be ***positive number***.
+- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be ***positive number***.
 - Provide ***at least one*** field to edit.
 - Tags are replaced, not added cumulatively; t/ clears all tags.
 - You can remove all the person’s tags by typing `t/` without
    specifying any tags after it.
 
 Examples:
-- `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.<br>
+- `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st tenant to be `91234567` and `johndoe@example.com` respectively.
+- `edit 2 n/Betsy Crower t/` edits the name of the 2nd tenant to be `Betsy Crower` and clears all existing tags.<br>
 
 💡**Tip:**
 - Use `list` or `find` first to confirm the correct tenant before editing to avoid overwriting important data. 
@@ -257,7 +257,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - Only the name is searched.
 - Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
+- Tenants matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -306,7 +306,7 @@ Deletes a maintenance job from the application.
 Format: `djob JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be ***positive number***.
 - Only jobs that exist in the current displayed list can be deleted.
 - Deleting a job removes it from any tenants’ assigned job lists.
 
@@ -331,7 +331,7 @@ Edits a maintenance job from the application.
 Format: `ejob JOB_NUMBER d/DESCRIPTION`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be ***positive number***.
 - Only jobs that exist in the current displayed list can be edited.
 - Provide a ***clear and concise*** description of the maintenance issue.
 
@@ -366,10 +366,10 @@ Examples:
 #### 3.2.5 Linking Job to Tenant: `link`
 Link a maintenance job to a specific tenant.
 
-Format: `link TENANT_INDEX j/JOB_NUMBER`
+Format: `link TENANT_NUMBER j/JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the number in the job list.
+- `JOB_NUMBER` is the index displayed next to each job in the job list.
 - You can only link jobs and tenants that already exist in the system.
 - Once linked, the job will appear under the tenant’s assigned jobs in the display.
 - Deleting a linked job will also remove it from the tenant’s assigned job list.
@@ -396,7 +396,7 @@ Updates the status of a maintenance job so that completed tasks can be tracked e
 Format: `mark JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be ***positive number***.
 - Once marked, the job status will be updated in the display under any linked tenant.
 - If a job is marked by mistake, you can use the `unmark` command to revert it as not completed.
 
@@ -409,7 +409,7 @@ Revert a maintenance job's status to not completed in case it was marked as comp
 Format: `unmark JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed in job list, and must be ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be ***positive number***.
 - Once unmarked, the job will no longer appear as completed under any linked tenant.
 
 Examples:
@@ -462,15 +462,15 @@ Action                      | Format                                            
 **Add Tenant**              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 **Add Job**                 | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
 **Clear**                   | `clear`                                                                            
-**Delete Tenant**           | `dtenant TENANT_INDEX`                                                             | `dtenant 3`                                                                             
+**Delete Tenant**           | `dtenant TENANT_NUMBER`                                                            | `dtenant 3`                                                                             
 **Delete Job**              | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
-**Edit Tenant**             | `edit TENANT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                | `edit 2 n/James Lee e/jameslee@example.com` 
+**Edit Tenant**             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
 **Edit Job**                | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
 **Exit**                    | `exit`                                                                             |
 **Find Tenant**             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         
 **Find Job**                | `fjob KEYWORD [MORE_KEYWORDS]`                                                     | `fjob electrical plumbing renovation`     
 **Help**                    | `help`                                                                             |
-**Link Job to Tenant**      | `link TENANT_INDEX j/JOB_NUMBER`                                                   | `link 1 j/2`                            
+**Link Job to Tenant**      | `link TENANT_NUMBER j/JOB_NUMBER`                                                  | `link 1 j/2`                            
 **List Tenants**            | `list`                                                                             | 
 **List Jobs**               | `ljob`                                                                             | 
 **Mark Job**                | `mark JOB_NUMBER`                                                                  |`mark 1`                                                
@@ -496,4 +496,10 @@ Action                      | Format                                            
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Glossary
+<br>
+
+Terms                |  Definitions 
+---------------------|------------------------------------------------------------------------------------------
+Upper-Case Parameter | A placeholder in commands (e.g., NAME , PHONE ) that must be replaced with actual values.
+
 <br>

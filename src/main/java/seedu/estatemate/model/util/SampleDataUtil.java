@@ -34,7 +34,7 @@ public class SampleDataUtil {
                     new ArrayList<>()),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Lease("2025-08-31 2028-04-05"),
-                    new LeaseAmount("2200.00"), new PayDate("2025-09-31"), getTagSet("neighbours"),
+                    new LeaseAmount("2200.00"), new PayDate("2025-09-30"), getTagSet("neighbours"),
                     new ArrayList<>()),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Lease("2026-06-20 2028-06-20"),

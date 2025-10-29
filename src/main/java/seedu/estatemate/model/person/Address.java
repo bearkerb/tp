@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's address in EstateMate.
+ * Represents a tenant's address in EstateMate.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

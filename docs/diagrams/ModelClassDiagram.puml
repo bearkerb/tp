@@ -13,7 +13,10 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+Class UniqueJobList
 Class Person
+Class Job
+Class Description
 Class Address
 Class Email
 Class Name
@@ -39,6 +42,8 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 EstateMate *--> "1" UniquePersonList
+EstateMate *--> "1" UniqueJobList
+
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
@@ -48,15 +53,23 @@ Person *--> Lease
 Person *--> LeaseAmount
 Person *--> "*" Tag
 Person *--> PayDate
+' Tenant References Job by ID (weak association)
+Person ..> Job : contains job id list >
+
+
+UniqueJobList --> "~* all" Job
+Job *--> Description
+
+ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Job
+
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
-
+UniqueJobList -[hidden]left-> I
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 Email -[hidden]right-> Lease
 Lease -[hidden]right-> LeaseAmount
-
-ModelManager --> "~* filtered" Person
 @enduml

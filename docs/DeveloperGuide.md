@@ -88,7 +88,7 @@ The `UI` component,
 * `MainWindow` stores a reference to a `Model` interface instance. This is to pass the `Model` instance to `TenantListPanel` as well as to retrieve job information for `JobListPanel`. 
 * `TenantCard` has a stronger association with the `Model` component because it stores a reference to a `Model` interface instance. However, this is used only retrieve and display jobs linked to a tenant.
 </box>
-
+* 
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/logic/Logic.java)
@@ -108,9 +108,9 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `EstateMateParser` object which in turn creates a parser that matches the command (e.g., `DeleteTenantCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an **`EstateMateParser`** object which in turn creates a parser that matches the command (e.g., `DeleteTenantCommandParser` or `AddJobCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteTenantCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a tenant or add a job).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -119,8 +119,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `EstateMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTenantCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddTenantCommand`) which the `EstateMateParser` returns back as a `Command` object.
+* When called upon to parse a user command, the **`EstateMateParser`** class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTenantCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddTenantCommand`) which the **`EstateMateParser`** returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddTenantCommandParser`, `DeleteTenantCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/model/Model.java)
@@ -135,13 +136,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<box type="info" seamless>
-
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `EstateMate`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
-
-</box>
 
 
 ### Storage component

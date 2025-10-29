@@ -97,9 +97,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("dtenant 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `dtenant 1` Command" />
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
 <box type="info" seamless>
 
@@ -278,7 +278,7 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `dtenant 5` command to delete the 5th person in the address book. The `dtenant` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `dtenant 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
@@ -348,7 +348,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `dtenant`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 
@@ -808,13 +808,13 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `dtenant 1`<br>
+    1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `dtenant 0`<br>
+    1. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect dtenant commands to try: `dtenant`, `dtenant x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

@@ -87,4 +87,5 @@ public class MarkJobCommandTest {
         String expected = MarkJobCommand.class.getCanonicalName() + "{targetId=" + VALID_JOB_ID + "}";
         assertEquals(expected, markJobCommand.toString());
     }
+    
 }

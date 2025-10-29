@@ -16,7 +16,7 @@ import seedu.estatemate.model.person.Person;
  */
 public class DeleteTenantCommand extends Command {
 
-    public static final String COMMAND_WORD = "dtenant";
+    public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tenant using the index number displayed in the tenant list.\n"

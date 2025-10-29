@@ -191,29 +191,11 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             String trimmedCommand = commandText.trim().split("\\s+")[0];
-            switch (trimmedCommand) { 
-            case "job":
+            switch (trimmedCommand) {
+            case "job", "ejob", "ljob":
                 showJobListPanel = true;
                 break;
-            case "ljob":
-                showJobListPanel = true;
-                break;
-            case "ejob":
-                showJobListPanel = true;
-                break;
-            case "edit":
-                showPersonListPanel = true;
-                break;
-            case "tenant":
-                showPersonListPanel = true;
-                break;
-            case "link":
-                showPersonListPanel = true;
-                break;
-            case "find":
-                showPersonListPanel = true;
-                break;
-            case "list":
+            case "edit", "list", "find", "link", "tenant":
                 showPersonListPanel = true;
                 break;
             default: //keep the same panel showing

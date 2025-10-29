@@ -27,10 +27,5 @@ public class ListJobCommandTest {
                 + ": " + expectedModel.getFilteredJobList().size(), expectedModel);
     }
 
-    @Test
-    public void execute_jobListIsFiltered_showsEverything() {
-        // showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS
-                + ": " + expectedModel.getFilteredJobList().size(), expectedModel);
-    }
+    // no test for filteredJobList here like in ListCommandTest since job list does not use indexing to reference jobs
 }

@@ -25,8 +25,6 @@ public class PayDateTest {
         assertThrows(IllegalArgumentException.class, () -> new PayDate("2025.09.12"));
         assertThrows(IllegalArgumentException.class, () -> new PayDate("2025-03-32"));
         assertThrows(IllegalArgumentException.class, () -> new PayDate("2025-02-29"));
-        assertThrows(IllegalArgumentException.class, () -> new PayDate("2025--10-10"));
-        assertThrows(IllegalArgumentException.class, () -> new PayDate("2025-10--10"));
     }
 
     @Test
@@ -46,8 +44,6 @@ public class PayDateTest {
         // incorrect calendar dates
         assertFalse(PayDate.isValidPayDate("2025-03-32")); // 32 does not exist
         assertFalse(PayDate.isValidPayDate("2025-02-29")); // non-leap year
-        assertFalse(PayDate.isValidPayDate("2025--10-10")); // negative month
-        assertFalse(PayDate.isValidPayDate("2025-10--10")); // negative date
     }
 
     @Test

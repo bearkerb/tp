@@ -192,10 +192,10 @@ public class MainWindow extends UiPart<Stage> {
 
             String trimmedCommand = commandText.trim().split("\\s+")[0];
             switch (trimmedCommand) {
-            case "job", "ejob", "ljob":
+            case "job", "ejob", "ljob", "fjob":
                 showJobListPanel = true;
                 break;
-            case "edit", "list", "find", "link", "tenant":
+            case "edit", "list", "find", "link", "tenant", "delete":
                 showPersonListPanel = true;
                 break;
             default: //keep the same panel showing

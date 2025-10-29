@@ -108,9 +108,9 @@ public interface Model {
 
     void deleteJobById(int id);
 
-    void markJobById(int id) throws CommandException;
+    void markJobById(int id);
 
-    void unmarkJobById(int id) throws CommandException;
+    void unmarkJobById(int id);
 
     int nextJobId();
 

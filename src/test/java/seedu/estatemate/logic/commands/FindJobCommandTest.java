@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.estatemate.model.Model;
 import seedu.estatemate.model.ModelManager;
 import seedu.estatemate.model.UserPrefs;

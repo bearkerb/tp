@@ -6,8 +6,10 @@ import java.util.List;
 
 import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.job.Job;
-import seedu.estatemate.model.person.Person;
 
+/**
+ * A utility class containing a list of {@code Job} objects to be used in tests.
+ */
 public class TypicalJobs {
     public static final Job FIX_LIGHT = new JobBuilder().withDescription("Fix faulty light").withId(1).build();
     public static final Job PAINT_WALLS = new JobBuilder().withDescription("Paint interior walls").withId(2).build();

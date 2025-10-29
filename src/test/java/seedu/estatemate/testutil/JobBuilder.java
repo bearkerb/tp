@@ -49,8 +49,11 @@ public class JobBuilder {
         return new Job(description, id);
     }
 
+    /**
+     * Builds a {@code Job} with the details of the JobBuilder that is marked as complete
+     */
     public Job buildComplete() {
-        Job j = new Job(description,id);
+        Job j = new Job(description, id);
         j.setDone(true);
         return j;
     }

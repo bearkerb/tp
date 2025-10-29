@@ -64,6 +64,13 @@ public class TenantCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         this.model = model;
+
+        initializePersonInformation(displayedIndex);
+        initializeTags(); // tags are optional
+        initializeMaintenanceInformation();
+    }
+
+    private void initializePersonInformation(int displayedIndex) {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText("Phone Number: " + person.getPhone().value);
@@ -72,21 +79,28 @@ public class TenantCard extends UiPart<Region> {
         leaseAmount.setText("Lease Amount: " + person.getLeaseAmount().toDisplayValue());
         payDate.setText("Pay Date: " + person.getPayDate().value);
         email.setText("Email: " + person.getEmail().value);
+    }
+
+    private void initializeTags() {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        maintenanceTitle.setText("Maintenance Information:");
-        displayMaintenanceInformation();
-
     }
 
-    private void displayMaintenanceInformation() {
-        List<Integer> jobIds = model.getJobIdsForPerson(person);
+    private void initializeMaintenanceInformation() {
+        maintenanceTitle.setText("Maintenance Information:");
+        displayMaintenanceInformation();
+    }
+
+    private void displayNoJobs() {
+        maintenanceId.setText("Job Number: -");
+        maintenanceDescription.setText("Job Description: No maintenance jobs yet");
+    }
+
+    private void displayJobNumbers(List<Integer> jobIds) {
         if (jobIds.isEmpty()) {
             maintenanceId.setText("Job Number: -");
             maintenanceDescription.setText("Job Description: No maintenance jobs yet");
-            return;
         } else {
             StringBuilder jobNumbers = new StringBuilder();
             for (int i = 0; i < jobIds.size(); i++) {
@@ -96,16 +110,28 @@ public class TenantCard extends UiPart<Region> {
                 }
             }
             maintenanceId.setText("Job Number(s): " + jobNumbers);
+        }
+    }
 
-            StringBuilder jobDescriptions = new StringBuilder("Job Description(s):\n");
-            for (Integer id : jobIds) {
-                String eachDescription = model.getJobDescriptionById(id);
-                boolean isCompleted = model.isJobCompleted(id);
-                String status = isCompleted ? "completed ✅" : "not completed ❌";
-                jobDescriptions.append("#").append(id).append(" ").append(eachDescription)
-                        .append(" (status: ").append(status).append(")\n");
-            }
-            maintenanceDescription.setText(jobDescriptions.toString().trim());
+    private void displayJobDescriptions(List<Integer> jobIds) {
+        StringBuilder jobDescriptions = new StringBuilder("Job Description(s):\n");
+        for (Integer id : jobIds) {
+            String eachDescription = model.getJobDescriptionById(id);
+            boolean isCompleted = model.isJobCompleted(id);
+            String status = isCompleted ? "completed ✅" : "not completed ❌";
+            jobDescriptions.append("#").append(id).append(" ").append(eachDescription)
+                    .append(" (status: ").append(status).append(")\n");
+        }
+        maintenanceDescription.setText(jobDescriptions.toString().trim());
+    }
+
+    private void displayMaintenanceInformation() {
+        List<Integer> jobIds = model.getJobIdsForPerson(person);
+        if (jobIds.isEmpty()) {
+            displayNoJobs();
+        } else {
+            displayJobNumbers(jobIds);
+            displayJobDescriptions(jobIds);
         }
     }
 }

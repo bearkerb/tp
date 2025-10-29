@@ -159,6 +159,7 @@ public class EstateMate implements ReadOnlyEstateMate {
                 .filter(j -> j.getId() == id)
                 .findFirst()
                 .orElse(null);
+
         if (toMark != null) {
             jobs.mark(toMark);
         }

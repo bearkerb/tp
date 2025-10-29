@@ -32,6 +32,10 @@ public class MarkJobCommand extends Command {
         if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == targetId)) {
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
+        if (model.getUnfilteredJobList().stream().anyMatch(j -> (j.getId() == targetId) && (j.getDone()))) {
+            throw new CommandException("Job is already marked as complete!");
+        }
+
         model.markJobById(targetId);
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetId));
     }

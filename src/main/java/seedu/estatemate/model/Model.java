@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.estatemate.commons.core.GuiSettings;
-import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 import seedu.estatemate.model.person.Person;

@@ -26,4 +26,6 @@ public class ListJobCommandTest {
         assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS
                 + ": " + expectedModel.getFilteredJobList().size(), expectedModel);
     }
+
+    // no test for filteredJobList here like in ListCommandTest since job list does not use indexing to reference jobs
 }

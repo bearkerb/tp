@@ -184,6 +184,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            boolean showJobListPanel = false;
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -191,18 +192,41 @@ public class MainWindow extends UiPart<Stage> {
             //Panel switches between: JobPanel & PersonListPanel
             String trimmedCommand = commandText.trim().split("\\s+")[0];
             switch (trimmedCommand) { //Feel like I could maybe use an if statement for this idk
+            case "job":
+                showJobListPanel = true;
+                break;
             case "ljob":
-                personListPanelPlaceholder.getChildren().clear();
-                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                showJobListPanel = true;
                 break;
-            case "fjob":
-                personListPanelPlaceholder.getChildren().clear();
-                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+            case "ejob":
+                showJobListPanel = true;
                 break;
-            default:
-                personListPanelPlaceholder.getChildren().clear();
+            case "edit":
+                showJobListPanel = false;
+                break;
+            case "tenant":
+                showJobListPanel = false;
+                break;
+            case "link":
+                showJobListPanel = false;
+                break;
+            case "find":
+                showJobListPanel = false;
+                break;
+            case "list":
+                showJobListPanel = false;
+                break;
+            default: //keep the same panel showing
+                break;
+            }
+
+            personListPanelPlaceholder.getChildren().clear();
+            if (showJobListPanel) {
+                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+            } else {
                 personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             }
+
             jobListPanel.refresh();
             personListPanel.refresh();
 

@@ -45,7 +45,7 @@ public class AddTenantCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New tenant added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tenant already exists in EstateMate";
+    public static final String MESSAGE_DUPLICATE_TENANT = "This tenant already exists in EstateMate";
 
     private final Person toAdd;
 
@@ -62,7 +62,7 @@ public class AddTenantCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TENANT);
         }
 
         model.addPerson(toAdd);

@@ -15,9 +15,9 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "Invalid tenant index detected.";
+    public static final String MESSAGE_INVALID_TENANT_DISPLAYED_INDEX = "Invalid tenant index detected.";
     public static final String MESSAGE_JOBS_LISTED_OVERVIEW = "%1$d jobs listed!";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d tenants listed!";
+    public static final String MESSAGE_TENANTS_LISTED_OVERVIEW = "%1$d tenants listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_JOB_ID = "The job index provided is invalid";

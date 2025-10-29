@@ -1,7 +1,6 @@
 package seedu.estatemate.logic.commands;
 
 import static seedu.estatemate.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.estatemate.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.estatemate.testutil.TypicalPersons.getTypicalEstateMate;
 
 import org.junit.jupiter.api.BeforeEach;

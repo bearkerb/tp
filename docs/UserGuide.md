@@ -98,7 +98,7 @@ keep your properties running smoothly.
 
 6. Use `cd [folder path]` to navigate into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Updated_GUI_v1.png" alt="Updated GUI v1" width="600">
+   <img src="images/Updated_GUI_v2.png" alt="Updated GUI v2" width="600">
 
 7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -120,7 +120,6 @@ keep your properties running smoothly.
 
 ### 2.2 User Interface Overview
 
-- insert UI (coming soon...)
 Upon opening the application, you should see the following UI:
 ![mainWindow.png](images/mainWindow.png)
 

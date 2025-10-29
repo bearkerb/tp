@@ -17,13 +17,13 @@ import seedu.estatemate.model.Model;
 import seedu.estatemate.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a tenant to EstateMate.
  */
 public class AddTenantCommand extends Command {
 
     public static final String COMMAND_WORD = "tenant";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tenant to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tenant to EstateMate. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -45,7 +45,7 @@ public class AddTenantCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New tenant added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tenant already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This tenant already exists in EstateMate";
 
     private final Person toAdd;
 

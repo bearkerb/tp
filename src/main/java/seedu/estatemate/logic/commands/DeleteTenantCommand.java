@@ -12,7 +12,7 @@ import seedu.estatemate.model.Model;
 import seedu.estatemate.model.person.Person;
 
 /**
- * Deletes a tenant identified using it's displayed index from the address book.
+ * Deletes a tenant identified using its displayed index from EstateMate.
  */
 public class DeleteTenantCommand extends Command {
 

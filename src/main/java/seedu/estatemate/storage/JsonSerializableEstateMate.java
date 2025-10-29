@@ -20,7 +20,7 @@ import seedu.estatemate.model.person.Person;
 @JsonRootName(value = "estatemate")
 class JsonSerializableEstateMate {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Tenants list contains duplicate tenant(s).";
     public static final String MESSAGE_DUPLICATE_JOB = "Jobs list contains duplicate job id(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();

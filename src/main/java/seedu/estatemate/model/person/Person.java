@@ -85,7 +85,7 @@ public class Person {
     }
 
     public List<Integer> getJobs() {
-        return jobs;
+        return Collections.unmodifiableList(jobs);
     }
 
     /**

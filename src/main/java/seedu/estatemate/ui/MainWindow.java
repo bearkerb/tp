@@ -185,11 +185,11 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             boolean showJobListPanel = false;
+            boolean showPersonListPanel = false;
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            //Panel switches between: JobPanel & PersonListPanel
             String trimmedCommand = commandText.trim().split("\\s+")[0];
             switch (trimmedCommand) { //Feel like I could maybe use an if statement for this idk
             case "job":
@@ -202,28 +202,31 @@ public class MainWindow extends UiPart<Stage> {
                 showJobListPanel = true;
                 break;
             case "edit":
-                showJobListPanel = false;
+                showPersonListPanel = true;
                 break;
             case "tenant":
-                showJobListPanel = false;
+                showPersonListPanel = true;
                 break;
             case "link":
-                showJobListPanel = false;
+                showPersonListPanel = true;
                 break;
             case "find":
-                showJobListPanel = false;
+                showPersonListPanel = true;
                 break;
             case "list":
-                showJobListPanel = false;
+                showPersonListPanel = true;
                 break;
             default: //keep the same panel showing
                 break;
             }
 
-            personListPanelPlaceholder.getChildren().clear();
+
             if (showJobListPanel) {
+                personListPanelPlaceholder.getChildren().clear();
                 personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
-            } else {
+            }
+            if (showPersonListPanel) {
+                personListPanelPlaceholder.getChildren().clear();
                 personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             }
 

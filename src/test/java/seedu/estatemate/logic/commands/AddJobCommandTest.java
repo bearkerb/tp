@@ -70,6 +70,9 @@ public class AddJobCommandTest {
         // same object -> returns true
         assertTrue(addD1.equals(addD1));
 
+        // same description -> returns true
+        assertTrue(addD1.equals(new AddJobCommand(d1)));
+
         // same values -> returns true
         assertTrue(addD1.equals(new AddJobCommand(new Description("Paint living room"))));
 

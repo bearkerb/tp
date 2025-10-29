@@ -39,23 +39,23 @@ public class MarkJobCommandTest {
     }
 
     @Test
-    public void execute_validIdUnmarkedJob_success() {
-        Job initialJob = new Job(DUMMY_DESC, VALID_JOB_ID);
+    public void execute_validIdUnmarkedJob_success() { //Valid id + Job is unmarked
+        Job initialJob = new Job(DUMMY_DESC, VALID_JOB_ID); //test job
         Model actualModel = getModelManagerWithJob(initialJob);
 
-        Job expectedMarkedJob = new Job(DUMMY_DESC, VALID_JOB_ID);
+        Job expectedMarkedJob = new Job(DUMMY_DESC, VALID_JOB_ID); //Comparison job
         expectedMarkedJob.setDone(true);
         Model expectedModel = getModelManagerWithJob(expectedMarkedJob);
 
         MarkJobCommand markJobCommand = new MarkJobCommand(VALID_JOB_ID);
 
-        String expectedMessage = String.format(MarkJobCommand.MESSAGE_SUCCESS, VALID_JOB_ID); //
+        String expectedMessage = String.format(MarkJobCommand.MESSAGE_SUCCESS, VALID_JOB_ID);
 
         assertCommandSuccess(markJobCommand, actualModel, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidId_throwsCommandException() {
+    public void execute_invalidId_throwsCommandException() { //Invalid id
         Job dummyJob = new Job(DUMMY_DESC, VALID_JOB_ID);
         Model model = getModelManagerWithJob(dummyJob);
 

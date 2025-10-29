@@ -1,6 +1,7 @@
 package seedu.estatemate.logic.commands;
 
 import static seedu.estatemate.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.estatemate.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.estatemate.testutil.TypicalPersons.getTypicalEstateMate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,13 +24,6 @@ public class ListJobCommandTest {
 
     @Test
     public void execute_jobListIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS
-                + ": " + expectedModel.getFilteredJobList().size(), expectedModel);
-    }
-
-    @Test
-    public void execute_jobListIsFiltered_showsEverything() {
-        // showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS
                 + ": " + expectedModel.getFilteredJobList().size(), expectedModel);
     }

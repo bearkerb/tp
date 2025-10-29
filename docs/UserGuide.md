@@ -275,7 +275,7 @@ Displays a list of all tenants currently stored in the application, ordered from
 Format: `list`
 
 📌**Note:**
-- Any additional text after `list` command will be ignored.
+- Any additional input after `list` command will be ignored.
 - `list` without any tenants will show you empty list, hence recommend you to add some tenants to the application.
 <br><br>
 
@@ -387,7 +387,7 @@ Displays a list of all jobs currently stored in the application, ordered from th
 Format: `ljob`
 
 📌**Note:**
-- Any additional text after `ljob` command will be ignored.
+- Any additional input after `ljob` command will be ignored.
 - `list` without any jobs will show you empty list, hence recommend you to add some maintenance jobs to the application.
 
 #### 3.2.7 Marking Job as Completed: `mark`

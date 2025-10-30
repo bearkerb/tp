@@ -90,7 +90,7 @@ keep your properties running smoothly.
 1. Ensure you have Java `17` or above installed in your computer (Follow the guide [here](https://se-education.org/guides/tutorials/javaInstallation.html)). <br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/tag/v1.4).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/latest).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
@@ -100,7 +100,7 @@ keep your properties running smoothly.
 
 6. Use `cd [folder path]` to navigate into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Updated_GUI_v2.png" alt="Updated GUI v2" width="600">
+   <img src="images/Updated_GUI_v3.png" alt="Updated GUI v3" width="600">
 
 7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -116,16 +116,18 @@ keep your properties running smoothly.
 
     * `exit` : Exits the application.<br>
 
-6. Refer to the [Features](#3-features) below for details of each command.
+<img src="images/help-window.png" alt="Help Window" width="657">
+
+8. Refer to the [Features](#3-features) below for details of each command.
 
 <br>
 
 ### 2.2 User Interface Overview
 
 Upon opening the application, you should see the following UI:
-![mainWindow.png](images/mainWindow.png)
+![annotated-GUI.png](images/annotated-GUI.png)
 
-To input commands, use the search bar at the top of the window.
+To input commands, use the input box at the top of the window.
 The available commands will be explained below.
 
 <br>
@@ -161,7 +163,6 @@ It is designed to help property managers understand how to efficiently manage te
 through various commands.
 
 Each feature is grouped by functionality:
-- **Command Summary** — Quick reference table of all available commands.
 - **Tenant Management** — Commands for adding, deleting, editing, and finding tenant details.
 - **Maintenance Job Management** — Commands for creating, tracking, and updating maintenance jobs, including linking them to tenants.
 - **General Utilities** — Commands for clearing data, exiting the application, and accessing in-app help.
@@ -203,8 +204,9 @@ Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
-💡**Tip:** Tag tenants so that you can use `find` to quickly filter and locate them without checking the full list.
-<br>
+  <img src="images/before-add.png" alt="Before Adding Tenant" width="1200">
+  <br>
+  <img src="images/after-add.png" alt="After Adding Tenant" width="1200">
 
 #### 3.1.2 Deleting a Tenant: `delete`
 Deletes the specified tenant from the application.
@@ -212,7 +214,7 @@ Deletes the specified tenant from the application.
 Format: `delete TENANT_NUMBER`
 
 📌**Note:** 
-- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be ***positive number***.
+- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number***.
 - Only tenants that exist in the current displayed list can be deleted.
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">
@@ -228,7 +230,7 @@ Examples:
 - `find John` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
 
 💡**Tip:**
-- Use `list` or `find` first to confirm the correct tenant before deleting to avoid accidental removal.
+- Use [`list`](#3-1-5-listing-all-tenants-list) or [`find`](#3-1-4-finding-a-tenant-find) first to confirm the correct tenant before deleting to avoid accidental removal.
 - If you are deleting multiple tenants, consider double-checking indices after each deletion, as the list order updates dynamically.
 <br>
 
@@ -236,10 +238,10 @@ Examples:
 
 Edits an existing tenant in the application.
 
-Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]...[j/JOB]...[t/TAG]…​`
+Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`
 
 📌**Note:**
-- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be ***positive number***.
+- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number***.
 - Provide ***at least one*** field to edit.
 - Tags are replaced, not added cumulatively; t/ clears all tags.
 - You can remove all the person’s tags by typing `t/` without
@@ -250,7 +252,7 @@ Examples:
 - `edit 2 n/Betsy Crower t/` edits the name of the 2nd tenant to be `Betsy Crower` and clears all existing tags.<br>
 
 💡**Tip:**
-- Use `list` or `find` first to confirm the correct tenant before editing to avoid overwriting important data. 
+- Use [`list`](#3-1-5-listing-all-tenants-list) or [`find`](#3-1-4-finding-a-tenant-find) first to confirm the correct tenant before editing to avoid overwriting important data. 
 - When updating multiple fields, include all changes in a single command to reduce errors.
 <br>
 
@@ -263,7 +265,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 📌**Note:**
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
+- Only the names of tenants are searched.
 - Only full words will be matched e.g. `Han` will not match `Hans`
 - Tenants matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -284,7 +286,7 @@ Format: `list`
 
 📌**Note:**
 - Any additional input after `list` command will be ignored.
-- `list` without any tenants will show you empty list, hence recommend you to add some tenants to the application.
+- `list` without any tenants will show you an empty list, hence you are recommended to add some tenants to the application before using this command.
 <br><br>
 
 ### 3.2 Maintenance Job Management 
@@ -304,7 +306,7 @@ Examples:
 - `job d/Pipe leakage`<br>
 
 💡**Tip:**
-- Use consistent wording for similar issues (e.g., "Pipe leakage" vs "Leaking pipe") to make searching easier later.
+- Use consistent wording for similar issues (e.g., "Pipe leakage" vs "Leaking pipe") to make [finding](#3-2-4-finding-a-job-fjob) the job easier later on.
 - Add jobs as soon as issues are reported to keep tenant records up-to-date.
 <br>
 
@@ -314,14 +316,14 @@ Deletes a maintenance job from the application.
 Format: `djob JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
 - Only jobs that exist in the current displayed list can be deleted.
-- Deleting a job removes it from any tenants’ assigned job lists.
+- Deleting a job removes it from all tenants’ assigned job lists.
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">
 
 <strong>❗ Warning:</strong><br>
-- This action is irreversible, job will be ***permanently deleted***. 
+- This action is irreversible, the job will be ***permanently deleted***. 
 - Once a job is deleted, any links to tenants associated with that job will also be removed, and it will no longer appear in the tenant’s job list.
 </div>
 <br>
@@ -330,8 +332,8 @@ Examples:
 * `djob 2` deletes the job with job number 2 if it exists.
 
 💡**Tip:**
-- Use `ljob` to double-check the job number before deleting to avoid removing the wrong job.
-- If you may need a record of the job later, consider marking it as completed (mark) instead of deleting.
+- Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job number before deleting to avoid removing the wrong job.
+- If you may need a record of the job later, consider [marking it as completed](#3-2-7-marking-job-as-completed-mark) instead of deleting it.
 
 #### 3.2.3 Editing a Job: `ejob`
 Edits a maintenance job from the application.
@@ -339,7 +341,7 @@ Edits a maintenance job from the application.
 Format: `ejob JOB_NUMBER d/DESCRIPTION`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
 - Only jobs that exist in the current displayed list can be edited.
 - Provide a ***clear and concise*** description of the maintenance issue.
 
@@ -347,8 +349,8 @@ Examples:
 * `ejob 3 d/fix faucet` changes the description of the job with job number 3 to "fix faucet".
 
 💡**Tip:**
-- Use descriptive keywords in the description to make it easier to find the job later with fjob.
-- You can quickly edit a job after using `ljob` to confirm the job number.
+- Use descriptive keywords in the description to make [finding](#3-2-4-finding-a-job-fjob) the job easier later on.
+- You can quickly edit a job after using [`ljob`](#3-2-6-listing-all-jobs-ljob) to confirm the job number.
 
 #### 3.2.4 Finding a Job: `fjob`
 Find maintenance jobs whose descriptions contain any of the given keyword.
@@ -380,11 +382,12 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - `JOB_NUMBER` is the index displayed next to each job in the job list.
 - You can only link jobs and tenants that already exist in the system.
 - Once linked, the job will appear under the tenant’s assigned jobs in the display.
-- Deleting a linked job will also remove it from the tenant’s assigned job list.
+- Deleting a linked job will also remove it from the all tenants' assigned job lists.
 - Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
 
 Examples:
-- `link 2 j/5` links the 5th maintenance job in the job list to the 2nd tenant in the tenant list.
+- `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list.
+  <img src="images/linked-job.png" alt="Linked Job" width="1200">
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
@@ -396,7 +399,7 @@ Format: `ljob`
 
 📌**Note:**
 - Any additional input after `ljob` command will be ignored.
-- `list` without any jobs will show you empty list, hence recommend you to add some maintenance jobs to the application.
+- `list` without any jobs will show you an empty list, hence you are recommended to add some maintenance jobs to the application before using this command.
 
 #### 3.2.7 Marking Job as Completed: `mark`
 Updates the status of a maintenance job so that completed tasks can be tracked easily.
@@ -404,28 +407,35 @@ Updates the status of a maintenance job so that completed tasks can be tracked e
 Format: `mark JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
 - Once marked, the job status will be updated in the display under any linked tenant.
-- If a job is marked by mistake, you can use the `unmark` command to revert it as not completed.
+- If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to not completed.
 
 Examples:
-- `mark 3` updates the completion status of job number 3 of the job list to completed.
+- `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
+<div style="display:flex; gap: 10px">  <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="457">
+  <img src="images/marked-joblist.png" alt="Updated GUI v2" width="492">
+</div>
 
+💡**Tip:**
+- Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job list before using `mark` to ensure you’re updating the correct job.
+- Use [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) to revert mistakes if a job is accidentally marked as not completed.
+- 
 #### 3.2.8 Marking Job as Not Completed: `unmark`
 Revert a maintenance job's status to not completed in case it was marked as complete by mistake.
 
 Format: `unmark JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
 - Once unmarked, the job will no longer appear as completed under any linked tenant.
 
 Examples:
 - `unmark 3` updates the status of job number 3 of the job list back to not completed.
 
 💡**Tip:** 
-- Use `ljob` to double-check job list before using `unmark` to ensure you’re updating the correct job.
-- Use unmark to quickly revert mistakes when a job was accidentally marked as completed.
+- Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job list before using `unmark` to ensure you’re updating the correct job.
+- Use [`mark`](#3-2-7-marking-job-as-completed-mark) to revert mistakes if a job is accidentally marked as not completed.
 
 <br>
 
@@ -433,7 +443,7 @@ Examples:
 <br>
 
 #### 3.3.1 Clearing All Tenants: `clear`
-Remove all tenants from the application.
+Remove **ALL** tenants from the application.
 
 Format: `clear`
 
@@ -456,7 +466,7 @@ Format: `exit`
 <br>
 
 #### 3.3.3 Getting Help: `help`
-Opens the help window which provides link accessing the user guide and get assistance with commands. This command is useful if you need a quick reminder on how to use the available commands.
+Opens the help window which provides a link for accessing the user guide to get assistance with commands. This command is useful if you need a quick reminder on how to use the available commands.
 
 Format: `help`
 
@@ -467,22 +477,22 @@ Format: `help`
 
 Action                      | Format                                                                             |  Examples
 ----------------------------|------------------------------------------------------------------------------------|--------------------------------------------------
-**Add Tenant**              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
-**Add Job**                 | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
-**Clear**                   | `clear`                                                                            
-**Delete Tenant**           | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
-**Delete Job**              | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
-**Edit Tenant**             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
-**Edit Job**                | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
-**Exit**                    | `exit`                                                                             |
-**Find Tenant**             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         
-**Find Job**                | `fjob KEYWORD [MORE_KEYWORDS]`                                                     | `fjob electrical plumbing renovation`     
-**Help**                    | `help`                                                                             |
-**Link Job to Tenant**      | `link TENANT_NUMBER j/JOB_NUMBER`                                                  | `link 1 j/2`                            
-**List Tenants**            | `list`                                                                             | 
-**List Jobs**               | `ljob`                                                                             | 
-**Mark Job**                | `mark JOB_NUMBER`                                                                  |`mark 1`                                                
-**Unmark Job**              | `unmark JOB_NUMBER`                                                                | `unmark 1`
+[**Add Tenant**](#3-1-1-adding-a-tenant-tenant)             | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
+[**Add Job**](#3-2-1-adding-a-job-job)                      | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
+[**Clear**](#3-3-1-clearing-all-tenants-clear)              | `clear`                                                                            |
+[**Delete Tenant**](#3-1-2-deleting-a-tenant-dtenant)       | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
+[**Delete Job**](#3-2-2-deleting-a-job-djob)                | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
+[**Edit Tenant**](#3-1-3-editing-a-tenant-edit)             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
+[**Edit Job**](#3-2-3-editing-a-job-ejob)                   | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
+[**Exit**](#3-3-2-exiting-application-exit)                 | `exit`                                                                             |
+[**Find Tenant**](#3-1-4-finding-a-tenant-find)             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         
+[**Find Job**](#3-2-4-finding-a-job-fjob)                   | `fjob KEYWORD [MORE_KEYWORDS]`                                                     | `fjob electrical plumbing renovation`     
+[**Help**](#3-3-3-getting-help-help)                        | `help`                                                                             |
+[**Link Job to Tenant**](#3-2-5-linking-job-to-tenant-link) | `link TENANT_NUMBER j/JOB_NUMBER`                                                  | `link 1 j/2`                            
+[**List Tenants**](#3-1-5-listing-all-tenants-list)         | `list`                                                                             | 
+[**List Jobs**](#3-2-6-listing-all-jobs-ljob)               | `ljob`                                                                             | 
+[**Mark Job**](#3-2-7-marking-job-as-completed-mark)        | `mark JOB_NUMBER`                                                                  |`mark 1`                                                
+[**Unmark Job**](#3-2-8-marking-job-as-not-completed-unmark)| `unmark JOB_NUMBER`                                                                | `unmark 1`
 
 --------------------------------------------------------------------------------------------------------------------
 

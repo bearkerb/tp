@@ -903,10 +903,11 @@ testers are expected to do more *exploratory* testing.
 
 Team Size: 5 <br>
 
-1. Implement split screen display (Allow both job lists and tenant lists to be displayed at the same time).
+1. Implement split screen display. (Allow both job lists and tenant lists to be displayed at the same time)
 2. Allow tenant names to support non-ASCII characters.
 3. `help` command to show a quick, brief reference to available commands without the need to access external links.
 4. Enhance `find` command to allow for searching by phone numbers, on top of current name search.
+5. Add command to unlink a job from a tenant. (Reverse of existing `link` command)
 
 ## **Appendix: Effort**
 

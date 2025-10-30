@@ -1,7 +1,7 @@
 ---
   layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+    title: "Developer Guide"
+    pageNav: 3
 ---
 
 # EstateMate Developer Guide
@@ -13,7 +13,9 @@
 
 ## **Acknowledgements**
 
-* The `toDisplayValue` method in the `LeaseAmount` class was adapted from [this StackOverflow answer](https://stackoverflow.com/a/3395845) to format currency using commas for every thousand digit.
+* The `toDisplayValue` method in the `LeaseAmount` class was adapted
+  from [this StackOverflow answer](https://stackoverflow.com/a/3395845) to format currency using commas for every
+  thousand digit.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,7 +37,11 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/Main.java) and [`MainApp`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [
+`Main`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/Main.java) and [
+`MainApp`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/MainApp.java)) is in
+charge of the app launch and shut down.
+
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -50,16 +56,21 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
+the command `delete 1`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API
+  `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <puml src="diagrams/ComponentManagers.puml" width="300" />
 
@@ -67,13 +78,20 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/ui/Ui.java)
+The **API** of this component is specified in [
+`Ui.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TenantListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TenantListPanel`,
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the [
+`MainWindow`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/ui/MainWindow.java)
+is specified in [
+`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -85,33 +103,44 @@ The `UI` component,
 <box type="info" seamless>
 
 **Note:**
-* `MainWindow` stores a reference to a `Model` interface instance. This is to pass the `Model` instance to `TenantListPanel` as well as to retrieve job information for `JobListPanel`. 
-* `TenantCard` has a stronger association with the `Model` component because it stores a reference to a `Model` interface instance. However, this is used only retrieve and display jobs linked to a tenant.
-</box>
-* 
+
+* `MainWindow` stores a reference to a `Model` interface instance. This is to pass the `Model` instance to
+  `TenantListPanel` as well as to retrieve job information for `JobListPanel`.
+* `TenantCard` has a stronger association with the `Model` component because it stores a reference to a `Model`
+  interface instance. However, this is used only retrieve and display jobs linked to a tenant.
+  </box>
+*
+
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/logic/Logic.java)
+**API** : [
+`Logic.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API
+call as an example.
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteTenantCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+**Note:** The lifeline for `DeleteTenantCommandParser` should end at the destroy marker (X) but due to a limitation of
+PlantUML, the lifeline continues till the end of diagram.
 </box>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an **`EstateMateParser`** object which in turn creates a parser that matches the command (e.g., `DeleteTenantCommandParser` or `AddJobCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteTenantCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it is passed to an **`EstateMateParser`** object which in turn
+   creates a parser that matches the command (e.g., `DeleteTenantCommandParser` or `AddJobCommandParser`) and uses it to
+   parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteTenantCommand`)
+   which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a tenant or add a job).<br>
-   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
+   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take
+   several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -119,12 +148,18 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the **`EstateMateParser`** class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTenantCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddTenantCommand`) which the **`EstateMateParser`** returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddTenantCommandParser`, `DeleteTenantCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+* When called upon to parse a user command, the **`EstateMateParser`** class creates an `XYZCommandParser` (`XYZ` is a
+  placeholder for the specific command name e.g., `AddTenantCommandParser`) which uses the other classes shown above to
+  parse the user command and create a `XYZCommand` object (e.g., `AddTenantCommand`) which the **`EstateMateParser`**
+  returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddTenantCommandParser`, `DeleteTenantCommandParser`, ...) inherit from the
+  `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/model/Model.java)
+
+**API** : [
+`Model.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
@@ -132,22 +167,28 @@ How the parsing works:
 The `Model` component,
 
 * stores the EstateMate data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+  this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
+  `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+  should make sense on their own without depending on other components)
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/storage/Storage.java)
+**API** : [
+`Storage.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
+
 * can save both EstateMate data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `EstateMateStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* inherits from both `EstateMateStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the
+  functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+  that belong to the `Model`)
 
 ### Common classes
 
@@ -168,19 +209,22 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 #### Model
 
 **Core Types**
+
 * `Job` fields: `id:int`, `description:Description`, `isDone:boolean`.
 * `Description` validates non-blank descriptions.
-* `UniqueJobList` maintains all jobs; guarantees **uniqueness by description** via `Job#isSameJob`. Provides add/remove/mark/unmark and an unmodifiable observable view.
+* `UniqueJobList` maintains all jobs; guarantees **uniqueness by description** via `Job#isSameJob`. Provides
+  add/remove/mark/unmark and an unmodifiable observable view.
 
 **Ownership & Access**
 `EstateMate` owns a `UniqueJobList` and provides:
+
 * `addJob(Job)`
 * `removeJobById(int)`
 * `markJobById(int)`
 * `unmarkJobById(int)`
 * `getJobList()`
 * `nextJobId()` *(computed as `max(id)+1`, defaulting to `1`)*
-`ModelManager` forwards these model operations and exposes:
+  `ModelManager` forwards these model operations and exposes:
 * `addJob(Job)`
 * `deleteJobById(int)`
 * `editJobById(int, Description)`
@@ -194,14 +238,16 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 * `hasJobWithDescription(Description)`
 
 **Tenant References**
-* `Person` keeps `List<Integer> jobs` (job **ids**). 
-*  Deleting a job **cascades**: the job is removed and its id is stripped from all persons’ `jobs` lists.
+
+* `Person` keeps `List<Integer> jobs` (job **ids**).
+* Deleting a job **cascades**: the job is removed and its id is stripped from all persons’ `jobs` lists.
 
 <puml src="diagrams/JobModelClassDiagram.puml" width="360" />
 
 #### Logic
 
 **Commands**
+
 * `AddJobCommand` (`job d/<desc>`) parses `Description`, allocates id via `Model#nextJobId()`, adds job.
 * `EditJobCommand` (`ejob <id> d/<desc>`) updates job **description** for the given id; preserves `isDone`.
 * `DeleteJobCommand` (`djob <id>`) removes job and triggers cascade unlink from tenants.
@@ -209,11 +255,13 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 * `FindJobCommand` (`fjob KEYWORDS…`) filters by case-insensitive keywords with `JobContainsKeywordsPredicate`.
 
 **Parsers**
+
 * `AddJobCommandParser`, `EditJobCommandParser`, `DeleteJobCommandParser`,
-      `MarkJobCommandParser`, `UnmarkJobCommandParser`, `FindJobCommandParser`
-      tokenize arguments, validate fields, and construct commands.
+  `MarkJobCommandParser`, `UnmarkJobCommandParser`, `FindJobCommandParser`
+  tokenize arguments, validate fields, and construct commands.
 
 **Post-mutation behaviour**
+
 * After any mutation, `ModelManager` resets the filter to `PREDICATE_SHOW_ALL_JOBS`.
 
 <puml src="diagrams/JobAddSequence.puml" width="900" />
@@ -221,11 +269,14 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 #### Storage
 
 **JSON Mapping**
+
 * `JsonAdaptedJob` <-> `Job` with fields  
-      `{ "id": number (>0), "description": string, "isDone": boolean }`.
-* `JsonSerializableEstateMate` rejects duplicates **by id** or **by description**. Load errors surface as `DataLoadingException`; the app then starts with an **empty** dataset (AB-3 fallback path).
+  `{ "id": number (>0), "description": string, "isDone": boolean }`.
+* `JsonSerializableEstateMate` rejects duplicates **by id** or **by description**. Load errors surface as
+  `DataLoadingException`; the app then starts with an **empty** dataset (AB-3 fallback path).
 
 **Save Flow**
+
 * After a successful command, `LogicManager` persists via `StorageManager#saveEstateMate(...)`.
 
 <puml src="diagrams/JobStorageDiagram.puml" width="640" />
@@ -233,6 +284,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 #### UI
 
 **Lists & Cards**
+
 * `JobListPanel` renders the `ObservableList<Job>`.
 * Each `JobCard` shows index, `id`, `description`, and a completion badge derived from `isDone`.
 * The list updates automatically when `ModelManager`'s `filteredJobs` changes.
@@ -243,7 +295,8 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 **Design Notes**
 
-* **Safe startup**: duplicate jobs in storage (by id or description) cause load to fail; the app falls back to **empty** data.
+* **Safe startup**: duplicate jobs in storage (by id or description) cause load to fail; the app falls back to **empty**
+  data.
 * **Consistency**: job deletion removes any references from tenants (by id) to keep the model coherent.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -256,42 +309,54 @@ This section describes some noteworthy proposed features that may be implemented
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
+history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
+following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()`— Saves the current address book state in its history.
+* `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and
+`Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
+initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls
+`Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be
+saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `tenant n/David …​` to add a new person. The `tenant` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `tenant n/David …​` to add a new person. The `tenant` command also calls
+`Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will
+not be saved into the `addressBookStateList`.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the
+`undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once
+to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no
+previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the
+case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </box>
@@ -302,7 +367,8 @@ The following sequence diagram shows how an undo operation goes through the `Log
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the
+lifeline reaches the end of diagram.
 
 </box>
 
@@ -310,19 +376,27 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 <puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
+to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address
+book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()`
+to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as
+`list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus,
+the `addressBookStateList` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `tenant n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
+pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
+purged. Reason: It no longer makes sense to redo the `tenant n/David …​` command. This is the behavior that most modern
+desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
@@ -342,7 +416,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -370,8 +443,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Value proposition**:
 EstateMate helps property managers stay organized and in control of their operations.
-It provides a ***centralized and efficient way*** to manage tenants, rental records, and maintenance jobs all froma simple, keyboard-friendly interface.
+It provides a ***centralized and efficient way*** to manage tenants, rental records, and maintenance jobs all froma
+simple, keyboard-friendly interface.
 With EstateMate, users can:
+
 - Maintain accurate and organised tenant records
 - Monitor rental payments and lease durations
 - Track maintenance jobs and their completion status
@@ -383,32 +458,34 @@ With EstateMate, users can:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a ... | I want to ...                         | So that I can...                                                           |
-|---|---|---------------------------------------|----------------------------------------------------------------------------|
-| '***' | Property Manager | Add new tenants and their information | manage tenants for contacting and tracking their information               |
-| '***' | Property Manager | Delete tenants and their information  | remove people who are no longer tenants                                    |
-| '***' | Property Manager | List all tenants                      | see what tenants I am keeping track of                                     |
-| '***' | Property Manager | Add new maintenance jobs              | keep track of tasks that need to be carried out                            |
-| '***' | Property Manager | Delete maintenance jobs               | remove tasks that are no longer needed                                     |
-| '***' | Property Manager | List all jobs                         | see what jobs I am keeping track of
-| '***' | Property Manager | Mark jobs as completed                | monitor the progress and ensure maintenance tasks are resolved             |
-| '***' | Property Manager | Unmark jobs as not completed          | keep track of tasks that still need to be followed up on
-| '***' | Property Manager | View available commands               | refer to usage instructions when needed to avoid mistakes                  |
-| '***' | Property Manager | Exit the application                  | safely close the system and ensure all changes are saved                   |
-|---|---| ---                                   | ---                                                                        |
-| '**' | Property Manager | Search a tenant                       | quickly locate a tenant without scrolling through the entire tenant list   |
-| '**' | Property Manager | Search a maintenance job              | quickly locate a maintenance job without scrolling through the entire job list 
-| '**' | Property Manager | Edit tenant details                   | update their information when changes occur                                |
-| '**' | Property Manager | Edit maintenance jobs                 | update maintenance job description when changes occur                      
-| '**' | Property Manager | Link jobs to specific tenants         | know which tenant is associated with each maintenance request              |
-| '**' | Property Manager | Clear all tenants from the system     | reset the tenant database or start fresh
+| Priority | As a ...         | I want to ...                         | So that I can...                                                               |
+|----------|------------------|---------------------------------------|--------------------------------------------------------------------------------|
+| '***'    | Property Manager | Add new tenants and their information | manage tenants for contacting and tracking their information                   |
+| '***'    | Property Manager | Delete tenants and their information  | remove people who are no longer tenants                                        |
+| '***'    | Property Manager | List all tenants                      | see what tenants I am keeping track of                                         |
+| '***'    | Property Manager | Add new maintenance jobs              | keep track of tasks that need to be carried out                                |
+| '***'    | Property Manager | Delete maintenance jobs               | remove tasks that are no longer needed                                         |
+| '***'    | Property Manager | List all jobs                         | see what jobs I am keeping track of                                            
+| '***'    | Property Manager | Mark jobs as completed                | monitor the progress and ensure maintenance tasks are resolved                 |
+| '***'    | Property Manager | Unmark jobs as not completed          | keep track of tasks that still need to be followed up on                       
+| '***'    | Property Manager | View available commands               | refer to usage instructions when needed to avoid mistakes                      |
+| '***'    | Property Manager | Exit the application                  | safely close the system and ensure all changes are saved                       |
+| ---      | ---              | ---                                   | ---                                                                            |
+| '**'     | Property Manager | Search a tenant                       | quickly locate a tenant without scrolling through the entire tenant list       |
+| '**'     | Property Manager | Search a maintenance job              | quickly locate a maintenance job without scrolling through the entire job list 
+| '**'     | Property Manager | Edit tenant details                   | update their information when changes occur                                    |
+| '**'     | Property Manager | Edit maintenance jobs                 | update maintenance job description when changes occur                          
+| '**'     | Property Manager | Link jobs to specific tenants         | know which tenant is associated with each maintenance request                  |
+| '**'     | Property Manager | Clear all tenants from the system     | reset the tenant database or start fresh                                       
 
 <br>
 
 ## Use Cases
+
 <br>
 
-(For all **use cases** below, the **System** is the 'TenantManager' and the **Actor** is the 'user', unless specified otherwise)
+(For all **use cases** below, the **System** is the 'TenantManager' and the **Actor** is the 'user', unless specified
+otherwise)
 
 ---
 
@@ -425,6 +502,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Use case ends.
 
 **Extensions**
+
 * 2a. The command format is wrong (e.g., missing parameter, wrong date format).
     * 2a1. **System** shows an error message and provides the correct input format. <br>
       Use case ends.
@@ -446,9 +524,10 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 * 2a. The provided **TENANT_NUMBER** is empty or is not a positive number.
-    * 2a1. **System** shows an error message that the provided **TENANT_NUMBER** is invalid and provides 
-    the correct input format. <br>
+    * 2a1. **System** shows an error message that the provided **TENANT_NUMBER** is invalid and provides
+      the correct input format. <br>
       Use case ends.
 * 2b. The provided **TENANT_NUMBER** does not correspond to any existing tenant.
     * 2b1. **System** shows an error message indicating that the tenant does not exist. <br>
@@ -467,6 +546,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 * 1a. The command contains errors (e.g., wrong spelling).
     * 1a1. **System** shows an error message indicating that the command format is invalid. <br>
       Use case ends.
@@ -490,6 +570,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 * 2a. The **DESCRIPTION** is missing or empty.
     * 2a1. **System** shows an error message indicating that the **DESCRIPTION** cannot be empty. <br>
       Use case ends.
@@ -499,7 +580,7 @@ Use case ends.
 
 ---
 
-### Use case: UC05 - Delete a maintenance job 
+### Use case: UC05 - Delete a maintenance job
 
 **MSS**
 
@@ -512,6 +593,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 * 2a. The **JOB_NUMBER** is empty or is not a positive integer.
     * 2a1. **System** shows an error message that the provided **JOB_NUMBER** is invalid and provides
       the correct input format. <br>
@@ -533,12 +615,13 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-* 1a. The command contains errors (e.g., wrong spelling). 
+
+* 1a. The command contains errors (e.g., wrong spelling).
     * 1a1. **System** shows an error message indicating that the command format is invalid. <br>
-      Use case ends. 
+      Use case ends.
 * 2a. No jobs exist in the **System**.
     * 2a1. **System** shows a message indicating that the job list is empty. <br>
-      Use case ends. 
+      Use case ends.
 
 ---
 
@@ -550,12 +633,13 @@ Use case ends.
 2. **System** verifies that the **JOB_NUMBER** is a positive integer and corresponds to an existing, unmarked job.
 3. **System** sets the status of the maintenance job to "Completed".
 4. **System** shows the success message.
-5. **System** automatically updates the maintenance job list display 
-to reflect the new status.
+5. **System** automatically updates the maintenance job list display
+   to reflect the new status.
 
 Use case ends.
 
 **Extensions**
+
 * 2a. The **JOB_NUMBER** is empty or is not a positive integer.
     * 2a1. **System** shows an error message that the provided **JOB_NUMBER** is invalid and provides
       the correct input format. <br>
@@ -572,15 +656,18 @@ Use case ends.
 ### Use case: UC08 - Unmark maintenance job
 
 **MSS**
+
 1. User requests to revert a maintenance job as not completed by using the command `unmark JOB_NUMBER`.
 2. **System** verifies that the **JOB_NUMBER** is a positive integer and corresponds to an existing, unmarked job.
-3. **System** sets the status of the maintenance job to "Pending" in the job list and "Not completed" in any linked tenant's job list.
+3. **System** sets the status of the maintenance job to "Pending" in the job list and "Not completed" in any linked
+   tenant's job list.
 4. **System** shows the success message
 5. **System** automatically updates the maintenance job list display to reflect the new status.
 
 Use case ends.
 
 **Extensions**
+
 * 2a. The **JOB_NUMBER** is empty or is not a positive integer.
     * 2a1. **System** shows an error message that the provided **JOB_NUMBER** is invalid and provides
       the correct input format. <br>
@@ -597,6 +684,7 @@ Use case ends.
 ### Use case: UC09 - Help command
 
 **MSS**
+
 1. User requests a list of all available commands using the `help` command.
 2. **System** retrieves the list and formats it.
 3. **System** displays the list of "All available commands" including their formats.
@@ -604,6 +692,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 * 1a. The command contains errors (e.g., wrong spelling).
     * 1a1. **System** shows an error message indicating that the command format is invalid. <br>
       Use case ends.
@@ -613,6 +702,7 @@ Use case ends.
 ### Use case: UC10 - Find a tenant
 
 **MSS**
+
 1. User requests to find a tenant using the `find KEYWORD [MORE_KEYWORDS]` command.
 2. **System** verifies that at least one **KEYWORD** has been provided.
 3. **System** searches the tenant database for names containing any of the **KEYWORD**.
@@ -622,18 +712,20 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 * 2a. The **KEYWORD** is empty.
     * 2a1. **System** shows an error message indicating that at least one **KEYWORD** is required. <br>
       Use case ends.
 * 3a. No tenants match the search **KEYWORD**.
     * 3a1. **System** shows a message indicating that no matching tenants were found. <br>
       Use case ends.
-    
+
 ---
 
 ### Use case: UC11 - Find a maintenance job
 
 **MSS**
+
 1. User requests to find a maintenance job using the command `fjob KEYWORD [MORE KEYWORD]`.
 2. **System** verifies that at least one **KEYWORD** has been provided.
 3. **System** searches the maintenance job database for job descriptions containing any of the **KEYWORD**.
@@ -641,6 +733,7 @@ Use case ends.
 5. **System** automatically displays the list of matching jobs.
 
 **Extensions**
+
 * 2a. The **KEYWORD** is empty.
     * 2a1. **System** shows an error message indicating that at least one **KEYWORD** is required. <br>
       Use case ends.
@@ -653,6 +746,7 @@ Use case ends.
 ### Use case: UC12 - Edit a tenant
 
 **MSS**
+
 1. User request to edit a tenant by using `edit TENANT_NUMBER` with one or more updated fields.
 2. **System** verifies that the provided **TENANT_NUMBER** is valid and corresponds to an existing tenant.
 3. **System** updates only the specified fields of the tenant's record while keeping other details unchanged.
@@ -662,6 +756,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 * 2a. The **TENANT_NUMBER** is empty or is not a positive integer
     * 2a1. **System** shows an error message that the provided **TENANT_NUMBER** is invalid and provides
       the correct input format. <br>
@@ -678,6 +773,7 @@ Use case ends.
 ### Use case: UC13 - Edit a maintenance job
 
 **MSS**
+
 1. User request to edit a maintenance job by using `edit JOB_NUMBER d/DESCRIPTION` with one or more updated fields.
 2. **System** verifies that the provided **JOB_NUMBER** is valid and corresponds to an existing job.
 3. **System** updates only the maintenance job description.
@@ -687,6 +783,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 * 2a. The **JOB_NUMBER** is empty or is not a positive integer
     * 2a1. **System** shows an error message that the provided **JOB_NUMBER** is invalid and provides
       the correct input format. <br>
@@ -703,17 +800,22 @@ Use case ends.
 ### Use case: UC14 - Link maintenance job to tenant
 
 **MSS**
+
 1. User requests to link an existing maintenance job to a tenant by using the command `link TENANT_NUMBER j/JOB_NUMBER`.
-2. **System** verifies that the **TENANT_NUMBER** corresponds to an existing tenant and that the JOB_NUMBER corresponds to an existing maintenance job.
-3. **System** links the specified job to the tenant updating the tenant's assigned job list and maintaining the job status.
+2. **System** verifies that the **TENANT_NUMBER** corresponds to an existing tenant and that the JOB_NUMBER corresponds
+   to an existing maintenance job.
+3. **System** links the specified job to the tenant updating the tenant's assigned job list and maintaining the job
+   status.
 4. **System** shows a success message.
 5. **System** updates the UI to reflect the linked job under the tenant's assigned jobs.
 
 Use case ends.
 
 **Extensions**
-* 2a. **TENANT_NUMBER** or **JOB_NUMBER** is empty or not a positive integer 
-    * 2a1. **System** shows an error message that the provided **JOB_NUMBER** and/or **TENANT_NUMBER** is invalid and provides
+
+* 2a. **TENANT_NUMBER** or **JOB_NUMBER** is empty or not a positive integer
+    * 2a1. **System** shows an error message that the provided **JOB_NUMBER** and/or **TENANT_NUMBER** is invalid and
+      provides
       the correct input format. <br>
       Use case ends.
 * 2b. **TENANT_NUMBER** does not correspond to any existing tenant.
@@ -731,6 +833,7 @@ Use case ends.
 ### Use case: UC15 - Clear
 
 **MSS**
+
 1. User removes all tenant contacts in the database.
 2. EstateMate clears the database and updates local JSON file.
 
@@ -744,7 +847,7 @@ Use case ends.
 
 1. User wants to exit the application.
 2. EstateMate is terminated.
-   
+
 Use case ends.
 
 ---
@@ -765,7 +868,7 @@ Use case ends.
 6. Should work without requiring an installer.
 7. Should work well for standard screen resolutions and be usable for resolutions 1280x720, screen scales 150%.
 
-> **Note:** Standard screen resolutions - 1920x1080 and higher, screen scales 100% and 125%
+> **Note:** Standard screen resolutions - 1920x1080 and higher, screen scales 100% and 125%.
 
 ### Usability
 
@@ -925,13 +1028,13 @@ is also much more detailed with more fields compared to the Person class from AB
     2. Switching to non-index based commands for jobs as having both index based commands for tenants and jobs could
        cause issues.
     3. Creating a whole new GUI section and components for displaying of jobs separately from tenants.
-
+       <br>
 2. **Adding additional fields to the existing `add` command to allow for adding tenants** <br>
    Challenges:
     1. Performing date parsing and verification, as Tenant has fields requiring dates while Person from AB3 does not.
        There are many edge cases to consider and thus this aspect is error-prone.
     2. Adding job-related methods and fields to the model for tenants while maintaining high cohesion simultaneously.
-
+       <br>
 3. **Adding a new GUI screen to accommodate the addition of jobs** <br>
    Challenges:
     1. Starting from scratch as AB3 only has one screen to manage, while we have two.

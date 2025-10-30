@@ -25,7 +25,7 @@ public class ListJobCommandTest {
     @Test
     public void execute_jobListIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListJobCommand(), model, String.format(Messages.MESSAGE_JOBS_LISTED_OVERVIEW,
-                model.getFilteredJobList().size()), expectedModel);
+                expectedModel.getFilteredJobList().size()), expectedModel);
     }
 
     // no test for filteredJobList here like in ListCommandTest since job list does not use indexing to reference jobs

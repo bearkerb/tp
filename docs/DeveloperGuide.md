@@ -428,10 +428,10 @@ Use case ends.
 
 **Extensions**
 * 2a. The command format is wrong (e.g., missing parameter, wrong date format).
-    * 2a1. **System** shows an error message: `"Invalid Command Format"` with command usage description and example. <br>
+    * 2a1. **System** shows an error message and provides the correct input format. <br>
       Use case ends.
 * 3a. A tenant with the same name already exists.
-    * 3a1. **System** shows the error message: `"This tenant already exists in the address book"`. <br>
+    * 3a1. **System** shows an error message indicating that the tenant already exists. <br>
       Use case ends.
 
 ---
@@ -450,10 +450,11 @@ Use case ends.
 
 **Extensions**
 * 2a. The provided **TENANT_NUMBER** is empty or is not a positive number.
-    * 2a1. **System** shows the error message: `"Invalid tenant index detected."`. <br>
+    * 2a1. **System** shows an error message that the provided **TENANT_NUMBER** is invalid and provides 
+    the correct input format. <br>
       Use case ends.
 * 2b. The provided **TENANT_NUMBER** does not correspond to any existing tenant.
-    * 2b1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+    * 2b1. **System** shows an error message indicating that the tenant does not exist. <br>
       Use case ends.
 
 ---
@@ -470,10 +471,10 @@ Use case ends.
 
 **Extensions**
 * 1a. The command contains errors (e.g., wrong spelling).
-    * 1a1. **System** shows the error message: `"Unknown command"`. <br>
+    * 1a1. **System** shows an error message indicating that the command format is invalid. <br>
       Use case ends.
 * 2a. No tenants exist in the **System**.
-    * 2a1. **System** displays a message indicating that the list is empty. <br>
+    * 2a1. **System** shows a message indicating that the tenant list is empty. <br>
       Use case ends.
 
 ---
@@ -493,10 +494,10 @@ Use case ends.
 
 **Extensions**
 * 2a. The **DESCRIPTION** is missing or empty.
-    * 2a1. **System** shows the error message: `"Description should not be blank."`.<br>
+    * 2a1. **System** shows an error message indicating that the **DESCRIPTION** cannot be empty. <br>
       Use case ends.
 * 3a. A duplicate maintenance job (same **DESCRIPTION**) is found.
-    * 3a1. **System** shows the error message: `"This job already exists."`. <br>
+    * 3a1. **System** shows an error message indicating that the job already exists. <br>
       Use case ends.
 
 ---
@@ -515,10 +516,11 @@ Use case ends.
 
 **Extensions**
 * 2a. The **JOB_NUMBER** is empty or is not a positive integer.
-    * 2a1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+    * 2a1. **System** shows an error message that the provided **JOB_NUMBER** is invalid and provides
+      the correct input format. <br>
       Use case ends.
 * 2b. The **JOB_NUMBER** does not correspond to any existing job.
-    * 2b1. **System** shows the error message: `"Job index provided is invalid"`. <br>
+    * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 
 ---
@@ -535,10 +537,10 @@ Use case ends.
 
 **Extensions**
 * 1a. The command contains errors (e.g., wrong spelling). 
-    * 1a1. **System** shows the error message: `"Unknown command"`. <br>
+    * 1a1. **System** shows an error message indicating that the command format is invalid. <br>
       Use case ends. 
 * 2a. No jobs exist in the **System**.
-    * 2a1. **System** displays a message: `"Listed all jobs: 0"`. <br>
+    * 2a1. **System** shows a message indicating that the job list is empty. <br>
       Use case ends. 
 
 ---
@@ -557,13 +559,14 @@ Use case ends.
 
 **Extensions**
 * 2a. The **JOB_NUMBER** is empty or is not a positive integer.
-    * 2a1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+    * 2a1. **System** shows an error message that the provided **JOB_NUMBER** is invalid and provides
+      the correct input format. <br>
       Use case ends.
 * 2b. The **JOB_NUMBER** does not correspond to any existing job in the job list
-    * 2b1. **System** shows an error message: `"The job index provided is invalid"`. <br>
+    * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2c. The job is already marked as completed.
-    * 2c1. **System** shows the message: `"Job is already marked as done!"`. <br>
+    * 2c1. **System** shows a message indicating that the job is already completed. <br>
       Use case ends.
 
 ---
@@ -581,13 +584,14 @@ Use case ends.
 
 **Extensions**
 * 2a. The **JOB_NUMBER** is empty or is not a positive integer.
-    * 2a1. **System** shows the error message: <br> `"Invalid command format!"` with command usage description and example. <br>
+    * 2a1. **System** shows an error message that the provided **JOB_NUMBER** is invalid and provides
+      the correct input format. <br>
       Use case ends.
 * 2b. The **JOB_NUMBER** does not correspond to any existing job in the job list.
-    * 2b1. **System** shows an error message: `"The job index provided is invalid"`. <br>
+    * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2c. The job is already marked as not completed.
-    * 2c1. **System** shows the message: `"Job is already unmarked!"`. <br>
+    * 2c1. **System** shows a message indicating that the job is already in pending state. <br>
       Use case ends.
 
 ---
@@ -603,7 +607,7 @@ Use case ends.
 
 **Extensions**
 * 1a. The command contains errors (e.g., wrong spelling).
-    * 1a1. **System** shows the error message: `"Unknown command"`. <br>
+    * 1a1. **System** shows an error message indicating that the command format is invalid. <br>
       Use case ends.
 
 ---
@@ -621,10 +625,10 @@ Use case ends.
 
 **Extensions**
 * 2a. The **KEYWORD** is empty.
-    * 2a1. **System** shows the error message: <br> `"Invalid command format!"` with command usage description and example. <br>
+    * 2a1. **System** shows an error message indicating that at least one **KEYWORD** is required. <br>
       Use case ends.
 * 3a. No tenants match the search **KEYWORD**.
-    * 3a1. **System** shows the error message: `"0 persons listed!"`. <br>
+    * 3a1. **System** shows a message indicating that no matching tenants were found. <br>
       Use case ends.
     
 ---
@@ -640,10 +644,10 @@ Use case ends.
 
 **Extensions**
 * 2a. The **KEYWORD** is empty.
-    * 2a1. **System** shows the error message: <br> `"Invalid command format!"` with command usage description and example. <br>
+    * 2a1. **System** shows an error message indicating that at least one **KEYWORD** is required. <br>
       Use case ends.
 * 3a. No job descriptions match the search **KEYWORD**.
-    * 3a1. **System** shows the error message: `"0 jobs listed!"`. <br>
+    * 3a1. **System** shows a message indicating that no matching jobs were found. <br>
       Use case ends.
 
 ---
@@ -661,13 +665,14 @@ Use case ends.
 
 **Extensions**
 * 2a. The **TENANT_NUMBER** is empty or is not a positive integer
-    * 2a1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+    * 2a1. **System** shows an error message that the provided **TENANT_NUMBER** is invalid and provides
+      the correct input format. <br>
       Use case ends.
 * 2b. The provided **TENANT_NUMBER** does not correspond to any existing tenant in the list.
-    * 2b1. **System** shows the error message: `"Invalid tenant index detected"`. <br>
+    * 2b1. **System** shows an error message indicating that the tenant does not exist. <br>
       Use case ends.
 * 2c. The command does not include any fields to edit
-    * 2c1. **System** shows the error message: `"At least one field to edit must be provided"`. <br>
+    * 2c1. **System** shows an error message indicating that at least one field must be specified. <br>
       Use case ends.
 
 ---
@@ -685,13 +690,14 @@ Use case ends.
 
 **Extensions**
 * 2a. The **JOB_NUMBER** is empty or is not a positive integer
-    * 2a1. **System** shows the error message: `"Invalid command format!"` with command usage description and example. <br>
+    * 2a1. **System** shows an error message that the provided **JOB_NUMBER** is invalid and provides
+      the correct input format. <br>
       Use case ends.
 * 2b. The provided **JOB_NUMBER** does not correspond to any existing job in the list.
-    * 2b1. **System** shows the error message: `"The job index provided is invalid"`. <br>
+    * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2c. The command does not include any **DESCRIPTION** to edit
-    * 2c1. **System** shows the error message: `"Description should not be blank"`. <br>
+    * 2c1. **System** shows an error message indicating that **DESCRIPTION** cannot be empty. <br>
       Use case ends.
 
 ---
@@ -709,17 +715,17 @@ Use case ends.
 
 **Extensions**
 * 2a. **TENANT_NUMBER** or **JOB_NUMBER** is empty or not a positive integer 
-    * 2a1. **System** shows the error message: `"Invalid command format!"` <br>
-      `"<description of usage>"` <br> `"<required parameters>"` <br> `"<example>"`.
+    * 2a1. **System** shows an error message that the provided **JOB_NUMBER** and/or **TENANT_NUMBER** is invalid and provides
+      the correct input format. <br>
       Use case ends.
 * 2b. **TENANT_NUMBER** does not correspond to any existing tenant.
-    * 2b1. **System** shows the error message: `"Invalid tenant index detected"`.
+    * 2b1. **System** shows an error message indicating that the tenant does not exist. <br>
       Use case ends.
 * 2c. **JOB_NUMBER** does not correspond to any existing job.
-    * 2c1. **System** shows the error message: `"The job index provided is invalid"`.
+    * 2c1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2d. The job is already linked to tenant.
-    * 2d1. **System** shows the error message: `"This job is already linked to this tenant!"`.
+    * 2d1. **System** shows a message indicating that the job is already assigned to the tenant. <br>
       Use case ends.
 
 ---

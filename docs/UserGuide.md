@@ -387,7 +387,7 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 
 Examples:
 - `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list.
-  <img src="images/linked-job.png" alt="Linked Job" width="600">
+  <img src="images/linked-job.png" alt="Linked Job" width="1200">
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
@@ -413,8 +413,8 @@ Format: `mark JOB_NUMBER`
 
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
-<div style="display:flex; gap: 10px">  <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="300">
-  <img src="images/marked-joblist.png" alt="Updated GUI v2" width="300">
+<div style="display:flex; gap: 10px">  <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="457">
+  <img src="images/marked-joblist.png" alt="Updated GUI v2" width="492">
 </div>
 
 💡**Tip:**

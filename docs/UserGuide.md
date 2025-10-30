@@ -63,8 +63,8 @@ track tenant information and manage maintenance jobs.
 <br>
 
 ### 1.2 User Proficiency and Expectations
-- ***Professional Focus:*** EstateMate is designed for property managers who need an efficient way to track tenant details
-  and manage maintenance jobs.
+- ***Professional Focus:*** EstateMate is optimized for users who manage multiple tenants and maintenance jobs at once
+  and need a reliable place to keep things organised.
 - ***Efficiency:*** Built specifically for the property management workflow, EstateMate prioritizes fast,
   streamlined operations so managers can update tenant information and track maintenance jobs.
 - ***User-Friendly:*** Whether you are familiar with command-line tools or prefer a simple graphical interface,
@@ -87,19 +87,19 @@ keep your properties running smoothly.
 
 ### 2.1 Installation
 
-1. Ensure you have Java `17` or above installed in your computer (Follow the guide [here](https://se-education.org/guides/tutorials/javaInstallation.html)). <br>
+1. Ensure you have [Java](#java) `17` or above installed in your computer (Follow the guide [here](https://se-education.org/guides/tutorials/javaInstallation.html)). <br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/latest).
+2. Download the latest [`.jar` file](#jar-file) from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/latest).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your application.
+3. Copy the file to the folder you want to use as the [_home folder_](#home-folder) for your application.
 
 4. Open your search bar by pressing the Windows key (or the search button for Mac).
 
-5. Open a command terminal by typing "terminal" in the search bar and press "Enter"
+5. Open a command [terminal](#terminal) by typing "terminal" in the search bar and press "Enter"
 
 6. Use `cd [folder path]` to navigate into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A [GUI (Graphical User Interface)](#gui) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <img src="images/Updated_GUI_v3.png" alt="Updated GUI v3" width="600">
 
 7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
@@ -134,7 +134,7 @@ The available commands will be explained below.
 
 ### 2.3 Understanding Command Prefix
 
-In EstateMate, commands use **prefixes** to identify each parameter.  
+In EstateMate, commands use [**prefixes**](#prefix) to identify each parameter.  
 Each prefix must be followed by a `/` and its corresponding value.
 
 | **Prefix** | **Meaning**     | **Example Usage**             |
@@ -214,7 +214,7 @@ Deletes the specified tenant from the application.
 Format: `delete TENANT_NUMBER`
 
 📌**Note:** 
-- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number***.
+- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and between 1 - 2147483647.
 - Only tenants that exist in the current displayed list can be deleted.
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">
@@ -241,7 +241,7 @@ Edits an existing tenant in the application.
 Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`
 
 📌**Note:**
-- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number***.
+- `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and between 1 - 2147483647.
 - Provide ***at least one*** field to edit.
 - Tags are replaced, not added cumulatively; t/ clears all tags.
 - You can remove all the person’s tags by typing `t/` without
@@ -316,7 +316,7 @@ Deletes a maintenance job from the application.
 Format: `djob JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and between 1 - 2147483647.
 - Only jobs that exist in the current displayed list can be deleted.
 - Deleting a job removes it from all tenants’ assigned job lists.
 
@@ -341,7 +341,7 @@ Edits a maintenance job from the application.
 Format: `ejob JOB_NUMBER d/DESCRIPTION`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and between 1 - 2147483647.
 - Only jobs that exist in the current displayed list can be edited.
 - Provide a ***clear and concise*** description of the maintenance issue.
 
@@ -407,7 +407,7 @@ Updates the status of a maintenance job so that completed tasks can be tracked e
 Format: `mark JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and between 1 - 2147483647.
 - Once marked, the job status will be updated in the display under any linked tenant.
 - If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to not completed.
 
@@ -427,7 +427,7 @@ Revert a maintenance job's status to not completed in case it was marked as comp
 Format: `unmark JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and between 1 - 2147483647.
 - Once unmarked, the job will no longer appear as completed under any linked tenant.
 
 Examples:
@@ -516,8 +516,18 @@ Action                      | Format                                            
 ## 6. Glossary
 <br>
 
-Terms                |  Definitions 
----------------------|------------------------------------------------------------------------------------------
-Upper-Case Parameter | A placeholder in commands (e.g., NAME , PHONE ) that must be replaced with actual values.
+| Terms                                 | Definitions                                                                                                                                        |
+|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Upper-Case Parameter                  | A placeholder in commands (e.g., NAME , PHONE ) that must be replaced with actual values.                                                          |
+| <a name="terminal"></a>Terminal       | A command-line program (e.g. Command Prompt on Windows, Terminal on macOS) used to type and run text-based commands.                               |
+| <a name="home-folder"></a>Home Folder | The folder on your computer where you keep the `estatemate.jar` file and where the app stores its data files (e.g. `preferences.json`, save data). |
+| <a name="java"></a>Java               | The programming language and platform required to run EstateMate. EstateMate needs Java 17 or above to start.                                      |
+| <a name="jar-file"></a>`.jar` File    | A Java archive file that contains the EstateMate application. You run it using `java -jar estatemate.jar`.                                         |
+| <a name="gui"></a>GUI                 | Graphical User Interface — the visual window of EstateMate with panels, lists, and the command box.                                                |
+| <a name="prefix"></a>Prefix           | A short marker ending with `/` used to identify a field in a command, e.g. `n/`, `p/`, `d/`, `j/`.                                                 |
+| <a name="tenant"></a>Tenant           | A person staying in or renting the property that you are tracking in EstateMate.                                                                   |
+| <a name="job"></a>Job                 | A maintenance task tracked in EstateMate (e.g. “Pipe leakage”, “Fix faucet”). Jobs can be linked to tenants.                                       |
+| <a name="index"></a>Index             | The number shown beside a tenant in the currently displayed list. Commands like `delete 2` use this number.                                        |
+| <a name="job-number"></a>Job Number   | The number shown beside a job in the currently displayed list. Commands like `djob 3` use this number.                                             |
 
 <br>

@@ -6,6 +6,7 @@ import static seedu.estatemate.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Person's lease in EstateMate.
@@ -16,7 +17,7 @@ public class Lease {
     public static final String MESSAGE_CONSTRAINTS = "Leases should be of the format \"yyyy-MM-dd yyyy-MM-dd\" "
             + "and adhere to the following constraints:\n"
             + "1. The first date is the start date and the second date is the end date.\n"
-            + "2. The end date must be on the same day or after the start date."
+            + "2. The end date must be on the same day or after the start date.\n"
             + "3. The dates must be valid calendar dates.";
 
     /*
@@ -24,7 +25,8 @@ public class Lease {
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}-\\d{2}-\\d{2}";
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd")
+            .withResolverStyle(ResolverStyle.STRICT);;
 
     public final String value;
 
@@ -34,7 +36,7 @@ public class Lease {
     /**
      * Constructs a {@code Lease}.
      *
-     * @param lease A valid lease of format "yyyy-MM-dd yyyy-MM-dd".
+     * @param lease A valid lease of format "uuuu-MM-dd uuuu-MM-dd".
      */
     public Lease(String lease) {
         requireNonNull(lease);

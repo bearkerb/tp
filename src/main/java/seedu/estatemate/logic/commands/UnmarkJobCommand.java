@@ -15,7 +15,7 @@ public class UnmarkJobCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the job (identified by the id number used in the displayed job) as incomplete.\n"
-            + "Parameters: id (must be a positive integer)\n"
+            + "Parameters: id (must be a positive integer between 1 - 2147483647)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Marked job as incomplete: #%d";
@@ -33,7 +33,7 @@ public class UnmarkJobCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_JOB_ID);
         }
         if (model.getUnfilteredJobList().stream().anyMatch(j -> (j.getId() == targetId) && !(j.getDone()))) {
-            throw new CommandException("Job is already unmarked!");
+            throw new CommandException("Job is already marked as incomplete!");
         }
 
         model.unmarkJobById(targetId);

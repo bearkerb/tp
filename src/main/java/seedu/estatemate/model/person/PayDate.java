@@ -20,7 +20,8 @@ public class PayDate {
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
-    public static final String MESSAGE_CONSTRAINTS = "Pay date must be real calendar date: yyyy-MM-dd";
+    public static final String MESSAGE_CONSTRAINTS = "Pay date should be of the format \"yyyy-MM-dd\" "
+            + "and must be valid a calendar date.";
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter
             .ofPattern("uuuu-MM-dd")

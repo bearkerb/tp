@@ -190,6 +190,8 @@ Each feature is grouped by functionality:
 
 <br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.1 Tenant Management 
 <br>
 
@@ -207,8 +209,10 @@ Examples:
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
   <img src="images/before-add.png" alt="Before Adding Tenant" width="1200">
-  <br>
+  <br><br>
   <img src="images/after-add.png" alt="After Adding Tenant" width="1200">
+
+<br>
 
 #### 3.1.2 Deleting a Tenant: `delete`
 Deletes the specified tenant from the application.
@@ -337,6 +341,8 @@ Examples:
 - Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job number before deleting to avoid removing the wrong job.
 - If you may need a record of the job later, consider [marking it as completed](#3-2-7-marking-job-as-completed-mark) instead of deleting it.
 
+<div style="page-break-after: always;"></div>
+
 #### 3.2.3 Editing a Job: `ejob`
 Edits a maintenance job in the application.
 
@@ -388,8 +394,11 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
 
 Examples:
-- `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list.
+- `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list. 
+<br>
+
   <img src="images/linked-job.png" alt="Linked Job" width="1200">
+<br>
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
@@ -418,11 +427,12 @@ Examples:
 <div style="display:flex; gap: 10px">  <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="457">
   <img src="images/marked-joblist.png" alt="Updated GUI v2" width="492">
 </div>
+<br>
 
 💡**Tip:**
 - Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job list before using `mark` to ensure you’re updating the correct job.
 - Use [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) to revert mistakes if a job is accidentally marked as not completed.
-- 
+
 #### 3.2.8 Marking Job as Not Completed: `unmark`
 Reverts a maintenance job's status to `Not Completed` in case it was marked as complete by mistake.
 
@@ -445,7 +455,7 @@ Examples:
 <br>
 
 #### 3.3.1 Clearing All Tenants: `clear`
-Remove **ALL** tenants from the application.
+Removes **ALL** tenants from the application.
 
 Format: `clear`
 
@@ -497,6 +507,7 @@ Action                      | Format                                            
 [**Unmark Job**](#3-2-8-marking-job-as-not-completed-unmark)| `unmark JOB_NUMBER`                                                                | `unmark 1`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5. FAQ and Known Issues
 <br>
@@ -505,7 +516,7 @@ Action                      | Format                                            
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: 
-1. [Install Estatemate](#2-1-installation) on your other computer.
+1. [Install EstateMate](#2-1-installation) on your other computer.
 2. On your original computer, navigate to the [home folder](#home-folder). This is the folder where the EstateMate app `estatemate.jar` is stored. 
 3. You should see a folder named `data`. Copy this folder into your other computer. 
 4. In your other computer, navigate to the [home folder](#home-folder). Find the folder named `data` and delete it. Replace it with the folder you copied over from your original computer.

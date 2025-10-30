@@ -467,22 +467,22 @@ Format: `help`
 
 Action                      | Format                                                                             |  Examples
 ----------------------------|------------------------------------------------------------------------------------|--------------------------------------------------
-**Add Tenant**              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
-**Add Job**                 | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
-**Clear**                   | `clear`                                                                            
-**Delete Tenant**           | `dtenant TENANT_NUMBER`                                                            | `dtenant 3`                                                                             
-**Delete Job**              | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
-**Edit Tenant**             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
-**Edit Job**                | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
-**Exit**                    | `exit`                                                                             |
-**Find Tenant**             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         
-**Find Job**                | `fjob KEYWORD [MORE_KEYWORDS]`                                                     | `fjob electrical plumbing renovation`     
-**Help**                    | `help`                                                                             |
-**Link Job to Tenant**      | `link TENANT_NUMBER j/JOB_NUMBER`                                                  | `link 1 j/2`                            
-**List Tenants**            | `list`                                                                             | 
-**List Jobs**               | `ljob`                                                                             | 
-**Mark Job**                | `mark JOB_NUMBER`                                                                  |`mark 1`                                                
-**Unmark Job**              | `unmark JOB_NUMBER`                                                                | `unmark 1`
+[**Add Tenant**](#3-1-1-adding-a-tenant-tenant)              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
+[**Add Job**](#3-2-1-adding-a-job-job)                 | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
+[**Clear**](#3-3-1-clearing-all-tenants-clear)                 | `clear`                                                                            
+[**Delete Tenant**](#3-1-2-deleting-a-tenant-dtenant)           | `dtenant TENANT_NUMBER`                                                            | `dtenant 3`                                                                             
+[**Delete Job**](#3-2-2-deleting-a-job-djob)              | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
+[**Edit Tenant**](#3-1-3-editing-a-tenant-edit)             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
+[**Edit Job**](#3-2-3-editing-a-job-ejob)                | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
+[**Exit**](#3-3-2-exiting-application-exit)                    | `exit`                                                                             |
+[**Find Tenant**](#3-1-4-finding-a-tenant-find)             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         
+[**Find Job**](#3-2-4-finding-a-job-fjob)                | `fjob KEYWORD [MORE_KEYWORDS]`                                                     | `fjob electrical plumbing renovation`     
+[**Help**](#3-3-3-getting-help-help)                    | `help`                                                                             |
+[**Link Job to Tenant**](#3-2-5-linking-job-to-tenant-link)      | `link TENANT_NUMBER j/JOB_NUMBER`                                                  | `link 1 j/2`                            
+[**List Tenants**](#3-1-5-listing-all-tenants-list)            | `list`                                                                             | 
+[**List Jobs**](#3-2-6-listing-all-jobs-ljob)               | `ljob`                                                                             | 
+[**Mark Job**](#3-2-7-marking-job-as-completed-mark)              | `mark JOB_NUMBER`                                                                  |`mark 1`                                                
+[**Unmark Job**](#3-2-8-marking-job-as-not-completed-unmark)              | `unmark JOB_NUMBER`                                                                | `unmark 1`
 
 --------------------------------------------------------------------------------------------------------------------
 

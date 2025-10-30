@@ -27,9 +27,9 @@ import seedu.estatemate.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX =
-            "Tenant index is not a non-zero unsigned integer between 1 - 2147483647";
+            "Tenant index must be a non-zero unsigned integer between 1 - 2147483647";
     public static final String MESSAGE_INVALID_JOB =
-            "Job number is not a non-zero unsigned integer between between 1 - 2147483647";
+            "Job number must be a non-zero unsigned integer between between 1 - 2147483647";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

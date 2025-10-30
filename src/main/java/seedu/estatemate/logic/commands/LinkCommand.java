@@ -29,8 +29,8 @@ import seedu.estatemate.model.tag.Tag;
 public class LinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a job to a tenant. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_JOB + "JOB NUMBER\n"
+            + "Parameters: INDEX (must be a positive integer between 1 - 2147483647) "
+            + PREFIX_JOB + "JOB NUMBER (must be a positive integer between 1 - 2147483647) \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_JOB + "1 ";
 

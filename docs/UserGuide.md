@@ -23,7 +23,7 @@ pageNav: 3
 [3. Features](#3-features)
 - [3.1 Tenant Management](#3-1-tenant-management)
     - [3.1.1 Adding a Tenant](#3-1-1-adding-a-tenant-tenant)
-    - [3.1.2 Deleting a Tenant](#3-1-2-deleting-a-tenant-dtenant)
+    - [3.1.2 Deleting a Tenant](#3-1-2-deleting-a-tenant-delete)
     - [3.1.3 Editing a Tenant](#3-1-3-editing-a-tenant-edit)
     - [3.1.4 Finding a Tenant](#3-1-4-finding-a-tenant-find)
     - [3.1.5 Listing All Tenants](#3-1-5-listing-all-tenants-list)
@@ -116,7 +116,7 @@ keep your properties running smoothly.
 
     * `exit` : Exits the application.<br>
 
-<img src="images/help-window.png" alt="Updated GUI v2" width="600">
+<img src="images/help-window.png" alt="Help Window" width="657">
 
 8. Refer to the [Features](#3-features) below for details of each command.
 
@@ -409,7 +409,7 @@ Format: `mark JOB_NUMBER`
 📌**Note:**
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
 - Once marked, the job status will be updated in the display under any linked tenant.
-- If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it as not completed.
+- If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to not completed.
 
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
@@ -477,22 +477,22 @@ Format: `help`
 
 Action                      | Format                                                                             |  Examples
 ----------------------------|------------------------------------------------------------------------------------|--------------------------------------------------
-[**Add Tenant**](#3-1-1-adding-a-tenant-tenant)              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
-[**Add Job**](#3-2-1-adding-a-job-job)                 | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
-[**Clear**](#3-3-1-clearing-all-tenants-clear)                 | `clear`                                                                            
-[**Delete Tenant**](#3-1-2-deleting-a-tenant-dtenant)           | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
-[**Delete Job**](#3-2-2-deleting-a-job-djob)              | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
+[**Add Tenant**](#3-1-1-adding-a-tenant-tenant)             | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
+[**Add Job**](#3-2-1-adding-a-job-job)                      | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
+[**Clear**](#3-3-1-clearing-all-tenants-clear)              | `clear`                                                                            |
+[**Delete Tenant**](#3-1-2-deleting-a-tenant-dtenant)       | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
+[**Delete Job**](#3-2-2-deleting-a-job-djob)                | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
 [**Edit Tenant**](#3-1-3-editing-a-tenant-edit)             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
-[**Edit Job**](#3-2-3-editing-a-job-ejob)                | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
-[**Exit**](#3-3-2-exiting-application-exit)                    | `exit`                                                                             |
+[**Edit Job**](#3-2-3-editing-a-job-ejob)                   | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
+[**Exit**](#3-3-2-exiting-application-exit)                 | `exit`                                                                             |
 [**Find Tenant**](#3-1-4-finding-a-tenant-find)             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         
-[**Find Job**](#3-2-4-finding-a-job-fjob)                | `fjob KEYWORD [MORE_KEYWORDS]`                                                     | `fjob electrical plumbing renovation`     
-[**Help**](#3-3-3-getting-help-help)                    | `help`                                                                             |
-[**Link Job to Tenant**](#3-2-5-linking-job-to-tenant-link)      | `link TENANT_NUMBER j/JOB_NUMBER`                                                  | `link 1 j/2`                            
-[**List Tenants**](#3-1-5-listing-all-tenants-list)            | `list`                                                                             | 
+[**Find Job**](#3-2-4-finding-a-job-fjob)                   | `fjob KEYWORD [MORE_KEYWORDS]`                                                     | `fjob electrical plumbing renovation`     
+[**Help**](#3-3-3-getting-help-help)                        | `help`                                                                             |
+[**Link Job to Tenant**](#3-2-5-linking-job-to-tenant-link) | `link TENANT_NUMBER j/JOB_NUMBER`                                                  | `link 1 j/2`                            
+[**List Tenants**](#3-1-5-listing-all-tenants-list)         | `list`                                                                             | 
 [**List Jobs**](#3-2-6-listing-all-jobs-ljob)               | `ljob`                                                                             | 
-[**Mark Job**](#3-2-7-marking-job-as-completed-mark)              | `mark JOB_NUMBER`                                                                  |`mark 1`                                                
-[**Unmark Job**](#3-2-8-marking-job-as-not-completed-unmark)              | `unmark JOB_NUMBER`                                                                | `unmark 1`
+[**Mark Job**](#3-2-7-marking-job-as-completed-mark)        | `mark JOB_NUMBER`                                                                  |`mark 1`                                                
+[**Unmark Job**](#3-2-8-marking-job-as-not-completed-unmark)| `unmark JOB_NUMBER`                                                                | `unmark 1`
 
 --------------------------------------------------------------------------------------------------------------------
 

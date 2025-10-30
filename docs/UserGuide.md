@@ -116,7 +116,7 @@ keep your properties running smoothly.
 
     * `exit` : Exits the application.<br>
 
-<img src="images/help-window.png" alt="Help Window" width="657">
+<img src="images/help-window.png" alt="Help Window" width="657"> <br>
 
 8. Refer to the [Features](#3-features) below for details of each command.
 
@@ -190,6 +190,8 @@ Each feature is grouped by functionality:
 
 <br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.1 Tenant Management 
 <br>
 
@@ -207,8 +209,10 @@ Examples:
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
   ![before-add-v2.png](images/before-add-v2.png)
-  <br>
+  <br><br>
   ![after-add-v2.png](images/after-add-v2.png)
+
+<br>
 
 #### 3.1.2 Deleting a Tenant: `delete`
 Deletes the specified tenant from the application.
@@ -291,6 +295,8 @@ Format: `list`
 - `list` without any tenants will show you an empty list, hence you are recommended to add some tenants to the application before using this command.
 <br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.2 Maintenance Job Management 
 <br>
 
@@ -336,6 +342,8 @@ Examples:
 💡**Tip:**
 - Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job number before deleting to avoid removing the wrong job.
 - If you may need a record of the job later, consider [marking it as completed](#3-2-7-marking-job-as-completed-mark) instead of deleting it.
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.3 Editing a Job: `ejob`
 Edits a maintenance job in the application.
@@ -388,8 +396,11 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
 
 Examples:
-- `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list.
+- `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list. 
+<br>
+
   <img src="images/linked-job.png" alt="Linked Job" width="1200">
+<br>
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
@@ -418,11 +429,12 @@ Examples:
 <div style="display:flex; gap: 10px">  <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="457">
   <img src="images/marked-joblist.png" alt="Updated GUI v2" width="492">
 </div>
+<br>
 
 💡**Tip:**
 - Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job list before using `mark` to ensure you’re updating the correct job.
 - Use [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) to revert mistakes if a job is accidentally marked as not completed.
-- 
+
 #### 3.2.8 Marking Job as Not Completed: `unmark`
 Reverts a maintenance job's status to `Not Completed` in case it was marked as complete by mistake.
 
@@ -445,7 +457,7 @@ Examples:
 <br>
 
 #### 3.3.1 Clearing All Tenants: `clear`
-Remove **ALL** tenants from the application.
+Removes **ALL** tenants from the application.
 
 Format: `clear`
 
@@ -482,7 +494,7 @@ Action                      | Format                                            
 [**Add Tenant**](#3-1-1-adding-a-tenant-tenant)             | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 [**Add Job**](#3-2-1-adding-a-job-job)                      | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
 [**Clear**](#3-3-1-clearing-all-tenants-clear)              | `clear`                                                                            |
-[**Delete Tenant**](#3-1-2-deleting-a-tenant-dtenant)       | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
+[**Delete Tenant**](#3-1-2-deleting-a-tenant-delete)       | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
 [**Delete Job**](#3-2-2-deleting-a-job-djob)                | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
 [**Edit Tenant**](#3-1-3-editing-a-tenant-edit)             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
 [**Edit Job**](#3-2-3-editing-a-job-ejob)                   | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
@@ -497,6 +509,7 @@ Action                      | Format                                            
 [**Unmark Job**](#3-2-8-marking-job-as-not-completed-unmark)| `unmark JOB_NUMBER`                                                                | `unmark 1`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5. FAQ and Known Issues
 <br>
@@ -505,7 +518,7 @@ Action                      | Format                                            
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: 
-1. [Install Estatemate](#2-1-installation) on your other computer.
+1. [Install EstateMate](#2-1-installation) on your other computer.
 2. On your original computer, navigate to the [home folder](#home-folder). This is the folder where the EstateMate app `estatemate.jar` is stored. 
 3. You should see a folder named `data`. Copy this folder into your other computer. 
 4. In your other computer, navigate to the [home folder](#home-folder). Find the folder named `data` and delete it. Replace it with the folder you copied over from your original computer.

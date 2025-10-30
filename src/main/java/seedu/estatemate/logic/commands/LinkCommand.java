@@ -5,6 +5,7 @@ import static seedu.estatemate.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.estatemate.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -87,11 +88,11 @@ public class LinkCommand extends Command {
         LeaseAmount originalLeaseAmount = personToEdit.getLeaseAmount();
         PayDate originalPayDate = personToEdit.getPayDate();
         Set<Tag> originalTags = personToEdit.getTags();
-        List<Integer> jobs = personToEdit.getJobs();
-        jobs.add(job);
+        List<Integer> newJobs = new ArrayList<>(personToEdit.getJobs());
+        newJobs.add(job);
 
         return new Person(originalName, originalPhone, originalEmail, originalAddress, originalLease,
-                originalLeaseAmount, originalPayDate, originalTags, jobs);
+                originalLeaseAmount, originalPayDate, originalTags, newJobs);
     }
 
     @Override

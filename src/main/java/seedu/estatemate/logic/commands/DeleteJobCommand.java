@@ -8,7 +8,7 @@ import seedu.estatemate.logic.commands.exceptions.CommandException;
 import seedu.estatemate.model.Model;
 
 /**
- * Deletes a Job identified using it's displayed id number from the address book.
+ * Deletes a Job identified using its displayed id number from EstateMate.
  */
 public class DeleteJobCommand extends Command {
 

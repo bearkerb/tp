@@ -3,7 +3,7 @@ package seedu.estatemate.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.estatemate.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
-import static seedu.estatemate.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.estatemate.model.Model.PREDICATE_SHOW_ALL_TENANTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class LinkCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TENANT_DISPLAYED_INDEX);
         }
 
         if (!model.getUnfilteredJobList().stream().anyMatch(j -> j.getId() == jobId)) {
@@ -73,7 +73,7 @@ public class LinkCommand extends Command {
 
         Person linkedPerson = createPersonWithJob(personToLink, jobId);
         model.setPerson(personToLink, linkedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_TENANTS);
         return new CommandResult(String.format(MESSAGE_LINK_JOB_SUCCESS, jobId, linkedPerson.getName()));
     }
 

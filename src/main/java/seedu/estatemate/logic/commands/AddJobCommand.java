@@ -10,13 +10,13 @@ import seedu.estatemate.model.job.Description;
 import seedu.estatemate.model.job.Job;
 
 /**
- * Adds a job to the address book.
+ * Adds a job to EstateMate.
  */
 public class AddJobCommand extends Command {
 
     public static final String COMMAND_WORD = "job";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a job to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a job to EstateMate. "
             + "Parameters: "
             + PREFIX_DESCRIPTION + "NAME ";
 

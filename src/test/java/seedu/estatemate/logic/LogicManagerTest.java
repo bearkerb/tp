@@ -1,7 +1,7 @@
 package seedu.estatemate.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_TENANT_DISPLAYED_INDEX;
 import static seedu.estatemate.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.estatemate.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.estatemate.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -62,14 +62,14 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_TENANT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand,
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()), model);
+                String.format(Messages.MESSAGE_TENANTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()), model);
     }
 
     @Test

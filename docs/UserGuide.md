@@ -161,7 +161,6 @@ It is designed to help property managers understand how to efficiently manage te
 through various commands.
 
 Each feature is grouped by functionality:
-- **Command Summary** — Quick reference table of all available commands.
 - **Tenant Management** — Commands for adding, deleting, editing, and finding tenant details.
 - **Maintenance Job Management** — Commands for creating, tracking, and updating maintenance jobs, including linking them to tenants.
 - **General Utilities** — Commands for clearing data, exiting the application, and accessing in-app help.
@@ -240,7 +239,7 @@ Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEAS
 
 📌**Note:**
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be ***positive number***.
-- Provide ***at least one*** field to edit.
+- Provide ***at least one*** parameter to edit.
 - Tags are replaced, not added cumulatively; t/ clears all tags.
 - You can remove all the person’s tags by typing `t/` without
    specifying any tags after it.
@@ -251,7 +250,7 @@ Examples:
 
 💡**Tip:**
 - Use `list` or `find` first to confirm the correct tenant before editing to avoid overwriting important data. 
-- When updating multiple fields, include all changes in a single command to reduce errors.
+- When updating multiple parameters, include all changes in a single command to reduce errors.
 <br>
 
 #### 3.1.4 Finding a Tenant: `find`
@@ -444,7 +443,7 @@ This action is irreversible, all data will be ***permanently deleted***. Make su
 </div>
 <br>
 
-💡**Tip:** Use clear only when you want to start fresh or reset your tenant list.
+💡**Tip:** Use `clear` only when you want to start fresh or reset your tenant list.
 <br>
 
 #### 3.3.2 Exiting Application: `exit`
@@ -506,8 +505,16 @@ Action                      | Format                                            
 ## 6. Glossary
 <br>
 
-Terms                |  Definitions 
----------------------|------------------------------------------------------------------------------------------
-Upper-Case Parameter | A placeholder in commands (e.g., NAME , PHONE ) that must be replaced with actual values.
+Terms                           |  Definitions 
+--------------------------------|------------------------------------------------------------------------------------------
+Command-Line Interface (CLI)    | A keyboard-based way of interacting with an app through typing text commands. EstateMate uses a CLI.
+Graphical User Interface (GUI)  | A mouse-based way of interacting with an app by using buttons and menus. Instead of a GUI, EstateMate uses a Command-Line Interface (CLI) where you type to interact. 
+Command                         | A line of text that you type into the search bar of EstateMate to tell it what to do, such as to mark a maintenance job as completed.
+Parameter                       | A piece of information you include in your command to specify exactly what you mean to EstateMate. (e.g. In this command `job d/Conduct cleaning works`, `d/Conduct cleaning works` is a parameter that specifies the description of the new job).
+UPPER_CASE Parameter            | A placeholder for a parameter where you put your actual information. (e.g. The format for the add job command is `job d/DESCRIPTION`. `d/DESCRIPTION` is a placeholder which you replace with your own information, such as `d/Conduct cleaning works`).
+Prefix                          | The code written before a slash that you use for each parameter to tell EstateMate what kind of detail will come next. (e.g. `d/` is a prefix to indicate a job's description).
+Keyword                         | A search term you indicate when using the find job or tenant command to locate the job or tenant with the matching name.
+Job                             | A maintenance task that is related to the property you are tracking.
+Index                           | The number displayed beside each tenant or job in EstateMate. 
 
 <br>

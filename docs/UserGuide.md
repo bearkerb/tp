@@ -23,7 +23,7 @@ pageNav: 3
 [3. Features](#3-features)
 - [3.1 Tenant Management](#3-1-tenant-management)
     - [3.1.1 Adding a Tenant](#3-1-1-adding-a-tenant-tenant)
-    - [3.1.2 Deleting a Tenant](#3-1-2-deleting-a-tenant-dtenant)
+    - [3.1.2 Deleting a Tenant](#3-1-2-deleting-a-tenant-delete)
     - [3.1.3 Editing a Tenant](#3-1-3-editing-a-tenant-edit)
     - [3.1.4 Finding a Tenant](#3-1-4-finding-a-tenant-find)
     - [3.1.5 Listing All Tenants](#3-1-5-listing-all-tenants-list)
@@ -110,7 +110,7 @@ keep your properties running smoothly.
     * `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`:
       Adds a contact named `John Tan` to the application.
 
-    * `dtenant 3` : Deletes the 3rd tenant contact shown in the current list.
+    * `delete 3` : Deletes the 3rd tenant contact shown in the current list.
 
     * `clear` : Deletes all contacts.
 
@@ -206,10 +206,10 @@ Examples:
 💡**Tip:** Tag tenants so that you can use `find` to quickly filter and locate them without checking the full list.
 <br>
 
-#### 3.1.2 Deleting a Tenant: `dtenant`
+#### 3.1.2 Deleting a Tenant: `delete`
 Deletes the specified tenant from the application.
 
-Format: `dtenant TENANT_NUMBER`
+Format: `delete TENANT_NUMBER`
 
 📌**Note:** 
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be ***positive number***.
@@ -224,8 +224,8 @@ Format: `dtenant TENANT_NUMBER`
 <br>
 
 Examples:
-- `list` followed by `dtenant 2` deletes the 2nd tenant listed in the application.
-- `find John` followed by `dtenant 1` deletes the 1st tenant in the results of the `find` command.
+- `list` followed by `delete 2` deletes the 2nd tenant listed in the application.
+- `find John` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
 
 💡**Tip:**
 - Use `list` or `find` first to confirm the correct tenant before deleting to avoid accidental removal.
@@ -470,7 +470,7 @@ Action                      | Format                                            
 **Add Tenant**              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 **Add Job**                 | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
 **Clear**                   | `clear`                                                                            
-**Delete Tenant**           | `dtenant TENANT_NUMBER`                                                            | `dtenant 3`                                                                             
+**Delete Tenant**           | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
 **Delete Job**              | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
 **Edit Tenant**             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
 **Edit Job**                | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     

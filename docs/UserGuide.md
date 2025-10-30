@@ -23,7 +23,7 @@ pageNav: 3
 [3. Features](#3-features)
 - [3.1 Tenant Management](#3-1-tenant-management)
     - [3.1.1 Adding a Tenant](#3-1-1-adding-a-tenant-tenant)
-    - [3.1.2 Deleting a Tenant](#3-1-2-deleting-a-tenant-dtenant)
+    - [3.1.2 Deleting a Tenant](#3-1-2-deleting-a-tenant-delete)
     - [3.1.3 Editing a Tenant](#3-1-3-editing-a-tenant-edit)
     - [3.1.4 Finding a Tenant](#3-1-4-finding-a-tenant-find)
     - [3.1.5 Listing All Tenants](#3-1-5-listing-all-tenants-list)
@@ -56,15 +56,15 @@ pageNav: 3
 
 ### 1.1 What Is EstateMate
 <p>
-EstateMate is a comprehensive application and management tool designed specifically 
-for property managers and its executive firms. 
+EstateMate is designed for property managers who need an efficient way to 
+track tenant information and manage maintenance jobs.
 </p>
 
 <br>
 
 ### 1.2 User Proficiency and Expectations
-- ***Professional Focus:*** EstateMate is designed for property managers who need an efficient way to track tenant contacts
-  and manage maintenance tasks.
+- ***Professional Focus:*** EstateMate is designed for property managers who need an efficient way to track tenant details
+  and manage maintenance jobs.
 - ***Efficiency:*** Built specifically for the property management workflow, EstateMate prioritizes fast,
   streamlined operations so managers can update tenant information and track maintenance jobs.
 - ***User-Friendly:*** Whether you are familiar with command-line tools or prefer a simple graphical interface,
@@ -87,18 +87,22 @@ keep your properties running smoothly.
 
 ### 2.1 Installation
 
-1. Ensure you have Java `17` or above installed in your computer.<br>
+1. Ensure you have Java `17` or above installed in your computer (Follow the guide [here](https://se-education.org/guides/tutorials/javaInstallation.html)). <br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/tag/v1.3).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/tag/v1.4).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Updated_GUI_v1.png" alt="Updated GUI v1" width="600">
+4. Open your search bar by pressing the Windows key (or the search button for Mac).
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
+5. Open a command terminal by typing "terminal" in the search bar and press "Enter"
+
+6. Use `cd [folder path]` to navigate into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   <img src="images/Updated_GUI_v2.png" alt="Updated GUI v2" width="600">
+
+7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -106,7 +110,7 @@ keep your properties running smoothly.
     * `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`:
       Adds a contact named `John Tan` to the application.
 
-    * `dtenant 3` : Deletes the 3rd tenant contact shown in the current list.
+    * `delete 3` : Deletes the 3rd tenant contact shown in the current list.
 
     * `clear` : Deletes all contacts.
 
@@ -118,7 +122,11 @@ keep your properties running smoothly.
 
 ### 2.2 User Interface Overview
 
-- insert UI (coming soon...)
+Upon opening the application, you should see the following UI:
+![mainWindow.png](images/mainWindow.png)
+
+To input commands, use the search bar at the top of the window.
+The available commands will be explained below.
 
 <br>
 
@@ -198,10 +206,10 @@ Examples:
 💡**Tip:** Tag tenants so that you can use `find` to quickly filter and locate them without checking the full list.
 <br>
 
-#### 3.1.2 Deleting a Tenant: `dtenant`
+#### 3.1.2 Deleting a Tenant: `delete`
 Deletes the specified tenant from the application.
 
-Format: `dtenant TENANT_NUMBER`
+Format: `delete TENANT_NUMBER`
 
 📌**Note:** 
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be ***positive number***.
@@ -216,8 +224,8 @@ Format: `dtenant TENANT_NUMBER`
 <br>
 
 Examples:
-- `list` followed by `dtenant 2` deletes the 2nd tenant listed in the application.
-- `find John` followed by `dtenant 1` deletes the 1st tenant in the results of the `find` command.
+- `list` followed by `delete 2` deletes the 2nd tenant listed in the application.
+- `find John` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
 
 💡**Tip:**
 - Use `list` or `find` first to confirm the correct tenant before deleting to avoid accidental removal.
@@ -462,7 +470,7 @@ Action                      | Format                                            
 **Add Tenant**              | `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydate/PAYDATE` | `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 **Add Job**                 | `job d/DESCRIPTION`                                                                | `job d/Water leakage in ceiling`                                                           
 **Clear**                   | `clear`                                                                            
-**Delete Tenant**           | `dtenant TENANT_NUMBER`                                                            | `dtenant 3`                                                                             
+**Delete Tenant**           | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
 **Delete Job**              | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
 **Edit Tenant**             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
 **Edit Job**                | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     

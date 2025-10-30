@@ -5,6 +5,7 @@ import static seedu.estatemate.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.estatemate.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.estatemate.model.Model.PREDICATE_SHOW_ALL_TENANTS;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -28,12 +29,12 @@ import seedu.estatemate.model.tag.Tag;
 public class LinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a job to a tenant. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_JOB + "JOB NUMBER\n"
+            + "Parameters: INDEX (must be a positive integer between 1 - 2147483647) "
+            + PREFIX_JOB + "JOB NUMBER (must be a positive integer between 1 - 2147483647) \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_JOB + "1 ";
 
-    public static final String MESSAGE_LINK_JOB_SUCCESS = "New Job linked: %1$s";
+    public static final String MESSAGE_LINK_JOB_SUCCESS = "Job #%1$s linked to %2$s";
     public static final String MESSAGE_ALREADY_LINKED_JOB = "This job is already linked to this tenant!";
 
     private final Index index;
@@ -73,7 +74,7 @@ public class LinkCommand extends Command {
         Person linkedPerson = createPersonWithJob(personToLink, jobId);
         model.setPerson(personToLink, linkedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_TENANTS);
-        return new CommandResult(String.format(MESSAGE_LINK_JOB_SUCCESS, Messages.format(linkedPerson)));
+        return new CommandResult(String.format(MESSAGE_LINK_JOB_SUCCESS, jobId, linkedPerson.getName()));
     }
 
     private static Person createPersonWithJob(Person personToEdit, Integer job) {
@@ -87,11 +88,11 @@ public class LinkCommand extends Command {
         LeaseAmount originalLeaseAmount = personToEdit.getLeaseAmount();
         PayDate originalPayDate = personToEdit.getPayDate();
         Set<Tag> originalTags = personToEdit.getTags();
-        List<Integer> jobs = personToEdit.getJobs();
-        jobs.add(job);
+        List<Integer> newJobs = new ArrayList<>(personToEdit.getJobs());
+        newJobs.add(job);
 
         return new Person(originalName, originalPhone, originalEmail, originalAddress, originalLease,
-                originalLeaseAmount, originalPayDate, originalTags, jobs);
+                originalLeaseAmount, originalPayDate, originalTags, newJobs);
     }
 
     @Override

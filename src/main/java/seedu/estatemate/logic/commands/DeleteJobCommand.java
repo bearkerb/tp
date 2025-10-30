@@ -15,11 +15,11 @@ public class DeleteJobCommand extends Command {
     public static final String COMMAND_WORD = "djob";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the job identified by the id number used in the displayed job.\n"
-            + "Parameters: id (must be a positive integer)\n"
+            + ": Deletes the job identified by the id number displayed in the job list.\n"
+            + "Parameters: id (must be a positive integer between 1 - 2147483647) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_JOB_SUCCESS = "Deleted job: #%d";
+    public static final String MESSAGE_DELETE_JOB_SUCCESS = "Deleted job successfully: #%d";
 
     private final Integer targetId;
 

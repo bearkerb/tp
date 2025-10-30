@@ -248,10 +248,9 @@ public class ModelManager implements Model {
             return;
         }
         boolean done = Boolean.TRUE.equals(isJobCompleted(id));
-        estateMate.removeJobById(id);
         Job updated = new Job(newDescription, id);
         updated.setDone(done);
-        estateMate.addJob(updated);
+        estateMate.setJobById(id, updated);
         updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
     }
 

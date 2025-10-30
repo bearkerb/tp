@@ -384,7 +384,8 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
 
 Examples:
-- `link 2 j/5` links the 5th maintenance job in the job list to the 2nd tenant in the tenant list.
+- `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list.
+  <img src="images/linked-job.png" alt="Linked Job" width="600">
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
@@ -409,7 +410,10 @@ Format: `mark JOB_NUMBER`
 - If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it as not completed.
 
 Examples:
-- `mark 3` updates the completion status of job number 3 of the job list to 'completed'.
+- `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
+<div style="display:flex; gap: 10px">  <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="300">
+  <img src="images/marked-joblist.png" alt="Updated GUI v2" width="300">
+</div>
 
 💡**Tip:**
 - Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job list before using `mark` to ensure you’re updating the correct job.

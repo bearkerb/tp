@@ -20,7 +20,7 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "Listed %1$d tenant(s).";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_INVALID_JOB_ID = "The job index provided is invalid";
+    public static final String MESSAGE_INVALID_JOB_ID = "Invalid job number detected.";
 
 
     /**

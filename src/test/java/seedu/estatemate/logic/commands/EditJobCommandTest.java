@@ -7,6 +7,9 @@ import static seedu.estatemate.logic.commands.CommandTestUtil.assertCommandFailu
 import static seedu.estatemate.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.estatemate.testutil.TypicalPersons.getTypicalEstateMate;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -72,6 +75,38 @@ public class EditJobCommandTest {
         // Attempt to edit id1 to have the same description as id2
         EditJobCommand cmd = new EditJobCommand(id1, new Description("Replace corridor lights"));
         assertCommandFailure(cmd, model, EditJobCommand.MESSAGE_DUPLICATE_JOB);
+    }
+
+    @Test
+    public void execute_editPreservesOrderById_success() {
+        int id3 = 3;
+        model.addJob(new Job(new Description("Replace lift button"), id3));
+        expectedModel.addJob(new Job(new Description("Replace lift button"), id3));
+
+        // Check initial order is 1, 2, 3
+        List<Integer> initialIds = model.getFilteredJobList().stream()
+                .map(Job::getId).collect(Collectors.toList());
+        assertEquals(List.of(id1, id2, id3), initialIds,
+                "Precondition failed: initial job order should be [1, 2, 3]");
+
+        // Edit id2 which should not change its position in the shown list
+        Description newDesc = new Description("Repair lobby door (updated)");
+        EditJobCommand cmd = new EditJobCommand(id2, newDesc);
+
+        expectedModel.editJobById(id2, newDesc);
+
+        assertCommandSuccess(
+                cmd,
+                model,
+                String.format(EditJobCommand.MESSAGE_SUCCESS, id2),
+                expectedModel
+        );
+
+        // Check if order is correct
+        List<Integer> afterIds = model.getFilteredJobList().stream()
+                .map(Job::getId).collect(Collectors.toList());
+        assertEquals(List.of(id1, id2, id3), afterIds,
+                "Editing a job must not change job ordering");
     }
 
     @Test

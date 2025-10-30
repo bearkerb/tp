@@ -204,7 +204,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
     - `Person` keeps `List<Integer> jobs` (job **ids**).  
       Deleting a job **cascades**: the job is removed and its id is stripped from all persons’ `jobs` lists.
 
-<puml src="diagrams/JobModelClassDiagram.puml" width="720" />
+<puml src="diagrams/JobModelClassDiagram.puml" width="360" />
 
 #### Logic
 
@@ -223,7 +223,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 - **Post-mutation behaviour**
     - After any mutation, `ModelManager` resets the filter to `PREDICATE_SHOW_ALL_JOBS`.
 
-<puml src="diagrams/JobAddSequence.puml" width="720" />
+<puml src="diagrams/JobAddSequence.puml" width="900" />
 
 #### Storage
 
@@ -244,7 +244,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
     - Each `JobCard` shows index, `id`, `description`, and a completion badge derived from `isDone`.
     - The list updates automatically when `ModelManager`'s `filteredJobs` changes.
 
-<puml src="diagrams/JobUiClassDiagram.puml" width="680" />
+<puml src="diagrams/JobUiClassDiagram.puml" width="360" />
 
 ---
 

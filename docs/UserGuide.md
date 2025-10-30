@@ -163,7 +163,6 @@ It is designed to help property managers understand how to efficiently manage te
 through various commands.
 
 Each feature is grouped by functionality:
-- **Command Summary** — Quick reference table of all available commands.
 - **Tenant Management** — Commands for adding, deleting, editing, and finding tenant details.
 - **Maintenance Job Management** — Commands for creating, tracking, and updating maintenance jobs, including linking them to tenants.
 - **General Utilities** — Commands for clearing data, exiting the application, and accessing in-app help.
@@ -206,6 +205,7 @@ Examples:
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
   <img src="images/before-add.png" alt="Before Adding Tenant" width="1200">
+  <br>
   <img src="images/after-add.png" alt="After Adding Tenant" width="1200">
 
 #### 3.1.2 Deleting a Tenant: `delete`

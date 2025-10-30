@@ -34,7 +34,7 @@ public class LinkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_JOB + "1 ";
 
-    public static final String MESSAGE_LINK_JOB_SUCCESS = "New Job linked: %1$s";
+    public static final String MESSAGE_LINK_JOB_SUCCESS = "Job #%1$s linked to %2$s";
     public static final String MESSAGE_ALREADY_LINKED_JOB = "This job is already linked to this tenant!";
 
     private final Index index;
@@ -74,7 +74,7 @@ public class LinkCommand extends Command {
         Person linkedPerson = createPersonWithJob(personToLink, jobId);
         model.setPerson(personToLink, linkedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_LINK_JOB_SUCCESS, Messages.format(linkedPerson)));
+        return new CommandResult(String.format(MESSAGE_LINK_JOB_SUCCESS, jobId, linkedPerson.getName()));
     }
 
     private static Person createPersonWithJob(Person personToEdit, Integer job) {

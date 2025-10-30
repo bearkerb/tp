@@ -86,6 +86,9 @@ public class UniqueJobList implements Iterable<Job> {
         toMark.setDone(false);
     }
 
+    /**
+     * Replaces the contents of this list with {@code jobs}. {@code jobs} must not contain duplicate jobs.
+     */
     public void setJobs(List<Job> jobs) {
         requireNonNull(jobs);
         if (!jobsAreUnique(jobs)) {
@@ -95,11 +98,22 @@ public class UniqueJobList implements Iterable<Job> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}. {@code persons} must not contain duplicate persons.
+     * Replaces the {@code target} with {@code editedJob}
      */
-    public void setJob(List<Job> jobs) {
-        requireAllNonNull(jobs);
-        internalList.setAll(jobs);
+    public void setJob(Job target, Job editedJob) {
+        requireAllNonNull(target, editedJob);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new JobNotFoundException();
+        }
+
+        boolean identityChanged = !target.isSameJob(editedJob);
+        if (identityChanged && containsDescription(editedJob.getDescription())) {
+            throw new DuplicateJobException();
+        }
+
+        internalList.set(index, editedJob);
     }
 
     /**

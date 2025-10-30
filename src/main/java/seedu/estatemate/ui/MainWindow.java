@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TenantListPanel personListPanel;
+    private TenantListPanel tenantListPanel;
     private JobListPanel jobListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane tenantListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -118,8 +118,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new TenantListPanel(logic.getFilteredPersonList(), model);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        tenantListPanel = new TenantListPanel(logic.getFilteredPersonList(), model);
+        tenantListPanelPlaceholder.getChildren().add(tenantListPanel.getRoot());
 
         jobListPanel = new JobListPanel(model.getFilteredJobList());
 
@@ -177,7 +177,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public TenantListPanel getPersonListPanel() {
-        return personListPanel;
+        return tenantListPanel;
     }
 
     /**
@@ -195,19 +195,19 @@ public class MainWindow extends UiPart<Stage> {
             String trimmedCommand = commandText.trim().split("\\s+")[0];
             switch (trimmedCommand) { //Feel like I could maybe use an if statement for this idk
             case "ljob":
-                personListPanelPlaceholder.getChildren().clear();
-                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                tenantListPanelPlaceholder.getChildren().clear();
+                tenantListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
                 break;
             case "fjob":
-                personListPanelPlaceholder.getChildren().clear();
-                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                tenantListPanelPlaceholder.getChildren().clear();
+                tenantListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
                 break;
             default:
-                personListPanelPlaceholder.getChildren().clear();
-                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                tenantListPanelPlaceholder.getChildren().clear();
+                tenantListPanelPlaceholder.getChildren().add(tenantListPanel.getRoot());
             }
             jobListPanel.refresh();
-            personListPanel.refresh();
+            tenantListPanel.refresh();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

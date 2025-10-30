@@ -100,7 +100,7 @@ keep your properties running smoothly.
 
 6. Use `cd [folder path]` to navigate into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Updated_GUI_v2.png" alt="Updated GUI v2" width="600">
+   <img src="images/Updated_GUI_v3.png" alt="Updated GUI v3" width="600">
 
 7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -110,22 +110,24 @@ keep your properties running smoothly.
     * `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`:
       Adds a contact named `John Tan` to the application.
 
-    * `dtenant 3` : Deletes the 3rd tenant contact shown in the current list.
+    * `delete 3` : Deletes the 3rd tenant contact shown in the current list.
 
     * `clear` : Deletes all contacts.
 
     * `exit` : Exits the application.<br>
 
-6. Refer to the [Features](#3-features) below for details of each command.
+<img src="images/help-window.png" alt="Updated GUI v2" width="600">
+
+8. Refer to the [Features](#3-features) below for details of each command.
 
 <br>
 
 ### 2.2 User Interface Overview
 
 Upon opening the application, you should see the following UI:
-![mainWindow.png](images/mainWindow.png)
+![annotated-GUI.png](images/annotated-GUI.png)
 
-To input commands, use the search bar at the top of the window.
+To input commands, use the input box at the top of the window.
 The available commands will be explained below.
 
 <br>

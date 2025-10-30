@@ -258,7 +258,7 @@ Examples:
 
 #### 3.1.4 Finding a Tenant: `find`
 
-Find tenants whose names contain any of the given keywords.
+Finds tenants whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -267,7 +267,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - Only the names of tenants are searched.
 - Only full words will be matched e.g. `Han` will not match `Hans`
-- Tenants matching at least one keyword will be returned (i.e. `OR` search).
+- Tenants matching at least one keyword will be returned.
     e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -293,7 +293,7 @@ Format: `list`
 <br>
 
 #### 3.2.1 Adding a Job: `job`
-Adds a maintenance job to the job list in the application.
+Adds a maintenance job to the application.
 
 Format: `job d/DESCRIPTION`
 
@@ -336,7 +336,7 @@ Examples:
 - If you may need a record of the job later, consider [marking it as completed](#3-2-7-marking-job-as-completed-mark) instead of deleting it.
 
 #### 3.2.3 Editing a Job: `ejob`
-Edits a maintenance job from the application.
+Edits a maintenance job in the application.
 
 Format: `ejob JOB_NUMBER d/DESCRIPTION`
 
@@ -353,7 +353,7 @@ Examples:
 - You can quickly edit a job after using [`ljob`](#3-2-6-listing-all-jobs-ljob) to confirm the job number.
 
 #### 3.2.4 Finding a Job: `fjob`
-Find maintenance jobs whose descriptions contain any of the given keyword.
+Finds maintenance jobs whose descriptions contain any of the given keywords.
 
 Format: `fjob KEYWORD [MORE KEYWORDS]`
 
@@ -362,7 +362,7 @@ Format: `fjob KEYWORD [MORE KEYWORDS]`
 - The order of the keywords does not matter. e.g. `Pipe leak` will match `leak pipe`
 - Only the description is searched.
 - Only full words will be matched e.g. `Pipe` will not match `Pipes`
-- Maintenance jobs matching at least one keyword will be returned (i.e. `OR` search).
+- Maintenance jobs matching at least one keyword will be returned.
    e.g. `Broken window` will return `Broken pipe`, `Window repair`
 
 Examples:
@@ -370,11 +370,11 @@ Examples:
 - `fjob aircon repair` returns `Aircon Leakage` and `Repair Pipe`.
 
 💡**Tip:**
-- Use specific keywords related to the job description to narrow down results, e.g., pipe leakage instead of just pipe.
-- Combine multiple keywords for broader search if you’re unsure of the exact description, e.g., aircon repair ceiling.
+- Use specific keywords related to the job description to narrow down results, e.g., `pipe leakage` instead of just `pipe`.
+- Combine multiple keywords for broader search if you’re unsure of the exact description, e.g., `aircon repair ceiling`.
 
 #### 3.2.5 Linking Job to Tenant: `link`
-Link a maintenance job to a specific tenant.
+Links a maintenance job to a specific tenant so that the job can be tracked alongside its relevant tenants.
 
 Format: `link TENANT_NUMBER j/JOB_NUMBER`
 
@@ -399,17 +399,17 @@ Format: `ljob`
 
 📌**Note:**
 - Any additional input after `ljob` command will be ignored.
-- `list` without any jobs will show you an empty list, hence you are recommended to add some maintenance jobs to the application before using this command.
+- Running the `ljob` command without any jobs stored in the application will show you an empty list, hence you are recommended to add some maintenance jobs before using this command.
 
 #### 3.2.7 Marking Job as Completed: `mark`
-Updates the status of a maintenance job so that completed tasks can be tracked easily.
+Updates the status of a maintenance job to `Completed` so that you can track completed maintenance jobs easily.
 
 Format: `mark JOB_NUMBER`
 
 📌**Note:**
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
 - Once marked, the job status will be updated in the display under any linked tenant.
-- If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to not completed.
+- If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to `Not Completed`.
 
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
@@ -422,20 +422,20 @@ Examples:
 - Use [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) to revert mistakes if a job is accidentally marked as not completed.
 - 
 #### 3.2.8 Marking Job as Not Completed: `unmark`
-Revert a maintenance job's status to not completed in case it was marked as complete by mistake.
+Reverts a maintenance job's status to `Not Completed` in case it was marked as complete by mistake.
 
 Format: `unmark JOB_NUMBER`
 
 📌**Note:**
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number***.
-- Once unmarked, the job will no longer appear as completed under any linked tenant.
+- Once unmarked, the job will no longer appear as completed.
 
 Examples:
-- `unmark 3` updates the status of job number 3 of the job list back to not completed.
+- `unmark 3` updates the status of job number 3 in the job list back to not completed.
 
 💡**Tip:** 
 - Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job list before using `unmark` to ensure you’re updating the correct job.
-- Use [`mark`](#3-2-7-marking-job-as-completed-mark) to revert mistakes if a job is accidentally marked as not completed.
+- Use [`mark`](#3-2-7-marking-job-as-completed-mark) to revert mistakes if you accidentally `unmark` a job.
 
 <br>
 
@@ -458,7 +458,7 @@ This action is irreversible, all data will be ***permanently deleted***. Make su
 <br>
 
 #### 3.3.2 Exiting Application: `exit`
-Closes the program/application.
+Closes the program.
 
 Format: `exit`
 
@@ -501,14 +501,18 @@ Action                      | Format                                            
 
 ### 5.1 FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EstateMate home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: 
+1. [Install Estatemate](#2-1-installation) on your other computer.
+2. On your original computer, navigate to the [home folder](#home-folder). This is the folder where the EstateMate app `estatemate.jar` is stored. 
+3. You should see a folder named `data`. Copy this folder into your other computer. 
+4. In your other computer, navigate to the [home folder](#home-folder). Find the folder named `data` and delete it. Replace it with the folder you copied over from your original computer.
 
 <br>
 
 ### 5.2 Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the EstateMate app will open off-screen. The remedy is to navigate to the [home folder](#home-folder), find the file named `preferences.json` and delete it before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -520,10 +524,10 @@ Terms                           |  Definitions
 --------------------------------|------------------------------------------------------------------------------------------
 Command-Line Interface (CLI)    | A keyboard-based way of interacting with an app through typing text commands. EstateMate uses a CLI.
 Graphical User Interface (GUI)  | A mouse-based way of interacting with an app by using buttons and menus. Instead of a GUI, EstateMate uses a Command-Line Interface (CLI) where you type to interact. 
-Command                         | A line of text that you type into the search bar of EstateMate to tell it what to do, such as to mark a maintenance job as completed.
-Parameter                       | A piece of information you include in your command to specify exactly what you mean to EstateMate. (e.g. In this command `job d/Conduct cleaning works`, `d/Conduct cleaning works` is a parameter that specifies the description of the new job).
-UPPER_CASE Parameter            | A placeholder for a parameter where you put your actual information. (e.g. The format for the add job command is `job d/DESCRIPTION`. `d/DESCRIPTION` is a placeholder which you replace with your own information, such as `d/Conduct cleaning works`).
-Prefix                          | The code written before a slash that you use for each parameter to tell EstateMate what kind of detail will come next. (e.g. `d/` is a prefix to indicate a job's description).
+Command                         | A line of text that you type into the search bar of EstateMate to tell it what to do such as to mark a maintenance job as completed.
+Parameter                       | A piece of information you include in your command to specify exactly what you mean to EstateMate. (e.g. In the command `job d/Conduct cleaning works`, `d/Conduct cleaning works` is a parameter that specifies the description of the new job).
+UPPER_CASE Parameter            | A placeholder for a parameter where you put your actual information. (e.g. The format for the add job command is `job d/DESCRIPTION`. `d/DESCRIPTION` is a placeholder which you replace with your own description, such as `d/Conduct cleaning works`).
+Prefix                          | A short piece of code written before a slash that you use for each parameter to tell EstateMate what kind of detail will come next. (e.g. `d/` is a prefix to indicate a job's description).
 Keyword                         | A search term you indicate when using the find job or tenant command to locate the job or tenant with the matching name.
 Job                             | A maintenance task that is related to the property you are tracking.
 Index                           | The number displayed beside each tenant or job in EstateMate. 

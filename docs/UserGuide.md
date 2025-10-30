@@ -163,7 +163,6 @@ It is designed to help property managers understand how to efficiently manage te
 through various commands.
 
 Each feature is grouped by functionality:
-- **Command Summary** — Quick reference table of all available commands.
 - **Tenant Management** — Commands for adding, deleting, editing, and finding tenant details.
 - **Maintenance Job Management** — Commands for creating, tracking, and updating maintenance jobs, including linking them to tenants.
 - **General Utilities** — Commands for clearing data, exiting the application, and accessing in-app help.

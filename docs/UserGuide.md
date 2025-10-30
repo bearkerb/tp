@@ -63,7 +63,7 @@ track tenant information and manage maintenance jobs.
 <br>
 
 ### 1.2 User Proficiency and Expectations
-- ***Professional Focus:*** EstateMate is optimized for users who manage multiple tenants and maintenance jobs at once
+- ***Professional Focus:*** EstateMate is optimized for property managers who manage multiple tenants and maintenance jobs at once
   and need a reliable place to keep things organised.
 - ***Efficiency:*** Built specifically for the property management workflow, EstateMate prioritizes fast,
   streamlined operations so managers can update tenant information and track maintenance jobs.
@@ -92,11 +92,11 @@ keep your properties running smoothly.
 
 2. Download the latest [`.jar` file](#jar-file) from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/latest).
 
-3. Copy the file to the folder you want to use as the [_home folder_](#home-folder) for your application.
+3. Copy the file to the folder you want to use as the [_home folder_](#home-folder). This is the folder where you would like to keep the [`.jar` file](#jar-file) for access, and where the app will store its data files
 
 4. Open your search bar by pressing the Windows key (or the search button for Mac).
 
-5. Open a command [terminal](#terminal) by typing "terminal" in the search bar and press "Enter"
+5. Open a command [terminal](#terminal) by typing "terminal" in the search bar and press "Enter". The command terminal is an app that is already in your computer.
 
 6. Use `cd [folder path]` to navigate into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
    A [GUI (Graphical User Interface)](#gui) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>

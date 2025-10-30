@@ -92,7 +92,7 @@ keep your properties running smoothly.
 
 2. Download the latest [`.jar` file](#jar-file) from [here](https://github.com/AY2526S1-CS2103T-F08a-2/tp/releases/latest).
 
-3. Copy the file to the folder you want to use as the [_home folder_](#home-folder). This is the folder where you would like to keep the [`.jar` file](#jar-file) for access, and where the app will store its data files
+3. Copy the file to the folder you want to use as the [_home folder_](#home-folder). This is the folder where you would like to keep the [`.jar` file](#jar-file) for access, and where the app will store its data files.
 
 4. Open your search bar by pressing the Windows key (or the search button for Mac).
 

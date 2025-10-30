@@ -206,9 +206,9 @@ Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
-  <img src="images/before-add.png" alt="Before Adding Tenant" width="1200">
+  ![before-add-v2.png](images/before-add-v2.png)
   <br>
-  <img src="images/after-add.png" alt="After Adding Tenant" width="1200">
+  ![after-add-v2.png](images/after-add-v2.png)
 
 #### 3.1.2 Deleting a Tenant: `delete`
 Deletes the specified tenant from the application.

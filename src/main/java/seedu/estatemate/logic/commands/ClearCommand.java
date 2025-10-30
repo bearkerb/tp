@@ -6,7 +6,7 @@ import seedu.estatemate.model.EstateMate;
 import seedu.estatemate.model.Model;
 
 /**
- * Clears the EstateMate.
+ * Clears all EstateMate data.
  */
 public class ClearCommand extends Command {
 

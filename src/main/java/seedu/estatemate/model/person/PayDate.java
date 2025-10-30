@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 /**
- * Represents a Person's pay date in EstateMate.
+ * Represents a tenant's pay date in EstateMate.
  * Guarantees: immutable; is valid as declared in {@link #isValidPayDate(String)}
  */
 public class PayDate {

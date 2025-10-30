@@ -246,7 +246,6 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 * **Safe startup**: duplicate jobs in storage (by id or description) cause load to fail; the app falls back to **empty** data.
 * **Consistency**: job deletion removes any references from tenants (by id) to keep the model coherent.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Proposed features**
@@ -753,23 +752,35 @@ Use case ends.
 ## Non-Functional Requirements
 
 ### Performance
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+
+1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2. Should be packaged from a single JAR file.
+3. Should not take up more than 100MB in file size.
+4. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+
 > **Note:** within 1 second for typical operations like listing, searching, adding, etc.
-3.  Users with above-average typing speed should be able to perform most tasks **faster via commands** than using a mouse.
+
+5. Users with above-average typing speed should be able to perform most tasks **faster via commands** than using a
+   mouse.
+6. Should work without requiring an installer.
+7. Should work well for standard screen resolutions and be usable for resolutions 1280x720, screen scales 150%.
+
+> **Note:** Standard screen resolutions - 1920x1080 and higher, screen scales 100% and 125%
 
 ### Usability
-1. The system should provide **clear, informative error messagaes to guide user** for invalid inputs.
+
+1. The system should provide **clear, informative error messages to guide user** for invalid inputs.
 2. Commands and outputs should follow a consistent format to minimize confusion.
+3. The data should be stored locally and be in a human editable text file.
 
 ### Reliability
+
 1. Data should not be lost in case of sudden termination.
 2. The system should handle invalid inputs without crashing or corrupting.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -788,40 +799,140 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file `estatemate.jar` and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. `cd` to the folder with the jar file and running the command `java -jar estatemate.jar` to launch the app <br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Proper shutdown
 
-### Deleting a person
+    1. Open the help window by entering `help` into the command box or using the button at the top left,
 
-1. Deleting a person while all persons are being shown
+    2. Close the main application window. <br>
+       Expected: Both the help window and the main window should close.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Deleting a tenant
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Deleting a tenant while all tenants are being shown
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Prerequisites: List all s using the `list` command. Multiple tenants in the list.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    2. Test case: `delete 1`<br>
+       **Expected:** First tenant is deleted from the list. Details of the deleted tenant shown in the status message.
 
-1. _{ more test cases …​ }_
+    3. Test case: `delete 0`<br>
+       **Expected:** No person is deleted. Error details shown in the status message. Tenant list remains the same.
 
-### Saving data
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       **Expected:** Similar to previous.
 
-1. Dealing with missing/corrupted data files
+### Adding a job
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Adding a new job
+    1. Prerequisites: A job with the same description (case sensitive) does not exist in the job list yet.
 
-1. _{ more test cases …​ }_
+    2. Test case: `job d/ Pest infestation` <br>
+       **Expected:** Job is added to the job list. Details of the job are shown in the status message. Switch to a job
+       list
+       screen where the added job can be seen
+
+2. Adding a duplicate job
+    1. Prerequisites: A job with the same description (case sensitive) e.g. 'Pest infestation' **already exists** in the
+       job list.
+
+    2. Test case: `job d/ Pest infestation` <br>
+       **Expected:** No job is added. Error details shown in the status message. Job list remains the same.
+
+### Finding tenants
+
+1. Finding tenants by name
+    1. Prerequisites: At least one tenant with name containing the word `Alex`, and no tenant with name containing the
+       word `Michael`.
+
+    2. Test case: `find alex` <br>
+       **Expected:** Only tenants with names containing the word `Alex` (non-case sensitive) are displayed.
+
+    3. Test case: `find michael` <br>
+       **Expected:** An empty tenant list is displayed.
+
+### Finding jobs
+
+1. Finding jobs by description
+    1. Prerequisites: At least one job with name containing the word `pest`, and no job with name containing the word
+       `pipe`.
+
+    2. Test case: `fjob pest` <br>
+       **Expected:** Only jobs with descriptions containing the word `pest` (non-case sensitive) are displayed.
+
+    3. Test case: `fjob pipe` <br>
+       **Expected:** An empty job list is displayed.
+
+### Linking jobs to a tenant
+
+1. Linking an existing tenant and job to each other
+    1. Prerequisites: List all tenants using the `list` command. At least one tenant in the list. List all jobs using
+       the `ljob` command. At least one job (job id: 1) in the list.
+
+    2. Test case: `link 1 j/ 1`
+       **Expected:** Job is linked to the tenant. Status message shows the job number and name of tenant linked. Job is
+       displayed in the tenant's maintenance information section.
+
+2. Linking a nonexistent tenant and a job to each other.
+    1. Prerequisites: List all tenants using the `list` command. At most 4 tenants in the list. List all jobs using the
+       `ljob` command. At least one job (job id: 1) in the list.
+
+    2. Test case: `link 5 j/ 1`
+       **Expected:** Job is not linked to the tenant. Error details shown in status message indicating invalid tenant
+       index.
+3. Linking a tenant and a nonexisting job to each other.
+    1. Prerequisites: List all tenants using the `list` command. at least 1 tenant in the list. List all jobs using the
+       `ljob` command. At most 3 (max job id: 3) in the list.
+
+    2. Test case: `link 1 j/ 4`
+       **Expected:** Job is not linked to the tenant. Error details showing in status message indicating invalid job
+       index.
+
+## **Appendix: Planned Enhancements**
+
+Team Size: 5 <br>
+
+1. Implement split screen display. (Allow both job lists and tenant lists to be displayed at the same time)
+2. Allow tenant names to support non-ASCII characters.
+3. `help` command to show a quick, brief reference to available commands without the need to access external links.
+4. Enhance `find` command to allow for searching by phone numbers, on top of current name search.
+5. Add command to unlink a job from a tenant. (Reverse of existing `link` command)
+
+## **Appendix: Effort**
+
+The effort required and difficulty level was high, as we generally did not reuse any code (except for 1 method adapted
+from StackOverflow). <br>
+While AB3 deals with only one entity type (Persons), EstateMate needs to handle two (Tenants and Jobs). The tenant class
+is also much more detailed with more fields compared to the Person class from AB3.
+
+### Project Achievements
+
+1. **Adding jobs and their related functionality** <br>
+   Challenges:
+    1. Finding a way to implement the storage for job data without interfering with the existing data storage for
+       tenants.
+    2. Switching to non-index based commands for jobs as having both index based commands for tenants and jobs could
+       cause issues.
+    3. Creating a whole new GUI section and components for displaying of jobs separately from tenants.
+
+2. **Adding additional fields to the existing `add` command to allow for adding tenants** <br>
+   Challenges:
+    1. Performing date parsing and verification, as Tenant has fields requiring dates while Person from AB3 does not.
+       There are many edge cases to consider and thus this aspect is error-prone.
+    2. Adding job-related methods and fields to the model for tenants while maintaining high cohesion simultaneously.
+
+3. **Adding a new GUI screen to accommodate the addition of jobs** <br>
+   Challenges:
+    1. Starting from scratch as AB3 only has one screen to manage, while we have two.
+    2. Managing the switching between screens based on commands, which we also needed to implement from scratch.

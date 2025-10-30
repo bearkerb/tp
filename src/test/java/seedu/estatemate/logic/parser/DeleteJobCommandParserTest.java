@@ -1,5 +1,6 @@
 package seedu.estatemate.logic.parser;
 
+import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.estatemate.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.estatemate.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -21,11 +22,11 @@ public class DeleteJobCommandParserTest {
     public void parse_invalidArgs_failure() {
         // non-numeric
         assertParseFailure(parser, "abc",
-                ParserUtil.MESSAGE_INVALID_JOB);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteJobCommand.MESSAGE_USAGE));
 
         // empty
         assertParseFailure(parser, "   ",
-                ParserUtil.MESSAGE_INVALID_JOB);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteJobCommand.MESSAGE_USAGE));
     }
 
     @Test

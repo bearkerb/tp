@@ -1,5 +1,6 @@
 package seedu.estatemate.logic.parser;
 
+import static seedu.estatemate.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.estatemate.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.estatemate.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.estatemate.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -25,7 +26,8 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteTenantCommand.MESSAGE_USAGE));
     }
 
     @Test

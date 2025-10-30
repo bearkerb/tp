@@ -16,11 +16,11 @@ public class UnmarkJobCommandParser implements Parser<UnmarkJobCommand> {
      */
     @Override
     public UnmarkJobCommand parse(String args) throws ParseException {
+        String trimmed = args.trim();
+        if (trimmed.isEmpty() || !trimmed.matches("\\d+")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkJobCommand.MESSAGE_USAGE));
+        }
         try {
-            String trimmed = args.trim();
-            if (trimmed.isEmpty() || !trimmed.matches("\\d+")) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkJobCommand.MESSAGE_USAGE));
-            }
             Integer jobNumber = ParserUtil.parseJob(trimmed);
             return new UnmarkJobCommand(jobNumber);
         } catch (ParseException pe) {

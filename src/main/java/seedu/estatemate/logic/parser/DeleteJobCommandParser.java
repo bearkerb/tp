@@ -16,11 +16,11 @@ public class DeleteJobCommandParser implements Parser<DeleteJobCommand> {
      */
     @Override
     public DeleteJobCommand parse(String args) throws ParseException {
+        String trimmed = args.trim();
+        if (trimmed.isEmpty() || !trimmed.matches("\\d+")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteJobCommand.MESSAGE_USAGE));
+        }
         try {
-            String trimmed = args.trim();
-            if (trimmed.isEmpty() || !trimmed.matches("\\d+")) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteJobCommand.MESSAGE_USAGE));
-            }
             Integer jobNumber = ParserUtil.parseJob(trimmed);
             return new DeleteJobCommand(jobNumber);
         } catch (ParseException pe) {

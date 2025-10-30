@@ -187,25 +187,34 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            boolean showJobListPanel = false;
+            boolean showPersonListPanel = false;
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            //Panel switches between: JobPanel & PersonListPanel
             String trimmedCommand = commandText.trim().split("\\s+")[0];
-            switch (trimmedCommand) { //Feel like I could maybe use an if statement for this idk
-            case "ljob":
-                tenantListPanelPlaceholder.getChildren().clear();
-                tenantListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+            switch (trimmedCommand) {
+            case "job", "ejob", "ljob", "fjob":
+                showJobListPanel = true;
                 break;
-            case "fjob":
-                tenantListPanelPlaceholder.getChildren().clear();
-                tenantListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+            case "edit", "list", "find", "link", "tenant", "delete":
+                showPersonListPanel = true;
                 break;
-            default:
-                tenantListPanelPlaceholder.getChildren().clear();
-                tenantListPanelPlaceholder.getChildren().add(tenantListPanel.getRoot());
+            default: //keep the same panel showing
+                break;
             }
+
+
+            if (showJobListPanel) {
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+            }
+            if (showPersonListPanel) {
+                personListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+
             jobListPanel.refresh();
             tenantListPanel.refresh();
 

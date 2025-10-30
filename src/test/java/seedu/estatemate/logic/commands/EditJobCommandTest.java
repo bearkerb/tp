@@ -58,7 +58,7 @@ public class EditJobCommandTest {
         assertCommandSuccess(
                 cmd,
                 model,
-                String.format(EditJobCommand.MESSAGE_SUCCESS, id1),
+                String.format(String.format(EditJobCommand.MESSAGE_SUCCESS, id1, newDesc)),
                 expectedModel
         );
     }
@@ -98,7 +98,7 @@ public class EditJobCommandTest {
         assertCommandSuccess(
                 cmd,
                 model,
-                String.format(EditJobCommand.MESSAGE_SUCCESS, id2),
+                String.format(String.format(EditJobCommand.MESSAGE_SUCCESS, id2, newDesc)),
                 expectedModel
         );
 

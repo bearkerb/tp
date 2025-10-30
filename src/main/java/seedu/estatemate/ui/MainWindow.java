@@ -187,25 +187,34 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            boolean showJobListPanel = false;
+            boolean showPersonListPanel = false;
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            //Panel switches between: JobPanel & PersonListPanel
             String trimmedCommand = commandText.trim().split("\\s+")[0];
-            switch (trimmedCommand) { //Feel like I could maybe use an if statement for this idk
-            case "ljob":
+            switch (trimmedCommand) {
+            case "job", "ejob", "ljob", "fjob":
+                showJobListPanel = true;
+                break;
+            case "edit", "list", "find", "link", "tenant", "delete":
+                showPersonListPanel = true;
+                break;
+            default: //keep the same panel showing
+                break;
+            }
+
+
+            if (showJobListPanel) {
                 tenantListPanelPlaceholder.getChildren().clear();
                 tenantListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
-                break;
-            case "fjob":
-                tenantListPanelPlaceholder.getChildren().clear();
-                tenantListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
-                break;
-            default:
+            }
+            if (showPersonListPanel) {
                 tenantListPanelPlaceholder.getChildren().clear();
                 tenantListPanelPlaceholder.getChildren().add(tenantListPanel.getRoot());
             }
+
             jobListPanel.refresh();
             tenantListPanel.refresh();
 

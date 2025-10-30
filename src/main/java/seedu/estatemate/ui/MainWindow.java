@@ -207,12 +207,12 @@ public class MainWindow extends UiPart<Stage> {
 
 
             if (showJobListPanel) {
-                personListPanelPlaceholder.getChildren().clear();
-                personListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+                tenantListPanelPlaceholder.getChildren().clear();
+                tenantListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
             }
             if (showPersonListPanel) {
-                personListPanelPlaceholder.getChildren().clear();
-                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                tenantListPanelPlaceholder.getChildren().clear();
+                tenantListPanelPlaceholder.getChildren().add(tenantListPanel.getRoot());
             }
 
             jobListPanel.refresh();

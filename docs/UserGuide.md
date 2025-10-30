@@ -116,7 +116,7 @@ keep your properties running smoothly.
 
     * `exit` : Exits the application.<br>
 
-<img src="images/help-window.png" alt="Help Window" width="657">
+<img src="images/help-window.png" alt="Help Window" width="657"> <br>
 
 8. Refer to the [Features](#3-features) below for details of each command.
 
@@ -208,9 +208,9 @@ Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
-  <img src="images/before-add.png" alt="Before Adding Tenant" width="1200">
+  ![before-add-v2.png](images/before-add-v2.png)
   <br><br>
-  <img src="images/after-add.png" alt="After Adding Tenant" width="1200">
+  ![after-add-v2.png](images/after-add-v2.png)
 
 <br>
 
@@ -294,6 +294,8 @@ Format: `list`
 - Any additional input after `list` command will be ignored.
 - `list` without any tenants will show you an empty list, hence you are recommended to add some tenants to the application before using this command.
 <br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Maintenance Job Management 
 <br>

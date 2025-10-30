@@ -1,13 +1,10 @@
 ---
   layout: default.md
-    title: "Developer Guide"
-    pageNav: 3
+  title: "Developer Guide"
+  pageNav: 3
 ---
 
 # EstateMate Developer Guide
-
-<!-- * Table of Contents -->
-<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -76,6 +73,8 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [
@@ -109,7 +108,8 @@ The `UI` component,
 * `TenantCard` has a stronger association with the `Model` component because it stores a reference to a `Model`
   interface instance. However, this is used only retrieve and display jobs linked to a tenant.
   </box>
-*
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -156,13 +156,13 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddTenantCommandParser`, `DeleteTenantCommandParser`, ...) inherit from the
   `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 **API** : [
 `Model.java`](https://github.com/AY2526S1-CS2103T-F08a-2/tp/blob/master/src/main/java/seedu/estatemate/model/Model.java)
-
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
-
 
 The `Model` component,
 
@@ -829,6 +829,7 @@ Use case ends.
       Use case ends.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### Use case: UC15 - Clear
 

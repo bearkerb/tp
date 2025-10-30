@@ -173,76 +173,75 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 #### Model
 
-- **Core Types**
-    - `Job` fields: `id:int`, `description:Description`, `isDone:boolean`.
-    - `Description` validates non-blank descriptions.
-    - `UniqueJobList` maintains all jobs; guarantees **uniqueness by description** via `Job#isSameJob`. Provides add/remove/mark/unmark and an unmodifiable observable view.
+**Core Types**
+* `Job` fields: `id:int`, `description:Description`, `isDone:boolean`.
+* `Description` validates non-blank descriptions.
+* `UniqueJobList` maintains all jobs; guarantees **uniqueness by description** via `Job#isSameJob`. Provides add/remove/mark/unmark and an unmodifiable observable view.
 
-- **Ownership & Access**
-    - `EstateMate` owns a `UniqueJobList` and provides:
-        - `addJob(Job)`
-        - `removeJobById(int)`
-        - `markJobById(int)`
-        - `unmarkJobById(int)`
-        - `getJobList()`
-        - `nextJobId()` *(computed as `max(id)+1`, defaulting to `1`)*
-    - `ModelManager` forwards these model operations and exposes:
-        - `addJob(Job)`
-        - `deleteJobById(int)`
-        - `editJobById(int, Description)`
-        - `markJobById(int)`
-        - `unmarkJobById(int)`
-        - `getFilteredJobList()`
-        - `updateFilteredJobList(Predicate<Job>)`
-        - `nextJobId()`
-        - `getJobDescriptionById(int)`
-        - `isJobCompleted(int)`
-        - `hasJobWithDescription(Description)`
+**Ownership & Access**
+`EstateMate` owns a `UniqueJobList` and provides:
+* `addJob(Job)`
+* `removeJobById(int)`
+* `markJobById(int)`
+* `unmarkJobById(int)`
+* `getJobList()`
+* `nextJobId()` *(computed as `max(id)+1`, defaulting to `1`)*
+`ModelManager` forwards these model operations and exposes:
+* `addJob(Job)`
+* `deleteJobById(int)`
+* `editJobById(int, Description)`
+* `markJobById(int)`
+* `unmarkJobById(int)`
+* `getFilteredJobList()`
+* `updateFilteredJobList(Predicate<Job>)`
+* `nextJobId()`
+* `getJobDescriptionById(int)`
+* `isJobCompleted(int)`
+* `hasJobWithDescription(Description)`
 
-
-- **Tenant References**
-    - `Person` keeps `List<Integer> jobs` (job **ids**).  
-      Deleting a job **cascades**: the job is removed and its id is stripped from all persons’ `jobs` lists.
+**Tenant References**
+* `Person` keeps `List<Integer> jobs` (job **ids**). 
+*  Deleting a job **cascades**: the job is removed and its id is stripped from all persons’ `jobs` lists.
 
 <puml src="diagrams/JobModelClassDiagram.puml" width="360" />
 
 #### Logic
 
-- **Commands**
-    - `AddJobCommand` (`job d/<desc>`) parses `Description`, allocates id via `Model#nextJobId()`, adds job.
-    - `EditJobCommand` (`ejob <id> d/<desc>`) updates job **description** for the given id; preserves `isDone`.
-    - `DeleteJobCommand` (`djob <id>`) removes job and triggers cascade unlink from tenants.
-    - `MarkJobCommand` / `UnmarkJobCommand` (`mark <id>` / `unmark <id>`) toggles completion.
-    - `FindJobCommand` (`fjob KEYWORDS…`) filters by case-insensitive keywords with `JobContainsKeywordsPredicate`.
+**Commands**
+* `AddJobCommand` (`job d/<desc>`) parses `Description`, allocates id via `Model#nextJobId()`, adds job.
+* `EditJobCommand` (`ejob <id> d/<desc>`) updates job **description** for the given id; preserves `isDone`.
+* `DeleteJobCommand` (`djob <id>`) removes job and triggers cascade unlink from tenants.
+* `MarkJobCommand` / `UnmarkJobCommand` (`mark <id>` / `unmark <id>`) toggles completion.
+* `FindJobCommand` (`fjob KEYWORDS…`) filters by case-insensitive keywords with `JobContainsKeywordsPredicate`.
 
-- **Parsers**
-    - `AddJobCommandParser`, `EditJobCommandParser`, `DeleteJobCommandParser`,
+**Parsers**
+* `AddJobCommandParser`, `EditJobCommandParser`, `DeleteJobCommandParser`,
       `MarkJobCommandParser`, `UnmarkJobCommandParser`, `FindJobCommandParser`
       tokenize arguments, validate fields, and construct commands.
 
-- **Post-mutation behaviour**
-    - After any mutation, `ModelManager` resets the filter to `PREDICATE_SHOW_ALL_JOBS`.
+**Post-mutation behaviour**
+* After any mutation, `ModelManager` resets the filter to `PREDICATE_SHOW_ALL_JOBS`.
 
 <puml src="diagrams/JobAddSequence.puml" width="900" />
 
 #### Storage
 
-- **JSON Mapping**
-    - `JsonAdaptedJob` <-> `Job` with fields  
+**JSON Mapping**
+* `JsonAdaptedJob` <-> `Job` with fields  
       `{ "id": number (>0), "description": string, "isDone": boolean }`.
-    - `JsonSerializableEstateMate` rejects duplicates **by id** or **by description**. Load errors surface as `DataLoadingException`; the app then starts with an **empty** dataset (AB-3 fallback path).
+* `JsonSerializableEstateMate` rejects duplicates **by id** or **by description**. Load errors surface as `DataLoadingException`; the app then starts with an **empty** dataset (AB-3 fallback path).
 
-- **Save Flow**
-    - After a successful command, `LogicManager` persists via `StorageManager#saveEstateMate(...)`.
+**Save Flow**
+* After a successful command, `LogicManager` persists via `StorageManager#saveEstateMate(...)`.
 
 <puml src="diagrams/JobStorageDiagram.puml" width="640" />
 
 #### UI
 
-- **Lists & Cards**
-    - `JobListPanel` renders the `ObservableList<Job>`.
-    - Each `JobCard` shows index, `id`, `description`, and a completion badge derived from `isDone`.
-    - The list updates automatically when `ModelManager`'s `filteredJobs` changes.
+**Lists & Cards**
+* `JobListPanel` renders the `ObservableList<Job>`.
+* Each `JobCard` shows index, `id`, `description`, and a completion badge derived from `isDone`.
+* The list updates automatically when `ModelManager`'s `filteredJobs` changes.
 
 <puml src="diagrams/JobUiClassDiagram.puml" width="360" />
 
@@ -250,8 +249,8 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 **Design Notes**
 
-- **Safe startup**: duplicate jobs in storage (by id or description) cause load to fail; the app falls back to **empty** data.
-- **Consistency**: job deletion removes any references from tenants (by id) to keep the model coherent.
+* **Safe startup**: duplicate jobs in storage (by id or description) cause load to fail; the app falls back to **empty** data.
+* **Consistency**: job deletion removes any references from tenants (by id) to keep the model coherent.
 
 
 --------------------------------------------------------------------------------------------------------------------

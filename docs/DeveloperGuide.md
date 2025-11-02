@@ -1017,7 +1017,7 @@ Team Size: 5 <br>
    - e.g. `find Ale` will display the tenant `Alex Yeoh`.
 6. Enhance `fjob` command to no longer require full words to match.
    - e.g. `fjob leak` will display the job with description `Pipe leakage`.
-7. Add command to unlink a job from a tenant. (Reverse of existing `link` command)
+7. Add a command to unlink a job from a tenant. (Reverse of existing `link` command)
 8. Perform more refined parsing validation for the `tenant` command, specifically involving the `a/` tag. 
    - Currently, an address field of `a/ a/` is not accepted, while one of `a/a/` is accepted. 
 9. Perform more rigorous validation of special character positions in phone numbers in the `tenant` command

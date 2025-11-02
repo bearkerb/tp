@@ -71,11 +71,25 @@ public class EditJobCommandTest {
     }
 
     @Test
-    public void execute_duplicateDescription_throwsCommandException() {
-        // Attempt to edit id1 to have the same description as id2
-        EditJobCommand cmd = new EditJobCommand(id1, new Description("Replace corridor lights"));
-        assertCommandFailure(cmd, model, EditJobCommand.MESSAGE_DUPLICATE_JOB);
+    public void execute_duplicateDescription_allowedAndKeepsOrder() {
+        Description duplicate = new Description("Replace corridor lights");
+        EditJobCommand cmd = new EditJobCommand(id1, duplicate);
+
+        expectedModel.editJobById(id1, duplicate);
+
+        assertCommandSuccess(
+                cmd,
+                model,
+                String.format(EditJobCommand.MESSAGE_SUCCESS, id1, duplicate),
+                expectedModel
+        );
+
+        List<Integer> afterIds = model.getFilteredJobList().stream()
+                .map(Job::getId)
+                .collect(Collectors.toList());
+        assertEquals(List.of(id1, id2), afterIds);
     }
+
 
     @Test
     public void execute_editPreservesOrderById_success() {

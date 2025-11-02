@@ -106,7 +106,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         estateMate.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_TENANTS);
     }
 
     @Override
@@ -165,7 +165,7 @@ public class ModelManager implements Model {
             }
         }
 
-        updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TENANTS);
         updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
 
         // Also remove reference to job from all tenants
@@ -188,7 +188,7 @@ public class ModelManager implements Model {
             }
         }
 
-        updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TENANTS);
         updateFilteredJobList(Model.PREDICATE_SHOW_ALL_JOBS);
     }
 

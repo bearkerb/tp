@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 /**
- * Represents a Person's lease in EstateMate.
+ * Represents a tenant's lease in EstateMate.
  * Guarantees: immutable; is valid as declared in {@link #isValidLease(String)}
  */
 public class Lease {

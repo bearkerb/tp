@@ -23,7 +23,6 @@ public class EditJobCommand extends Command {
             + "Example: " + COMMAND_WORD + " 5 " + PREFIX_DESCRIPTION + "Repair corridor lights";
 
     public static final String MESSAGE_SUCCESS = "Edited job #%1$d: %2$s";
-    public static final String MESSAGE_DUPLICATE_JOB = "This description already exists for another job.";
 
     private final int targetId;
     private final Description newDescription;
@@ -47,10 +46,6 @@ public class EditJobCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_JOB_ID);
         }
 
-        // Ensure uniqueness by description
-        if (model.hasJobWithDescription(newDescription)) {
-            throw new CommandException(MESSAGE_DUPLICATE_JOB);
-        }
 
         model.editJobById(targetId, newDescription);
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetId, newDescription));

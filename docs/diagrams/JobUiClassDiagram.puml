@@ -22,7 +22,6 @@ package UI <<Rectangle>> {
   }
 
   JobListPanel o-- JobCard
-  JobCard ..> Model : reads Job via\nObservableList<Job>
 
 }
 @enduml

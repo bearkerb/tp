@@ -324,7 +324,7 @@ Deletes a maintenance job from the application.
 Format: `djob JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the number displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
+- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - `JOB_NUMBER` is a unique number tied to each job, and will not be affected by the use of 
 [`ljob`](#3-2-6-listing-all-jobs-ljob) and [`fjob`](#3-2-4-finding-a-job-fjob), unlike the `TENANT_NUMBER` of the [`delete`](#3-1-2-deleting-a-tenant-delete) command.
 - Deleting a job removes it from all tenants’ assigned job lists.
@@ -395,6 +395,7 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - Once linked, the job will appear under the tenant’s assigned jobs in the display.
 - Deleting a linked job will also remove it from the all tenants' assigned job lists.
 - Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
+- The same job can be linked to multiple tenants.
 
 Examples:
 - `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list. 
@@ -405,6 +406,7 @@ Examples:
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
+- Link the same job to multiple tenants if they all face the same issue (e.g. The same pest infestation affecting multiple units).
 
 #### 3.2.6 Listing All Jobs: `ljob`
 Displays a list of all jobs currently stored in the application, ordered from the earliest added to the most recent.
@@ -424,6 +426,7 @@ Format: `mark JOB_NUMBER`
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - Once marked, the job status will be updated in the display under any linked tenant.
 - If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to `Not Completed`.
+- `mark` will complete the job for all tenants linked to the job.
 
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
@@ -444,6 +447,7 @@ Format: `unmark JOB_NUMBER`
 📌**Note:**
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - Once unmarked, the job will no longer appear as completed.
+- `unmark` will mark the job as not complete for all tenants linked to the job.
 
 Examples:
 - `unmark 3` updates the status of job number 3 in the job list back to not completed.

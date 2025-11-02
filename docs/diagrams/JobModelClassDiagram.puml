@@ -8,6 +8,7 @@ skinparam ClassAttributeIconSize 0
 
 show attributes
 show fields
+show methods
 package Model <<Rectangle>> {
 
   class EstateMate {
@@ -59,8 +60,6 @@ package Model <<Rectangle>> {
 
   class Description {
     - description : String
-    {static} + MESSAGE_CONSTRAINTS : String
-    {static} + isValidDescription(s: String) : boolean
   }
 
   class Person {

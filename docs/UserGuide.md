@@ -503,7 +503,7 @@ Action                      | Format                                            
 [**Clear**](#3-3-1-clearing-all-tenants-clear)              | `clear`                                                                            |
 [**Delete Tenant**](#3-1-2-deleting-a-tenant-delete)       | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
 [**Delete Job**](#3-2-2-deleting-a-job-djob)                | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
-[**Edit Tenant**](#3-1-3-editing-a-tenant-edit)             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
+[**Edit Tenant**](#3-1-3-editing-a-tenant-edit)             | `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`               | `edit 2 n/James Lee p/23847674 e/jameslee@example.com a/Kent Ridge, Blk #520 lease/2025-01-01 2026-12-31 r/1234.56 paydate/2025-02-01 t/friend` 
 [**Edit Job**](#3-2-3-editing-a-job-ejob)                   | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
 [**Exit**](#3-3-2-exiting-application-exit)                 | `exit`                                                                             |
 [**Find Tenant**](#3-1-4-finding-a-tenant-find)             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         

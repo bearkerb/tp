@@ -250,7 +250,7 @@ Examples:
 
 Edits an existing tenant in the application.
 
-Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`
+Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/START END] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`
 
 📌**Note:**
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and 2147483647.

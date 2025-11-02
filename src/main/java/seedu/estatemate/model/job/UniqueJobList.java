@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.estatemate.model.job.exceptions.DuplicateJobException;
 import seedu.estatemate.model.job.exceptions.JobNotFoundException;
 
 /**

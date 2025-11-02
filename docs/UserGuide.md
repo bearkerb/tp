@@ -464,7 +464,7 @@ Examples:
 <br>
 
 #### 3.3.1 Clearing All Tenants: `clear`
-Removes **ALL** tenants from the application.
+Removes **ALL** tenants and maintenance jobs from the application.
 
 Format: `clear`
 

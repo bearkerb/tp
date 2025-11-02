@@ -308,6 +308,7 @@ Format: `job d/DESCRIPTION`
 📌**Note:**
 - Provide a ***clear and concise*** description of the maintenance issue.
 - Jobs can later be linked to tenants for easy tracking.
+- Adding multiple jobs with the same description is allowed. This is useful when different units report the similar issues.
 
 Examples:
 - `job d/Water leakage in ceiling`
@@ -354,6 +355,7 @@ Format: `ejob JOB_NUMBER d/DESCRIPTION`
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - Only jobs that exist in the current displayed list can be edited.
 - Provide a ***clear and concise*** description of the maintenance issue.
+- Editing a job to match the description of another job is allowed. This is useful when different units report the similar issues.
 
 Examples:
 * `ejob 3 d/fix faucet` changes the description of the job with job number 3 to "fix faucet".

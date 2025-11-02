@@ -212,30 +212,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 * `Job` fields: `id:int`, `description:Description`, `isDone:boolean`.
 * `Description` validates non-blank descriptions.
-* `UniqueJobList` maintains all jobs; guarantees **uniqueness by description** via `Job#isSameJob`. Provides
-  add/remove/mark/unmark and an unmodifiable observable view.
-
-**Ownership & Access**
-`EstateMate` owns a `UniqueJobList` and provides:
-
-* `addJob(Job)`
-* `removeJobById(int)`
-* `markJobById(int)`
-* `unmarkJobById(int)`
-* `getJobList()`
-* `nextJobId()` *(computed as `max(id)+1`, defaulting to `1`)*
-  `ModelManager` forwards these model operations and exposes:
-* `addJob(Job)`
-* `deleteJobById(int)`
-* `editJobById(int, Description)`
-* `markJobById(int)`
-* `unmarkJobById(int)`
-* `getFilteredJobList()`
-* `updateFilteredJobList(Predicate<Job>)`
-* `nextJobId()`
-* `getJobDescriptionById(int)`
-* `isJobCompleted(int)`
-* `hasJobWithDescription(Description)`
+* `UniqueJobList` maintains all jobs; provides add/remove/mark/unmark and an unmodifiable observable view.
 
 **Tenant References**
 
@@ -272,7 +249,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 * `JsonAdaptedJob` <-> `Job` with fields  
   `{ "id": number (>0), "description": string, "isDone": boolean }`.
-* `JsonSerializableEstateMate` rejects duplicates **by id** or **by description**. Load errors surface as
+* `JsonSerializableEstateMate` rejects duplicates by id. Jobs with the same description are allowed and will all be loaded. Load errors surface as
   `DataLoadingException`; the app then starts with an **empty** dataset (AB-3 fallback path).
 
 **Save Flow**
@@ -295,7 +272,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 **Design Notes**
 
-* **Safe startup**: duplicate jobs in storage (by id or description) cause load to fail; the app falls back to **empty**
+* **Safe startup**: duplicate jobs in storage (by id) cause load to fail; the app falls back to **empty**
   data.
 * **Consistency**: job deletion removes any references from tenants (by id) to keep the model coherent.
 
@@ -562,10 +539,9 @@ Use case ends.
 
 1. User requests to add a maintenance job, providing the description of job using the command `job d/DESCRIPTION`.
 2. **System** verifies that **DESCRIPTION** is provided and not empty.
-3. **System** checks if a maintenance job with the exact same **DESCRIPTION** already exists to prevent duplication.
-4. **System** creates a new maintenance job and sets its status to "Pending" in the job list.
-5. **System** shows the success message
-6. **System** automatically updates the job list display to include the newly added job.
+3. **System** creates a new maintenance job and sets its status to "Pending" in the job list.
+4. **System** shows the success message
+5. **System** automatically updates the job list display to include the newly added job.
 
 Use case ends.
 
@@ -573,9 +549,6 @@ Use case ends.
 
 * 2a. The **DESCRIPTION** is missing or empty.
     * 2a1. **System** shows an error message indicating that the **DESCRIPTION** cannot be empty. <br>
-      Use case ends.
-* 3a. A duplicate maintenance job (same **DESCRIPTION**) is found.
-    * 3a1. **System** shows an error message indicating that the job already exists. <br>
       Use case ends.
 
 ---
@@ -926,7 +899,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a tenant while all tenants are being shown
 
-    1. Prerequisites: List all s using the `list` command. Multiple tenants in the list.
+    1. Prerequisites: List all tenants using the `list` command. Multiple tenants in the list.
 
     2. Test case: `delete 1`<br>
        **Expected:** First tenant is deleted from the list. Details of the deleted tenant shown in the status message.
@@ -940,19 +913,12 @@ testers are expected to do more *exploratory* testing.
 ### Adding a job
 
 1. Adding a new job
-    1. Prerequisites: A job with the same description (case sensitive) does not exist in the job list yet.
+    1. Prerequisites: No specific prerequisites.
 
     2. Test case: `job d/ Pest infestation` <br>
        **Expected:** Job is added to the job list. Details of the job are shown in the status message. Switch to a job
        list
        screen where the added job can be seen
-
-2. Adding a duplicate job
-    1. Prerequisites: A job with the same description (case sensitive) e.g. 'Pest infestation' **already exists** in the
-       job list.
-
-    2. Test case: `job d/ Pest infestation` <br>
-       **Expected:** No job is added. Error details shown in the status message. Job list remains the same.
 
 ### Finding tenants
 

@@ -3,8 +3,11 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
-skinparam classAttributeIconSize 0
+skinparam ClassAttributeFontColor #MODEL_COLOR
+skinparam ClassAttributeIconSize 0
 
+show attributes
+show fields
 package Model <<Rectangle>> {
 
   class EstateMate {

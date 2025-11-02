@@ -974,10 +974,20 @@ testers are expected to do more *exploratory* testing.
 Team Size: 5 <br>
 
 1. Implement split screen display. (Allow both job lists and tenant lists to be displayed at the same time)
-2. Allow tenant names to support non-ASCII characters.
-3. `help` command to show a quick, brief reference to available commands without the need to access external links.
-4. Enhance `find` command to allow for searching by phone numbers, on top of current name search.
-5. Add command to unlink a job from a tenant. (Reverse of existing `link` command)
+2. Allow tenant names to support special/non-ASCII characters. (Not just alphanumeric characters and spaces)
+   - Allow for valid names like `Anne-marie`, `O'Brien`, `José` .
+3. Improve tenant duplicate detection to include consideration for phone numbers.
+   - Allows same name, as long as the phone number is different.
+4. `help` command to show a quick, brief reference to available commands without the need to access external links.
+5. Enhance `find` command to no longer require full words to match.
+   - e.g. `find Ale` will display the tenant `Alex Yeoh`.
+6. Enhance `fjob` command to no longer require full words to match.
+   - e.g. `fjob leak` will display the job with description `Pipe leakage`.
+7. Add a command to unlink a job from a tenant. (Reverse of existing `link` command)
+8. Perform more refined parsing validation for the `tenant` command, specifically involving the `a/` tag. 
+   - Currently, an address field of `a/ a/` is not accepted, while one of `a/a/` is accepted. 
+9. Perform more rigorous validation of special character positions in phone numbers in the `tenant` command
+    - e.g. Phone numbers like `999(())9999` or `99-----9` should be rejected.
 
 ## **Appendix: Effort**
 

@@ -212,6 +212,10 @@ Examples:
   <br><br>
   ![after-add-v2.png](images/after-add-v2.png)
 
+📌**Note:**
+- As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
+  was created without jobs assigned to them yet.
+
 <br>
 
 #### 3.1.2 Deleting a Tenant: `delete`

@@ -8,6 +8,7 @@ skinparam ClassAttributeIconSize 0
 
 show attributes
 show fields
+show methods
 package Storage <<Rectangle>> {
 
   class StorageManager

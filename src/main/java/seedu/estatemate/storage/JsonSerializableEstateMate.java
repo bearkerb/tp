@@ -66,7 +66,7 @@ class JsonSerializableEstateMate {
         }
         for (JsonAdaptedJob jsonAdaptedJob : jobs) {
             Job modelJob = jsonAdaptedJob.toModelType();
-            if (estateMate.hasJobId(modelJob.getId()) || estateMate.hasJobWithDescription(modelJob.getDescription())) {
+            if (estateMate.hasJobId(modelJob.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_JOB);
             }
             estateMate.addJob(modelJob);

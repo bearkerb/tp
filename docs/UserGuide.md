@@ -221,7 +221,7 @@ Format: `delete TENANT_NUMBER`
 
 📌**Note:** 
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and 2147483647.
-- Only tenants that exist in the current displayed list can be deleted.
+- Only tenants that exist in the ***latest displayed*** tenant list (most recent use of [`list`](#3-1-5-listing-all-tenants-list) or [`find`](#3-1-4-finding-a-tenant-find) commands) can be deleted. 
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">
 
@@ -324,8 +324,9 @@ Deletes a maintenance job from the application.
 Format: `djob JOB_NUMBER`
 
 📌**Note:**
-- `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
-- Only jobs that exist in the current displayed list can be deleted.
+- `JOB_NUMBER` is the number displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
+- `JOB_NUMBER` is a unique number tied to each job, and will not be affected by the use of 
+[`ljob`](#3-2-6-listing-all-jobs-ljob) and [`fjob`](#3-2-4-finding-a-job-fjob), unlike the `TENANT_NUMBER` of the [`delete`](#3-1-2-deleting-a-tenant-delete) command.
 - Deleting a job removes it from all tenants’ assigned job lists.
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">

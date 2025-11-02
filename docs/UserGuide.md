@@ -137,18 +137,18 @@ The available commands will be explained below.
 In EstateMate, [commands](#command) use [**prefixes**](#prefix) to identify each [parameter](#parameter).  
 Each prefix must be followed by a `/` and its corresponding value.
 
-| **Prefix** | **Meaning**     | **Example Usage**             |
-|------------|-----------------|-------------------------------|
-| `n/`       | Name            | `n/John Tan`                  |
-| `p/`       | Phone Number    | `p/91234567`                  |
-| `e/`       | Email Address   | `e/jtan@example.com`          |
-| `a/`       | Address         | `a/Blk 123 #12-34`            |
-| `lease/`   | Lease Start-End | `lease/2025-01-01 2026-12-31` |
-| `r/`       | Amount          | `r/2800.00`                   |
-| `paydate/` | PayDate         | `paydate/2025-01-01`          |
-| `t/`       | Tag             | `t/friend`                    |
-| `j/`       | Job Number | `j/2`                          |
-| `d/`      | Description  | `d/Broken pipe`        |
+| **Prefix** | **Meaning**                        | **Example Usage**             |
+|------------|------------------------------------|-------------------------------|
+| `n/`       | Tenant name                        | `n/John Tan`                  |
+| `p/`       | Phone number                       | `p/91234567`                  |
+| `e/`       | Email address                      | `e/jtan@example.com`          |
+| `a/`       | Address                            | `a/Blk 123 #12-34`            |
+| `lease/`   | Lease duration (start to end date) | `lease/2025-01-01 2026-12-31` |
+| `r/`       | Rent amount                        | `r/2800.00`                   |
+| `paydate/` | The next rent payment deadline     | `paydate/2025-01-01`          |
+| `t/`       | Tag                                | `t/friend`                    |
+| `j/`       | Job number                         | `j/2`                         |
+| `d/`       | Description                        | `d/Broken pipe`        |
 
 💡**Tip:**<br>
 Combine multiple prefixes in one command:<br>
@@ -204,6 +204,7 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 - A tenant can have any number of tags, including zero.
   - If no tags are being added, do not type "t/" at all.
 - Address can only take up to 500 characters including spaces, symbols and punctuations.
+- Paydate is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`. 
 
 Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
@@ -216,6 +217,10 @@ Examples:
 📌**Note:**
 - As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
   was created without jobs assigned to them yet.
+
+💡**Tip:**
+- The paydate is managed manually, giving you the flexibility to adjust the payment schedule as needed. Use [edit](#3-1-3-editing-a-tenant-edit) to update your tenant's paydate. 
+- You can set the paydate to be outside the lease period if you need to track pre-payments, post-payments or other irregular rent arrangements. 
 
 <br>
 
@@ -265,6 +270,7 @@ Examples:
 💡**Tip:**
 - Use [`list`](#3-1-5-listing-all-tenants-list) or [`find`](#3-1-4-finding-a-tenant-find) first to confirm the correct tenant before editing to avoid overwriting important data. 
 - When updating multiple parameters, include all changes in a single command to reduce errors.
+- Use `edit` whenever you need to update a tenant's [paydate](#paydate) to reflect a new rent payment deadline. 
 <br>
 
 #### 3.1.4 Finding a Tenant: `find`
@@ -564,5 +570,6 @@ UPPER_CASE Parameter                              | A placeholder for a paramete
 <a name="job"></a>Job                             | A maintenance task that is related to the property you are tracking. Jobs can be linked to tenants. 
 <a name="job-number"></a>Job Number               | The number shown beside a job in the EstateMate app. Commands like `djob 3` use this number.
 <a name="index"></a>Index                         | The number displayed beside each tenant or job in the EstateMate app. Commands like `delete 2` use this number.
+<a name="paydate"></a>Paydate                     | The date when a tenant's next rent payment is due. You must manually update your tenant's paydate whenever the next payment deadline changes. 
 
 <br>

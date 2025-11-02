@@ -376,7 +376,7 @@ Use case ends.
 **MSS**
 
 1. User requests to delete a specific tenant.
-2. **System** verifies that it is valid and corresponds to an existing tenant.
+2. **System** verifies that the request is valid and corresponds to an existing tenant.
 3. **System** removes the specified tenant record all linked jobs.
 4. **System** shows the success message and refreshes the list of tenants automatically.
 
@@ -408,9 +408,6 @@ Use case ends.
 * 1a. The command format is wrong (e.g., wrong spelling).
     * 1a1. **System** shows an error message indicating that the command format is invalid. <br>
       Use case ends.
-* 2a. No tenants exist in the **System**.
-    * 2a1. **System** shows a message indicating that the tenant list is empty. <br>
-      Use case ends.
 
 ---
 
@@ -438,7 +435,7 @@ Use case ends.
 **MSS**
 
 1. User requests to delete a maintenance job.
-2. **System** verifies that it is valid and corresponds to an existing job.
+2. **System** verifies that the request is valid and corresponds to an existing job.
 3. **System** deletes the specified maintenance job.
 4. **System** shows the success message and refreshes the job list to reflect the removal.
 
@@ -446,11 +443,11 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given job number is invalid.
-    * 2a1. **System** shows an error message that the provided job number is invalid and provides
+* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given tenant number does not correspond to any existing job.
+* 2b. The given input requirement does not correspond to any existing job.
     * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 
@@ -470,9 +467,6 @@ Use case ends.
 * 1a. The command format is wrong (e.g., wrong spelling).
     * 1a1. **System** shows an error message indicating that the command format is invalid. <br>
       Use case ends.
-* 2a. No job exists in the **System**.
-    * 2a1. **System** shows a message indicating that the job list is empty. <br>
-      Use case ends.
 
 ---
 
@@ -481,7 +475,7 @@ Use case ends.
 **MSS**
 
 1. User requests to mark a maintenance job as completed.
-2. **System** verifies that it is valid and corresponds to an existing unmarked job.
+2. **System** verifies that the request is valid and corresponds to an existing unmarked job.
 3. **System** sets the status of the maintenance job.
 4. **System** shows the success message and refreshes the maintenance job list display
    to reflect the new status.
@@ -490,11 +484,11 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given job number is invalid.
-    * 2a1. **System** shows an error message that the provided job number is invalid and provides
+* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given job number does not correspond to any existing job in the job list
+* 2b. The given input requirement does not correspond to any existing job in the job list
     * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2c. The job is already marked as completed.
@@ -508,7 +502,7 @@ Use case ends.
 **MSS**
 
 1. User requests to revert a maintenance job as not completed.
-2. **System** verifies that it is valid and corresponds to an existing unmarked job.
+2. **System** verifies that the request is valid and corresponds to an existing unmarked job.
 3. **System** sets the status of the maintenance job accordingly in the job list in any linked
    tenant's job list.
 4. **System** shows the success message and refreshes the maintenance job list display to reflect the new status.
@@ -517,11 +511,11 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given job number is empty or is not a positive integer.
-    * 2a1. **System** shows an error message that the provided job number is invalid and provides
+* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given job number does not correspond to any existing job in the job list.
+* 2b. The given input requirement does not correspond to any existing job in the job list.
     * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2c. The job is already marked as not completed.
@@ -535,7 +529,7 @@ Use case ends.
 **MSS**
 
 1. User requests a list of all available commands.
-2. **System** displays a hyperlink to the user guide.
+2. **System** directs user to the user guide.
 
 Use case ends.
 
@@ -552,18 +546,18 @@ Use case ends.
 **MSS**
 
 1. User requests to find a specific tenant.
-2. **System** verifies the entered detail(s).
+2. **System** verifies the entered keyword(s).
 3. **System** retrieves all matching tenant records.
-4. **System** automatically displays the list of matching tenants along with their details.
+4. **System** automatically displays the list of matching tenants along with their keywords.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The given detail is invalid.
-    * 2a1. **System** shows an error message indicating that the provided detail(s) is invalid. <br>
+* 2a. The given keyword(s) is invalid (e.g., empty).
+    * 2a1. **System** shows an error message indicating that the provided keyword(s) is invalid. <br>
       Use case ends.
-* 3a. No tenants match the search detail.
+* 3a. No tenants match the search keyword.
     * 3a1. **System** shows a message indicating that no matching tenants were found. <br>
       Use case ends.
 
@@ -574,16 +568,16 @@ Use case ends.
 **MSS**
 
 1. User requests to find a maintenance job.
-2. **System** verifies the given detail(s).
+2. **System** verifies the given keyword(s).
 3. **System** retrieves all matching job records.
 4. **System** automatically displays the list of matching jobs.
 
 **Extensions**
 
-* 2a. The given detail(s) is invalid.
-    * 2a1. **System** shows an error message indicating that the provided detail(s) is invalid. <br>
+* 2a. The given keyword(s) is invalid (e.g., empty).
+    * 2a1. **System** shows an error message indicating that the provided keyword(s) is invalid. <br>
       Use case ends.
-* 3a. No job matches the search detail(s).
+* 3a. No job matches the search keyword(s).
     * 3a1. **System** shows a message indicating that no matching jobs were found. <br>
       Use case ends.
 
@@ -594,7 +588,7 @@ Use case ends.
 **MSS**
 
 1. User request to edit a tenant with one or more updated fields.
-2. **System** verifies that it is valid and corresponds to an existing tenant.
+2. **System** verifies that the request is valid and corresponds to an existing tenant.
 3. **System** updates only the specified fields of the tenant's record while keeping other details unchanged.
 4. **System** shows the success message and refreshes the tenant list display to reflect the changes.
 
@@ -602,14 +596,14 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given tenant number is invalid.
-    * 2a1. **System** shows an error message that the provided tenant number is invalid and provides
+* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given tenant number does not correspond to any existing tenant in the list.
+* 2b. The given input requirement does not correspond to any existing tenant in the list.
     * 2b1. **System** shows an error message indicating that the tenant does not exist. <br>
       Use case ends.
-* 2c. The command format is wrong (e.g., missing fields).
+* 2c. The command does not include any field to edit.
     * 2c1. **System** shows an error message indicating that at least one field must be specified. <br>
       Use case ends.
 
@@ -619,8 +613,8 @@ Use case ends.
 
 **MSS**
 
-1. User request to edit a maintenance job with one or more updated fields.
-2. **System** verifies it is valid and corresponds to an existing job.
+1. User request to edit a maintenance job with one or more updated description.
+2. **System** verifies that the request is valid and corresponds to an existing job.
 3. **System** updates only the maintenance job description.
 4. **System** shows the success message and refreshes the job list display to reflect the changes.
 
@@ -628,14 +622,14 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given job number is invalid.
-    * 2a1. **System** shows an error message that the provided job number is invalid and provides
+* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given job number does not correspond to any existing job in the list.
+* 2b. The given input requirement does not correspond to any existing job in the list.
     * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
-* 2c. The command format is wrong (e.g., missing description)
+* 2c. The command does not include any description to edit.
     * 2c1. **System** shows an error message indicating that description cannot be empty. <br>
       Use case ends.
 
@@ -646,8 +640,7 @@ Use case ends.
 **MSS**
 
 1. User requests to link an existing maintenance job to a tenant.
-2. **System** verifies it is valid, corresponds to an existing tenant and that the JOB_NUMBER corresponds
-   to an existing maintenance job.
+2. **System** verifies that the request is valid, corresponds to an existing tenant and maintenance job.
 3. **System** links the specified job to the tenant updating the tenant's assigned job list and maintaining the job
    status.
 4. **System** shows a success message and refreshes the UI to reflect the linked job under the tenant's assigned jobs.
@@ -656,14 +649,14 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given tenant or job number is invalid.
-    * 2a1. **System** shows an error message that the provided job number and/or tenant number is invalid and
+* 2a. The given input requirement is invalid (e.g., empty fields, not positive integer).
+    * 2a1. **System** shows an error message that the provided input requirement is invalid and
       provides the correct input format. <br>
       Use case ends.
 * 2b. The given tenant number does not correspond to any existing tenant.
     * 2b1. **System** shows an error message indicating that the tenant does not exist. <br>
       Use case ends.
-* 2c. The given job number does not correspond to any existing job.
+* 2c. The given input requirement does not correspond to any existing job.
     * 2c1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2d. The job is already linked to tenant.

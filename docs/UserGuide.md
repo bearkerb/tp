@@ -202,6 +202,8 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 
 📌**Note:** 
 - A tenant can have any number of tags, including zero.
+- Tags help you label tenants with additional info (for example: `t/block-12`, `t/overdue`, `t/contractor-unit`, `t/vip`).
+- Tags are **purely descriptive** in the current version, commands like [`find`](#3-1-4-finding-a-tenant-find) do **not** look at tags.
 - Address can only take up to 500 characters including spaces, symbols and punctuations.
 
 Examples:
@@ -249,9 +251,8 @@ Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEAS
 📌**Note:**
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and 2147483647.
 - Provide ***at least one*** parameter to edit.
-- Tags are replaced, not added cumulatively; t/ clears all tags.
-- You can remove all the person’s tags by typing `t/` without
-   specifying any tags after it.
+- Tags are replaced, not merged. If you run `edit 2 t/block-12 t/overdue`, the tenant will end up with **only** those two tags regardless of how many tags they had before.
+- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st tenant to be `91234567` and `johndoe@example.com` respectively.

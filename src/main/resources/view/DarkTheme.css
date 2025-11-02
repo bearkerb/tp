@@ -127,13 +127,13 @@
 }
 
 .cell_small_label {
-    -fx-font-family: "Helvetica Neue";
+    -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label_bold {
-    -fx-font-family: "Helvetica Neue";
+    -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }

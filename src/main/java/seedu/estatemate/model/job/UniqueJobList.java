@@ -12,8 +12,7 @@ import seedu.estatemate.model.job.exceptions.DuplicateJobException;
 import seedu.estatemate.model.job.exceptions.JobNotFoundException;
 
 /**
- * A list of Jobs Supports a minimal set of list operations. Enforces uniqueness by job description and does not allow
- * nulls.
+ * A list of Jobs Supports a minimal set of list operations. Jobs of duplicate description are allowed.
  */
 public class UniqueJobList implements Iterable<Job> {
 
@@ -42,9 +41,6 @@ public class UniqueJobList implements Iterable<Job> {
      */
     public void add(Job toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateJobException();
-        }
         internalList.add(toAdd);
     }
 
@@ -91,9 +87,6 @@ public class UniqueJobList implements Iterable<Job> {
      */
     public void setJobs(List<Job> jobs) {
         requireNonNull(jobs);
-        if (!jobsAreUnique(jobs)) {
-            throw new DuplicateJobException();
-        }
         internalList.setAll(jobs);
     }
 
@@ -106,11 +99,6 @@ public class UniqueJobList implements Iterable<Job> {
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new JobNotFoundException();
-        }
-
-        boolean identityChanged = !target.isSameJob(editedJob);
-        if (identityChanged && containsDescription(editedJob.getDescription())) {
-            throw new DuplicateJobException();
         }
 
         internalList.set(index, editedJob);

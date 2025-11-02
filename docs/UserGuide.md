@@ -202,6 +202,7 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 
 📌**Note:** 
 - A tenant can have any number of tags, including zero.
+- Address can only take up to 170 characters including spaces, symbols and punctuations.
   - If no tags are being added, do not type "t/" at all.
 - Address can only take up to 500 characters including spaces, symbols and punctuations.
 

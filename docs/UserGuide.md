@@ -171,7 +171,7 @@ Each feature is grouped by functionality:
 ⚠️ <strong>Important Notes about Command Format:</strong><br><br>
 
 * Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `tenant n/NAME`, `NAME` is a parameter which can be used as `tenant n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.

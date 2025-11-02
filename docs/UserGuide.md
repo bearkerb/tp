@@ -202,6 +202,8 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 
 📌**Note:** 
 - A tenant can have any number of tags, including zero.
+- Address can only take up to 170 characters including spaces, symbols and punctuations.
+  - If no tags are being added, do not type "t/" at all.
 - Address can only take up to 500 characters including spaces, symbols and punctuations.
 - `lease/START END` refers to the lease period, specified as two valid calendar dates in the format `yyyy-MM-dd yyyy-MM-dd`, separated by exactly one space. The first date is the start date and the second date is the end date. The end date must be on the same day or after the start date.
 
@@ -212,6 +214,10 @@ Examples:
   ![before-add-v2.png](images/before-add-v2.png)
   <br><br>
   ![after-add-v2.png](images/after-add-v2.png)
+
+📌**Note:**
+- As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
+  was created without jobs assigned to them yet.
 
 <br>
 

@@ -443,11 +443,11 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
-    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
+* 2a. The given input is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given input requirement does not correspond to any existing job.
+* 2b. The given input does not correspond to any existing job.
     * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 
@@ -484,11 +484,11 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
-    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
+* 2a. The given input is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given input requirement does not correspond to any existing job in the job list
+* 2b. The given input does not correspond to any existing job in the job list
     * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2c. The job is already marked as completed.
@@ -511,11 +511,11 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
-    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
+* 2a. The given input is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given input requirement does not correspond to any existing job in the job list.
+* 2b. The given input does not correspond to any existing job in the job list.
     * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2c. The job is already marked as not completed.
@@ -596,11 +596,11 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
-    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
+* 2a. The given input is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given input requirement does not correspond to any existing tenant in the list.
+* 2b. The given input does not correspond to any existing tenant in the list.
     * 2b1. **System** shows an error message indicating that the tenant does not exist. <br>
       Use case ends.
 * 2c. The command does not include any field to edit.
@@ -613,7 +613,7 @@ Use case ends.
 
 **MSS**
 
-1. User request to edit a maintenance job with one or more updated description.
+1. User request to edit a maintenance job with one updated description.
 2. **System** verifies that the request is valid and corresponds to an existing job.
 3. **System** updates only the maintenance job description.
 4. **System** shows the success message and refreshes the job list display to reflect the changes.
@@ -622,11 +622,11 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given input requirement is invalid (e.g., empty, not positive integer).
-    * 2a1. **System** shows an error message that the provided input requirement is invalid and provides
+* 2a. The given input is invalid (e.g., empty, not positive integer).
+    * 2a1. **System** shows an error message that the provided input is invalid and provides
       the correct input format. <br>
       Use case ends.
-* 2b. The given input requirement does not correspond to any existing job in the list.
+* 2b. The given input does not correspond to any existing job in the list.
     * 2b1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2c. The command does not include any description to edit.
@@ -649,14 +649,14 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The given input requirement is invalid (e.g., empty fields, not positive integer).
-    * 2a1. **System** shows an error message that the provided input requirement is invalid and
+* 2a. The given input is invalid (e.g., empty fields, not positive integer).
+    * 2a1. **System** shows an error message that the provided input is invalid and
       provides the correct input format. <br>
       Use case ends.
 * 2b. The given tenant number does not correspond to any existing tenant.
     * 2b1. **System** shows an error message indicating that the tenant does not exist. <br>
       Use case ends.
-* 2c. The given input requirement does not correspond to any existing job.
+* 2c. The given input does not correspond to any existing job.
     * 2c1. **System** shows an error message indicating that the job does not exist. <br>
       Use case ends.
 * 2d. The job is already linked to tenant.

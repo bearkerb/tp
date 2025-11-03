@@ -322,6 +322,8 @@ Format: `job d/DESCRIPTION`
 - Provide a ***clear and concise*** description of the maintenance issue.
 - Jobs can later be linked to tenants for easy tracking.
 - Adding multiple jobs with the same description is allowed. This is useful when different units report the similar issues.
+- Repeated use of the `d/` prefix will take the last use for the job description.
+  - e.g. `job d/Water leakage d/Pipe leakage` will create one job with description `Pipe leakage`.
 
 Examples:
 - `job d/Water leakage in ceiling`
@@ -370,6 +372,8 @@ Format: `ejob JOB_NUMBER d/DESCRIPTION`
 - Only jobs that exist in the current displayed list can be edited.
 - Provide a ***clear and concise*** description of the maintenance issue.
 - Editing a job to match the description of another job is allowed. This is useful when different units report the similar issues.
+- Repeated use of the `d/` prefix will take the last use to edit the job description.
+  - e.g. `ejob 1 d/Water leakage d/Pipe leakage` will edit the description of job 1 to `Pipe leakage`.
 
 Examples:
 * `ejob 3 d/fix faucet` changes the description of the job with job number 3 to "fix faucet".
@@ -411,6 +415,8 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - Deleting a linked job will also remove it from the all tenants' assigned job lists.
 - Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
 - The same job can be linked to multiple tenants.
+- Repeated use of the `j/` prefix will take the last use as the job to link to the tenant.
+  - e.g. `link 1 j/1 j/3` will link **only** job 3 to the first tenant in the list.
 
 Examples:
 - `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list. 

@@ -330,6 +330,7 @@ Examples:
 💡**Tip:**
 - Use consistent wording for similar issues (e.g., "Pipe leakage" vs "Leaking pipe") to make [finding](#3-2-4-finding-a-job-fjob) the job easier later on.
 - Add jobs as soon as issues are reported to keep tenant records up-to-date.
+- Create a new job of the same description if there are separate instances of the same problem (e.g. different leaking pipes in separate units).
 <br>
 
 #### 3.2.2 Deleting a Job: `djob`
@@ -421,7 +422,8 @@ Examples:
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
-- Link the same job to multiple tenants if they all face the same issue (e.g. The same pest infestation affecting multiple units).
+- Link the same job to multiple tenants only if they all face the same shared issue (e.g. The same pest infestation affects multiple units). When you [`mark`](#3-2-7-marking-job-as-completed-mark) or [`unmark` ](#3-2-8-marking-job-as-not-completed-unmark) the job, the status will be reflected for all linked tenants. 
+- Link different jobs to different tenants if they are separate issues (e.g. Unrelated pest infestations in different buildings).
 
 #### 3.2.6 Listing All Jobs: `ljob`
 Displays a list of all jobs currently stored in the application, ordered from the earliest added to the most recent.

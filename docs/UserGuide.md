@@ -137,18 +137,18 @@ The available commands will be explained below.
 In EstateMate, [commands](#command) use [**prefixes**](#prefix) to identify each [parameter](#parameter).  
 Each prefix must be followed by a `/` and its corresponding value.
 
-| **Prefix** | **Meaning**                        | **Example Usage**             |
-|------------|------------------------------------|-------------------------------|
-| `n/`       | Tenant name                        | `n/John Tan`                  |
-| `p/`       | Phone number                       | `p/91234567`                  |
-| `e/`       | Email address                      | `e/jtan@example.com`          |
-| `a/`       | Address                            | `a/Blk 123 #12-34`            |
-| `lease/`   | Lease duration (start to end date) | `lease/2025-01-01 2026-12-31` |
-| `r/`       | Rent amount                        | `r/2800.00`                   |
-| `paydate/` | The next rent payment deadline     | `paydate/2025-01-01`          |
-| `t/`       | Tag                                | `t/friend`                    |
-| `j/`       | Job number                         | `j/2`                         |
-| `d/`       | Description                        | `d/Broken pipe`        |
+| **Prefix** | **Meaning**                      | **Example Usage**             |
+|------------|----------------------------------|-------------------------------|
+| `n/`       | Tenant name                      | `n/John Tan`                  |
+| `p/`       | Phone number                     | `p/91234567`                  |
+| `e/`       | Email address                    | `e/jtan@example.com`          |
+| `a/`       | Address                          | `a/Blk 123 #12-34`            |
+| `lease/`   | Lease period (start to end date) | `lease/2025-01-01 2026-12-31` |
+| `r/`       | Rent amount                      | `r/2800.00`                   |
+| `paydate/` | The next rent payment deadline   | `paydate/2025-01-01`          |
+| `t/`       | Tag                              | `t/friend`                    |
+| `j/`       | Job number                       | `j/2`                         |
+| `d/`       | Description                      | `d/Broken pipe`        |
 
 💡**Tip:**<br>
 Combine multiple prefixes in one command:<br>

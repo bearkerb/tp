@@ -472,7 +472,7 @@ Format: `unmark JOB_NUMBER`
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - Once unmarked, the job will no longer appear as completed.
 - `unmark` will mark the job as not complete for all tenants linked to the job.
-- - You can even mark a job not currently linked to any tenant as not complete, for cases where a job related to an unoccupied unit.
+- You can even mark a job not currently linked to any tenant as not complete, for cases where a job related to an unoccupied unit.
 
 Examples:
 - `unmark 3` updates the status of job number 3 in the job list back to not completed.

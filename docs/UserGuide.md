@@ -100,7 +100,7 @@ keep your properties running smoothly.
 
 6. Use `cd [folder path]` to navigate into the folder you put the jar file in, and use the `java -jar estatemate.jar` command to run the application.<br>
    A [GUI (Graphical User Interface)](#gui) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Updated_GUI_v3.png" alt="Updated GUI v3" width="600">
+   ![sample-data-gui](images/sample-data-gui.png)
 
 7. Type a [command](#command) in the command box and press Enter to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -116,7 +116,7 @@ keep your properties running smoothly.
 
     * `exit` : Exits the application.<br>
 
-<img src="images/help-window.png" alt="Help Window" width="657"> <br>
+![help-window](images/help-window.png) <br>
 
 8. Refer to the [Features](#3-features) below for details of each command.
 
@@ -208,9 +208,9 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 - Address can only take up to 170 characters including spaces, symbols and punctuations.
 - `lease/START END` refers to the lease period, specified as two valid calendar dates in the format `yyyy-MM-dd yyyy-MM-dd`, separated by exactly one space. The first date is the start date and the second date is the end date. The end date must be on the same day or after the start date.
 - Paydate is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`.
-  ![before-add-v2.png](images/before-add-v2.png)
+  ![before-add-v3.png](images/before-add-v3.png)
   <br><br>
-  ![after-add-v2.png](images/after-add-v2.png)
+  ![after-add-v3.png](images/after-add-v3.png)
 - As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
   was created without jobs assigned to them yet.
 
@@ -424,7 +424,7 @@ Examples:
 - `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list. 
 <br>
 
-  <img src="images/linked-job.png" alt="Linked Job" width="1200">
+![linked-job](images/linked-job.png)
 <br>
 
 💡**Tip:**
@@ -455,9 +455,17 @@ Format: `mark JOB_NUMBER`
 
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
-<div style="display:flex; gap: 10px">  <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="457">
-  <img src="images/marked-joblist.png" alt="Updated GUI v2" width="492">
-</div>
+
+[//]: # (<div style="display:flex; gap: 10px">  )
+
+[//]: # (    <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="457">)
+
+[//]: # (  <img src="images/marked-joblist.png" alt="Updated GUI v2" width="492">)
+
+[//]: # (</div>)
+
+![marked-tenant-list](images/marked-tenant-list.png)
+![marked-job-list](images/marked-job-list.png)
 <br>
 
 💡**Tip:**

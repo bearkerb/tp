@@ -457,8 +457,8 @@ Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
 
 <div style="display:flex; gap: 10px">
-<a href="images/marked-tenant-list.png"><img src="images/marked-tenant-list.png" alt="marked tenant list"></a>
-<a href="images/marked-job-list.png"><img src="images/marked-job-list.png" alt="marked job list"></a>
+    <a href="images/marked-tenant-list.png"><img src="images/marked-tenant-list.png" alt="marked tenant list"></a>
+    <a href="images/marked-job-list.png"><img src="images/marked-job-list.png" alt="marked job list"></a>
 </div>
 <br>
 

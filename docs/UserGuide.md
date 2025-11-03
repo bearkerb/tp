@@ -202,7 +202,7 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 
 📌**Note:** 
 - A tenant can have any number of tags, including zero.
-- Tags help you label tenants with additional info (for example: `t/block-12`, `t/overdue`, `t/contractor-unit`, `t/vip`).
+- Tags help you label tenants with additional info (for example: `t/friendly`, `t/overdue`, `t/contractor`, `t/vip`).
 - Tags are **purely descriptive** in the current version, commands like [`find`](#3-1-4-finding-a-tenant-find) do **not** look at tags.
 - If you don't want to add any tags do not type "t/" at all.
 - Address can only take up to 170 characters including spaces, symbols and punctuations.
@@ -262,7 +262,7 @@ Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/STAR
 📌**Note:**
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and 2147483647.
 - Provide ***at least one*** parameter to edit.
-- Tags are replaced, not merged. If you run `edit 2 t/block-12 t/overdue`, the tenant will end up with **only** those two tags regardless of how many tags they had before.
+- Tags are replaced, not merged. If you run `edit 2 t/friendly t/overdue`, the tenant will end up with **only** those two tags regardless of how many tags they had before.
 - You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
@@ -332,6 +332,7 @@ Examples:
 💡**Tip:**
 - Use consistent wording for similar issues (e.g., "Pipe leakage" vs "Leaking pipe") to make [finding](#3-2-4-finding-a-job-fjob) the job easier later on.
 - Add jobs as soon as issues are reported to keep tenant records up-to-date.
+- Create a new job of the same description if there are separate instances of the same problem (e.g. different leaking pipes in separate units).
 <br>
 
 #### 3.2.2 Deleting a Job: `djob`
@@ -427,7 +428,8 @@ Examples:
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
-- Link the same job to multiple tenants if they all face the same issue (e.g. The same pest infestation affecting multiple units).
+- Link the same job to multiple tenants only if they all face the same shared issue (e.g. The same pest infestation affects multiple units). When you [`mark`](#3-2-7-marking-job-as-completed-mark) or [`unmark` ](#3-2-8-marking-job-as-not-completed-unmark) the job, the status will be reflected for all linked tenants. 
+- Link different jobs to different tenants if they are separate issues (e.g. Unrelated pest infestations in different buildings).
 
 #### 3.2.6 Listing All Jobs: `ljob`
 Displays a list of all jobs currently stored in the application, ordered from the earliest added to the most recent.
@@ -483,7 +485,7 @@ Examples:
 <br>
 
 #### 3.3.1 Clearing All Tenants: `clear`
-Removes **ALL** tenants from the application.
+Removes **ALL** tenants and maintenance jobs from the application.
 
 Format: `clear`
 
@@ -522,7 +524,7 @@ Action                      | Format                                            
 [**Clear**](#3-3-1-clearing-all-tenants-clear)              | `clear`                                                                            |
 [**Delete Tenant**](#3-1-2-deleting-a-tenant-delete)       | `delete TENANT_NUMBER`                                                             | `delete 3`                                                                             
 [**Delete Job**](#3-2-2-deleting-a-job-djob)                | `djob JOB_NUMBER`                                                                  | `djob 3`                                                                                     
-[**Edit Tenant**](#3-1-3-editing-a-tenant-edit)             | `edit TENANT_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`               | `edit 2 n/James Lee e/jameslee@example.com` 
+[**Edit Tenant**](#3-1-3-editing-a-tenant-edit)             | `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`               | `edit 2 n/James Lee p/23847674 e/jameslee@example.com a/Kent Ridge, Blk #520 lease/2025-01-01 2026-12-31 r/1234.56 paydate/2025-02-01 t/friend` 
 [**Edit Job**](#3-2-3-editing-a-job-ejob)                   | `ejob JOB_NUMBER d/DESCRIPTION`                                                    | `ejob 3 d/fix faucet`                     
 [**Exit**](#3-3-2-exiting-application-exit)                 | `exit`                                                                             |
 [**Find Tenant**](#3-1-4-finding-a-tenant-find)             | `find KEYWORD [MORE_KEYWORDS]`                                                     | `find James Jake`                         

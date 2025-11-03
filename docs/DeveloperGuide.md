@@ -613,7 +613,7 @@ Use case ends.
 
 **MSS**
 
-1. User request to edit a maintenance job with one updated description.
+1. User request to edit a maintenance job with updated description.
 2. **System** verifies that the request is valid and corresponds to an existing job.
 3. **System** updates only the maintenance job description.
 4. **System** shows the success message and refreshes the job list display to reflect the changes.

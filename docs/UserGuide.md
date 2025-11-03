@@ -204,22 +204,23 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 - A tenant can have any number of tags, including zero.
 - Tags help you label tenants with additional info (for example: `t/friendly`, `t/overdue`, `t/contractor`, `t/vip`).
 - Tags are **purely descriptive** in the current version, commands like [`find`](#3-1-4-finding-a-tenant-find) do **not** look at tags.
-- If you don't want to add any tags do not type "t/" at all.
+  - If you don't want to add any tags, do not type "t/" at all.
 - Address can only take up to 170 characters including spaces, symbols and punctuations.
 - `lease/START END` refers to the lease period, specified as two valid calendar dates in the format `yyyy-MM-dd yyyy-MM-dd`, separated by exactly one space. The first date is the start date and the second date is the end date. The end date must be on the same day or after the start date.
 - Paydate is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`.
+  ![before-add-v2.png](images/before-add-v2.png)
+  <br><br>
+  ![after-add-v2.png](images/after-add-v2.png)
+- As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
+  was created without jobs assigned to them yet.
 
 Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
-  ![before-add-v2.png](images/before-add-v2.png)
-  <br><br>
-  ![after-add-v2.png](images/after-add-v2.png)
-
-📌**Note:**
-- As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
-  was created without jobs assigned to them yet.
+<strong>❗ Warning:</strong><br>
+- For addresses that begin with the part `a/`, ensure that there is no space between the prefix and the address, for the input to be considered valid.
+  - e.g. `a/a/Clementi Avenue 1` will be considered acceptable input, while `a/ a/Clementi Avenue 1` will not.
 
 💡**Tip:**
 - The paydate is managed manually, giving you the flexibility to adjust the payment schedule as needed. Use [edit](#3-1-3-editing-a-tenant-edit) to update your tenant's paydate. 
@@ -322,6 +323,8 @@ Format: `job d/DESCRIPTION`
 - Provide a ***clear and concise*** description of the maintenance issue.
 - Jobs can later be linked to tenants for easy tracking.
 - Adding multiple jobs with the same description is allowed. This is useful when different units report the similar issues.
+- Repeated use of the `d/` prefix will take the last use for the job description.
+  - e.g. `job d/Water leakage d/Pipe leakage` will create one job with description `Pipe leakage`.
 
 Examples:
 - `job d/Water leakage in ceiling`
@@ -371,6 +374,8 @@ Format: `ejob JOB_NUMBER d/DESCRIPTION`
 - Only jobs that exist in the current displayed list can be edited.
 - Provide a ***clear and concise*** description of the maintenance issue.
 - Editing a job to match the description of another job is allowed. This is useful when different units report the similar issues.
+- Repeated use of the `d/` prefix will take the last use to edit the job description.
+  - e.g. `ejob 1 d/Water leakage d/Pipe leakage` will edit the description of job 1 to `Pipe leakage`.
 
 Examples:
 * `ejob 3 d/fix faucet` changes the description of the job with job number 3 to "fix faucet".
@@ -412,6 +417,8 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - Deleting a linked job will also remove it from the all tenants' assigned job lists.
 - Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
 - The same job can be linked to multiple tenants.
+- Repeated use of the `j/` prefix will take the last use as the job to link to the tenant.
+  - e.g. `link 1 j/1 j/3` will link **only** job 3 to the first tenant in the list.
 
 Examples:
 - `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list. 
@@ -444,6 +451,7 @@ Format: `mark JOB_NUMBER`
 - Once marked, the job status will be updated in the display under any linked tenant.
 - If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to `Not Completed`.
 - `mark` will complete the job for all tenants linked to the job.
+- You can even mark a job not currently linked to any tenant, for cases where a job related to an unoccupied unit.
 
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
@@ -465,6 +473,7 @@ Format: `unmark JOB_NUMBER`
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - Once unmarked, the job will no longer appear as completed.
 - `unmark` will mark the job as not complete for all tenants linked to the job.
+- You can even mark a job not currently linked to any tenant as not complete, for cases where a job related to an unoccupied unit.
 
 Examples:
 - `unmark 3` updates the status of job number 3 in the job list back to not completed.

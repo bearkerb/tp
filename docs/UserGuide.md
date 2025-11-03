@@ -208,18 +208,19 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 - Address can only take up to 170 characters including spaces, symbols and punctuations.
 - `lease/START END` refers to the lease period, specified as two valid calendar dates in the format `yyyy-MM-dd yyyy-MM-dd`, separated by exactly one space. The first date is the start date and the second date is the end date. The end date must be on the same day or after the start date.
 - Paydate is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`.
+  ![before-add-v2.png](images/before-add-v2.png)
+  <br><br>
+  ![after-add-v2.png](images/after-add-v2.png)
+- As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
+  was created without jobs assigned to them yet.
 
 Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
 - `tenant n/Sarah Kim p/12398653 e/sarahk@example.com a/Blk 234 #56-78, Clementi lease/2025-02-02 2027-02-02 r/4000.00 paydate/2025-02-02`
 
-  ![before-add-v2.png](images/before-add-v2.png)
-  <br><br>
-  ![after-add-v2.png](images/after-add-v2.png)
-
-📌**Note:**
-- As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
-  was created without jobs assigned to them yet.
+<strong>❗ Warning:</strong><br>
+- For addresses that begin with the part `a/`, ensure that there is no space between the prefix and the address, for the input to be considered valid.
+  - e.g. `a/a/Clementi Avenue 1` will be considered acceptable input, while `a/ a/Clementi Avenue 1` will not.
 
 💡**Tip:**
 - The paydate is managed manually, giving you the flexibility to adjust the payment schedule as needed. Use [edit](#3-1-3-editing-a-tenant-edit) to update your tenant's paydate. 

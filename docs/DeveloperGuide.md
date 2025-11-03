@@ -870,6 +870,8 @@ Team Size: 5 <br>
    - Currently, an address field of `a/ a/` is not accepted, while one of `a/a/` is accepted. 
 9. Perform more rigorous validation of special character positions in phone numbers in the `tenant` command
     - e.g. Phone numbers like `999(())9999` or `99-----9` should be rejected.
+10. Add an extra layer of user verification to the `clear` command.
+    - e.g. Require user to input 'Y' in response to a verification question before performing clearing the data.
 
 ## **Appendix: Effort**
 

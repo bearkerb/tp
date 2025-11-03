@@ -330,7 +330,7 @@ Examples:
 💡**Tip:**
 - Use consistent wording for similar issues (e.g., "Pipe leakage" vs "Leaking pipe") to make [finding](#3-2-4-finding-a-job-fjob) the job easier later on.
 - Add jobs as soon as issues are reported to keep tenant records up-to-date.
-- Create a new job of the same description if there are separate instances of the same problem (e.g. different leaking pipes in separate units)
+- Create a new job of the same description if there are separate instances of the same problem (e.g. different leaking pipes in separate units).
 <br>
 
 #### 3.2.2 Deleting a Job: `djob`

@@ -202,9 +202,12 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 
 📌**Note:** 
 - A tenant can have any number of tags, including zero.
-  - If no tags are being added, do not type "t/" at all.
-- Address can only take up to 500 characters including spaces, symbols and punctuations.
-- Paydate is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`. 
+- Tags help you label tenants with additional info (for example: `t/block-12`, `t/overdue`, `t/contractor-unit`, `t/vip`).
+- Tags are **purely descriptive** in the current version, commands like [`find`](#3-1-4-finding-a-tenant-find) do **not** look at tags.
+- If you don't want to add any tags do not type "t/" at all.
+- Address can only take up to 170 characters including spaces, symbols and punctuations.
+- `lease/START END` refers to the lease period, specified as two valid calendar dates in the format `yyyy-MM-dd yyyy-MM-dd`, separated by exactly one space. The first date is the start date and the second date is the end date. The end date must be on the same day or after the start date.
+- Paydate is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`.
 
 Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
@@ -254,14 +257,13 @@ Examples:
 
 Edits an existing tenant in the application.
 
-Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`
+Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/START END] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`
 
 📌**Note:**
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and 2147483647.
 - Provide ***at least one*** parameter to edit.
-- Tags are replaced, not added cumulatively; t/ clears all tags.
-- You can remove all the person’s tags by typing `t/` without
-   specifying any tags after it.
+- Tags are replaced, not merged. If you run `edit 2 t/block-12 t/overdue`, the tenant will end up with **only** those two tags regardless of how many tags they had before.
+- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st tenant to be `91234567` and `johndoe@example.com` respectively.

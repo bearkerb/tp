@@ -239,7 +239,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 **Post-mutation behaviour**
 
-* After any mutation, `ModelManager` resets the filter to `PREDICATE_SHOW_ALL_JOBS`.
+* After job-list-changing mutations (job / ejob / djob), `ModelManager` resets the job filter to `PREDICATE_SHOW_ALL_JOBS`. Mark/unmark just update the job’s status and keep the current filter.
 
 <puml src="diagrams/JobAddSequence.puml" width="900" />
 
@@ -263,7 +263,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 **Lists & Cards**
 
 * `JobListPanel` renders the `ObservableList<Job>`.
-* Each `JobCard` shows index, `id`, `description`, and a completion badge derived from `isDone`.
+* Each `JobCard` shows `id`, `description`, and a completion badge derived from `isDone`.
 * The list updates automatically when `ModelManager`'s `filteredJobs` changes.
 
 <puml src="diagrams/JobUiClassDiagram.puml" width="360" />

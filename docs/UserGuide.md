@@ -36,7 +36,7 @@ pageNav: 3
     - [3.2.6 Listing All Jobs](#3-2-6-listing-all-jobs-ljob)
     - [3.2.7 Marking Job As Completed](#3-2-7-marking-job-as-completed-mark)
     - [3.2.8 Marking Job As Not Completed](#3-2-8-marking-job-as-not-completed-unmark)
-- [3.3 General Utilities](#3-3-general-features)
+- [3.3 General Utilities](#3-3-general-utilities)
     - [3.3.1 Clearing All Tenants](#3-3-1-clearing-all-tenants-clear)
     - [3.3.2 Exiting Application](#3-3-2-exiting-application-exit)
     - [3.3.3 Getting Help](#3-3-3-getting-help-help)

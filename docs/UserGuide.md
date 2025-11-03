@@ -204,7 +204,7 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 - A tenant can have any number of tags, including zero.
 - Tags help you label tenants with additional info (for example: `t/friendly`, `t/overdue`, `t/contractor`, `t/vip`).
 - Tags are **purely descriptive** in the current version, commands like [`find`](#3-1-4-finding-a-tenant-find) do **not** look at tags.
-- If you don't want to add any tags do not type "t/" at all.
+  - If you don't want to add any tags, do not type "t/" at all.
 - Address can only take up to 170 characters including spaces, symbols and punctuations.
 - `lease/START END` refers to the lease period, specified as two valid calendar dates in the format `yyyy-MM-dd yyyy-MM-dd`, separated by exactly one space. The first date is the start date and the second date is the end date. The end date must be on the same day or after the start date.
 - Paydate is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`.

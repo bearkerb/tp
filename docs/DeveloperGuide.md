@@ -239,7 +239,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 **Post-mutation behaviour**
 
-* After job-list-changing mutations (add / edit / delete), `ModelManager` resets the job filter to `PREDICATE_SHOW_ALL_JOBS`. Mark/unmark just update the job’s status and keep the current filter.
+* After job-list-changing mutations (job / ejob / djob), `ModelManager` resets the job filter to `PREDICATE_SHOW_ALL_JOBS`. Mark/unmark just update the job’s status and keep the current filter.
 
 <puml src="diagrams/JobAddSequence.puml" width="900" />
 

@@ -456,14 +456,6 @@ Format: `mark JOB_NUMBER`
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
 
-[//]: # (<div style="display:flex; gap: 10px">  )
-
-[//]: # (    <img src="images/marked-tenantlist.png" alt="Marked Tenant List" width="457">)
-
-[//]: # (  <img src="images/marked-joblist.png" alt="Updated GUI v2" width="492">)
-
-[//]: # (</div>)
-
 ![marked-tenant-list](images/marked-tenant-list.png)
 ![marked-job-list](images/marked-job-list.png)
 <br>

@@ -171,13 +171,13 @@ Each feature is grouped by functionality:
 ⚠️ <strong>Important Notes about Command Format:</strong><br><br>
 
 * Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `tenant n/NAME`, `NAME` is a parameter which can be used as `tenant n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, or `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -204,7 +204,9 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
 - A tenant can have any number of tags, including zero.
 - Tags help you label tenants with additional info (for example: `t/block-12`, `t/overdue`, `t/contractor-unit`, `t/vip`).
 - Tags are **purely descriptive** in the current version, commands like [`find`](#3-1-4-finding-a-tenant-find) do **not** look at tags.
+- If you don't want to add any tags do not type "t/" at all.
 - Address can only take up to 500 characters including spaces, symbols and punctuations.
+- `lease/START END` refers to the lease period, specified as two valid calendar dates in the format `yyyy-MM-dd yyyy-MM-dd`, separated by exactly one space. The first date is the start date and the second date is the end date. The end date must be on the same day or after the start date.
 
 Examples:
 - `tenant n/John Tan p/91234567 e/jtan@example.com a/Blk 123 #12-34, Bedok lease/2025-01-01 2026-12-31 r/2800.00 paydate/2025-01-01`
@@ -213,6 +215,10 @@ Examples:
   ![before-add-v2.png](images/before-add-v2.png)
   <br><br>
   ![after-add-v2.png](images/after-add-v2.png)
+
+📌**Note:**
+- As seen in the "After" picture, there is an empty "Jobs:" field in the success message, indicating that the tenant
+  was created without jobs assigned to them yet.
 
 <br>
 
@@ -223,7 +229,7 @@ Format: `delete TENANT_NUMBER`
 
 📌**Note:** 
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and 2147483647.
-- Only tenants that exist in the current displayed list can be deleted.
+- Only tenants that exist in the ***latest displayed*** tenant list (most recent use of [`list`](#3-1-5-listing-all-tenants-list) or [`find`](#3-1-4-finding-a-tenant-find) commands) can be deleted. 
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">
 
@@ -246,7 +252,7 @@ Examples:
 
 Edits an existing tenant in the application.
 
-Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/LEASE] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`
+Format: `edit TENANT_NUMBER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [lease/START END] [r/AMOUNT] [paydate/PAYDATE] [t/TAG]…​`
 
 📌**Note:**
 - `TENANT_NUMBER` is the index displayed next to each tenant in the tenant list, and must be a ***positive number*** between 1 and 2147483647.
@@ -327,7 +333,8 @@ Format: `djob JOB_NUMBER`
 
 📌**Note:**
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
-- Only jobs that exist in the current displayed list can be deleted.
+- `JOB_NUMBER` is a unique number tied to each job, and will not be affected by the use of 
+[`ljob`](#3-2-6-listing-all-jobs-ljob) and [`fjob`](#3-2-4-finding-a-job-fjob), unlike the `TENANT_NUMBER` of the [`delete`](#3-1-2-deleting-a-tenant-delete) command.
 - Deleting a job removes it from all tenants’ assigned job lists.
 
 <div style="border-left: 4px solid red; background-color: #ffe6e6; padding: 15px;">
@@ -397,6 +404,7 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - Once linked, the job will appear under the tenant’s assigned jobs in the display.
 - Deleting a linked job will also remove it from the all tenants' assigned job lists.
 - Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
+- The same job can be linked to multiple tenants.
 
 Examples:
 - `link 1 j/2` links the 2nd maintenance job in the job list to the 1st tenant in the tenant list. 
@@ -407,6 +415,7 @@ Examples:
 
 💡**Tip:**
 - Link jobs as soon as they are created to keep tenants’ maintenance records accurate and avoid losing track of pending tasks.
+- Link the same job to multiple tenants if they all face the same issue (e.g. The same pest infestation affecting multiple units).
 
 #### 3.2.6 Listing All Jobs: `ljob`
 Displays a list of all jobs currently stored in the application, ordered from the earliest added to the most recent.
@@ -426,6 +435,7 @@ Format: `mark JOB_NUMBER`
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - Once marked, the job status will be updated in the display under any linked tenant.
 - If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to `Not Completed`.
+- `mark` will complete the job for all tenants linked to the job.
 
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
@@ -446,6 +456,7 @@ Format: `unmark JOB_NUMBER`
 📌**Note:**
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - Once unmarked, the job will no longer appear as completed.
+- `unmark` will mark the job as not complete for all tenants linked to the job.
 
 Examples:
 - `unmark 3` updates the status of job number 3 in the job list back to not completed.

@@ -207,7 +207,7 @@ Format: `tenant n/NAME p/PHONE e/EMAIL a/ADDRESS lease/START END r/AMOUNT paydat
   - If you don't want to add any tags, do not type "t/" at all.
 - Address can only take up to 170 characters including spaces, symbols and punctuations.
 - `lease/START END` refers to the lease period, specified as two valid calendar dates in the format `yyyy-MM-dd yyyy-MM-dd`, separated by exactly one space. The first date is the start date and the second date is the end date. The end date must be on the same day or after the start date.
-- Paydate is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`.
+- Pay date is used to record the tenant's next rent payment deadline. You must enter a valid calendar date with the format `yyyy-MM-dd`.
   ![before-add-v3.png](images/before-add-v3.png)
   <br><br>
   ![after-add-v3.png](images/after-add-v3.png)
@@ -223,8 +223,8 @@ Examples:
   - e.g. `a/a/Clementi Avenue 1` will be considered acceptable input, while `a/ a/Clementi Avenue 1` will not.
 
 💡**Tip:**
-- The paydate is managed manually, giving you the flexibility to adjust the payment schedule as needed. Use [edit](#3-1-3-editing-a-tenant-edit) to update your tenant's paydate. 
-- You can set the paydate to be outside the lease period if you need to track pre-payments, post-payments or other irregular rent arrangements. 
+- The pay date is managed manually, giving you the flexibility to adjust the payment schedule as needed. Use [edit](#3-1-3-editing-a-tenant-edit) to update your tenant's pay date. 
+- You can set the pay date to be outside the lease period if you need to track pre-payments, post-payments or other irregular rent arrangements. 
 
 <br>
 
@@ -273,7 +273,7 @@ Examples:
 💡**Tip:**
 - Use [`list`](#3-1-5-listing-all-tenants-list) or [`find`](#3-1-4-finding-a-tenant-find) first to confirm the correct tenant before editing to avoid overwriting important data. 
 - When updating multiple parameters, include all changes in a single command to reduce errors.
-- Use `edit` whenever you need to update a tenant's [paydate](#paydate) to reflect a new rent payment deadline. 
+- Use `edit` whenever you need to update a tenant's [pay date](#paydate) to reflect a new rent payment deadline. 
 <br>
 
 #### 3.1.4 Finding a Tenant: `find`
@@ -283,10 +283,10 @@ Finds tenants whose names contain any of the given [keywords](#keyword).
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 📌**Note:**
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- The search is case-insensitive. e.g `hans` will match `Hans`.
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 - Only the names of tenants are searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
+- Only full words will be matched e.g. `Han` will not match `Hans`.
 - Tenants matching at least one keyword will be returned.
     e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -390,10 +390,10 @@ Finds maintenance jobs whose descriptions contain any of the given [keywords](#k
 Format: `fjob KEYWORD [MORE KEYWORDS]`
 
 📌**Note:**
-- The search is case-insensitive. e.g `pipe` will match `Pipe`
-- The order of the keywords does not matter. e.g. `Pipe leak` will match `leak pipe`
+- The search is case-insensitive. e.g `pipe` will match `Pipe`.
+- The order of the keywords does not matter. e.g. `Pipe leak` will match `leak pipe`.
 - Only the description is searched.
-- Only full words will be matched e.g. `Pipe` will not match `Pipes`
+- Only full words will be matched e.g. `Pipe` will not match `Pipes`.
 - Maintenance jobs matching at least one keyword will be returned.
    e.g. `Broken window` will return `Broken pipe`, `Window repair`
 

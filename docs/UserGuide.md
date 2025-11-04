@@ -322,7 +322,7 @@ Format: `job d/DESCRIPTION`
 📌**Note:**
 - Provide a ***clear and concise*** description of the maintenance issue.
 - Jobs can later be linked to tenants for easy tracking.
-- Adding multiple jobs with the same description is allowed. This is useful when different units report the similar issues.
+- Adding multiple jobs with the same description is allowed. This is useful when different units report similar issues.
 - Repeated use of the `d/` prefix will take the last use for the job description.
   - e.g. `job d/Water leakage d/Pipe leakage` will create one job with description `Pipe leakage`.
 
@@ -373,7 +373,7 @@ Format: `ejob JOB_NUMBER d/DESCRIPTION`
 - `JOB_NUMBER` is the index displayed next to each job in the job list, and must be a ***positive number*** between 1 and 2147483647.
 - Only jobs that exist in the current displayed list can be edited.
 - Provide a ***clear and concise*** description of the maintenance issue.
-- Editing a job to match the description of another job is allowed. This is useful when different units report the similar issues.
+- Editing a job to match the description of another job is allowed. This is useful when different units report similar issues.
 - Repeated use of the `d/` prefix will take the last use to edit the job description.
   - e.g. `ejob 1 d/Water leakage d/Pipe leakage` will edit the description of job 1 to `Pipe leakage`.
 
@@ -414,8 +414,8 @@ Format: `link TENANT_NUMBER j/JOB_NUMBER`
 - `JOB_NUMBER` is the index displayed next to each job in the job list.
 - You can only link jobs and tenants that already exist in the system.
 - Once linked, the job will appear under the tenant’s assigned jobs in the display.
-- Deleting a linked job will also remove it from the all tenants' assigned job lists.
-- Marking and unmarking linked job will change the status of completion under tenant's assigned job list.
+- Deleting a linked job will also remove it from all tenants' assigned job lists.
+- Marking and unmarking a linked job will change the completion status under the tenant’s assigned job list.
 - The same job can be linked to multiple tenants.
 - Repeated use of the `j/` prefix will take the last use as the job to link to the tenant.
   - e.g. `link 1 j/1 j/3` will link **only** job 3 to the first tenant in the list.
@@ -451,7 +451,7 @@ Format: `mark JOB_NUMBER`
 - Once marked, the job status will be updated in the display under any linked tenant.
 - If a job is marked by mistake, you can use the [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) command to revert it to `Not Completed`.
 - `mark` will complete the job for all tenants linked to the job.
-- You can even mark a job not currently linked to any tenant, for cases where a job related to an unoccupied unit.
+- You can even mark a job not currently linked to any tenant, for cases where a job for cases where a job is related to an unoccupied unit.
 
 Examples:
 - `mark 2` updates the completion status of job number 2 of the job list to 'completed'.
@@ -464,7 +464,7 @@ Examples:
 
 💡**Tip:**
 - Use [`ljob`](#3-2-6-listing-all-jobs-ljob) to double-check the job list before using `mark` to ensure you’re updating the correct job.
-- Use [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) to revert mistakes if a job is accidentally marked as not completed.
+- Use [`unmark`](#3-2-8-marking-job-as-not-completed-unmark) to revert mistakes if a job is accidentally marked as completed.
 
 #### 3.2.8 Marking Job as Not Completed: `unmark`
 Reverts a maintenance job's status to `Not Completed` in case it was marked as complete by mistake.

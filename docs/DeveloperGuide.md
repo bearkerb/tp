@@ -106,7 +106,7 @@ The `UI` component,
 * `MainWindow` stores a reference to a `Model` interface instance. This is to pass the `Model` instance to
   `TenantListPanel` as well as to retrieve job information for `JobListPanel`.
 * `TenantCard` has a stronger association with the `Model` component because it stores a reference to a `Model`
-  interface instance. However, this is used only retrieve and display jobs linked to a tenant.
+  interface instance. However, this is used only to retrieve and display jobs linked to a tenant.
   </box>
 
 <div style="page-break-after: always;"></div>
@@ -302,7 +302,7 @@ This section explains how **Jobs** are modelled, parsed, stored, and presented.
 
 **Value proposition**:
 EstateMate helps property managers stay organized and in control of their operations.
-It provides a ***centralized and efficient way*** to manage tenants, rental records, and maintenance jobs all froma
+It provides a ***centralized and efficient way*** to manage tenants, rental records, and maintenance jobs all from a
 simple, keyboard-friendly interface.
 With EstateMate, users can:
 
@@ -377,7 +377,7 @@ Use case ends.
 
 1. User requests to delete a specific tenant.
 2. **System** verifies that the request is valid and corresponds to an existing tenant.
-3. **System** removes the specified tenant record all linked jobs.
+3. **System** removes the specified tenant.
 4. **System** shows the success message and refreshes the list of tenants automatically.
 
 Use case ends.
@@ -502,7 +502,7 @@ Use case ends.
 **MSS**
 
 1. User requests to revert a maintenance job as not completed.
-2. **System** verifies that the request is valid and corresponds to an existing unmarked job.
+2. **System** verifies that the request is valid and corresponds to an existing marked job.
 3. **System** sets the status of the maintenance job accordingly in the job list in any linked
    tenant's job list.
 4. **System** shows the success message and refreshes the maintenance job list display to reflect the new status.
@@ -587,7 +587,7 @@ Use case ends.
 
 **MSS**
 
-1. User request to edit a tenant with one or more updated fields.
+1. User requests to edit a tenant with one or more updated fields.
 2. **System** verifies that the request is valid and corresponds to an existing tenant.
 3. **System** updates only the specified fields of the tenant's record while keeping other details unchanged.
 4. **System** shows the success message and refreshes the tenant list display to reflect the changes.
@@ -613,7 +613,7 @@ Use case ends.
 
 **MSS**
 
-1. User request to edit a maintenance job with updated description.
+1. User requests to edit a maintenance job with updated description.
 2. **System** verifies that the request is valid and corresponds to an existing job.
 3. **System** updates only the maintenance job description.
 4. **System** shows the success message and refreshes the job list display to reflect the changes.
@@ -812,7 +812,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all tenants using the `list` command. At least one tenant in the list. List all jobs using
        the `ljob` command. At least one job (job id: 1) in the list.
 
-    2. Test case: `link 1 j/ 1`
+    2. Test case: `link 1 j/1`
        **Expected:** Job is linked to the tenant. Status message shows the job number and name of tenant linked. Job is
        displayed in the tenant's maintenance information section.
 
@@ -820,14 +820,14 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all tenants using the `list` command. At most 4 tenants in the list. List all jobs using the
        `ljob` command. At least one job (job id: 1) in the list.
 
-    2. Test case: `link 5 j/ 1`
+    2. Test case: `link 5 j/1`
        **Expected:** Job is not linked to the tenant. Error details shown in status message indicating invalid tenant
        index.
 3. Linking a tenant and a nonexisting job to each other.
     1. Prerequisites: List all tenants using the `list` command. at least 1 tenant in the list. List all jobs using the
        `ljob` command. At most 3 (max job id: 3) in the list.
 
-    2. Test case: `link 1 j/ 4`
+    2. Test case: `link 1 j/4`
        **Expected:** Job is not linked to the tenant. Error details showing in status message indicating invalid job
        index.
 
@@ -851,7 +851,7 @@ Team Size: 5 <br>
 9. Perform more rigorous validation of special character positions in phone numbers in the `tenant` command
     - e.g. Phone numbers like `999(())9999` or `99-----9` should be rejected.
 10. Add an extra layer of user verification to the `clear` command.
-    - e.g. Require user to input 'Y' in response to a verification question before performing clearing the data.
+    - e.g. Require user to input 'Y' in response to a verification question before clearing the data.
 
 ## **Appendix: Effort**
 

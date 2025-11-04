@@ -486,6 +486,8 @@ Examples:
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3 General Utilities 
 <br>
 

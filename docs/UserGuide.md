@@ -486,6 +486,8 @@ Examples:
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3 General Utilities 
 <br>
 
@@ -542,7 +544,6 @@ Action                      | Format                                            
 [**Unmark Job**](#3-2-8-marking-job-as-not-completed-unmark)| `unmark JOB_NUMBER`                                                                | `unmark 1`
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 5. FAQ and Known Issues
 <br>
